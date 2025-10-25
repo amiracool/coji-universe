@@ -59,6 +59,24 @@ interface SupportNeed {
   text: string;
 }
 
+interface JournalEntry {
+  id?: string;
+  date: string;
+  questionIndex: number;
+  question: string;
+  answer: string;
+  timestamp?: string;
+}
+
+interface TherapistBooking {
+  id?: string;
+  user_name: string;
+  date: string;
+  time: string;
+  reason: string;
+  timestamp?: string;
+}
+
 const CojiUniverse = () => {
   const [activeTab, setActiveTab] = useState("landing");
   const [batteryLevel, setBatteryLevel] = useState(10);
@@ -73,6 +91,13 @@ const CojiUniverse = () => {
   const [supportNeeds, setSupportNeeds] = useState<SupportNeed[]>([]);
   const [newSupportNeed, setNewSupportNeed] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [journalAnswer, setJournalAnswer] = useState("");
+  const [journalEntries, setJournalEntries] = useState<JournalEntry[]>([]);
+  const [bookingName, setBookingName] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+  const [bookingTime, setBookingTime] = useState("");
+  const [bookingReason, setBookingReason] = useState("");
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskEnergy, setNewTaskEnergy] = useState(3);
@@ -149,6 +174,22 @@ const CojiUniverse = () => {
       if (todayTracking) {
         setBatteryLevel(todayTracking.battery);
         setHasTrackedToday(true);
+      }
+      // load journal entries (supabase or local)
+      await loadJournalEntries();
+
+      // try loading any local therapist bookings (fallback)
+      try {
+        const rawBk = localStorage.getItem("coji_therapist_bookings");
+        if (rawBk) {
+          const parsed = JSON.parse(rawBk);
+          if (parsed && parsed.length > 0) {
+            // prefill last booking name as convenience
+            setBookingName(parsed[0].user_name || "");
+          }
+        }
+      } catch (e) {
+        // ignore
       }
     } catch (error) {
       console.log("Loading data:", error);
@@ -358,6 +399,139 @@ const CojiUniverse = () => {
   );
   const remainingBattery = batteryLevel - totalEnergyRequired;
 
+  // --- Journal helpers ---
+  const journalQuestions = [
+    // Sample prompts (expand to 365 as you like). The index is used to allocate a question each day.
+    "What made you smile today?",
+    "What's one thing you did well this week?",
+    "What's a small pleasure you enjoyed recently?",
+    "Describe a moment you felt proud.",
+    "What would make tomorrow better?",
+    "What's something you want to remember from this year?",
+    "Who helped you recently and how?",
+    "What's a challenge you're working through?",
+    "What's a skill you'd like to practice?",
+    "What book or show inspired you?",
+    "When did you feel calm this week?",
+    "What sensory environment do you prefer to work in?",
+  ];
+
+  const getDayOfYear = (d = new Date()) => {
+    const start = new Date(d.getFullYear(), 0, 0);
+    const diff = +d - +start + (start.getTimezoneOffset() - d.getTimezoneOffset()) * 60 * 1000;
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+  };
+
+  const currentQuestionIndex = getDayOfYear() % journalQuestions.length;
+  const currentQuestion = journalQuestions[currentQuestionIndex];
+
+  const loadJournalEntries = async () => {
+    try {
+      // Try loading from Supabase if table exists
+      const { data } = await supabase
+        .from("journal_entries")
+        .select("*")
+        .eq("user_id", DEMO_USER_ID)
+        .order("date", { ascending: false });
+      if (data) {
+        setJournalEntries(data as JournalEntry[]);
+        const today = new Date().toISOString().split("T")[0];
+        const todayEntry = (data as JournalEntry[]).find((e) => e.date === today);
+        if (todayEntry) setJournalAnswer(todayEntry.answer);
+      }
+    } catch (err) {
+      // fallback to localStorage
+      try {
+        const raw = localStorage.getItem("coji_journal");
+        if (raw) {
+          const parsed: JournalEntry[] = JSON.parse(raw);
+          setJournalEntries(parsed);
+          const today = new Date().toISOString().split("T")[0];
+          const todayEntry = parsed.find((e) => e.date === today);
+          if (todayEntry) setJournalAnswer(todayEntry.answer);
+        }
+      } catch (e) {
+        console.log("loadJournalEntries fallback error", e);
+      }
+    }
+  };
+
+  const saveJournalEntry = async (answer: string) => {
+    const date = new Date().toISOString().split("T")[0];
+    const entry: JournalEntry = {
+      date,
+      questionIndex: currentQuestionIndex,
+      question: currentQuestion,
+      answer,
+      timestamp: new Date().toISOString(),
+    };
+
+    // update local state + localStorage
+    const updated = [entry, ...journalEntries.filter((e) => e.date !== date)];
+    setJournalEntries(updated);
+    try {
+      localStorage.setItem("coji_journal", JSON.stringify(updated));
+    } catch (e) {
+      console.log("localStorage save failed", e);
+    }
+
+    // try saving to Supabase (optional if table exists)
+    try {
+      await supabase.from("journal_entries").upsert({
+        user_id: DEMO_USER_ID,
+        date: entry.date,
+        question_index: entry.questionIndex,
+        question: entry.question,
+        answer: entry.answer,
+        timestamp: entry.timestamp,
+      });
+    } catch (err) {
+      // ignore - optional feature
+      console.log("supabase journal save failed", err);
+    }
+  };
+
+  // --- Therapist booking ---
+  const submitBooking = async () => {
+    if (!bookingName || !bookingDate || !bookingTime) {
+      alert("Please provide name, date and time for the booking.");
+      return;
+    }
+
+    const booking: TherapistBooking = {
+      user_name: bookingName,
+      date: bookingDate,
+      time: bookingTime,
+      reason: bookingReason,
+      timestamp: new Date().toISOString(),
+    };
+
+    // try supabase first
+    try {
+      await supabase.from("therapist_bookings").insert({
+        user_id: DEMO_USER_ID,
+        user_name: booking.user_name,
+        date: booking.date,
+        time: booking.time,
+        reason: booking.reason,
+        timestamp: booking.timestamp,
+      });
+      setBookingConfirmed(true);
+    } catch (err) {
+      // fallback: save locally
+      try {
+        const raw = localStorage.getItem("coji_therapist_bookings");
+        const parsed: TherapistBooking[] = raw ? JSON.parse(raw) : [];
+        parsed.unshift(booking);
+        localStorage.setItem("coji_therapist_bookings", JSON.stringify(parsed));
+        setBookingConfirmed(true);
+      } catch (e) {
+        console.log("booking fallback failed", e);
+        alert("Unable to save booking right now. Please try again later.");
+      }
+    }
+  };
+
   const tabs = [
     { id: "landing", icon: Home, label: "Home" },
     { id: "dashboard", icon: TrendingUp, label: "Dashboard" },
@@ -366,6 +540,7 @@ const CojiUniverse = () => {
     { id: "library", icon: Brain, label: "ND Library" },
     { id: "mentalhealth", icon: Heart, label: "Mental Health" },
     { id: "forum", icon: Users, label: "Forum" },
+    { id: "journal", icon: Star, label: "Journal" },
     { id: "clipboard", icon: Clipboard, label: "Clipboard" },
   ];
 
@@ -415,6 +590,95 @@ const CojiUniverse = () => {
           </div>
         </div>
       )}
+
+        {/* Therapist booking, Sleep support and Personality quizzes */}
+        {activeTab === "mentalhealth" && (
+          <div className="mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-xl font-bold mb-4 text-teal-300">Book a Therapist Session</h3>
+                <p className="text-slate-400 text-sm mb-4">Schedule a session with a vetted therapist. We store bookings securely (Supabase) or locally if offline.</p>
+
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={bookingName}
+                    onChange={(e) => setBookingName(e.target.value)}
+                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white placeholder-slate-500"
+                  />
+                  <input
+                    type="date"
+                    value={bookingDate}
+                    onChange={(e) => setBookingDate(e.target.value)}
+                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white"
+                  />
+                  <input
+                    type="time"
+                    value={bookingTime}
+                    onChange={(e) => setBookingTime(e.target.value)}
+                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white"
+                  />
+                  <textarea
+                    placeholder="Reason or notes (optional)"
+                    value={bookingReason}
+                    onChange={(e) => setBookingReason(e.target.value)}
+                    className="w-full h-24 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white resize-none"
+                  />
+
+                  <div className="flex gap-2">
+                    <button
+                      onClick={submitBooking}
+                      className="flex-1 bg-gradient-to-r from-teal-500 to-fuchsia-500 px-4 py-2 rounded-lg font-medium"
+                    >
+                      Request Booking
+                    </button>
+                    <button
+                      onClick={() => {
+                        setBookingName("");
+                        setBookingDate("");
+                        setBookingTime("");
+                        setBookingReason("");
+                      }}
+                      className="px-4 py-2 bg-slate-700 rounded-lg"
+                    >
+                      Clear
+                    </button>
+                  </div>
+
+                  {bookingConfirmed && (
+                    <div className="mt-2 text-sm text-teal-300">Booking requested — we'll notify you when it's confirmed.</div>
+                  )}
+                </div>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h3 className="text-xl font-bold mb-4 text-fuchsia-300">Sleep Support</h3>
+                <p className="text-slate-400 mb-3">Tips, tools and gentle routines to improve sleep and recovery.</p>
+                <ul className="text-sm text-slate-300 space-y-2">
+                  <li>{"\u2022"} Wind-down routine suggestions</li>
+                  <li>{"\u2022"} Sensory-friendly sleep setups</li>
+                  <li>{"\u2022"} Light sleep diary and tracking</li>
+                </ul>
+                <div className="mt-4">
+                  <button className="bg-fuchsia-500 px-4 py-2 rounded-lg">Open Sleep Support</button>
+                </div>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-xl font-bold mb-4 text-teal-300">Personality & Quizzes</h3>
+                <p className="text-slate-400 mb-3">Short quizzes to learn more about your preferences and strengths.</p>
+                <div className="space-y-2">
+                  <button className="w-full bg-teal-500 px-4 py-2 rounded-lg">Start Sleep Style Quiz</button>
+                  <button className="w-full bg-fuchsia-500 px-4 py-2 rounded-lg">Start Personality Quiz</button>
+                </div>
+                <p className="text-xs text-slate-400 mt-3">Results can be saved to your profile for personalised suggestions.</p>
+              </div>
+            </div>
+          </div>
+        )}
+      
+      
 
       {showTaskModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
@@ -1371,6 +1635,64 @@ const CojiUniverse = () => {
                   Share Your Creative Work
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "journal" && (
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-teal-300">Journal</h2>
+            <p className="text-slate-400 mb-8">
+              A daily question prompt — answer once per day and browse past answers over the years.
+            </p>
+
+            <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+              <h3 className="font-bold mb-4 text-fuchsia-300">Today's Question</h3>
+              <p className="text-slate-200 mb-4">{currentQuestion}</p>
+              <textarea
+                placeholder="Write your answer here..."
+                value={journalAnswer}
+                onChange={(e) => setJournalAnswer(e.target.value)}
+                className="w-full h-40 bg-slate-700 bg-opacity-50 rounded-lg px-4 py-3 text-white placeholder-slate-500 resize-none border border-teal-500 border-opacity-20"
+              />
+              <div className="flex gap-3 mt-4">
+                <button
+                  onClick={() => {
+                    saveJournalEntry(journalAnswer);
+                  }}
+                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2"
+                >
+                  Save Answer
+                </button>
+                <button
+                  onClick={() => {
+                    setJournalAnswer("");
+                  }}
+                  className="px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-all"
+                >
+                  Clear
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+              <h3 className="font-bold mb-4 text-teal-300">Past Entries</h3>
+              {journalEntries.length === 0 ? (
+                <p className="text-slate-400 text-sm">No journal entries yet.</p>
+              ) : (
+                <div className="space-y-3 max-h-64 overflow-y-auto">
+                  {journalEntries.map((entry) => (
+                    <div key={entry.date} className="p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="text-sm font-semibold text-teal-300">{new Date(entry.date).toLocaleDateString()}</div>
+                        <div className="text-xs text-slate-400">Q#{entry.questionIndex}</div>
+                      </div>
+                      <div className="text-sm text-slate-200">{entry.question}</div>
+                      <div className="mt-2 text-sm text-slate-300">{entry.answer}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
