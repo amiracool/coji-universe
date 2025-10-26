@@ -940,27 +940,25 @@ const CojiUniverse = () => {
                 alt="Coji"
                 className="w-12 h-12 object-contain"
               />
-              <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-fuchsia-400 relative overflow-hidden">
-                <span className="relative z-10">Coji Universe</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 animate-glisten" style={{
-                  animation: 'glisten 3s ease-in-out infinite',
-                  backgroundSize: '200% 100%'
-                }}></span>
+              <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-fuchsia-400 animate-glow">
+                Coji Universe
               </h1>
             </button>
             <style jsx>{`
-              @keyframes glisten {
-                0% {
-                  transform: translateX(-100%);
-                  opacity: 0;
+              @keyframes glow {
+                0%, 100% {
+                  text-shadow: 0 0 5px rgba(45, 212, 191, 0.3),
+                               0 0 10px rgba(45, 212, 191, 0.2),
+                               0 0 15px rgba(217, 70, 239, 0.2);
                 }
                 50% {
-                  opacity: 0.3;
+                  text-shadow: 0 0 8px rgba(45, 212, 191, 0.5),
+                               0 0 15px rgba(45, 212, 191, 0.3),
+                               0 0 20px rgba(217, 70, 239, 0.3);
                 }
-                100% {
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
+              }
+              .animate-glow {
+                animation: glow 3s ease-in-out infinite;
               }
             `}</style>
             {activeTab !== "landing" && (
