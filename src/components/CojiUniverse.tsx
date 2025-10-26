@@ -1613,13 +1613,6 @@ const CojiUniverse = () => {
                   You're doing great! Here's how you're tracking {"\u{1F49C}"}
                 </p>
               </div>
-              <button
-                onClick={() => setShowTaskModal(true)}
-                className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-bold transition-all shadow-lg flex items-center gap-2"
-              >
-                <Plus size={20} />
-                Add Task
-              </button>
             </div>
 
               <div className="mb-8 bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-fuchsia-500 border-opacity-30">
@@ -1759,9 +1752,18 @@ const CojiUniverse = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="text-xl font-bold mb-4 text-teal-300">
-                  Today's Tasks
-                </h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold text-teal-300">
+                    Today's Tasks
+                  </h3>
+                  <button
+                    onClick={() => setShowTaskModal(true)}
+                    className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-4 py-2 rounded-lg font-bold transition-all shadow-lg flex items-center gap-2"
+                  >
+                    <Plus size={18} />
+                    Add Task
+                  </button>
+                </div>
                 {todaysTasks.length === 0 ? (
                   <div>
                     <p className="text-slate-400 text-sm mb-4">
