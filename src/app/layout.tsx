@@ -4,6 +4,9 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Coji Universe',
   description: 'Your neurodivergent life & chronic illness management hub: plan life, not burnout',
+  icons: {
+    icon: '/coji- logo.png',
+  },
 }
 
 export default function RootLayout({
