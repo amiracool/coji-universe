@@ -20,6 +20,7 @@ import {
   Battery,
   BatteryMedium,
   BatteryLow,
+  BarChart,
 } from "lucide-react";
 import { supabase, DEMO_USER_ID } from "@/lib/supabase";
 
@@ -29,6 +30,8 @@ interface TrackingData {
   battery: number;
   feeling: string;
   sleep: number;
+  pain?: number;
+  pain_note?: string;
   timestamp?: string;
 }
 
@@ -92,6 +95,7 @@ const CojiUniverse = () => {
   const [sleepHours, setSleepHours] = useState(7);
   const [painScore, setPainScore] = useState(0);
   const [painNote, setPainNote] = useState("");
+  const [lastCheckin, setLastCheckin] = useState<TrackingData | null>(null);
   const [trackingData, setTrackingData] = useState<TrackingData[]>([]);
   const [hasTrackedToday, setHasTrackedToday] = useState(false);
   const [cojiMessage, setCojiMessage] = useState("");
@@ -190,20 +194,22 @@ const CojiUniverse = () => {
         .order("date", { ascending: true });
       if (tasksData) setTasks(tasksData);
 
-      const today = new Date().toISOString().split("T")[0];
-      const { data: todayTracking } = await supabase
+      // load the most recent check-in (allow multiple check-ins per day)
+      const { data: lastTracking } = await supabase
         .from("tracking_data")
         .select("*")
         .eq("user_id", DEMO_USER_ID)
-        .eq("date", today)
-        .single();
+        .order("timestamp", { ascending: false })
+        .limit(1);
 
-      if (todayTracking) {
-        setBatteryLevel(todayTracking.battery);
-        setTodayFeeling(todayTracking.feeling || "");
-        setSleepHours(typeof todayTracking.sleep === "number" ? todayTracking.sleep : parseFloat(todayTracking.sleep || "0"));
-        setPainScore(typeof todayTracking.pain === "number" ? todayTracking.pain : parseFloat(todayTracking.pain || "0"));
-        setPainNote(todayTracking.pain_note || "");
+      if (lastTracking && Array.isArray(lastTracking) && lastTracking.length > 0) {
+        const recent = lastTracking[0] as any;
+        setLastCheckin(recent as TrackingData);
+        setBatteryLevel(recent.battery);
+        setTodayFeeling(recent.feeling || "");
+        setSleepHours(typeof recent.sleep === "number" ? recent.sleep : parseFloat(recent.sleep || "0"));
+        setPainScore(typeof recent.pain === "number" ? recent.pain : parseFloat(recent.pain || "0"));
+        setPainNote(recent.pain_note || "");
         setHasTrackedToday(true);
       }
   // load journal entries (supabase or local)
@@ -232,13 +238,14 @@ const CojiUniverse = () => {
 
   const saveTracking = async () => {
     if (!todayFeeling) {
-      alert("Please select how you're feeling today! \u{1F60A}");
+      alert("Please select how you're feeling now! \u{1F60A}");
       return;
     }
 
     const today = new Date().toISOString().split("T")[0];
 
-    const { error } = await supabase.from("tracking_data").upsert({
+    // Insert a new check-in row so users can check in multiple times per day
+    const { error } = await supabase.from("tracking_data").insert({
       user_id: DEMO_USER_ID,
       date: today,
       battery: batteryLevel,
@@ -251,6 +258,16 @@ const CojiUniverse = () => {
 
     if (!error) {
       setHasTrackedToday(true);
+      // set lastCheckin locally to reflect the newly inserted record (optimistic)
+      const recent: TrackingData = {
+        date: today,
+        battery: batteryLevel,
+        feeling: todayFeeling,
+        sleep: sleepHours,
+        pain: painScore,
+        timestamp: new Date().toISOString(),
+      } as any;
+      setLastCheckin(recent);
       loadData();
     }
   };
@@ -424,6 +441,107 @@ const CojiUniverse = () => {
       }),
       battery: day.battery,
     }));
+  };
+
+  // --- Analysis helpers ---
+  const hourFromTimestamp = (ts?: string) => {
+    try {
+      if (!ts) return null;
+      return new Date(ts).getHours();
+    } catch (e) {
+      return null;
+    }
+  };
+
+  const averageByHour = (field: "battery" | "pain") => {
+    const sums = new Array(24).fill(0);
+    const counts = new Array(24).fill(0);
+    trackingData.forEach((t) => {
+      const h = hourFromTimestamp(t.timestamp) ?? 0;
+      const val = field === "battery" ? (t.battery ?? 0) : (t.pain ?? 0);
+      sums[h] += val || 0;
+      counts[h] += val !== undefined ? 1 : 0;
+    });
+    return sums.map((s, i) => (counts[i] ? s / counts[i] : 0));
+  };
+
+  const happiestByHour = () => {
+    const happyValues = new Set(["great", "excited", "good"]);
+    const counts = new Array(24).fill(0);
+    trackingData.forEach((t) => {
+      const h = hourFromTimestamp(t.timestamp) ?? 0;
+      if (happyValues.has(t.feeling)) counts[h] += 1;
+    });
+    return counts;
+  };
+
+  const recentSleepSeries = (n = 14) => {
+    const sorted = [...trackingData].sort((a, b) => {
+      const ta = a.timestamp ? new Date(a.timestamp).getTime() : 0;
+      const tb = b.timestamp ? new Date(b.timestamp).getTime() : 0;
+      return ta - tb;
+    });
+    const last = sorted.slice(-n);
+    return last.map((t) => ({ label: new Date(t.timestamp || t.date).toLocaleDateString(), value: t.sleep || 0 }));
+  };
+
+  // --- Small inline chart components (no extra deps) ---
+  const EnergyByHourChart = ({ data, colorStart = "#06b6d4", colorEnd = "#d946ef", width = 400, height = 120 }: { data: number[]; colorStart?: string; colorEnd?: string; width?: number; height?: number }) => {
+    const max = Math.max(...data, 1);
+    const barWidth = Math.floor(width / data.length) - 2;
+    return (
+      <svg width="100%" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" className="w-full h-32">
+        {data.map((v, i) => {
+          const h = (v / max) * (height - 20);
+          const x = i * (barWidth + 2) + 4;
+          const y = height - h - 10;
+          const gradId = `g-${i}`;
+          return (
+            <g key={i}>
+              <defs>
+                <linearGradient id={gradId} x1="0" x2="1">
+                  <stop offset="0%" stopColor={colorStart} />
+                  <stop offset="100%" stopColor={colorEnd} />
+                </linearGradient>
+              </defs>
+              <rect x={x} y={y} width={barWidth} height={h} fill={`url(#${gradId})`} rx={4} />
+            </g>
+          );
+        })}
+      </svg>
+    );
+  };
+
+  const SleepSparkline = ({ series }: { series: { label: string; value: number }[] }) => {
+    const w = Math.max(200, series.length * 20);
+    const h = 60;
+    const max = Math.max(...series.map((s) => s.value), 1);
+    const points = series.map((s, i) => `${(i / (series.length - 1 || 1)) * w},${h - (s.value / max) * (h - 8)}`).join(" ");
+    return (
+      <div>
+        <svg width="100%" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="w-full h-16">
+          <polyline fill="none" stroke="#8b5cf6" strokeWidth={2} points={points} />
+        </svg>
+        <div className="text-xs text-slate-400 mt-2">Showing last {series.length} check-ins</div>
+      </div>
+    );
+  };
+
+  const BarChartCounts = ({ counts }: { counts: number[] }) => {
+    const w = 400;
+    const h = 120;
+    const max = Math.max(...counts, 1);
+    const barWidth = Math.floor(w / counts.length) - 2;
+    return (
+      <svg width="100%" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="w-full h-32">
+        {counts.map((c, i) => {
+          const H = (c / max) * (h - 20);
+          const x = i * (barWidth + 2) + 4;
+          const y = h - H - 10;
+          return <rect key={i} x={x} y={y} width={barWidth} height={H} fill="#06b6d4" rx={3} />;
+        })}
+      </svg>
+    );
   };
 
   const todaysTasks = tasks.filter(
@@ -726,6 +844,7 @@ const CojiUniverse = () => {
     { id: "forum", icon: Users, label: "Forum" },
     { id: "journal", icon: Star, label: "Journal" },
     { id: "clipboard", icon: Clipboard, label: "Clipboard" },
+    { id: "analysis", icon: BarChart, label: "Analysis" },
   ];
 
   return (
@@ -1080,13 +1199,12 @@ const CojiUniverse = () => {
               </button>
             </div>
 
-            {!hasTrackedToday && (
               <div className="mb-8 bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-fuchsia-500 border-opacity-30">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="text-6xl">{"\u{2601}\u{FE0F}"}</div>
                   <div>
                     <h3 className="text-2xl font-bold text-fuchsia-300">
-                      How are you feeling today?
+                      How are you feeling now?
                     </h3>
                     <p className="text-sm text-slate-400">
                       Let's check in before we start
@@ -1094,12 +1212,18 @@ const CojiUniverse = () => {
                   </div>
                 </div>
 
+                {lastCheckin && (
+                  <div className="mb-4 p-3 bg-teal-500 bg-opacity-10 rounded-lg text-sm text-slate-300">
+                    Last check-in: {new Date(lastCheckin.timestamp || "").toLocaleString()} — Battery: {lastCheckin.battery}/12 | Sleep: {lastCheckin.sleep}h | Pain: {lastCheckin.pain}
+                  </div>
+                )}
+
                 <div className="space-y-6">
                   <div>
                     <p className="font-semibold mb-3 text-slate-300">
                       Select your feeling
                     </p>
-                    <div className="flex gap-3 flex-wrap">
+                    <div className="flex gap-3 overflow-x-auto md:flex-wrap md:overflow-visible whitespace-nowrap md:whitespace-normal pb-2">
                       {feelings.map((feeling) => (
                         <button
                           key={feeling.value}
@@ -1119,7 +1243,7 @@ const CojiUniverse = () => {
 
                   <div>
                     <p className="font-semibold mb-2 text-slate-300">
-                      Battery level today {"\u{1F50B}"}
+                      Battery level {"\u{1F50B}"}
                     </p>
                     <p className="text-xs text-slate-500 mb-3">
                       How charged do you feel? (Max 12 = fully charged)
@@ -1209,25 +1333,6 @@ const CojiUniverse = () => {
                   </button>
                 </div>
               </div>
-            )}
-
-            {hasTrackedToday && (
-              <div className="mb-8 bg-teal-500 bg-opacity-10 p-6 rounded-xl border border-teal-400 border-opacity-30">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="text-teal-400" size={28} />
-                  <div>
-                    <h3 className="text-lg font-bold text-teal-300">
-                      You've tracked today!
-                    </h3>
-                    <p className="text-sm text-slate-400">
-                      Battery: {batteryLevel}/12 | Tasks planned:{" "}
-                      {todaysTasks.length} | Energy remaining:{" "}
-                      {remainingBattery}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
@@ -2095,6 +2200,37 @@ const CojiUniverse = () => {
               <p className="text-slate-400 text-sm">
                 No clips yet. Start saving important info! {"\u{1F49C}"}
               </p>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "analysis" && (
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-teal-300">Analysis</h2>
+            <p className="text-slate-400 mb-8">Quick insights about when you have the most energy, sleep patterns, pain peaks, and happiest times of day.</p>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-teal-300 mb-3">Energy by Time of Day</h3>
+                <EnergyByHourChart data={averageByHour("battery")} />
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Sleep times (recent)</h3>
+                <SleepSparkline series={recentSleepSeries(14)} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-teal-300 mb-3">Pain score by Time of Day</h3>
+                <EnergyByHourChart data={averageByHour("pain")} colorStart="#F472B6" colorEnd="#EF4444" />
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-teal-300 mb-3">Happiest Time of Day</h3>
+                <BarChartCounts counts={happiestByHour()} />
+              </div>
             </div>
           </div>
         )}
