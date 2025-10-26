@@ -148,32 +148,39 @@ const CojiUniverse = () => {
 
   // Health state
   const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
+    if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('cycles');
     return stored ? JSON.parse(stored) : [];
   });
   const [appointments, setAppointments] = useState<{ id: string; title: string; date: string }[]>(() => {
+    if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('appts');
     return stored ? JSON.parse(stored) : [];
   });
   const [medications, setMedications] = useState<{ id: string; name: string; time?: string }[]>(() => {
+    if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('meds');
     return stored ? JSON.parse(stored) : [];
   });
   const [prescriptionReminders, setPrescriptionReminders] = useState<{ id: string; med: string; days: string }[]>(() => {
+    if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('presc');
     return stored ? JSON.parse(stored) : [];
   });
   const [screeningReminders, setScreeningReminders] = useState<{ id: string; type: string; date: string }[]>(() => {
+    if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('screens');
     return stored ? JSON.parse(stored) : [];
   });
   const [pregnancy, setPregnancy] = useState<{ preg: boolean; due?: string }>(() => {
+    if (typeof window === 'undefined') return { preg: false };
     const stored = localStorage.getItem('pregnancy');
     return stored ? JSON.parse(stored) : { preg: false };
   });
   const [caloriesToday, setCaloriesToday] = useState<number>(0);
   const [stepsToday, setStepsToday] = useState<number>(0);
   const [eatReminders, setEatReminders] = useState<{ id: string; time: string }[]>(() => {
+    if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('eats');
     return stored ? JSON.parse(stored) : [];
   });
@@ -187,6 +194,14 @@ const CojiUniverse = () => {
     activity: boolean;
     water: boolean;
   }>(() => {
+    if (typeof window === 'undefined') return {
+      menstrual: true,
+      appointments: true,
+      prescriptions: true,
+      pregnancy: true,
+      activity: true,
+      water: true,
+    };
     const stored = localStorage.getItem('healthCardVisibility');
     return stored ? JSON.parse(stored) : {
       menstrual: true,
