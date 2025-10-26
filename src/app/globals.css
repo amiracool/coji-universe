@@ -11,12 +11,16 @@
 /* Prevent layout shift by reserving space for scrollbar */
 html {
   overflow-y: scroll;
+  /* CRITICAL: Prevent white flash on scroll - match app background */
+  background: #0b0d12;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  /* CRITICAL: Prevent white flash on scroll - match app background */
+  background: #0b0d12;
   /* Disable transitions until hydration complete to prevent flash */
   --enable-transitions: 0;
 }
@@ -26,9 +30,13 @@ body.hydrated {
   --enable-transitions: 1;
 }
 
-/* Apply transitions only when hydrated */
+/* Remove tap highlight on mobile (prevents blue flash) */
 * {
-  transition-duration: calc(var(--enable-transitions) * 0.3s);
+  -webkit-tap-highlight-color: transparent;
+  /* Only apply transition to specific properties - NOT all */
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: calc(var(--enable-transitions) * 0.2s);
+  transition-timing-function: ease-out;
 }
 
 /* Optimize animations and transitions */
@@ -55,6 +63,9 @@ body.hydrated {
 img {
   max-width: 100%;
   height: auto;
+  /* Use GPU acceleration for images during scroll */
+  content-visibility: auto;
+  contain-intrinsic-size: 800px 600px;
 }
 
 /* Lazy loading optimization */
@@ -65,6 +76,17 @@ img[loading="lazy"] {
 
 img[loading="lazy"].loaded {
   opacity: 1;
+}
+
+/* GPU acceleration for animated elements */
+.will-animate {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Remove will-change after animation completes */
+.animation-complete {
+  will-change: auto;
 }
 
 /* Mobile Responsive Styles */
@@ -133,9 +155,19 @@ img[loading="lazy"].loaded {
     height: 2.5rem !important;
   }
 
-  /* Tab navigation */
+  /* Tab navigation - removed -webkit-overflow-scrolling for better performance */
   .overflow-x-auto {
-    -webkit-overflow-scrolling: touch;
+    /* -webkit-overflow-scrolling can cause rendering issues on mobile */
+  }
+
+  /* Mobile: Remove backdrop-filter (expensive GPU operation) */
+  .backdrop-blur-md,
+  .backdrop-blur-sm,
+  .backdrop-blur-lg {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    /* Increase opacity instead for visibility */
+    background-color: rgba(2, 6, 23, 0.95) !important;
   }
 
   /* Reduce modal padding */

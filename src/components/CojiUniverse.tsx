@@ -1352,7 +1352,7 @@ const CojiUniverse = () => {
         }
       `}} />
 
-      <div className="bg-slate-950 bg-opacity-80 backdrop-blur-md border-b border-teal-500 border-opacity-20 relative z-10">
+      <div className="bg-slate-950 bg-opacity-80 bg-opacity-95 border-b border-teal-500 border-opacity-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <button
@@ -1404,7 +1404,7 @@ const CojiUniverse = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all text-sm whitespace-nowrap ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm whitespace-nowrap ${
                       activeTab === tab.id
                         ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg"
                         : "text-teal-300 hover:bg-teal-500 hover:bg-opacity-10"
@@ -1491,7 +1491,7 @@ const CojiUniverse = () => {
               <div className="flex gap-3">
                 <button
                   onClick={addTask}
-                  className="flex-1 bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-bold transition-all"
+                  className="flex-1 bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-bold transition-colors"
                 >
                   Add Task
                 </button>
@@ -1500,7 +1500,7 @@ const CojiUniverse = () => {
                     setShowTaskModal(false);
                     setNewTaskTitle("");
                   }}
-                  className="px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-all"
+                  className="px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-colors"
                 >
                   Cancel
                 </button>
@@ -1532,7 +1532,7 @@ const CojiUniverse = () => {
                   setShowEisenpowerPrompt(false);
                   setShowEisenhowerMatrix(true);
                 }}
-                className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-6 py-4 rounded-lg font-bold transition-all"
+                className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-6 py-4 rounded-lg font-bold transition-colors"
               >
                 {"\u{1F50B}"} Use Eisenpower Matrix
               </button>
@@ -1541,7 +1541,7 @@ const CojiUniverse = () => {
                   setShowEisenpowerPrompt(false);
                   setActiveTab("cojiBuddy");
                 }}
-                className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-lg font-bold transition-all flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
               >
                 <img src="/coji- logo.png" alt="Coji" className="w-6 h-6 object-contain" />
                 Ask Coji Buddy for Help
@@ -1566,7 +1566,7 @@ const CojiUniverse = () => {
                   }
                   setShowEisenpowerPrompt(false);
                 }}
-                className="w-full bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-medium transition-all"
+                className="w-full bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Keep Task As Is
               </button>
@@ -1646,7 +1646,7 @@ const CojiUniverse = () => {
                         setNewEisenhowerTask("");
                       }
                     }}
-                    className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                    className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-xs font-bold transition-colors"
                   >
                     + Add Here
                   </button>
@@ -1691,7 +1691,7 @@ const CojiUniverse = () => {
                         setNewEisenhowerTask("");
                       }
                     }}
-                    className="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                    className="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded text-xs font-bold transition-colors"
                   >
                     + Add Here
                   </button>
@@ -1736,7 +1736,7 @@ const CojiUniverse = () => {
                         setNewEisenhowerTask("");
                       }
                     }}
-                    className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                    className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-xs font-bold transition-colors"
                   >
                     + Add Here
                   </button>
@@ -1781,7 +1781,7 @@ const CojiUniverse = () => {
                         setNewEisenhowerTask("");
                       }
                     }}
-                    className="bg-slate-500 hover:bg-slate-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                    className="bg-slate-500 hover:bg-slate-600 px-3 py-1 rounded text-xs font-bold transition-colors"
                   >
                     + Add Here
                   </button>
@@ -1823,7 +1823,7 @@ const CojiUniverse = () => {
                     notUrgentNotImportant: []
                   });
                 }}
-                className="flex-1 bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-medium transition-all"
+                className="flex-1 bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Clear All
               </button>
@@ -1836,7 +1836,7 @@ const CojiUniverse = () => {
                   setNewTaskEnergy(3);
                   setShowTaskModal(false);
                 }}
-                className="flex-1 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-6 py-3 rounded-lg font-bold transition-all"
+                className="flex-1 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-6 py-3 rounded-lg font-bold transition-colors"
               >
                 Done
               </button>
@@ -1865,7 +1865,7 @@ const CojiUniverse = () => {
               <div className="flex gap-4 justify-center mb-10">
                 <button
                   onClick={() => setActiveTab("dashboard")}
-                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg"
+                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg"
                 >
                   Get Started
                 </button>
@@ -1881,7 +1881,7 @@ const CojiUniverse = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               {/* Battery Tracking */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F50B}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Energy Battery System
@@ -1892,7 +1892,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Coji Buddy AI */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="mb-3">
                   <img src="/coji- logo.png" alt="Coji" className="w-12 h-12 object-contain" />
                 </div>
@@ -1905,7 +1905,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Mental Health Hub */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-amber-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-amber-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-amber-300">
                   Mental Health Hub
@@ -1916,7 +1916,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Task Management */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{2705}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Smart Task Management
@@ -1927,7 +1927,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Library & Resources */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-blue-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-blue-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F4DA}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-blue-300">
                   Resource Library
@@ -1938,7 +1938,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Health Tracking */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-pink-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-pink-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{2764}\u{FE0F}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-pink-300">
                   Health Tracking
@@ -1949,7 +1949,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Analytics & Insights */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-purple-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-purple-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F4CA}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-purple-300">
                   Smart Analytics
@@ -1960,7 +1960,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Financial Management */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-green-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-green-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F4B0}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-green-300">
                   Financial Management
@@ -1971,7 +1971,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Journal & Reflection */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-yellow-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-yellow-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{2B50}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-yellow-300">
                   Journal & Clipboard
@@ -1982,7 +1982,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Calendar Integration */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-indigo-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-indigo-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F4C5}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-indigo-300">
                   Smart Calendar
@@ -1993,7 +1993,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Community Forum */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-orange-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-orange-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F465}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-orange-300">
                   Community Forum
@@ -2004,7 +2004,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Family & Life Tools */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-rose-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-rose-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
                 <div className="text-4xl mb-3">{"\u{1F3E1}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-rose-300">
                   Family & Life Tools
@@ -2059,7 +2059,7 @@ const CojiUniverse = () => {
                         <button
                           key={feeling.value}
                           onClick={() => setTodayFeeling(feeling.value)}
-                          className={`px-5 py-4 rounded-xl transition-all ${
+                          className={`px-5 py-4 rounded-xl transition-colors ${
                             todayFeeling === feeling.value
                               ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 shadow-lg scale-105"
                               : "bg-slate-700 bg-opacity-50 hover:bg-opacity-70"
@@ -2158,7 +2158,7 @@ const CojiUniverse = () => {
 
                   <button
                     onClick={saveTracking}
-                    className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-xl font-bold transition-all shadow-lg"
+                    className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-xl font-bold transition-colors shadow-lg"
                   >
                     Save Check-in {"\u{1F49C}"}
                   </button>
@@ -2173,7 +2173,7 @@ const CojiUniverse = () => {
                   </h3>
                   <button
                     onClick={() => setShowTaskModal(true)}
-                    className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-4 py-2 rounded-lg font-bold transition-all shadow-lg flex items-center gap-2"
+                    className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-4 py-2 rounded-lg font-bold transition-colors shadow-lg flex items-center gap-2"
                   >
                     <Plus size={18} />
                     Add Task
@@ -2315,7 +2315,7 @@ const CojiUniverse = () => {
                             !task.completed && (
                               <button
                                 onClick={() => eisenpowerTask(task.id)}
-                                className="bg-amber-500 hover:bg-amber-600 px-2 py-1 rounded text-xs transition-all"
+                                className="bg-amber-500 hover:bg-amber-600 px-2 py-1 rounded text-xs transition-colors"
                               >
                                 Eisenpower
                               </button>
@@ -2474,10 +2474,10 @@ const CojiUniverse = () => {
                 events in one place
               </p>
               <div className="flex gap-4">
-                <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg font-medium transition-all">
+                <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg font-medium transition-colors">
                   Connect Google Calendar
                 </button>
-                <button className="bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 px-6 py-3 rounded-lg font-medium transition-all">
+                <button className="bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 px-6 py-3 rounded-lg font-medium transition-colors">
                   Connect Outlook
                 </button>
               </div>
@@ -2623,7 +2623,7 @@ const CojiUniverse = () => {
               />
               <button
                 onClick={sendMessage}
-                className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-xl font-medium transition-all shadow-lg flex items-center gap-2"
+                className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-xl font-medium transition-colors shadow-lg flex items-center gap-2"
               >
                 <MessageCircle size={20} />
                 Send
@@ -2718,7 +2718,7 @@ const CojiUniverse = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F3AF}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   ADHD Support
@@ -2728,7 +2728,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F308}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Autism Support
@@ -2738,7 +2738,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F630}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Anxiety Tools
@@ -2748,7 +2748,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F46A}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Parenting Hub
@@ -2758,7 +2758,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F4BC}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   ND & Work
@@ -2768,7 +2768,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F499}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Depression Support
@@ -2778,7 +2778,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F491}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Relationships
@@ -2788,7 +2788,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F4D6}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Dyslexia & Dyscalculia
@@ -2798,7 +2798,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F48A}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Chronic Illness Resources
@@ -2808,7 +2808,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{23F0}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Time Management
@@ -2818,7 +2818,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Memory Tools
@@ -2828,7 +2828,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F3C3}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Dyspraxia
@@ -2852,7 +2852,7 @@ const CojiUniverse = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Helpful Videos Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F4F9}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Helpful Videos
@@ -2863,7 +2863,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Types of Therapy Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Types of Therapy
@@ -2874,7 +2874,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Book in with a Therapist Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F4C5}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Book in with a Therapist
@@ -2885,7 +2885,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Romance Roulette Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F491}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Romance Roulette
@@ -2896,7 +2896,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Digital Worksheets Card - Combined */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F4DD}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Digital Worksheets
@@ -2907,7 +2907,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Daily Check-in Card - Interactive */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{2728}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Three Things I Did Well
@@ -2918,7 +2918,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Mindfulness Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F9D8}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Mindfulness
@@ -2929,7 +2929,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Spirituality Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F52E}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Spirituality
@@ -2940,7 +2940,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Be in Nature Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F333}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Be in Nature
@@ -2951,7 +2951,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Family Mapping Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F465}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   Family Mapping
@@ -2962,7 +2962,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* Ecosystem Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F30D}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
                   Ecosystem
@@ -2973,7 +2973,7 @@ const CojiUniverse = () => {
               </div>
 
               {/* My Life Story Card */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F4D6}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
                   My Life Story
@@ -3074,7 +3074,7 @@ const CojiUniverse = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <h4 className="font-semibold mb-3 text-teal-300">Needs</h4>
                   <div className="space-y-2 min-h-[120px]">
                     {notes.filter((n) => n.type === "need").length === 0 && (
@@ -3095,7 +3095,7 @@ const CojiUniverse = () => {
                   </div>
                 </div>
 
-                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <h4 className="font-semibold mb-3 text-fuchsia-300">Wants</h4>
                   <div className="space-y-2 min-h-[120px]">
                     {notes.filter((n) => n.type === "want").length === 0 && (
@@ -3157,7 +3157,7 @@ const CojiUniverse = () => {
                 <p className="text-sm text-slate-400 mb-4">
                   Connect with others who understand your journey
                 </p>
-                <button className="bg-teal-500 hover:bg-teal-600 px-4 py-2 rounded-lg text-sm transition-all">
+                <button className="bg-teal-500 hover:bg-teal-600 px-4 py-2 rounded-lg text-sm transition-colors">
                   Join Discussions
                 </button>
               </div>
@@ -3170,7 +3170,7 @@ const CojiUniverse = () => {
                 <p className="text-sm text-slate-400 mb-4">
                   Share ideas and vote on suggestions
                 </p>
-                <button className="bg-fuchsia-500 hover:bg-fuchsia-600 px-4 py-2 rounded-lg text-sm transition-all">
+                <button className="bg-fuchsia-500 hover:bg-fuchsia-600 px-4 py-2 rounded-lg text-sm transition-colors">
                   Submit Ideas
                 </button>
               </div>
@@ -3181,7 +3181,7 @@ const CojiUniverse = () => {
                 Forum Categories
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <p className="font-semibold mb-1 text-teal-300">
                     {"\u{1F46A}"} Parenting
                   </p>
@@ -3189,7 +3189,7 @@ const CojiUniverse = () => {
                     EHCP and school strategies
                   </p>
                 </div>
-                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <p className="font-semibold mb-1 text-fuchsia-300">
                     {"\u{1F4BC}"} Work & Career
                   </p>
@@ -3197,7 +3197,7 @@ const CojiUniverse = () => {
                     Accommodations and job hunting
                   </p>
                 </div>
-                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <p className="font-semibold mb-1 text-teal-300">
                     {"\u{1F9E0}"} Coping Strategies
                   </p>
@@ -3205,7 +3205,7 @@ const CojiUniverse = () => {
                     Share what works for you
                   </p>
                 </div>
-                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <p className="font-semibold mb-1 text-fuchsia-300">
                     {"\u{1F496}"} Self-Care
                   </p>
@@ -3213,7 +3213,7 @@ const CojiUniverse = () => {
                     Mental health and wellbeing
                   </p>
                 </div>
-                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <p className="font-semibold mb-1 text-teal-300">
                     {"\u{1F3A8}"} Creative Corner
                   </p>
@@ -3221,7 +3221,7 @@ const CojiUniverse = () => {
                     Share your creative projects
                   </p>
                 </div>
-                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
+                <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
                   <p className="font-semibold mb-1 text-fuchsia-300">
                     {"\u{1F308}"} Success Stories
                   </p>
@@ -3270,7 +3270,7 @@ const CojiUniverse = () => {
               </div>
 
               <div className="text-center">
-                <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-3 rounded-xl font-bold transition-all">
+                <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-3 rounded-xl font-bold transition-colors">
                   Share Your Creative Work
                 </button>
               </div>
@@ -3299,7 +3299,7 @@ const CojiUniverse = () => {
                   onClick={() => {
                     saveJournalEntry(journalAnswer);
                   }}
-                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2"
+                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
                 >
                   Save Answer
                 </button>
@@ -3307,7 +3307,7 @@ const CojiUniverse = () => {
                   onClick={() => {
                     setJournalAnswer("");
                   }}
-                  className="px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-all"
+                  className="px-6 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg font-medium transition-colors"
                 >
                   Clear
                 </button>
@@ -3355,7 +3355,7 @@ const CojiUniverse = () => {
                     placeholder="Content..."
                     className="w-full h-32 bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500 resize-none border border-teal-500 border-opacity-20"
                   />
-                  <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2">
+                  <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
                     <Plus size={18} />
                     Save Clip
                   </button>
@@ -3601,7 +3601,7 @@ const CojiUniverse = () => {
                   <button
                     key={card.key}
                     onClick={() => toggleHealthCard(card.key as keyof typeof healthCardVisibility)}
-                    className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                    className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                       healthCardVisibility[card.key as keyof typeof healthCardVisibility]
                         ? 'bg-teal-500 text-white'
                         : 'bg-slate-700 text-slate-400'
@@ -3978,7 +3978,7 @@ const CojiUniverse = () => {
                   <div className="flex justify-center mb-4">
                     <div className="relative w-24 h-32 border-4 border-blue-400 rounded-b-lg bg-slate-900">
                       <div
-                        className="absolute bottom-0 w-full bg-gradient-to-t from-blue-400 to-blue-300 rounded-b-lg transition-all duration-500"
+                        className="absolute bottom-0 w-full bg-gradient-to-t from-blue-400 to-blue-300 rounded-b-lg transition-colors duration-500"
                         style={{ height: '62.5%' }}
                       ></div>
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -4025,7 +4025,7 @@ const CojiUniverse = () => {
                       placeholder="250"
                       className="bg-slate-700 rounded px-3 py-2 w-32 text-sm"
                     />
-                    <button className="bg-blue-500 px-4 py-2 rounded text-white text-sm hover:bg-blue-600 transition-all">
+                    <button className="bg-blue-500 px-4 py-2 rounded text-white text-sm hover:bg-blue-600 transition-colors">
                       Add
                     </button>
                   </div>
@@ -4057,7 +4057,7 @@ const CojiUniverse = () => {
               href="https://sidething.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 bg-opacity-40 border border-slate-600 border-opacity-30 hover:bg-opacity-60 hover:border-teal-400 hover:border-opacity-50 transition-all duration-300"
+              className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 bg-opacity-40 border border-slate-600 border-opacity-30 hover:bg-opacity-60 hover:border-teal-400 hover:border-opacity-50 transition-colors duration-300"
             >
               <span className="text-xs text-slate-400 group-hover:text-slate-300">Like this? Check out</span>
               <span className="text-sm font-semibold text-teal-400 group-hover:text-teal-300">Sidething</span>

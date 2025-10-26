@@ -25,6 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* DNS prefetch and preconnect for external resources */}
+        <link rel="dns-prefetch" href="https://www.bensound.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
         {/* Preload critical images to prevent layout shift */}
         <link rel="preload" href="/coji- logo.png" as="image" />
 
@@ -37,6 +41,10 @@ export default function RootLayout({
             }
             setVH();
             window.addEventListener('resize', setVH);
+            // Mark body as hydrated to enable transitions
+            window.addEventListener('DOMContentLoaded', function() {
+              document.body.classList.add('hydrated');
+            });
           `}
         </Script>
       </head>

@@ -29,7 +29,10 @@ export default function AmbientMusic() {
     <div className="fixed bottom-6 right-6 z-50">
       <button
         onClick={toggleMute}
-        className="bg-slate-900 bg-opacity-80 backdrop-blur-md border border-teal-500 border-opacity-40 p-3 rounded-full hover:bg-opacity-100 transition-all duration-300 shadow-lg hover:shadow-teal-500/50"
+        className="bg-slate-900 bg-opacity-95 border border-teal-500 border-opacity-40 p-3 rounded-full hover:bg-opacity-100 shadow-lg hover:shadow-teal-500/50"
+        style={{
+          transition: 'background-color 0.3s ease-out, box-shadow 0.3s ease-out',
+        }}
         title={isMuted ? "Play ambient music" : "Mute ambient music"}
       >
         {isMuted ? (
