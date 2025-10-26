@@ -5,4 +5,123 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Reduce padding on mobile */
+  .max-w-7xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Header adjustments */
+  h1 {
+    font-size: 1.25rem !important;
+  }
+
+  h2 {
+    font-size: 1.125rem !important;
+  }
+
+  h3 {
+    font-size: 1rem !important;
+  }
+
+  /* Card spacing */
+  .space-y-6 > * + * {
+    margin-top: 1rem !important;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 0.75rem !important;
+  }
+
+  .gap-6 {
+    gap: 1rem !important;
+  }
+
+  .gap-4 {
+    gap: 0.75rem !important;
+  }
+
+  /* Grid adjustments */
+  .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Button sizing */
+  button {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Input sizing */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+
+  /* Logo sizing */
+  img.w-12 {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  /* Tab navigation */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce modal padding */
+  .fixed.inset-0 > div {
+    margin: 0.5rem !important;
+    max-height: calc(100vh - 1rem) !important;
+  }
+
+  /* Stack flex items on mobile */
+  .flex.items-center.justify-between {
+    flex-wrap: wrap;
+  }
+
+  /* Adjust battery indicator */
+  .flex.items-center.gap-4 {
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  .px-6 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .py-4 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* Even smaller text on very small screens */
+  h1 {
+    font-size: 1.125rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.125rem !important;
+  }
+
+  .text-xl {
+    font-size: 1rem !important;
+  }
+
+  .text-lg {
+    font-size: 0.9375rem !important;
+  }
 }

@@ -1355,27 +1355,10 @@ const CojiUniverse = () => {
                 alt="Coji"
                 className="w-12 h-12 object-contain"
               />
-              <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-fuchsia-400 animate-glow">
+              <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-fuchsia-400">
                 Coji Universe
               </h1>
             </button>
-            <style jsx>{`
-              @keyframes glow {
-                0%, 100% {
-                  text-shadow: 0 0 5px rgba(45, 212, 191, 0.3),
-                               0 0 10px rgba(45, 212, 191, 0.2),
-                               0 0 15px rgba(217, 70, 239, 0.2);
-                }
-                50% {
-                  text-shadow: 0 0 8px rgba(45, 212, 191, 0.5),
-                               0 0 15px rgba(45, 212, 191, 0.3),
-                               0 0 20px rgba(217, 70, 239, 0.3);
-                }
-              }
-              .animate-glow {
-                animation: glow 3s ease-in-out infinite;
-              }
-            `}</style>
             <div className="flex items-center gap-4">
               {activeTab !== "landing" && (
                 <>
