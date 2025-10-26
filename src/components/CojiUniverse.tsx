@@ -875,7 +875,6 @@ const CojiUniverse = () => {
     { id: "finances", icon: TrendingUp, label: "Finances" },
     { id: "forum", icon: Users, label: "Forum" },
     { id: "journal", icon: Star, label: "Journal" },
-    { id: "clipboard", icon: Clipboard, label: "Clipboard" },
     { id: "analysis", icon: BarChart, label: "Analysis" },
     { id: "health", icon: Heart, label: "Health" }, // New Health tab
   ];
@@ -2195,44 +2194,43 @@ const CojiUniverse = () => {
                 </div>
               )}
             </div>
-          </div>
-        )}
 
-        {activeTab === "clipboard" && (
-          <div>
-            <h2 className="text-3xl font-bold mb-6 text-teal-300">Clipboard</h2>
-            <p className="text-slate-400 mb-8">
-              Save important notes, EHCP reviews, appointments {"\u{1F4CC}"}
-            </p>
-
-            <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
-              <h3 className="font-bold mb-4 text-fuchsia-300">
-                Create New Clip
-              </h3>
-              <div className="space-y-3">
-                <input
-                  type="text"
-                  placeholder="Title (e.g., EHCP Annual Review Notes)"
-                  className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
-                />
-                <textarea
-                  placeholder="Content..."
-                  className="w-full h-32 bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500 resize-none border border-teal-500 border-opacity-20"
-                />
-                <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2">
-                  <Plus size={18} />
-                  Save Clip
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4 text-teal-300">
-                Your Clips
-              </h3>
-              <p className="text-slate-400 text-sm">
-                No clips yet. Start saving important info! {"\u{1F49C}"}
+            {/* Clipboard Section */}
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold mb-4 text-teal-300">Clipboard</h3>
+              <p className="text-slate-400 mb-6">
+                Save important notes, EHCP reviews, appointments {"\u{1F4CC}"}
               </p>
+
+              <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h4 className="font-bold mb-4 text-fuchsia-300">
+                  Create New Clip
+                </h4>
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder="Title (e.g., EHCP Annual Review Notes)"
+                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
+                  />
+                  <textarea
+                    placeholder="Content..."
+                    className="w-full h-32 bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500 resize-none border border-teal-500 border-opacity-20"
+                  />
+                  <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2">
+                    <Plus size={18} />
+                    Save Clip
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-lg mb-4 text-teal-300">
+                  Your Clips
+                </h4>
+                <p className="text-slate-400 text-sm">
+                  No clips yet. Start saving important info! {"\u{1F49C}"}
+                </p>
+              </div>
             </div>
           </div>
         )}
