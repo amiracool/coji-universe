@@ -1960,6 +1960,7 @@ const CojiUniverse = () => {
                   <button className="w-full bg-teal-500 px-4 py-2 rounded-lg">Savings Goals</button>
                   <button className="w-full bg-fuchsia-500 px-4 py-2 rounded-lg">Subscriptions</button>
                   <button className="w-full bg-amber-500 px-4 py-2 rounded-lg">Debt Tracker</button>
+                  <button className="w-full bg-teal-500 px-4 py-2 rounded-lg">Cash Flow Sheet</button>
                 </div>
               </div>
             </div>
