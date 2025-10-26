@@ -161,6 +161,32 @@ const CojiUniverse = () => {
     return stored ? JSON.parse(stored) : [];
   });
 
+  // Health card visibility toggles
+  const [healthCardVisibility, setHealthCardVisibility] = useState<{
+    menstrual: boolean;
+    appointments: boolean;
+    prescriptions: boolean;
+    pregnancy: boolean;
+    activity: boolean;
+    water: boolean;
+  }>(() => {
+    const stored = localStorage.getItem('healthCardVisibility');
+    return stored ? JSON.parse(stored) : {
+      menstrual: true,
+      appointments: true,
+      prescriptions: true,
+      pregnancy: true,
+      activity: true,
+      water: true,
+    };
+  });
+
+  const toggleHealthCard = (cardName: keyof typeof healthCardVisibility) => {
+    const newVisibility = { ...healthCardVisibility, [cardName]: !healthCardVisibility[cardName] };
+    setHealthCardVisibility(newVisibility);
+    localStorage.setItem('healthCardVisibility', JSON.stringify(newVisibility));
+  };
+
   const feelings = [
     { emoji: "\u{1F60A}", label: "Great", value: "great" },
     { emoji: "\u{1F642}", label: "Good", value: "good" },
@@ -2319,10 +2345,76 @@ const CojiUniverse = () => {
         {activeTab === "health" && (
           <div>
             <h2 className="text-3xl font-bold mb-6 text-teal-300">Health</h2>
+
+            {/* Card Visibility Toggles */}
+            <div className="mb-6 bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-teal-500 border-opacity-20">
+              <h3 className="text-sm font-bold text-teal-300 mb-3">Customize Your Health Cards</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                {[
+                  { key: 'menstrual', label: 'Menstrual' },
+                  { key: 'appointments', label: 'Appointments' },
+                  { key: 'prescriptions', label: 'Prescriptions' },
+                  { key: 'pregnancy', label: 'Pregnancy' },
+                  { key: 'activity', label: 'Activity' },
+                  { key: 'water', label: 'Water' },
+                ].map((card) => (
+                  <button
+                    key={card.key}
+                    onClick={() => toggleHealthCard(card.key as keyof typeof healthCardVisibility)}
+                    className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                      healthCardVisibility[card.key as keyof typeof healthCardVisibility]
+                        ? 'bg-teal-500 text-white'
+                        : 'bg-slate-700 text-slate-400'
+                    }`}
+                  >
+                    {healthCardVisibility[card.key as keyof typeof healthCardVisibility] ? '✓ ' : ''}
+                    {card.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Menstrual Tracking */}
+              {healthCardVisibility.menstrual && (
               <div className="bg-slate-800 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
-                <h3 className="font-bold text-fuchsia-300 mb-2">Menstrual Tracking</h3>
+                <h3 className="font-bold text-fuchsia-300 mb-4">Menstrual Tracking</h3>
+
+                {/* Mock Data Visualization - Cycle Calendar */}
+                <div className="mb-4 bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                  <h4 className="text-sm font-semibold text-fuchsia-200 mb-3">Cycle Overview (Last 3 Months)</h4>
+                  <div className="grid grid-cols-7 gap-1 text-xs">
+                    {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, i) => (
+                      <div key={i} className="text-center text-slate-400 font-semibold">{day}</div>
+                    ))}
+                    {Array.from({ length: 28 }, (_, i) => (
+                      <div
+                        key={i}
+                        className={`h-8 rounded flex items-center justify-center ${
+                          i % 28 < 5 ? 'bg-fuchsia-500' :
+                          i % 28 < 14 ? 'bg-teal-500 bg-opacity-20' :
+                          'bg-slate-600 bg-opacity-20'
+                        }`}
+                      >
+                        {i + 1}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-3 flex gap-3 text-xs">
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 bg-fuchsia-500 rounded"></div>
+                      <span>Period</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 bg-teal-500 bg-opacity-40 rounded"></div>
+                      <span>Fertile</span>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-xs text-slate-400">
+                    Average cycle: 28 days | Next period: Dec 15
+                  </div>
+                </div>
+
                 <form className="flex gap-2 mb-2" onSubmit={e => {
                   e.preventDefault();
                   const form = e.target as HTMLFormElement;
@@ -2335,9 +2427,9 @@ const CojiUniverse = () => {
                     setMenstrualCycles(cycles);
                   }
                 }}>
-                  <input name="start" type="date" className="bg-slate-700 rounded px-2 py-1" required />
-                  <input name="end" type="date" className="bg-slate-700 rounded px-2 py-1" placeholder="End (optional)" />
-                  <button className="bg-fuchsia-500 px-3 py-1 rounded text-white">Add</button>
+                  <input name="start" type="date" className="bg-slate-700 rounded px-2 py-1 text-sm" required />
+                  <input name="end" type="date" className="bg-slate-700 rounded px-2 py-1 text-sm" placeholder="End (optional)" />
+                  <button className="bg-fuchsia-500 px-3 py-1 rounded text-white text-sm">Add</button>
                 </form>
                 <ul className="text-xs">
                   {menstrualCycles.map((c, i) => (
@@ -2345,10 +2437,44 @@ const CojiUniverse = () => {
                   ))}
                 </ul>
               </div>
+              )}
 
               {/* Appointments & Medications */}
+              {healthCardVisibility.appointments && (
               <div className="bg-slate-800 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="font-bold text-teal-300 mb-2">Appointments & Medications</h3>
+                <h3 className="font-bold text-teal-300 mb-4">Appointments & Medications</h3>
+
+                {/* Mock Data Visualization - Upcoming Timeline */}
+                <div className="mb-4 bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                  <h4 className="text-sm font-semibold text-teal-200 mb-3">This Week</h4>
+                  <div className="space-y-2">
+                    {[
+                      { day: 'Mon', time: '10:00', event: 'GP Checkup', type: 'appt' },
+                      { day: 'Wed', time: '08:00', event: 'Ibuprofen', type: 'med' },
+                      { day: 'Wed', time: '20:00', event: 'Ibuprofen', type: 'med' },
+                      { day: 'Fri', time: '14:30', event: 'Therapist', type: 'appt' },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 text-xs">
+                        <div className={`px-2 py-1 rounded ${item.type === 'appt' ? 'bg-teal-500' : 'bg-amber-500'}`}>
+                          {item.day}
+                        </div>
+                        <div className="text-slate-400">{item.time}</div>
+                        <div className="flex-1">{item.event}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-3 flex gap-3 text-xs">
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 bg-teal-500 rounded"></div>
+                      <span>Appointment</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 bg-amber-500 rounded"></div>
+                      <span>Medication</span>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Appointments */}
                 <form className="flex gap-2 mb-2" onSubmit={e => {
                   e.preventDefault();
@@ -2394,10 +2520,42 @@ const CojiUniverse = () => {
                   ))}
                 </ul>
               </div>
+              )}
 
               {/* Prescription & Screening Reminders */}
+              {healthCardVisibility.prescriptions && (
               <div className="bg-slate-800 p-6 rounded-xl border border-amber-500 border-opacity-20">
-                <h3 className="font-bold text-amber-300 mb-2">Prescription & Screening Reminders</h3>
+                <h3 className="font-bold text-amber-300 mb-4">Prescription & Screening Reminders</h3>
+
+                {/* Mock Data Visualization - Status Bars */}
+                <div className="mb-4 bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                  <h4 className="text-sm font-semibold text-amber-200 mb-3">Prescription Status</h4>
+                  <div className="space-y-3">
+                    {[
+                      { name: 'Sertraline', days: 7, total: 30 },
+                      { name: 'Vitamin D', days: 15, total: 30 },
+                      { name: 'Omeprazole', days: 3, total: 30 },
+                    ].map((med, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span>{med.name}</span>
+                          <span className="text-amber-300">{med.days} days left</span>
+                        </div>
+                        <div className="w-full bg-slate-600 rounded-full h-2">
+                          <div
+                            className={`h-2 rounded-full ${med.days < 7 ? 'bg-red-500' : med.days < 14 ? 'bg-amber-500' : 'bg-teal-500'}`}
+                            style={{ width: `${(med.days / med.total) * 100}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 text-xs text-slate-400">
+                    <div>Next screening: Cervical smear - Jan 2025</div>
+                    <div>Due: Dental checkup - Dec 2024</div>
+                  </div>
+                </div>
+
                 {/* Prescription */}
                 <form className="flex gap-2 mb-2" onSubmit={e => {
                   e.preventDefault();
@@ -2444,11 +2602,34 @@ const CojiUniverse = () => {
                 </ul>
                 <div className="text-xs mt-2 text-slate-400">Include reminders for breast/testicular cancer, cervical, bowel, etc.</div>
               </div>
+              )}
 
-              {/* Pregnancy, Calories, Steps, Eat Reminders */}
-              <div className="bg-slate-800 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="font-bold text-teal-300 mb-2">Pregnancy & Activity</h3>
-                {/* Pregnancy */}
+              {/* Pregnancy Tracking */}
+              {healthCardVisibility.pregnancy && (
+              <div className="bg-slate-800 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h3 className="font-bold text-fuchsia-300 mb-4">Pregnancy Tracking</h3>
+
+                {/* Mock Data Visualization - Pregnancy Progress */}
+                <div className="mb-4 bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                  <h4 className="text-sm font-semibold text-fuchsia-200 mb-3">Pregnancy Progress</h4>
+                  <div className="text-center mb-3">
+                    <div className="text-3xl font-bold text-fuchsia-300">24</div>
+                    <div className="text-xs text-slate-400">Weeks</div>
+                  </div>
+                  <div className="w-full bg-slate-600 rounded-full h-3 mb-2">
+                    <div className="bg-gradient-to-r from-fuchsia-500 to-pink-400 h-3 rounded-full" style={{ width: '60%' }}></div>
+                  </div>
+                  <div className="flex justify-between text-xs text-slate-400">
+                    <span>Week 1</span>
+                    <span>Week 40</span>
+                  </div>
+                  <div className="mt-3 text-xs text-slate-300">
+                    <div>Due Date: June 15, 2025</div>
+                    <div>Trimester: 2nd (24/40 weeks)</div>
+                    <div className="mt-2 text-fuchsia-200">Baby size: ~30cm (corn)</div>
+                  </div>
+                </div>
+
                 <form className="flex gap-2 mb-2" onSubmit={e => {
                   e.preventDefault();
                   const form = e.target as HTMLFormElement;
@@ -2457,17 +2638,58 @@ const CojiUniverse = () => {
                   localStorage.setItem('pregnancy', JSON.stringify({ preg, due }));
                   setPregnancy({ preg, due });
                 }}>
-                  <label className="flex items-center gap-2">
+                  <label className="flex items-center gap-2 text-sm">
                     <input name="preg" type="checkbox" className="accent-pink-500" />
                     Pregnant
                   </label>
-                  <input name="duedate" type="date" className="bg-slate-700 rounded px-2 py-1" />
-                  <button className="bg-teal-500 px-3 py-1 rounded text-white">Save</button>
+                  <input name="duedate" type="date" className="bg-slate-700 rounded px-2 py-1 text-sm" />
+                  <button className="bg-fuchsia-500 px-3 py-1 rounded text-white text-sm">Save</button>
                 </form>
+              </div>
+              )}
+
+              {/* Daily Activity */}
+              {healthCardVisibility.activity && (
+              <div className="bg-slate-800 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="font-bold text-teal-300 mb-4">Daily Activity</h3>
+
+                {/* Mock Data Visualization - Activity Stats */}
+                <div className="mb-4 bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                  <h4 className="text-sm font-semibold text-teal-200 mb-3">Today's Activity</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-slate-600 bg-opacity-30 p-3 rounded-lg">
+                      <div className="text-2xl font-bold text-teal-300">1,847</div>
+                      <div className="text-xs text-slate-400">Calories</div>
+                      <div className="w-full bg-slate-600 rounded-full h-1.5 mt-2">
+                        <div className="bg-teal-500 h-1.5 rounded-full" style={{ width: '92%' }}></div>
+                      </div>
+                      <div className="text-xs text-slate-400 mt-1">Goal: 2,000</div>
+                    </div>
+                    <div className="bg-slate-600 bg-opacity-30 p-3 rounded-lg">
+                      <div className="text-2xl font-bold text-fuchsia-300">7,234</div>
+                      <div className="text-xs text-slate-400">Steps</div>
+                      <div className="w-full bg-slate-600 rounded-full h-1.5 mt-2">
+                        <div className="bg-fuchsia-500 h-1.5 rounded-full" style={{ width: '72%' }}></div>
+                      </div>
+                      <div className="text-xs text-slate-400 mt-1">Goal: 10,000</div>
+                    </div>
+                  </div>
+                  <div className="mt-3 text-xs">
+                    <div className="font-semibold text-teal-200 mb-1">Meal Reminders:</div>
+                    <div className="flex gap-2 flex-wrap">
+                      {['08:00', '13:00', '18:00'].map((time, i) => (
+                        <div key={i} className="px-2 py-1 bg-teal-500 bg-opacity-20 rounded text-xs">
+                          {time}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
                 {/* Calories */}
                 <div className="mb-2">
                   <label className="block text-xs mb-1">Calories today</label>
-                  <input type="number" className="bg-slate-700 rounded px-2 py-1 w-32" value={caloriesToday} onChange={e => {
+                  <input type="number" className="bg-slate-700 rounded px-2 py-1 w-32 text-sm" value={caloriesToday} onChange={e => {
                     setCaloriesToday(Number(e.target.value));
                     localStorage.setItem('calories', e.target.value);
                   }} />
@@ -2475,7 +2697,7 @@ const CojiUniverse = () => {
                 {/* Steps */}
                 <div className="mb-2">
                   <label className="block text-xs mb-1">Steps today</label>
-                  <input type="number" className="bg-slate-700 rounded px-2 py-1 w-32" value={stepsToday} onChange={e => {
+                  <input type="number" className="bg-slate-700 rounded px-2 py-1 w-32 text-sm" value={stepsToday} onChange={e => {
                     setStepsToday(Number(e.target.value));
                     localStorage.setItem('steps', e.target.value);
                   }} />
@@ -2492,8 +2714,8 @@ const CojiUniverse = () => {
                     setEatReminders(eats);
                   }
                 }}>
-                  <input name="eattime" type="time" className="bg-slate-700 rounded px-2 py-1" required />
-                  <button className="bg-teal-500 px-3 py-1 rounded text-white">Add Eat Reminder</button>
+                  <input name="eattime" type="time" className="bg-slate-700 rounded px-2 py-1 text-sm" required />
+                  <button className="bg-teal-500 px-3 py-1 rounded text-white text-sm">Add Eat Reminder</button>
                 </form>
                 <ul className="text-xs">
                   {eatReminders.map((e, i) => (
@@ -2501,6 +2723,83 @@ const CojiUniverse = () => {
                   ))}
                 </ul>
               </div>
+              )}
+
+              {/* Water Tracker */}
+              {healthCardVisibility.water && (
+              <div className="bg-slate-800 p-6 rounded-xl border border-blue-500 border-opacity-20">
+                <h3 className="font-bold text-blue-300 mb-4">Water Tracker</h3>
+
+                {/* Mock Data Visualization - Water Intake */}
+                <div className="mb-4 bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                  <h4 className="text-sm font-semibold text-blue-200 mb-3">Today's Hydration</h4>
+
+                  {/* Visual Water Glass */}
+                  <div className="flex justify-center mb-4">
+                    <div className="relative w-24 h-32 border-4 border-blue-400 rounded-b-lg bg-slate-900">
+                      <div
+                        className="absolute bottom-0 w-full bg-gradient-to-t from-blue-400 to-blue-300 rounded-b-lg transition-all duration-500"
+                        style={{ height: '62.5%' }}
+                      ></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center z-10">
+                          <div className="text-xl font-bold text-white drop-shadow-lg">5/8</div>
+                          <div className="text-xs text-white drop-shadow-lg">glasses</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Progress Stats */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-xs">
+                      <span>Daily Goal: 2000ml (8 glasses)</span>
+                      <span className="text-blue-300 font-semibold">1250ml</span>
+                    </div>
+                    <div className="w-full bg-slate-600 rounded-full h-2">
+                      <div className="bg-blue-400 h-2 rounded-full" style={{ width: '62.5%' }}></div>
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      You're 62.5% of the way to your goal!
+                    </div>
+                  </div>
+
+                  {/* Water Glass Counters */}
+                  <div className="mt-4 grid grid-cols-8 gap-1">
+                    {Array.from({ length: 8 }, (_, i) => (
+                      <div
+                        key={i}
+                        className={`h-8 rounded ${i < 5 ? 'bg-blue-400' : 'bg-slate-600 bg-opacity-30'}`}
+                        title={`Glass ${i + 1}`}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Water Input */}
+                <div className="space-y-2">
+                  <label className="block text-xs mb-1">Log water intake (ml)</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="number"
+                      placeholder="250"
+                      className="bg-slate-700 rounded px-3 py-2 w-32 text-sm"
+                    />
+                    <button className="bg-blue-500 px-4 py-2 rounded text-white text-sm hover:bg-blue-600 transition-all">
+                      Add
+                    </button>
+                  </div>
+                  <div className="flex gap-2 mt-3">
+                    <button className="flex-1 bg-slate-700 px-3 py-2 rounded text-xs hover:bg-slate-600">
+                      +250ml (1 glass)
+                    </button>
+                    <button className="flex-1 bg-slate-700 px-3 py-2 rounded text-xs hover:bg-slate-600">
+                      +500ml (bottle)
+                    </button>
+                  </div>
+                </div>
+              </div>
+              )}
             </div>
           </div>
         )}
