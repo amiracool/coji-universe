@@ -218,6 +218,14 @@ const CojiUniverse = () => {
     { emoji: "\u{1F62C}", label: "Stressed", value: "stressed" },
     { emoji: "\u{1F62D}", label: "Distraught", value: "distraught" },
     { emoji: "\u{1F9D0}", label: "Curious", value: "curious" },
+    { emoji: "\u{1F970}", label: "Loved", value: "loved" },
+    { emoji: "\u{1F634}", label: "Sleepy", value: "sleepy" },
+    { emoji: "\u{1F644}", label: "Frustrated", value: "frustrated" },
+    { emoji: "\u{1F929}", label: "Proud", value: "proud" },
+    { emoji: "\u{1F60D}", label: "Happy", value: "happy" },
+    { emoji: "\u{1F92F}", label: "Mindblown", value: "mindblown" },
+    { emoji: "\u{1F614}", label: "Pensive", value: "pensive" },
+    { emoji: "\u{1F917}", label: "Hopeful", value: "hopeful" },
   ];
 
   const getBatteryIcon = (level: number) => {
