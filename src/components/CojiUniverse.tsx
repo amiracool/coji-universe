@@ -984,7 +984,7 @@ const CojiUniverse = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 text-white relative overflow-hidden">
       {/* Subtle starfield background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Layer 1 - white stars, fast twinkle */}
+        {/* Layer 1 - white stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -992,15 +992,18 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.4), transparent),
-            radial-gradient(2px 2px at 60px 70px, rgba(255, 255, 255, 0.35), transparent)
+            radial-gradient(2px 2px at 17% 23%, rgba(255, 255, 255, 0.4), transparent),
+            radial-gradient(1.5px 1.5px at 89% 67%, rgba(255, 255, 255, 0.35), transparent),
+            radial-gradient(2px 2px at 43% 12%, rgba(255, 255, 255, 0.38), transparent),
+            radial-gradient(1.5px 1.5px at 71% 89%, rgba(255, 255, 255, 0.32), transparent),
+            radial-gradient(2px 2px at 5% 55%, rgba(255, 255, 255, 0.36), transparent)
           `,
-          backgroundSize: '150px 150px',
+          backgroundSize: '800px 800px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle1 2.7s ease-in-out infinite'
+          animation: 'twinkle1 2.7s ease-in-out infinite, drift1 120s linear infinite'
         }} />
 
-        {/* Layer 2 - white stars, medium speed */}
+        {/* Layer 2 - white stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1008,15 +1011,18 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(1.5px 1.5px at 50px 50px, rgba(255, 255, 255, 0.3), transparent),
-            radial-gradient(2px 2px at 80px 10px, rgba(255, 255, 255, 0.38), transparent)
+            radial-gradient(1.5px 1.5px at 62% 41%, rgba(255, 255, 255, 0.3), transparent),
+            radial-gradient(2px 2px at 28% 78%, rgba(255, 255, 255, 0.38), transparent),
+            radial-gradient(1.5px 1.5px at 95% 19%, rgba(255, 255, 255, 0.28), transparent),
+            radial-gradient(2px 2px at 51% 94%, rgba(255, 255, 255, 0.4), transparent),
+            radial-gradient(1.5px 1.5px at 14% 31%, rgba(255, 255, 255, 0.33), transparent)
           `,
-          backgroundSize: '150px 150px',
+          backgroundSize: '900px 900px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle2 3.4s ease-in-out infinite 0.7s'
+          animation: 'twinkle2 3.4s ease-in-out infinite 0.7s, drift2 150s linear infinite'
         }} />
 
-        {/* Layer 3 - white stars, slower */}
+        {/* Layer 3 - white stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1024,15 +1030,17 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(1.5px 1.5px at 130px 80px, rgba(255, 255, 255, 0.32), transparent),
-            radial-gradient(2px 2px at 20px 100px, rgba(255, 255, 255, 0.36), transparent)
+            radial-gradient(2px 2px at 38% 58%, rgba(255, 255, 255, 0.32), transparent),
+            radial-gradient(1.5px 1.5px at 76% 7%, rgba(255, 255, 255, 0.36), transparent),
+            radial-gradient(2px 2px at 9% 84%, rgba(255, 255, 255, 0.31), transparent),
+            radial-gradient(1.5px 1.5px at 84% 46%, rgba(255, 255, 255, 0.37), transparent)
           `,
-          backgroundSize: '150px 150px',
+          backgroundSize: '1000px 1000px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle3 4.1s ease-in-out infinite 1.8s'
+          animation: 'twinkle3 4.1s ease-in-out infinite 1.8s, drift3 180s linear infinite'
         }} />
 
-        {/* Layer 4 - white stars, slowest small */}
+        {/* Layer 4 - white stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1040,15 +1048,17 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(1.5px 1.5px at 110px 40px, rgba(255, 255, 255, 0.28), transparent),
-            radial-gradient(2px 2px at 140px 120px, rgba(255, 255, 255, 0.4), transparent)
+            radial-gradient(1.5px 1.5px at 47% 72%, rgba(255, 255, 255, 0.28), transparent),
+            radial-gradient(2px 2px at 22% 15%, rgba(255, 255, 255, 0.4), transparent),
+            radial-gradient(1.5px 1.5px at 68% 91%, rgba(255, 255, 255, 0.29), transparent),
+            radial-gradient(2px 2px at 91% 33%, rgba(255, 255, 255, 0.35), transparent)
           `,
-          backgroundSize: '150px 150px',
+          backgroundSize: '950px 950px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle4 3.9s ease-in-out infinite 2.5s'
+          animation: 'twinkle4 3.9s ease-in-out infinite 2.5s, drift4 210s linear infinite'
         }} />
 
-        {/* Layer 5 - teal stars */}
+        {/* Layer 5 - teal stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1056,15 +1066,16 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(2.5px 2.5px at 100px 50px, rgba(45, 212, 191, 0.35), transparent),
-            radial-gradient(2.5px 2.5px at 300px 100px, rgba(45, 212, 191, 0.32), transparent)
+            radial-gradient(2.5px 2.5px at 34% 27%, rgba(45, 212, 191, 0.35), transparent),
+            radial-gradient(2px 2px at 79% 61%, rgba(45, 212, 191, 0.32), transparent),
+            radial-gradient(2.5px 2.5px at 11% 49%, rgba(45, 212, 191, 0.3), transparent)
           `,
-          backgroundSize: '350px 350px',
+          backgroundSize: '1100px 1100px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle5 4.6s ease-in-out infinite 0.9s'
+          animation: 'twinkle5 4.6s ease-in-out infinite 0.9s, drift5 240s linear infinite'
         }} />
 
-        {/* Layer 6 - fuchsia stars */}
+        {/* Layer 6 - fuchsia stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1072,15 +1083,16 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(3px 3px at 200px 150px, rgba(217, 70, 239, 0.3), transparent),
-            radial-gradient(2.5px 2.5px at 150px 250px, rgba(217, 70, 239, 0.25), transparent)
+            radial-gradient(3px 3px at 56% 38%, rgba(217, 70, 239, 0.3), transparent),
+            radial-gradient(2.5px 2.5px at 24% 81%, rgba(217, 70, 239, 0.25), transparent),
+            radial-gradient(2.5px 2.5px at 87% 14%, rgba(217, 70, 239, 0.28), transparent)
           `,
-          backgroundSize: '350px 350px',
+          backgroundSize: '1050px 1050px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle6 5.2s ease-in-out infinite 2.1s'
+          animation: 'twinkle6 5.2s ease-in-out infinite 2.1s, drift6 270s linear infinite'
         }} />
 
-        {/* Layer 7 - white medium stars */}
+        {/* Layer 7 - white medium stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1088,14 +1100,16 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(3px 3px at 250px 200px, rgba(255, 255, 255, 0.28), transparent)
+            radial-gradient(3px 3px at 41% 69%, rgba(255, 255, 255, 0.28), transparent),
+            radial-gradient(2.5px 2.5px at 73% 22%, rgba(255, 255, 255, 0.26), transparent),
+            radial-gradient(3px 3px at 18% 44%, rgba(255, 255, 255, 0.3), transparent)
           `,
-          backgroundSize: '350px 350px',
+          backgroundSize: '1200px 1200px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle7 3.8s ease-in-out infinite 1.4s'
+          animation: 'twinkle7 3.8s ease-in-out infinite 1.4s, drift7 300s linear infinite'
         }} />
 
-        {/* Layer 8 - large white stars */}
+        {/* Layer 8 - large white stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1103,14 +1117,15 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(3px 3px at 400px 300px, rgba(255, 255, 255, 0.25), transparent)
+            radial-gradient(3px 3px at 64% 53%, rgba(255, 255, 255, 0.25), transparent),
+            radial-gradient(3.5px 3.5px at 31% 9%, rgba(255, 255, 255, 0.23), transparent)
           `,
-          backgroundSize: '700px 700px',
+          backgroundSize: '1400px 1400px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle8 5.7s ease-in-out infinite 3.2s'
+          animation: 'twinkle8 5.7s ease-in-out infinite 3.2s, drift8 330s linear infinite'
         }} />
 
-        {/* Layer 9 - large teal stars */}
+        {/* Layer 9 - large teal stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1118,14 +1133,15 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(3.5px 3.5px at 600px 100px, rgba(45, 212, 191, 0.22), transparent)
+            radial-gradient(3.5px 3.5px at 82% 76%, rgba(45, 212, 191, 0.22), transparent),
+            radial-gradient(3px 3px at 49% 18%, rgba(45, 212, 191, 0.24), transparent)
           `,
-          backgroundSize: '700px 700px',
+          backgroundSize: '1300px 1300px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle9 4.4s ease-in-out infinite 1.1s'
+          animation: 'twinkle9 4.4s ease-in-out infinite 1.1s, drift9 360s linear infinite'
         }} />
 
-        {/* Layer 10 - large fuchsia stars */}
+        {/* Layer 10 - large fuchsia stars scattered */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -1133,11 +1149,45 @@ const CojiUniverse = () => {
           width: '100%',
           height: '100%',
           backgroundImage: `
-            radial-gradient(3px 3px at 500px 500px, rgba(217, 70, 239, 0.2), transparent)
+            radial-gradient(3px 3px at 37% 62%, rgba(217, 70, 239, 0.2), transparent),
+            radial-gradient(3.5px 3.5px at 93% 29%, rgba(217, 70, 239, 0.18), transparent)
           `,
-          backgroundSize: '700px 700px',
+          backgroundSize: '1500px 1500px',
           backgroundRepeat: 'repeat',
-          animation: 'twinkle10 6.1s ease-in-out infinite 2.9s'
+          animation: 'twinkle10 6.1s ease-in-out infinite 2.9s, drift10 390s linear infinite'
+        }} />
+
+        {/* Comet 1 - white comet */}
+        <div style={{
+          position: 'absolute',
+          width: '3px',
+          height: '3px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.9)',
+          boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.5), -50px 0 30px 10px rgba(255, 255, 255, 0.15), -80px 0 50px 15px rgba(255, 255, 255, 0.08)',
+          animation: 'comet1 45s linear infinite'
+        }} />
+
+        {/* Comet 2 - teal comet */}
+        <div style={{
+          position: 'absolute',
+          width: '2.5px',
+          height: '2.5px',
+          borderRadius: '50%',
+          background: 'rgba(45, 212, 191, 0.8)',
+          boxShadow: '0 0 6px 2px rgba(45, 212, 191, 0.4), -40px 0 25px 8px rgba(45, 212, 191, 0.12), -70px 0 45px 12px rgba(45, 212, 191, 0.06)',
+          animation: 'comet2 60s linear infinite 15s'
+        }} />
+
+        {/* Comet 3 - fuchsia comet */}
+        <div style={{
+          position: 'absolute',
+          width: '2px',
+          height: '2px',
+          borderRadius: '50%',
+          background: 'rgba(217, 70, 239, 0.75)',
+          boxShadow: '0 0 5px 2px rgba(217, 70, 239, 0.35), -35px 0 20px 7px rgba(217, 70, 239, 0.1), -60px 0 40px 10px rgba(217, 70, 239, 0.05)',
+          animation: 'comet3 75s linear infinite 30s'
         }} />
       </div>
 
@@ -1181,6 +1231,100 @@ const CojiUniverse = () => {
         @keyframes twinkle10 {
           0%, 100% { opacity: 0.1; }
           50% { opacity: 0.75; }
+        }
+        @keyframes drift1 {
+          0% { background-position: 0 0; }
+          100% { background-position: 150px 150px; }
+        }
+        @keyframes drift2 {
+          0% { background-position: 0 0; }
+          100% { background-position: -150px 150px; }
+        }
+        @keyframes drift3 {
+          0% { background-position: 0 0; }
+          100% { background-position: 150px -150px; }
+        }
+        @keyframes drift4 {
+          0% { background-position: 0 0; }
+          100% { background-position: -150px -150px; }
+        }
+        @keyframes drift5 {
+          0% { background-position: 0 0; }
+          100% { background-position: 350px 350px; }
+        }
+        @keyframes drift6 {
+          0% { background-position: 0 0; }
+          100% { background-position: -350px 350px; }
+        }
+        @keyframes drift7 {
+          0% { background-position: 0 0; }
+          100% { background-position: 350px -350px; }
+        }
+        @keyframes drift8 {
+          0% { background-position: 0 0; }
+          100% { background-position: 700px 700px; }
+        }
+        @keyframes drift9 {
+          0% { background-position: 0 0; }
+          100% { background-position: -700px 700px; }
+        }
+        @keyframes drift10 {
+          0% { background-position: 0 0; }
+          100% { background-position: 700px -700px; }
+        }
+        @keyframes comet1 {
+          0% {
+            top: -5%;
+            left: 110%;
+            opacity: 0;
+          }
+          5% {
+            opacity: 1;
+          }
+          95% {
+            opacity: 1;
+          }
+          100% {
+            top: 110%;
+            left: -5%;
+            opacity: 0;
+          }
+        }
+        @keyframes comet2 {
+          0% {
+            top: 110%;
+            left: -5%;
+            opacity: 0;
+          }
+          5% {
+            opacity: 0.8;
+          }
+          95% {
+            opacity: 0.8;
+          }
+          100% {
+            top: -5%;
+            left: 110%;
+            opacity: 0;
+          }
+        }
+        @keyframes comet3 {
+          0% {
+            top: 50%;
+            left: -5%;
+            opacity: 0;
+          }
+          5% {
+            opacity: 0.7;
+          }
+          95% {
+            opacity: 0.7;
+          }
+          100% {
+            top: -5%;
+            left: 110%;
+            opacity: 0;
+          }
         }
       `}} />
 
