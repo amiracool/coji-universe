@@ -1862,6 +1862,9 @@ const CojiUniverse = () => {
                     { id: "CBT", title: "CBT", desc: "Changing thought patterns" },
                     { id: "DBT", title: "DBT", desc: "Emotional regulation skills" },
                     { id: "EMDR", title: "EMDR", desc: "Trauma processing therapy" },
+                    { id: "NVR", title: "NVR", desc: "Non-Violent Resistance" },
+                    { id: "Systemic", title: "Systemic Families Therapy", desc: "Family systems and relationships" },
+                    { id: "Somatic", title: "Somatic Therapy", desc: "Body-based healing" },
                   ].map((t) => (
                     <button
                       key={t.id}
@@ -1872,6 +1875,82 @@ const CojiUniverse = () => {
                       <p className="text-xs text-slate-400">{t.desc}</p>
                     </button>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Personality & Quizzes Section */}
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold mb-6 text-teal-300">Personality & Quizzes</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                  <div className="text-4xl mb-3">{"\u{1F491}"}</div>
+                  <h4 className="text-lg font-bold mb-2 text-fuchsia-300">
+                    Romance Roulette
+                  </h4>
+                  <p className="text-sm text-slate-400">
+                    A game about healthy relationships
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Digital Worksheets Section */}
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold mb-6 text-teal-300">Digital Worksheets</h3>
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h4 className="text-xl font-bold mb-4 text-teal-300">
+                  {"\u{1F4DD}"} Self-Growth Resources
+                </h4>
+                <p className="text-slate-400 mb-4">
+                  Interactive worksheets to work through common challenges
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <button className="bg-slate-700 bg-opacity-50 p-4 rounded-lg hover:bg-opacity-70 transition-all text-left">
+                    <p className="font-semibold text-sm text-teal-300 mb-1">Self Esteem Worksheet</p>
+                    <p className="text-xs text-slate-400">Build confidence and self-worth</p>
+                  </button>
+                  <button className="bg-slate-700 bg-opacity-50 p-4 rounded-lg hover:bg-opacity-70 transition-all text-left">
+                    <p className="font-semibold text-sm text-fuchsia-300 mb-1">Perfectionism Worksheet</p>
+                    <p className="text-xs text-slate-400">Challenge all-or-nothing thinking</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Daily Check-in Section */}
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold mb-6 text-fuchsia-300">Daily Check-in</h3>
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h4 className="text-xl font-bold mb-4 text-fuchsia-300">
+                  {"\u{2728}"} Three Things I Did Well Today
+                </h4>
+                <p className="text-slate-400 mb-4">
+                  Celebrate your wins, no matter how small
+                </p>
+                <div className="space-y-3 mb-4">
+                  <input
+                    type="text"
+                    placeholder="1. Something I did well today..."
+                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-3 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
+                  />
+                  <input
+                    type="text"
+                    placeholder="2. Something I did well today..."
+                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-3 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
+                  />
+                  <input
+                    type="text"
+                    placeholder="3. Something I did well today..."
+                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-3 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
+                  />
+                </div>
+                <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-all">
+                  Save Today's Wins
+                </button>
+                <div className="mt-6">
+                  <h5 className="font-bold text-sm mb-3 text-teal-300">Recent Check-ins</h5>
+                  <p className="text-slate-400 text-sm">No check-ins yet. Start celebrating your daily wins!</p>
                 </div>
               </div>
             </div>
