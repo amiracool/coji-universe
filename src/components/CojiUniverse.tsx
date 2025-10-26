@@ -2320,23 +2320,200 @@ const CojiUniverse = () => {
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
                 <h3 className="text-lg font-bold text-teal-300 mb-3">Energy by Time of Day</h3>
                 <EnergyByHourChart data={averageByHour("battery")} />
+                {/* Mock Data Summary */}
+                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                  <div className="text-xs text-slate-300">
+                    <div className="flex justify-between mb-1">
+                      <span>Peak Energy:</span>
+                      <span className="text-teal-300 font-semibold">10:00 AM (85%)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Lowest Energy:</span>
+                      <span className="text-amber-300 font-semibold">3:00 PM (35%)</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Sleep times (recent)</h3>
+                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Sleep Patterns (Last 14 Days)</h3>
                 <SleepSparkline series={recentSleepSeries(14)} />
+                {/* Mock Data Summary */}
+                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                  <div className="text-xs text-slate-300">
+                    <div className="flex justify-between mb-1">
+                      <span>Average Sleep:</span>
+                      <span className="text-fuchsia-300 font-semibold">6.8 hours</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Average Bedtime:</span>
+                      <span className="text-fuchsia-300 font-semibold">11:45 PM</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-teal-300 mb-3">Pain score by Time of Day</h3>
+                <h3 className="text-lg font-bold text-teal-300 mb-3">Pain Score by Time of Day</h3>
                 <EnergyByHourChart data={averageByHour("pain")} colorStart="#F472B6" colorEnd="#EF4444" />
+                {/* Mock Data Summary */}
+                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                  <div className="text-xs text-slate-300">
+                    <div className="flex justify-between mb-1">
+                      <span>Highest Pain:</span>
+                      <span className="text-red-400 font-semibold">Evening (7/10)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Lowest Pain:</span>
+                      <span className="text-teal-300 font-semibold">Morning (3/10)</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-teal-300 mb-3">Happiest Time of Day</h3>
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Happiest Time of Day</h3>
                 <BarChartCounts counts={happiestByHour()} />
+                {/* Mock Data Summary */}
+                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                  <div className="text-xs text-slate-300">
+                    <div className="flex justify-between">
+                      <span>Most positive mood:</span>
+                      <span className="text-fuchsia-300 font-semibold">9:00 AM - 11:00 AM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* New Analysis Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              {/* Lowest Mood Times */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-amber-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-amber-300 mb-3">Lowest Mood Times</h3>
+                <div className="space-y-3">
+                  {[
+                    { time: '2:00 PM - 4:00 PM', mood: 'Low', percentage: 45, color: 'bg-red-500' },
+                    { time: '8:00 PM - 10:00 PM', mood: 'Okay', percentage: 35, color: 'bg-amber-500' },
+                    { time: '6:00 AM - 8:00 AM', mood: 'Low', percentage: 30, color: 'bg-red-400' },
+                  ].map((item, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span>{item.time}</span>
+                        <span className="text-amber-300">{item.mood} mood {item.percentage}% of time</span>
+                      </div>
+                      <div className="w-full bg-slate-600 rounded-full h-2">
+                        <div className={`${item.color} h-2 rounded-full`} style={{ width: `${item.percentage}%` }}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg text-xs text-slate-300">
+                  💡 Tip: Consider scheduling important tasks outside these times
+                </div>
+              </div>
+
+              {/* Busiest Day of the Week */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-teal-300 mb-3">Busiest Day of the Week</h3>
+                <div className="space-y-2">
+                  {[
+                    { day: 'Monday', tasks: 12, color: 'bg-red-500', width: 100 },
+                    { day: 'Tuesday', tasks: 8, color: 'bg-amber-500', width: 67 },
+                    { day: 'Wednesday', tasks: 10, color: 'bg-orange-500', width: 83 },
+                    { day: 'Thursday', tasks: 7, color: 'bg-yellow-500', width: 58 },
+                    { day: 'Friday', tasks: 9, color: 'bg-amber-500', width: 75 },
+                    { day: 'Saturday', tasks: 4, color: 'bg-teal-500', width: 33 },
+                    { day: 'Sunday', tasks: 3, color: 'bg-teal-400', width: 25 },
+                  ].map((item, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="font-medium">{item.day}</span>
+                        <span className="text-teal-300">{item.tasks} tasks/appointments</span>
+                      </div>
+                      <div className="w-full bg-slate-600 rounded-full h-2">
+                        <div className={`${item.color} h-2 rounded-full`} style={{ width: `${item.width}%` }}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg text-xs text-slate-300">
+                  🏆 Busiest: Monday | 🌴 Most relaxed: Sunday
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Insights */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Most Productive Hours */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Most Productive Hours</h3>
+                <div className="grid grid-cols-4 gap-2 mb-4">
+                  {Array.from({ length: 24 }, (_, i) => {
+                    const hour = i;
+                    const isProductive = hour >= 9 && hour <= 11;
+                    const isMedium = (hour >= 14 && hour <= 16) || (hour >= 19 && hour <= 21);
+                    return (
+                      <div
+                        key={i}
+                        className={`h-12 rounded flex flex-col items-center justify-center text-xs ${
+                          isProductive ? 'bg-teal-500' :
+                          isMedium ? 'bg-amber-500 bg-opacity-40' :
+                          'bg-slate-600 bg-opacity-20'
+                        }`}
+                      >
+                        <span className="text-[10px]">{hour}:00</span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex gap-3 text-xs">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-teal-500 rounded"></div>
+                    <span>High</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-amber-500 bg-opacity-40 rounded"></div>
+                    <span>Medium</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-slate-600 bg-opacity-20 rounded"></div>
+                    <span>Low</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Weekly Summary Stats */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-lg font-bold text-teal-300 mb-3">Weekly Summary</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                    <div className="text-2xl font-bold text-teal-300">68%</div>
+                    <div className="text-xs text-slate-400">Average Mood</div>
+                  </div>
+                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                    <div className="text-2xl font-bold text-fuchsia-300">42</div>
+                    <div className="text-xs text-slate-400">Tasks Completed</div>
+                  </div>
+                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                    <div className="text-2xl font-bold text-amber-300">6.8h</div>
+                    <div className="text-xs text-slate-400">Avg Sleep</div>
+                  </div>
+                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
+                    <div className="text-2xl font-bold text-teal-300">5/7</div>
+                    <div className="text-xs text-slate-400">Exercise Days</div>
+                  </div>
+                </div>
+                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                  <div className="text-xs text-slate-300 mb-2 font-semibold">Trends this week:</div>
+                  <div className="text-xs text-slate-400 space-y-1">
+                    <div>↗️ Mood improving (+12%)</div>
+                    <div>↘️ Sleep slightly down (-0.3h)</div>
+                    <div>→ Energy levels stable</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
