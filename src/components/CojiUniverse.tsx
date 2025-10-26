@@ -935,8 +935,210 @@ const CojiUniverse = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 text-white">
-      <div className="bg-slate-950 bg-opacity-80 backdrop-blur-md border-b border-teal-500 border-opacity-20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 text-white relative overflow-hidden">
+      {/* Subtle starfield background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Layer 1 - white stars, fast twinkle */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.4), transparent),
+            radial-gradient(2px 2px at 60px 70px, rgba(255, 255, 255, 0.35), transparent)
+          `,
+          backgroundSize: '150px 150px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle1 2.7s ease-in-out infinite'
+        }} />
+
+        {/* Layer 2 - white stars, medium speed */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(1.5px 1.5px at 50px 50px, rgba(255, 255, 255, 0.3), transparent),
+            radial-gradient(2px 2px at 80px 10px, rgba(255, 255, 255, 0.38), transparent)
+          `,
+          backgroundSize: '150px 150px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle2 3.4s ease-in-out infinite 0.7s'
+        }} />
+
+        {/* Layer 3 - white stars, slower */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(1.5px 1.5px at 130px 80px, rgba(255, 255, 255, 0.32), transparent),
+            radial-gradient(2px 2px at 20px 100px, rgba(255, 255, 255, 0.36), transparent)
+          `,
+          backgroundSize: '150px 150px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle3 4.1s ease-in-out infinite 1.8s'
+        }} />
+
+        {/* Layer 4 - white stars, slowest small */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(1.5px 1.5px at 110px 40px, rgba(255, 255, 255, 0.28), transparent),
+            radial-gradient(2px 2px at 140px 120px, rgba(255, 255, 255, 0.4), transparent)
+          `,
+          backgroundSize: '150px 150px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle4 3.9s ease-in-out infinite 2.5s'
+        }} />
+
+        {/* Layer 5 - teal stars */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(2.5px 2.5px at 100px 50px, rgba(45, 212, 191, 0.35), transparent),
+            radial-gradient(2.5px 2.5px at 300px 100px, rgba(45, 212, 191, 0.32), transparent)
+          `,
+          backgroundSize: '350px 350px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle5 4.6s ease-in-out infinite 0.9s'
+        }} />
+
+        {/* Layer 6 - fuchsia stars */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(3px 3px at 200px 150px, rgba(217, 70, 239, 0.3), transparent),
+            radial-gradient(2.5px 2.5px at 150px 250px, rgba(217, 70, 239, 0.25), transparent)
+          `,
+          backgroundSize: '350px 350px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle6 5.2s ease-in-out infinite 2.1s'
+        }} />
+
+        {/* Layer 7 - white medium stars */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(3px 3px at 250px 200px, rgba(255, 255, 255, 0.28), transparent)
+          `,
+          backgroundSize: '350px 350px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle7 3.8s ease-in-out infinite 1.4s'
+        }} />
+
+        {/* Layer 8 - large white stars */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(3px 3px at 400px 300px, rgba(255, 255, 255, 0.25), transparent)
+          `,
+          backgroundSize: '700px 700px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle8 5.7s ease-in-out infinite 3.2s'
+        }} />
+
+        {/* Layer 9 - large teal stars */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(3.5px 3.5px at 600px 100px, rgba(45, 212, 191, 0.22), transparent)
+          `,
+          backgroundSize: '700px 700px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle9 4.4s ease-in-out infinite 1.1s'
+        }} />
+
+        {/* Layer 10 - large fuchsia stars */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            radial-gradient(3px 3px at 500px 500px, rgba(217, 70, 239, 0.2), transparent)
+          `,
+          backgroundSize: '700px 700px',
+          backgroundRepeat: 'repeat',
+          animation: 'twinkle10 6.1s ease-in-out infinite 2.9s'
+        }} />
+      </div>
+
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes twinkle1 {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 1; }
+        }
+        @keyframes twinkle2 {
+          0%, 100% { opacity: 0.25; }
+          50% { opacity: 0.95; }
+        }
+        @keyframes twinkle3 {
+          0%, 100% { opacity: 0.35; }
+          50% { opacity: 1; }
+        }
+        @keyframes twinkle4 {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.9; }
+        }
+        @keyframes twinkle5 {
+          0%, 100% { opacity: 0.25; }
+          50% { opacity: 1; }
+        }
+        @keyframes twinkle6 {
+          0%, 100% { opacity: 0.15; }
+          50% { opacity: 0.85; }
+        }
+        @keyframes twinkle7 {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.95; }
+        }
+        @keyframes twinkle8 {
+          0%, 100% { opacity: 0.15; }
+          50% { opacity: 0.9; }
+        }
+        @keyframes twinkle9 {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.8; }
+        }
+        @keyframes twinkle10 {
+          0%, 100% { opacity: 0.1; }
+          50% { opacity: 0.75; }
+        }
+      `}} />
+
+      <div className="bg-slate-950 bg-opacity-80 backdrop-blur-md border-b border-teal-500 border-opacity-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <button
