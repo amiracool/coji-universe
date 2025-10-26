@@ -1,6 +1,29 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
+  // Performance optimizations
+  compress: true,
+
+  // Image optimization
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+
+  // Production optimizations
+  swcMinify: true,
+
+  // Compiler options for better performance
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // Experimental features for better performance
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
 }
 
 module.exports = nextConfig

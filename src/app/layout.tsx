@@ -1,6 +1,13 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import AmbientMusic from '@/components/AmbientMusic'
+import dynamic from 'next/dynamic'
+import Script from 'next/script'
+
+// Lazy load AmbientMusic component - it's not critical for first paint
+const AmbientMusic = dynamic(() => import('@/components/AmbientMusic'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export const metadata: Metadata = {
   title: 'Coji Universe',
@@ -17,6 +24,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Preload critical images to prevent layout shift */}
+        <link rel="preload" href="/coji- logo.png" as="image" />
+
+        {/* Set viewport height CSS variable for mobile 100vh fix */}
+        <Script id="viewport-height" strategy="beforeInteractive">
+          {`
+            function setVH() {
+              const vh = window.innerHeight * 0.01;
+              document.documentElement.style.setProperty('--vh', vh + 'px');
+            }
+            setVH();
+            window.addEventListener('resize', setVH);
+          `}
+        </Script>
+      </head>
       <body>
         <AmbientMusic />
         {children}

@@ -91,6 +91,9 @@ interface StickyNote {
 }
 
 const CojiUniverse = () => {
+  // Hydration control - prevent flash on initial load
+  const [isHydrated, setIsHydrated] = useState(false);
+
   const [activeTab, setActiveTab] = useState("landing");
   const [batteryLevel, setBatteryLevel] = useState(10);
   const [todayFeeling, setTodayFeeling] = useState("");
@@ -252,6 +255,12 @@ const CojiUniverse = () => {
       return <BatteryMedium className="text-amber-400" size={24} />;
     return <BatteryLow className="text-red-400" size={24} />;
   };
+
+  // Mark body as hydrated after client-side render to enable transitions
+  useEffect(() => {
+    document.body.classList.add('hydrated');
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
     loadData();
@@ -1353,7 +1362,10 @@ const CojiUniverse = () => {
               <img
                 src="/coji- logo.png"
                 alt="Coji"
+                width="48"
+                height="48"
                 className="w-12 h-12 object-contain"
+                loading="eager"
               />
               <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-fuchsia-400">
                 Coji Universe

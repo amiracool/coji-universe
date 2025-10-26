@@ -2,10 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance Optimizations */
+:root {
+  /* CSS variable for mobile viewport height (prevents 100vh jump) */
+  --vh: 1vh;
+}
+
+/* Prevent layout shift by reserving space for scrollbar */
+html {
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  /* Disable transitions until hydration complete to prevent flash */
+  --enable-transitions: 0;
+}
+
+/* Re-enable transitions after hydration */
+body.hydrated {
+  --enable-transitions: 1;
+}
+
+/* Apply transitions only when hydrated */
+* {
+  transition-duration: calc(var(--enable-transitions) * 0.3s);
+}
+
+/* Optimize animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Prevent font flash */
+@layer base {
+  body {
+    font-display: swap;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Image optimization - prevent layout shift */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Lazy loading optimization */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
 }
 
 /* Mobile Responsive Styles */
