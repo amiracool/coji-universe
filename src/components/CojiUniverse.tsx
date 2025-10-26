@@ -125,6 +125,20 @@ const CojiUniverse = () => {
     new Date().toISOString().split("T")[0],
   );
   const [showEisenpowerPrompt, setShowEisenpowerPrompt] = useState(false);
+  const [pendingTask, setPendingTask] = useState<{title: string; energy: number; date: string} | null>(null);
+  const [showEisenhowerMatrix, setShowEisenhowerMatrix] = useState(false);
+  const [eisenhowerTasks, setEisenhowerTasks] = useState<{
+    urgentImportant: string[];
+    urgentNotImportant: string[];
+    notUrgentImportant: string[];
+    notUrgentNotImportant: string[];
+  }>({
+    urgentImportant: [],
+    urgentNotImportant: [],
+    notUrgentImportant: [],
+    notUrgentNotImportant: []
+  });
+  const [newEisenhowerTask, setNewEisenhowerTask] = useState("");
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0],
   );
@@ -344,7 +358,14 @@ const CojiUniverse = () => {
     const remainingBattery = todayBattery - totalEnergyUsed;
 
     if (newTaskEnergy > remainingBattery) {
+      // Store pending task and show warning
+      setPendingTask({
+        title: newTaskTitle,
+        energy: newTaskEnergy,
+        date: newTaskDate
+      });
       setShowEisenpowerPrompt(true);
+      return; // Don't add task yet - wait for user decision
     }
 
     await supabase.from("tasks").insert({
@@ -1042,7 +1063,7 @@ const CojiUniverse = () => {
         </div>
       )}
 
-      {showEisenpowerPrompt && tasks.length > 0 && (
+      {showEisenpowerPrompt && pendingTask && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-xl p-8 max-w-md w-full border border-amber-500 border-opacity-50">
             <div className="text-center mb-6">
@@ -1050,17 +1071,23 @@ const CojiUniverse = () => {
               <h3 className="text-2xl font-bold mb-2 text-amber-300">
                 Battery Low! {"\u{26A0}\u{FE0F}"}
               </h3>
-              <p className="text-slate-300">
+              <p className="text-slate-300 mb-2">
                 This task needs more energy than you have. Let's break it down!
+              </p>
+              <p className="text-sm text-amber-200 font-semibold">
+                Task: "{pendingTask.title}"
               </p>
             </div>
 
             <div className="space-y-3 mb-6">
               <button
-                onClick={() => eisenpowerTask(tasks[tasks.length - 1].id)}
+                onClick={() => {
+                  setShowEisenpowerPrompt(false);
+                  setShowEisenhowerMatrix(true);
+                }}
                 className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-6 py-4 rounded-lg font-bold transition-all"
               >
-                {"\u{1F50B}"} Use Eisenpower (Break into 3 steps)
+                {"\u{1F50B}"} Use Eisenpower Matrix
               </button>
               <button
                 onClick={() => {
@@ -1072,10 +1099,298 @@ const CojiUniverse = () => {
                 {"\u{2601}\u{FE0F}"} Ask Coji Buddy for Help
               </button>
               <button
-                onClick={() => setShowEisenpowerPrompt(false)}
+                onClick={async () => {
+                  // Add task anyway
+                  if (pendingTask) {
+                    await supabase.from("tasks").insert({
+                      user_id: DEMO_USER_ID,
+                      title: pendingTask.title,
+                      energy_required: pendingTask.energy,
+                      date: pendingTask.date,
+                      completed: false,
+                      eisenpowered: false,
+                    });
+                    setNewTaskTitle("");
+                    setNewTaskEnergy(3);
+                    setShowTaskModal(false);
+                    setPendingTask(null);
+                    loadData();
+                  }
+                  setShowEisenpowerPrompt(false);
+                }}
                 className="w-full bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-medium transition-all"
               >
                 Keep Task As Is
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showEisenhowerMatrix && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-slate-800 rounded-xl p-6 max-w-6xl w-full border border-amber-500 border-opacity-50 my-8">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold text-amber-300">
+                {"\u{1F50B}"} Eisenhower Matrix
+              </h2>
+              <button
+                onClick={() => {
+                  setShowEisenhowerMatrix(false);
+                  // Clean up pending task and reset form
+                  setPendingTask(null);
+                  setNewTaskTitle("");
+                  setNewTaskEnergy(3);
+                  setShowTaskModal(false);
+                }}
+                className="text-slate-400 hover:text-white text-2xl"
+              >
+                ×
+              </button>
+            </div>
+
+            {pendingTask && (
+              <div className="bg-amber-900 bg-opacity-30 border border-amber-500 rounded-lg p-4 mb-4">
+                <p className="text-amber-200 text-sm">
+                  <strong>High-energy task to organize:</strong> "{pendingTask.title}"
+                </p>
+                <p className="text-amber-300 text-xs mt-1">
+                  Add this task to one of the quadrants below to help break it down and prioritize it.
+                </p>
+              </div>
+            )}
+
+            <p className="text-slate-300 mb-6 text-center">
+              Organize your tasks by urgency and importance. This helps you prioritize what to do first!
+            </p>
+
+            {/* Input for new task */}
+            <div className="mb-6 bg-slate-700 bg-opacity-50 p-4 rounded-xl">
+              <input
+                type="text"
+                value={newEisenhowerTask}
+                onChange={(e) => setNewEisenhowerTask(e.target.value)}
+                placeholder="Type a task and click a quadrant below to add it..."
+                className="w-full bg-slate-600 px-4 py-3 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && newEisenhowerTask.trim()) {
+                    e.preventDefault();
+                  }
+                }}
+              />
+            </div>
+
+            {/* 4-Quadrant Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {/* Quadrant 1: Urgent & Important */}
+              <div className="bg-red-900 bg-opacity-30 border-2 border-red-500 rounded-xl p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="text-lg font-bold text-red-300">
+                    {"\u{1F525}"} Urgent & Important
+                  </h3>
+                  <button
+                    onClick={() => {
+                      if (newEisenhowerTask.trim()) {
+                        setEisenhowerTasks(prev => ({
+                          ...prev,
+                          urgentImportant: [...prev.urgentImportant, newEisenhowerTask.trim()]
+                        }));
+                        setNewEisenhowerTask("");
+                      }
+                    }}
+                    className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                  >
+                    + Add Here
+                  </button>
+                </div>
+                <p className="text-xs text-red-200 mb-3">Do these tasks first!</p>
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {eisenhowerTasks.urgentImportant.map((task, idx) => (
+                    <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
+                      <span className="text-sm text-white flex-1">{task}</span>
+                      <button
+                        onClick={() => {
+                          setEisenhowerTasks(prev => ({
+                            ...prev,
+                            urgentImportant: prev.urgentImportant.filter((_, i) => i !== idx)
+                          }));
+                        }}
+                        className="text-red-400 hover:text-red-300 ml-2 text-lg"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  {eisenhowerTasks.urgentImportant.length === 0 && (
+                    <p className="text-slate-500 text-sm italic text-center py-4">No tasks yet</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Quadrant 2: Not Urgent & Important */}
+              <div className="bg-amber-900 bg-opacity-30 border-2 border-amber-500 rounded-xl p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="text-lg font-bold text-amber-300">
+                    {"\u{1F4C5}"} Not Urgent & Important
+                  </h3>
+                  <button
+                    onClick={() => {
+                      if (newEisenhowerTask.trim()) {
+                        setEisenhowerTasks(prev => ({
+                          ...prev,
+                          notUrgentImportant: [...prev.notUrgentImportant, newEisenhowerTask.trim()]
+                        }));
+                        setNewEisenhowerTask("");
+                      }
+                    }}
+                    className="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                  >
+                    + Add Here
+                  </button>
+                </div>
+                <p className="text-xs text-amber-200 mb-3">Schedule these tasks</p>
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {eisenhowerTasks.notUrgentImportant.map((task, idx) => (
+                    <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
+                      <span className="text-sm text-white flex-1">{task}</span>
+                      <button
+                        onClick={() => {
+                          setEisenhowerTasks(prev => ({
+                            ...prev,
+                            notUrgentImportant: prev.notUrgentImportant.filter((_, i) => i !== idx)
+                          }));
+                        }}
+                        className="text-amber-400 hover:text-amber-300 ml-2 text-lg"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  {eisenhowerTasks.notUrgentImportant.length === 0 && (
+                    <p className="text-slate-500 text-sm italic text-center py-4">No tasks yet</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Quadrant 3: Urgent & Not Important */}
+              <div className="bg-blue-900 bg-opacity-30 border-2 border-blue-500 rounded-xl p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="text-lg font-bold text-blue-300">
+                    {"\u{1F4E9}"} Urgent & Not Important
+                  </h3>
+                  <button
+                    onClick={() => {
+                      if (newEisenhowerTask.trim()) {
+                        setEisenhowerTasks(prev => ({
+                          ...prev,
+                          urgentNotImportant: [...prev.urgentNotImportant, newEisenhowerTask.trim()]
+                        }));
+                        setNewEisenhowerTask("");
+                      }
+                    }}
+                    className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                  >
+                    + Add Here
+                  </button>
+                </div>
+                <p className="text-xs text-blue-200 mb-3">Delegate if possible</p>
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {eisenhowerTasks.urgentNotImportant.map((task, idx) => (
+                    <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
+                      <span className="text-sm text-white flex-1">{task}</span>
+                      <button
+                        onClick={() => {
+                          setEisenhowerTasks(prev => ({
+                            ...prev,
+                            urgentNotImportant: prev.urgentNotImportant.filter((_, i) => i !== idx)
+                          }));
+                        }}
+                        className="text-blue-400 hover:text-blue-300 ml-2 text-lg"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  {eisenhowerTasks.urgentNotImportant.length === 0 && (
+                    <p className="text-slate-500 text-sm italic text-center py-4">No tasks yet</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Quadrant 4: Not Urgent & Not Important */}
+              <div className="bg-slate-700 bg-opacity-50 border-2 border-slate-500 rounded-xl p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="text-lg font-bold text-slate-300">
+                    {"\u{1F4AD}"} Not Urgent & Not Important
+                  </h3>
+                  <button
+                    onClick={() => {
+                      if (newEisenhowerTask.trim()) {
+                        setEisenhowerTasks(prev => ({
+                          ...prev,
+                          notUrgentNotImportant: [...prev.notUrgentNotImportant, newEisenhowerTask.trim()]
+                        }));
+                        setNewEisenhowerTask("");
+                      }
+                    }}
+                    className="bg-slate-500 hover:bg-slate-600 px-3 py-1 rounded text-xs font-bold transition-all"
+                  >
+                    + Add Here
+                  </button>
+                </div>
+                <p className="text-xs text-slate-400 mb-3">Consider eliminating these</p>
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {eisenhowerTasks.notUrgentNotImportant.map((task, idx) => (
+                    <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
+                      <span className="text-sm text-white flex-1">{task}</span>
+                      <button
+                        onClick={() => {
+                          setEisenhowerTasks(prev => ({
+                            ...prev,
+                            notUrgentNotImportant: prev.notUrgentNotImportant.filter((_, i) => i !== idx)
+                          }));
+                        }}
+                        className="text-slate-400 hover:text-slate-300 ml-2 text-lg"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  {eisenhowerTasks.notUrgentNotImportant.length === 0 && (
+                    <p className="text-slate-500 text-sm italic text-center py-4">No tasks yet</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  // Clear all tasks
+                  setEisenhowerTasks({
+                    urgentImportant: [],
+                    urgentNotImportant: [],
+                    notUrgentImportant: [],
+                    notUrgentNotImportant: []
+                  });
+                }}
+                className="flex-1 bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-medium transition-all"
+              >
+                Clear All
+              </button>
+              <button
+                onClick={() => {
+                  setShowEisenhowerMatrix(false);
+                  // Clean up pending task and reset form
+                  setPendingTask(null);
+                  setNewTaskTitle("");
+                  setNewTaskEnergy(3);
+                  setShowTaskModal(false);
+                }}
+                className="flex-1 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-6 py-3 rounded-lg font-bold transition-all"
+              >
+                Done
               </button>
             </div>
           </div>
