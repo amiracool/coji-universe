@@ -870,7 +870,7 @@ const CojiUniverse = () => {
     { id: "dashboard", icon: TrendingUp, label: "Dashboard" },
     { id: "calendar", icon: Calendar, label: "Calendar" },
     { id: "cojiBuddy", icon: Sparkles, label: "Coji Buddy" },
-    { id: "library", icon: Brain, label: "ND Library" },
+    { id: "library", icon: Brain, label: "Library" },
     { id: "mentalhealth", icon: Heart, label: "Mental Health" },
     { id: "finances", icon: TrendingUp, label: "Finances" },
     { id: "forum", icon: Users, label: "Forum" },
@@ -1711,7 +1711,7 @@ const CojiUniverse = () => {
         {activeTab === "library" && (
           <div>
             <h2 className="text-3xl font-bold mb-6 text-teal-300">
-              ND Library
+              Library
             </h2>
             <p className="text-slate-400 mb-8">
               Resources and strategies for neurodivergent life {"\u{1F4DA}"}
@@ -1775,6 +1775,36 @@ const CojiUniverse = () => {
                 </h3>
                 <p className="text-sm text-slate-400">
                   No zero days, minimum baseline
+                </p>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F491}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Relationships
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Communication, boundaries, ND relationships
+                </p>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F4D6}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Dyslexia & Dyscalculia
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Reading tools, math support, assistive tech
+                </p>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F48A}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Chronic Illness
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Spoon theory, pacing, medical advocacy
                 </p>
               </div>
             </div>
