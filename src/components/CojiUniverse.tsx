@@ -77,11 +77,21 @@ interface TherapistBooking {
   timestamp?: string;
 }
 
+interface StickyNote {
+  id?: string;
+  text: string;
+  type: "want" | "need";
+  plannedDate?: string | null; // for wants
+  created_at?: string;
+}
+
 const CojiUniverse = () => {
   const [activeTab, setActiveTab] = useState("landing");
   const [batteryLevel, setBatteryLevel] = useState(10);
   const [todayFeeling, setTodayFeeling] = useState("");
   const [sleepHours, setSleepHours] = useState(7);
+  const [painScore, setPainScore] = useState(0);
+  const [painNote, setPainNote] = useState("");
   const [trackingData, setTrackingData] = useState<TrackingData[]>([]);
   const [hasTrackedToday, setHasTrackedToday] = useState(false);
   const [cojiMessage, setCojiMessage] = useState("");
@@ -98,6 +108,12 @@ const CojiUniverse = () => {
   const [bookingTime, setBookingTime] = useState("");
   const [bookingReason, setBookingReason] = useState("");
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [selectedTherapy, setSelectedTherapy] = useState<string | null>(null);
+  // Finances state
+  const [monthlyIncome, setMonthlyIncome] = useState<number | string>("");
+  const [notes, setNotes] = useState<StickyNote[]>([]);
+  const [newNoteText, setNewNoteText] = useState("");
+  const [newNoteType, setNewNoteType] = useState<"want" | "need">("want");
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskEnergy, setNewTaskEnergy] = useState(3);
@@ -113,8 +129,19 @@ const CojiUniverse = () => {
     { emoji: "\u{1F60A}", label: "Great", value: "great" },
     { emoji: "\u{1F642}", label: "Good", value: "good" },
     { emoji: "\u{1F610}", label: "Okay", value: "okay" },
-    { emoji: "\u{1F614}", label: "Low", value: "struggling" },
-    { emoji: "\u{1F62B}", label: "Hard", value: "difficult" },
+    { emoji: "\u{1F614}", label: "Low", value: "low" },
+    { emoji: "\u{1F62B}", label: "Hard", value: "hard" },
+    { emoji: "\u{1F912}", label: "Sick", value: "sick" },
+    { emoji: "\u{1F621}", label: "Angry", value: "angry" },
+    { emoji: "\u{1F628}", label: "Anxious", value: "anxious" },
+    { emoji: "\u{1F4A4}", label: "Tired", value: "tired" },
+    { emoji: "\u{1F622}", label: "Sad", value: "sad" },
+    { emoji: "\u{1F635}", label: "Overwhelmed", value: "overwhelmed" },
+    { emoji: "\u{1F973}", label: "Excited", value: "excited" },
+    { emoji: "\u{1F60C}", label: "Calm", value: "calm" },
+    { emoji: "\u{1F62C}", label: "Stressed", value: "stressed" },
+    { emoji: "\u{1F62D}", label: "Distraught", value: "distraught" },
+    { emoji: "\u{1F9D0}", label: "Curious", value: "curious" },
   ];
 
   const getBatteryIcon = (level: number) => {
@@ -173,10 +200,17 @@ const CojiUniverse = () => {
 
       if (todayTracking) {
         setBatteryLevel(todayTracking.battery);
+        setTodayFeeling(todayTracking.feeling || "");
+        setSleepHours(typeof todayTracking.sleep === "number" ? todayTracking.sleep : parseFloat(todayTracking.sleep || "0"));
+        setPainScore(typeof todayTracking.pain === "number" ? todayTracking.pain : parseFloat(todayTracking.pain || "0"));
+        setPainNote(todayTracking.pain_note || "");
         setHasTrackedToday(true);
       }
-      // load journal entries (supabase or local)
-      await loadJournalEntries();
+  // load journal entries (supabase or local)
+  await loadJournalEntries();
+
+  // load finances notes and income
+  await loadFinancialData();
 
       // try loading any local therapist bookings (fallback)
       try {
@@ -210,6 +244,8 @@ const CojiUniverse = () => {
       battery: batteryLevel,
       feeling: todayFeeling,
       sleep: sleepHours,
+      pain: painScore,
+      pain_note: painNote,
       timestamp: new Date().toISOString(),
     });
 
@@ -532,6 +568,153 @@ const CojiUniverse = () => {
     }
   };
 
+  // --- Finances helpers ---
+  const loadFinancialData = async () => {
+    try {
+      // load sticky notes from Supabase if available
+      const { data } = await supabase
+        .from("financial_notes")
+        .select("*")
+        .eq("user_id", DEMO_USER_ID)
+        .order("created_at", { ascending: false });
+      if (data) {
+        setNotes(data as StickyNote[]);
+      }
+    } catch (err) {
+      // fallback to localStorage
+      try {
+        const raw = localStorage.getItem("coji_finance_notes");
+        if (raw) setNotes(JSON.parse(raw));
+      } catch (e) {
+        console.log("loadFinancialData fallback error", e);
+      }
+    }
+
+    // load monthly income
+    try {
+      const { data } = await supabase
+        .from("finance_profile")
+        .select("monthly_income")
+        .eq("user_id", DEMO_USER_ID)
+        .single();
+      if (data && data.monthly_income !== undefined) {
+        setMonthlyIncome(data.monthly_income);
+        return;
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    try {
+      const raw = localStorage.getItem("coji_finance_profile");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed.monthlyIncome !== undefined) setMonthlyIncome(parsed.monthlyIncome);
+      }
+    } catch (e) {
+      // ignore
+    }
+  };
+
+  const persistNotesLocal = (arr: StickyNote[]) => {
+    try {
+      localStorage.setItem("coji_finance_notes", JSON.stringify(arr));
+    } catch (e) {
+      console.log("persistNotesLocal failed", e);
+    }
+  };
+
+  const addStickyNote = async () => {
+    if (!newNoteText.trim()) return;
+    const note: StickyNote = {
+      text: newNoteText.trim(),
+      type: newNoteType,
+      plannedDate: newNoteType === "want" ? null : null,
+      created_at: new Date().toISOString(),
+    };
+
+    // optimistic update
+    const updated = [note, ...notes];
+    setNotes(updated);
+    persistNotesLocal(updated);
+
+    // try to save to supabase (optional)
+    try {
+      await supabase.from("financial_notes").insert({
+        user_id: DEMO_USER_ID,
+        text: note.text,
+        type: note.type,
+        planned_date: note.plannedDate,
+        created_at: note.created_at,
+      });
+    } catch (err) {
+      // ignore
+      console.log("save note supabase failed", err);
+    }
+
+    setNewNoteText("");
+  };
+
+  const moveNote = async (idx: number) => {
+    const copy = [...notes];
+    const note = copy[idx];
+    if (!note) return;
+    note.type = note.type === "want" ? "need" : "want";
+    setNotes(copy);
+    persistNotesLocal(copy);
+
+    // try updating supabase if note has id
+    try {
+      if (note.id) {
+        await supabase.from("financial_notes").update({ type: note.type }).eq("id", note.id);
+      }
+    } catch (e) {
+      console.log("moveNote supabase failed", e);
+    }
+  };
+
+  const setPlannedDateForNote = async (idx: number, date: string | null) => {
+    const copy = [...notes];
+    const note = copy[idx];
+    if (!note) return;
+    note.plannedDate = date;
+    setNotes(copy);
+    persistNotesLocal(copy);
+    try {
+      if (note.id) await supabase.from("financial_notes").update({ planned_date: date }).eq("id", note.id);
+    } catch (e) {
+      console.log("setPlannedDateForNote supabase failed", e);
+    }
+  };
+
+  const deleteNote = async (idx: number) => {
+    const copy = [...notes];
+    const note = copy[idx];
+    if (!note) return;
+    copy.splice(idx, 1);
+    setNotes(copy);
+    persistNotesLocal(copy);
+    try {
+      if (note.id) await supabase.from("financial_notes").delete().eq("id", note.id);
+    } catch (e) {
+      console.log("deleteNote supabase failed", e);
+    }
+  };
+
+  const saveMonthlyIncome = async (val: number | string) => {
+    setMonthlyIncome(val);
+    try {
+      localStorage.setItem("coji_finance_profile", JSON.stringify({ monthlyIncome: val }));
+    } catch (e) {
+      console.log("saving monthly income failed", e);
+    }
+    try {
+      await supabase.from("finance_profile").upsert({ user_id: DEMO_USER_ID, monthly_income: val });
+    } catch (e) {
+      // ignore
+    }
+  };
+
   const tabs = [
     { id: "landing", icon: Home, label: "Home" },
     { id: "dashboard", icon: TrendingUp, label: "Dashboard" },
@@ -539,6 +722,7 @@ const CojiUniverse = () => {
     { id: "cojiBuddy", icon: Sparkles, label: "Coji Buddy" },
     { id: "library", icon: Brain, label: "ND Library" },
     { id: "mentalhealth", icon: Heart, label: "Mental Health" },
+    { id: "finances", icon: TrendingUp, label: "Finances" },
     { id: "forum", icon: Users, label: "Forum" },
     { id: "journal", icon: Star, label: "Journal" },
     { id: "clipboard", icon: Clipboard, label: "Clipboard" },
@@ -594,8 +778,8 @@ const CojiUniverse = () => {
         {/* Therapist booking, Sleep support and Personality quizzes */}
         {activeTab === "mentalhealth" && (
           <div className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2 items-stretch">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 flex flex-col min-h-48">
                 <h3 className="text-xl font-bold mb-4 text-teal-300">Book a Therapist Session</h3>
                 <p className="text-slate-400 text-sm mb-4">Schedule a session with a vetted therapist. We store bookings securely (Supabase) or locally if offline.</p>
 
@@ -652,7 +836,7 @@ const CojiUniverse = () => {
                 </div>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 flex flex-col min-h-48">
                 <h3 className="text-xl font-bold mb-4 text-fuchsia-300">Sleep Support</h3>
                 <p className="text-slate-400 mb-3">Tips, tools and gentle routines to improve sleep and recovery.</p>
                 <ul className="text-sm text-slate-300 space-y-2">
@@ -665,7 +849,7 @@ const CojiUniverse = () => {
                 </div>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 flex flex-col min-h-48">
                 <h3 className="text-xl font-bold mb-4 text-teal-300">Personality & Quizzes</h3>
                 <p className="text-slate-400 mb-3">Short quizzes to learn more about your preferences and strengths.</p>
                 <div className="space-y-2">
@@ -732,7 +916,7 @@ const CojiUniverse = () => {
               </div>
 
               <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
-                <p className="text-sm text-slate-300">
+                <p className="text-sm text-slate-400">
                   <strong>Your battery:</strong> {batteryLevel}/12
                   <br />
                   <strong>Already planned:</strong> {totalEnergyRequired} energy
@@ -839,8 +1023,8 @@ const CojiUniverse = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 items-stretch">
+              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all flex flex-col min-h-64">
                 <div className="text-4xl mb-4">{"\u{1F50B}"}</div>
                 <h3 className="text-xl font-bold mb-3 text-teal-300">
                   Battery Tracking
@@ -851,7 +1035,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all">
+              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all flex flex-col min-h-64">
                 <div className="text-4xl mb-4">{"\u{2601}\u{FE0F}"}</div>
                 <h3 className="text-xl font-bold mb-3 text-fuchsia-300">
                   Coji Buddy
@@ -862,7 +1046,7 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all">
+              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all flex flex-col min-h-64">
                 <div className="text-4xl mb-4">{"\u{1F4C5}"}</div>
                 <h3 className="text-xl font-bold mb-3 text-teal-300">
                   Smart Calendar
@@ -982,6 +1166,39 @@ const CojiUniverse = () => {
                         {sleepHours} hours
                       </span>
                     </div>
+                  </div>
+
+                  <div>
+                    <p className="font-semibold mb-2 text-slate-300">Pain score (0–10)</p>
+                    <p className="text-xs text-slate-500 mb-2">Track any physical pain right now — helps spot patterns.</p>
+                    <input
+                      type="range"
+                      min="0"
+                      max="10"
+                      step="1"
+                      value={painScore}
+                      onChange={(e) => setPainScore(parseInt(e.target.value))}
+                      className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div className="flex items-center justify-between mt-2">
+                      <div className="text-sm text-slate-400">No pain</div>
+                      <div className="font-bold text-xl text-teal-300">{painScore}</div>
+                      <div className="text-sm text-slate-400">Severe</div>
+                    </div>
+
+                    <div className="mt-3 flex gap-2 flex-wrap">
+                      <button onClick={() => setPainScore(0)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">No pain</button>
+                      <button onClick={() => setPainScore(2)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">Mild</button>
+                      <button onClick={() => setPainScore(5)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">Moderate</button>
+                      <button onClick={() => setPainScore(8)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">Severe</button>
+                    </div>
+
+                    <textarea
+                      placeholder="Optional: notes about location/type of pain"
+                      value={painNote}
+                      onChange={(e) => setPainNote(e.target.value)}
+                      className="w-full mt-3 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white placeholder-slate-500 resize-none"
+                    />
                   </div>
 
                   <button
@@ -1436,12 +1653,12 @@ const CojiUniverse = () => {
               Videos, therapy info, and support {"\u{1F496}"}
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 flex flex-col min-h-64">
                 <h3 className="text-xl font-bold mb-4 text-fuchsia-300">
                   {"\u{1F4F9}"} Helpful Videos
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-3 flex-1">
                   <div className="bg-slate-700 bg-opacity-30 p-3 rounded-lg hover:bg-opacity-50 transition-all cursor-pointer">
                     <p className="font-semibold text-sm">
                       Understanding Attachment Styles {"\u{1F495}"}
@@ -1469,31 +1686,177 @@ const CojiUniverse = () => {
                 </div>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 flex flex-col min-h-64">
                 <h3 className="text-xl font-bold mb-4 text-teal-300">
                   {"\u{1F9E0}"} Types of Therapy
                 </h3>
+                <div className="space-y-3 flex-1">
+                  {[
+                    { id: "CBT", title: "CBT", desc: "Changing thought patterns" },
+                    { id: "DBT", title: "DBT", desc: "Emotional regulation skills" },
+                    { id: "EMDR", title: "EMDR", desc: "Trauma processing therapy" },
+                  ].map((t) => (
+                    <button
+                      key={t.id}
+                      onClick={() => setSelectedTherapy(t.id)}
+                      className={`w-full text-left bg-slate-700 bg-opacity-30 p-3 rounded-lg hover:bg-opacity-50 transition-all cursor-pointer ${selectedTherapy === t.id ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg" : ""}`}
+                    >
+                      <p className="font-semibold text-sm">{t.title} {"\u{1F4AD}"}</p>
+                      <p className="text-xs text-slate-400">{t.desc}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "finances" && (
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-teal-300">Finances</h2>
+            <p className="text-slate-400 mb-6">Track budgets, use the 50/30/20 rule, and organise wants vs needs with a simple whiteboard.</p>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="text-xl font-bold mb-4 text-teal-300">50 / 30 / 20 Calculator</h3>
+                <p className="text-slate-400 text-sm mb-3">Enter your monthly income to see suggested allocations.</p>
+                <div className="flex gap-2 mb-3">
+                  <input
+                    type="number"
+                    value={monthlyIncome as any}
+                    onChange={(e) => setMonthlyIncome(e.target.value)}
+                    placeholder="Monthly income"
+                    className="flex-1 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white"
+                  />
+                  <button
+                    onClick={() => saveMonthlyIncome(Number(monthlyIncome) || 0)}
+                    className="bg-gradient-to-r from-teal-500 to-fuchsia-500 px-4 py-2 rounded-lg"
+                  >
+                    Save
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {Number(monthlyIncome) > 0 ? (
+                    (() => {
+                      const val = Number(monthlyIncome) || 0;
+                      const needs = Math.round(val * 0.5 * 100) / 100;
+                      const wants = Math.round(val * 0.3 * 100) / 100;
+                      const savings = Math.round(val * 0.2 * 100) / 100;
+                      return (
+                        <div>
+                          <div className="text-sm text-slate-300 mb-2">Monthly: £{val}</div>
+                          <div className="bg-slate-700 bg-opacity-30 p-3 rounded mb-2">
+                            <div className="flex justify-between text-sm text-teal-300">Needs (50%) <span>£{needs}</span></div>
+                            <div className="w-full bg-slate-600 rounded h-3 mt-2"><div className="bg-teal-400 h-3 rounded" style={{width: '50%'}} /></div>
+                          </div>
+                          <div className="bg-slate-700 bg-opacity-30 p-3 rounded mb-2">
+                            <div className="flex justify-between text-sm text-fuchsia-300">Wants (30%) <span>£{wants}</span></div>
+                            <div className="w-full bg-slate-600 rounded h-3 mt-2"><div className="bg-fuchsia-400 h-3 rounded" style={{width: '30%'}} /></div>
+                          </div>
+                          <div className="bg-slate-700 bg-opacity-30 p-3 rounded">
+                            <div className="flex justify-between text-sm text-amber-300">Savings (20%) <span>£{savings}</span></div>
+                            <div className="w-full bg-slate-600 rounded h-3 mt-2"><div className="bg-amber-400 h-3 rounded" style={{width: '20%'}} /></div>
+                          </div>
+                        </div>
+                      );
+                    })()
+                  ) : (
+                    <p className="text-slate-400 text-sm">Enter an income to calculate allocations.</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h3 className="text-xl font-bold mb-4 text-fuchsia-300">Quick trackers</h3>
+                <p className="text-slate-400 text-sm mb-3">Savings goals, debt tracker, subscriptions — quick links to manage your money.</p>
                 <div className="space-y-3">
-                  <div className="bg-slate-700 bg-opacity-30 p-3 rounded-lg">
-                    <p className="font-semibold text-sm">CBT {"\u{1F4AD}"}</p>
-                    <p className="text-xs text-slate-400">
-                      Changing thought patterns
-                    </p>
+                  <button className="w-full bg-teal-500 px-4 py-2 rounded-lg">Savings Goals</button>
+                  <button className="w-full bg-fuchsia-500 px-4 py-2 rounded-lg">Subscriptions</button>
+                  <button className="w-full bg-amber-500 px-4 py-2 rounded-lg">Debt Tracker</button>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-bold mb-4 text-teal-300">Want vs Need Whiteboard</h3>
+              <p className="text-slate-400 mb-4">Add sticky notes and drag them (or use the buttons) between Wants and Needs. For Wants, add a planned purchase date and a note when you'll get it.</p>
+
+              <div className="mb-4 flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Add a sticky note..."
+                  value={newNoteText}
+                  onChange={(e) => setNewNoteText(e.target.value)}
+                  className="flex-1 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white"
+                />
+                <select value={newNoteType} onChange={(e) => setNewNoteType(e.target.value as any)} className="bg-slate-700 px-3 py-2 rounded-lg">
+                  <option value="want">Want</option>
+                  <option value="need">Need</option>
+                </select>
+                <button onClick={addStickyNote} className="bg-gradient-to-r from-teal-500 to-fuchsia-500 px-4 py-2 rounded-lg">Add</button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-teal-500 border-opacity-10">
+                  <h4 className="font-semibold mb-3 text-teal-300">Needs</h4>
+                  <div className="space-y-2 min-h-[120px]">
+                    {notes.filter((n) => n.type === "need").length === 0 && (
+                      <div className="text-slate-400 text-sm">No needs yet.</div>
+                    )}
+                    {notes.map((note, idx) => note.type === "need" ? (
+                      <div key={idx} className="p-3 bg-slate-700 rounded shadow-sm flex justify-between items-start">
+                        <div>
+                          <div className="text-sm text-slate-200">{note.text}</div>
+                          {note.plannedDate && <div className="text-xs text-slate-400">Planned: {note.plannedDate}</div>}
+                        </div>
+                        <div className="flex flex-col gap-2 ml-4">
+                          <button onClick={() => moveNote(notes.indexOf(note))} className="text-xs px-2 py-1 bg-teal-500 rounded">Mark Want</button>
+                          <button onClick={() => deleteNote(notes.indexOf(note))} className="text-xs px-2 py-1 bg-red-600 rounded">Delete</button>
+                        </div>
+                      </div>
+                    ) : null)}
                   </div>
-                  <div className="bg-slate-700 bg-opacity-30 p-3 rounded-lg">
-                    <p className="font-semibold text-sm">DBT {"\u{1F31F}"}</p>
-                    <p className="text-xs text-slate-400">
-                      Emotional regulation skills
-                    </p>
+                </div>
+
+                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-fuchsia-500 border-opacity-10">
+                  <h4 className="font-semibold mb-3 text-fuchsia-300">Wants</h4>
+                  <div className="space-y-2 min-h-[120px]">
+                    {notes.filter((n) => n.type === "want").length === 0 && (
+                      <div className="text-slate-400 text-sm">No wants yet.</div>
+                    )}
+                    {notes.map((note, idx) => note.type === "want" ? (
+                      <div key={idx} className="p-3 bg-slate-700 rounded shadow-sm flex justify-between items-start">
+                        <div className="flex-1">
+                          <div className="text-sm text-slate-200">{note.text}</div>
+                          <div className="mt-2 flex items-center gap-2">
+                            <input type="date" value={note.plannedDate || ""} onChange={(e) => setPlannedDateForNote(notes.indexOf(note), e.target.value || null)} className="bg-slate-700 px-2 py-1 rounded text-sm text-white" />
+                          </div>
+                          {note.plannedDate && <div className="text-xs text-slate-400 mt-2">You'll get it: {note.plannedDate}</div>}
+                        </div>
+                        <div className="flex flex-col gap-2 ml-4">
+                          <button onClick={() => moveNote(notes.indexOf(note))} className="text-xs px-2 py-1 bg-amber-500 rounded">Mark Need</button>
+                          <button onClick={() => deleteNote(notes.indexOf(note))} className="text-xs px-2 py-1 bg-red-600 rounded">Delete</button>
+                        </div>
+                      </div>
+                    ) : null)}
                   </div>
-                  <div className="bg-slate-700 bg-opacity-30 p-3 rounded-lg">
-                    <p className="font-semibold text-sm">
-                      EMDR {"\u{1F441}\u{FE0F}"}
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      Trauma processing therapy
-                    </p>
-                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-slate-800 bg-opacity-40 p-4 rounded-lg border border-teal-500 border-opacity-10">
+                <h4 className="font-semibold text-teal-300 mb-2">Plan for your Wants</h4>
+                <p className="text-slate-400 text-sm">Below are your wants with planned dates so you can track when you'll get them.</p>
+                <div className="mt-3 space-y-2">
+                  {notes.filter((n) => n.type === "want" && n.plannedDate).map((n, i) => (
+                    <div key={i} className="p-2 bg-slate-700 rounded flex justify-between items-center">
+                      <div className="text-sm text-slate-200">{n.text}</div>
+                      <div className="text-xs text-slate-400">Planned: {n.plannedDate}</div>
+                    </div>
+                  ))}
+                  {notes.filter((n) => n.type === "want" && n.plannedDate).length === 0 && (
+                    <div className="text-slate-400 text-sm">No planned wants yet.</div>
+                  )}
                 </div>
               </div>
             </div>
