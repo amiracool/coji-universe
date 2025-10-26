@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import AmbientMusic from '@/components/AmbientMusic'
 
 export const metadata: Metadata = {
   title: 'Coji Universe',
@@ -16,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AmbientMusic />
+        {children}
+      </body>
     </html>
   )
 }

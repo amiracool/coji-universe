@@ -4034,6 +4034,27 @@ const CojiUniverse = () => {
           </div>
         )}
       </div>
+
+      {/* Footer */}
+      <footer className="relative z-10 mt-8">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-sm text-slate-400">
+              © {new Date().getFullYear()} Coji Universe. All rights reserved.
+            </div>
+
+            <a
+              href="https://sidething.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 bg-opacity-40 border border-slate-600 border-opacity-30 hover:bg-opacity-60 hover:border-teal-400 hover:border-opacity-50 transition-all duration-300"
+            >
+              <span className="text-xs text-slate-400 group-hover:text-slate-300">Like this? Check out</span>
+              <span className="text-sm font-semibold text-teal-400 group-hover:text-teal-300">Sidething</span>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 250" fill="currentColor">
+  <rect x="37" y="47" width="200" height="156" rx="20" stroke="currentColor" stroke-width="8" fill="none"/>
+  <path d="M 90 100 Q 110 80, 130 100 Q 150 120, 170 100" stroke="currentColor" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="295" y="170" font-family="Arial, sans-serif" font-size="120" font-weight="bold">sidething</text>
+</svg>
