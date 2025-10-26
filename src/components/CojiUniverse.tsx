@@ -129,6 +129,38 @@ const CojiUniverse = () => {
     new Date().toISOString().split("T")[0],
   );
 
+  // Health state
+  const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
+    const stored = localStorage.getItem('cycles');
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [appointments, setAppointments] = useState<{ id: string; title: string; date: string }[]>(() => {
+    const stored = localStorage.getItem('appts');
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [medications, setMedications] = useState<{ id: string; name: string; time?: string }[]>(() => {
+    const stored = localStorage.getItem('meds');
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [prescriptionReminders, setPrescriptionReminders] = useState<{ id: string; med: string; days: string }[]>(() => {
+    const stored = localStorage.getItem('presc');
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [screeningReminders, setScreeningReminders] = useState<{ id: string; type: string; date: string }[]>(() => {
+    const stored = localStorage.getItem('screens');
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [pregnancy, setPregnancy] = useState<{ preg: boolean; due?: string }>(() => {
+    const stored = localStorage.getItem('pregnancy');
+    return stored ? JSON.parse(stored) : { preg: false };
+  });
+  const [caloriesToday, setCaloriesToday] = useState<number>(0);
+  const [stepsToday, setStepsToday] = useState<number>(0);
+  const [eatReminders, setEatReminders] = useState<{ id: string; time: string }[]>(() => {
+    const stored = localStorage.getItem('eats');
+    return stored ? JSON.parse(stored) : [];
+  });
+
   const feelings = [
     { emoji: "\u{1F60A}", label: "Great", value: "great" },
     { emoji: "\u{1F642}", label: "Good", value: "good" },
@@ -845,6 +877,7 @@ const CojiUniverse = () => {
     { id: "journal", icon: Star, label: "Journal" },
     { id: "clipboard", icon: Clipboard, label: "Clipboard" },
     { id: "analysis", icon: BarChart, label: "Analysis" },
+    { id: "health", icon: Heart, label: "Health" }, // New Health tab
   ];
 
   return (
@@ -1903,7 +1936,7 @@ const CojiUniverse = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-teal-500 border-opacity-10">
+                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-teal-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
                   <h4 className="font-semibold mb-3 text-teal-300">Needs</h4>
                   <div className="space-y-2 min-h-[120px]">
                     {notes.filter((n) => n.type === "need").length === 0 && (
@@ -1924,7 +1957,7 @@ const CojiUniverse = () => {
                   </div>
                 </div>
 
-                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-fuchsia-500 border-opacity-10">
+                <div className="bg-slate-800 bg-opacity-50 p-4 rounded-xl border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-all cursor-pointer">
                   <h4 className="font-semibold mb-3 text-fuchsia-300">Wants</h4>
                   <div className="space-y-2 min-h-[120px]">
                     {notes.filter((n) => n.type === "want").length === 0 && (
@@ -2230,6 +2263,195 @@ const CojiUniverse = () => {
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
                 <h3 className="text-lg font-bold text-teal-300 mb-3">Happiest Time of Day</h3>
                 <BarChartCounts counts={happiestByHour()} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "health" && (
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-teal-300">Health</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Menstrual Tracking */}
+              <div className="bg-slate-800 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                <h3 className="font-bold text-fuchsia-300 mb-2">Menstrual Tracking</h3>
+                <form className="flex gap-2 mb-2" onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const start = (form.elements.namedItem('start') as HTMLInputElement).value;
+                  const end = (form.elements.namedItem('end') as HTMLInputElement).value;
+                  if (start) {
+                    const cycles = [{ id: Date.now().toString(), start, end }, ...menstrualCycles];
+                    localStorage.setItem('cycles', JSON.stringify(cycles));
+                    form.reset();
+                    setMenstrualCycles(cycles);
+                  }
+                }}>
+                  <input name="start" type="date" className="bg-slate-700 rounded px-2 py-1" required />
+                  <input name="end" type="date" className="bg-slate-700 rounded px-2 py-1" placeholder="End (optional)" />
+                  <button className="bg-fuchsia-500 px-3 py-1 rounded text-white">Add</button>
+                </form>
+                <ul className="text-xs">
+                  {menstrualCycles.map((c, i) => (
+                    <li key={c.id}>Start: {c.start} {c.end && `- End: ${c.end}`}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Appointments & Medications */}
+              <div className="bg-slate-800 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="font-bold text-teal-300 mb-2">Appointments & Medications</h3>
+                {/* Appointments */}
+                <form className="flex gap-2 mb-2" onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const title = (form.elements.namedItem('appt') as HTMLInputElement).value;
+                  const date = (form.elements.namedItem('apptdate') as HTMLInputElement).value;
+                  if (title && date) {
+                    const appts = [{ id: Date.now().toString(), title, date }, ...appointments];
+                    localStorage.setItem('appts', JSON.stringify(appts));
+                    form.reset();
+                    setAppointments(appts);
+                  }
+                }}>
+                  <input name="appt" placeholder="Appointment" className="bg-slate-700 rounded px-2 py-1" required />
+                  <input name="apptdate" type="datetime-local" className="bg-slate-700 rounded px-2 py-1" required />
+                  <button className="bg-teal-500 px-3 py-1 rounded text-white">Add</button>
+                </form>
+                <ul className="text-xs">
+                  {appointments.map((a, i) => (
+                    <li key={a.id}>{a.title} — {a.date}</li>
+                  ))}
+                </ul>
+                {/* Medications */}
+                <form className="flex gap-2 mt-4 mb-2" onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const name = (form.elements.namedItem('med') as HTMLInputElement).value;
+                  const time = (form.elements.namedItem('medtime') as HTMLInputElement).value;
+                  if (name) {
+                    const meds = [{ id: Date.now().toString(), name, time }, ...medications];
+                    localStorage.setItem('meds', JSON.stringify(meds));
+                    form.reset();
+                    setMedications(meds);
+                  }
+                }}>
+                  <input name="med" placeholder="Medication" className="bg-slate-700 rounded px-2 py-1" required />
+                  <input name="medtime" type="time" className="bg-slate-700 rounded px-2 py-1" />
+                  <button className="bg-teal-500 px-3 py-1 rounded text-white">Add</button>
+                </form>
+                <ul className="text-xs">
+                  {medications.map((m, i) => (
+                    <li key={m.id}>{m.name} {m.time && `at ${m.time}`}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Prescription & Screening Reminders */}
+              <div className="bg-slate-800 p-6 rounded-xl border border-amber-500 border-opacity-20">
+                <h3 className="font-bold text-amber-300 mb-2">Prescription & Screening Reminders</h3>
+                {/* Prescription */}
+                <form className="flex gap-2 mb-2" onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const med = (form.elements.namedItem('presc') as HTMLInputElement).value;
+                  const days = (form.elements.namedItem('days') as HTMLInputElement).value;
+                  if (med && days) {
+                    const presc = [{ id: Date.now().toString(), med, days }, ...prescriptionReminders];
+                    localStorage.setItem('presc', JSON.stringify(presc));
+                    form.reset();
+                    setPrescriptionReminders(presc);
+                  }
+                }}>
+                  <input name="presc" placeholder="Medication" className="bg-slate-700 rounded px-2 py-1" required />
+                  <input name="days" type="number" min="1" placeholder="Days left" className="bg-slate-700 rounded px-2 py-1" required />
+                  <button className="bg-amber-500 px-3 py-1 rounded text-white">Add</button>
+                </form>
+                <ul className="text-xs">
+                  {prescriptionReminders.map((p, i) => (
+                    <li key={p.id}>{p.med} — reorder at {p.days} days left</li>
+                  ))}
+                </ul>
+                {/* Screening */}
+                <form className="flex gap-2 mt-4 mb-2" onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const type = (form.elements.namedItem('screen') as HTMLInputElement).value;
+                  const date = (form.elements.namedItem('sdate') as HTMLInputElement).value;
+                  if (type && date) {
+                    const screens = [{ id: Date.now().toString(), type, date }, ...screeningReminders];
+                    localStorage.setItem('screens', JSON.stringify(screens));
+                    form.reset();
+                    setScreeningReminders(screens);
+                  }
+                }}>
+                  <input name="screen" placeholder="Screening type" className="bg-slate-700 rounded px-2 py-1" required />
+                  <input name="sdate" type="date" className="bg-slate-700 rounded px-2 py-1" required />
+                  <button className="bg-amber-500 px-3 py-1 rounded text-white">Add</button>
+                </form>
+                <ul className="text-xs">
+                  {screeningReminders.map((s, i) => (
+                    <li key={s.id}>{s.type} — due {s.date}</li>
+                  ))}
+                </ul>
+                <div className="text-xs mt-2 text-slate-400">Include reminders for breast/testicular cancer, cervical, bowel, etc.</div>
+              </div>
+
+              {/* Pregnancy, Calories, Steps, Eat Reminders */}
+              <div className="bg-slate-800 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                <h3 className="font-bold text-teal-300 mb-2">Pregnancy & Activity</h3>
+                {/* Pregnancy */}
+                <form className="flex gap-2 mb-2" onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const preg = (form.elements.namedItem('preg') as HTMLInputElement).checked;
+                  const due = (form.elements.namedItem('duedate') as HTMLInputElement).value;
+                  localStorage.setItem('pregnancy', JSON.stringify({ preg, due }));
+                  setPregnancy({ preg, due });
+                }}>
+                  <label className="flex items-center gap-2">
+                    <input name="preg" type="checkbox" className="accent-pink-500" />
+                    Pregnant
+                  </label>
+                  <input name="duedate" type="date" className="bg-slate-700 rounded px-2 py-1" />
+                  <button className="bg-teal-500 px-3 py-1 rounded text-white">Save</button>
+                </form>
+                {/* Calories */}
+                <div className="mb-2">
+                  <label className="block text-xs mb-1">Calories today</label>
+                  <input type="number" className="bg-slate-700 rounded px-2 py-1 w-32" value={caloriesToday} onChange={e => {
+                    setCaloriesToday(Number(e.target.value));
+                    localStorage.setItem('calories', e.target.value);
+                  }} />
+                </div>
+                {/* Steps */}
+                <div className="mb-2">
+                  <label className="block text-xs mb-1">Steps today</label>
+                  <input type="number" className="bg-slate-700 rounded px-2 py-1 w-32" value={stepsToday} onChange={e => {
+                    setStepsToday(Number(e.target.value));
+                    localStorage.setItem('steps', e.target.value);
+                  }} />
+                </div>
+                {/* Eat Reminders */}
+                <form className="flex gap-2 mt-2 mb-2" onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const time = (form.elements.namedItem('eattime') as HTMLInputElement).value;
+                  if (time) {
+                    const eats = [{ id: Date.now().toString(), time }, ...eatReminders];
+                    localStorage.setItem('eats', JSON.stringify(eats));
+                    form.reset();
+                    setEatReminders(eats);
+                  }
+                }}>
+                  <input name="eattime" type="time" className="bg-slate-700 rounded px-2 py-1" required />
+                  <button className="bg-teal-500 px-3 py-1 rounded text-white">Add Eat Reminder</button>
+                </form>
+                <ul className="text-xs">
+                  {eatReminders.map((e, i) => (
+                    <li key={e.id}>{e.time}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
