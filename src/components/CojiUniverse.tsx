@@ -931,12 +931,38 @@ const CojiUniverse = () => {
       <div className="bg-slate-950 bg-opacity-80 backdrop-blur-md border-b border-teal-500 border-opacity-20">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="text-3xl">{"\u{2601}\u{FE0F}"}</div>
-              <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-fuchsia-400">
-                Coji Universe
+            <button
+              onClick={() => setActiveTab("landing")}
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer"
+            >
+              <img
+                src="/coji- logo.png"
+                alt="Coji"
+                className="w-12 h-12 object-contain"
+              />
+              <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-fuchsia-400 relative overflow-hidden">
+                <span className="relative z-10">Coji Universe</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 animate-glisten" style={{
+                  animation: 'glisten 3s ease-in-out infinite',
+                  backgroundSize: '200% 100%'
+                }}></span>
               </h1>
-            </div>
+            </button>
+            <style jsx>{`
+              @keyframes glisten {
+                0% {
+                  transform: translateX(-100%);
+                  opacity: 0;
+                }
+                50% {
+                  opacity: 0.3;
+                }
+                100% {
+                  transform: translateX(100%);
+                  opacity: 0;
+                }
+              }
+            `}</style>
             {activeTab !== "landing" && (
               <div className="flex items-center gap-4">
                 {getBatteryIcon(batteryLevel)}
@@ -1094,9 +1120,10 @@ const CojiUniverse = () => {
                   setShowEisenpowerPrompt(false);
                   setActiveTab("cojiBuddy");
                 }}
-                className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-lg font-bold transition-all"
+                className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-lg font-bold transition-all flex items-center justify-center gap-2"
               >
-                {"\u{2601}\u{FE0F}"} Ask Coji Buddy for Help
+                <img src="/coji- logo.png" alt="Coji" className="w-6 h-6 object-contain" />
+                Ask Coji Buddy for Help
               </button>
               <button
                 onClick={async () => {
@@ -1401,15 +1428,20 @@ const CojiUniverse = () => {
         {activeTab === "landing" && (
           <div>
             <div className="text-center mb-16">
-              <div className="text-7xl mb-6">{"\u{2601}\u{FE0F}"}</div>
-              <h1 className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-fuchsia-400 to-teal-300">
+              <div className="flex justify-center mb-6">
+                <img src="/coji- logo.png" alt="Coji" className="w-28 h-28 object-contain" />
+              </div>
+              <h1 className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-fuchsia-400 to-teal-300 pb-2">
                 Welcome to Coji Universe
               </h1>
-              <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-slate-300 mb-3 max-w-2xl mx-auto">
                 Your all-in-one neurodivergent life management hub {"\u{1F49C}"}
               </p>
+              <p className="text-lg text-slate-400 mb-12 max-w-2xl mx-auto italic">
+                Helping you make sense of chaos: plan life, not burnout
+              </p>
 
-              <div className="flex gap-4 justify-center mb-8">
+              <div className="flex gap-4 justify-center mb-10">
                 <button
                   onClick={() => setActiveTab("dashboard")}
                   className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg"
@@ -1420,43 +1452,144 @@ const CojiUniverse = () => {
 
               <div className="inline-block bg-teal-500 bg-opacity-10 border border-teal-400 border-opacity-40 px-8 py-4 rounded-xl">
                 <p className="text-2xl font-bold text-teal-300">
-                  {"\u{00A3}"}3/month annually or {"\u{00A3}"}4.99/month
+                  {"\u{00A3}"}5.99/month annually or {"\u{00A3}"}7.99/month
                 </p>
                 <p className="text-sm text-slate-400">14-day free trial</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 items-stretch">
-              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all flex flex-col min-h-64">
-                <div className="text-4xl mb-4">{"\u{1F50B}"}</div>
-                <h3 className="text-xl font-bold mb-3 text-teal-300">
-                  Battery Tracking
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {/* Battery Tracking */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F50B}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Energy Battery System
                 </h3>
                 <p className="text-sm text-slate-400">
-                  Track your energy like a battery. See patterns and earn badges{" "}
-                  {"\u{1F3C6}"}
+                  Track your daily energy levels, understand patterns, and plan tasks around your battery capacity
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all flex flex-col min-h-64">
-                <div className="text-4xl mb-4">{"\u{2601}\u{FE0F}"}</div>
-                <h3 className="text-xl font-bold mb-3 text-fuchsia-300">
-                  Coji Buddy
+              {/* Coji Buddy AI */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="mb-3">
+                  <img src="/coji- logo.png" alt="Coji" className="w-12 h-12 object-contain" />
+                </div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Coji Buddy AI Assistant
                 </h3>
                 <p className="text-sm text-slate-400">
-                  Your AI companion for support and breaking down tasks{" "}
-                  {"\u{1F4AC}"}
+                  Your neurodivergent-friendly AI companion for task breakdown, emotional support, and life strategies
                 </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all flex flex-col min-h-64">
-                <div className="text-4xl mb-4">{"\u{1F4C5}"}</div>
-                <h3 className="text-xl font-bold mb-3 text-teal-300">
+              {/* Mental Health Hub */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-amber-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-amber-300">
+                  Mental Health Hub
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Access therapy tools, mindfulness exercises, digital worksheets, and daily check-ins for wellbeing
+                </p>
+              </div>
+
+              {/* Task Management */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{2705}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Smart Task Management
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Eisenhower Matrix prioritization, energy-aware scheduling, and automatic task breakdown
+                </p>
+              </div>
+
+              {/* Library & Resources */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-blue-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F4DA}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-blue-300">
+                  Resource Library
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Comprehensive guides on ADHD, autism, dyslexia, dyspraxia, chronic illness, parenting, relationships, and more
+                </p>
+              </div>
+
+              {/* Health Tracking */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-pink-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{2764}\u{FE0F}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-pink-300">
+                  Health Tracking
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Track appointments, medications, menstrual cycles, pregnancy, daily activity, and water intake
+                </p>
+              </div>
+
+              {/* Analytics & Insights */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-purple-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F4CA}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-purple-300">
+                  Smart Analytics
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Visualize mood patterns, productivity hours, energy trends, and busiest days with actionable insights
+                </p>
+              </div>
+
+              {/* Financial Management */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-green-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F4B0}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-green-300">
+                  Financial Management
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Track income, expenses, wants vs needs, budgets, and cash flow with neurodivergent-friendly tools
+                </p>
+              </div>
+
+              {/* Journal & Reflection */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-yellow-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{2B50}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-yellow-300">
+                  Journal & Clipboard
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Daily journaling, thought capturing, gratitude tracking, and personal reflection space
+                </p>
+              </div>
+
+              {/* Calendar Integration */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-indigo-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F4C5}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-indigo-300">
                   Smart Calendar
                 </h3>
                 <p className="text-sm text-slate-400">
-                  Sync with Google & Outlook, manage tasks with battery logic{" "}
-                  {"\u{1F4C6}"}
+                  Sync with Google & Outlook calendars, manage events with energy-aware scheduling
+                </p>
+              </div>
+
+              {/* Community Forum */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-orange-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F465}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-orange-300">
+                  Community Forum
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Connect with others, share experiences, get support, and build meaningful relationships
+                </p>
+              </div>
+
+              {/* Family & Life Tools */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-rose-500 border-opacity-20 hover:border-opacity-40 transition-all hover:scale-105 transform duration-200">
+                <div className="text-4xl mb-3">{"\u{1F3E1}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-rose-300">
+                  Family & Life Tools
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Family mapping, ecosystem visualization, life timeline, and relationship management tools
                 </p>
               </div>
             </div>
@@ -1485,7 +1618,7 @@ const CojiUniverse = () => {
 
               <div className="mb-8 bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-fuchsia-500 border-opacity-30">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="text-6xl">{"\u{2601}\u{FE0F}"}</div>
+                  <img src="/coji- logo.png" alt="Coji" className="w-24 h-24 object-contain" />
                   <div>
                     <h3 className="text-2xl font-bold text-fuchsia-300">
                       How are you feeling now?
@@ -1859,7 +1992,7 @@ const CojiUniverse = () => {
           <div>
             <div className="mb-6 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-30">
               <div className="flex items-center gap-4">
-                <div className="text-6xl">{"\u{2601}\u{FE0F}"}</div>
+                <img src="/coji- logo.png" alt="Coji" className="w-24 h-24 object-contain" />
                 <div>
                   <h2 className="text-3xl font-bold text-fuchsia-300">
                     Coji Buddy
@@ -1881,7 +2014,9 @@ const CojiUniverse = () => {
             >
               {chatHistory.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="text-7xl mb-4">{"\u{2601}\u{FE0F}"}</div>
+                  <div className="flex justify-center mb-4">
+                    <img src="/coji- logo.png" alt="Coji" className="w-28 h-28 object-contain" />
+                  </div>
                   <p className="text-slate-300 text-lg mb-6">
                     Let's chat! I'm here to help {"\u{1F4AC}"}
                   </p>
@@ -1926,9 +2061,14 @@ const CojiUniverse = () => {
                       className={`p-4 rounded-xl ${chat.role === "user" ? "bg-teal-500 bg-opacity-20 ml-8 border border-teal-500 border-opacity-30" : "bg-fuchsia-500 bg-opacity-20 mr-8 border border-fuchsia-500 border-opacity-30"}`}
                     >
                       <p className="text-xs font-semibold mb-2 flex items-center gap-2">
-                        {chat.role === "user"
-                          ? `${"\u{1F64B}"} You`
-                          : `${"\u{2601}\u{FE0F}"} Coji`}
+                        {chat.role === "user" ? (
+                          <>{"\u{1F64B}"} You</>
+                        ) : (
+                          <>
+                            <img src="/coji- logo.png" alt="Coji" className="w-4 h-4 object-contain inline" />
+                            {" "}Coji
+                          </>
+                        )}
                       </p>
                       <p className="text-sm text-slate-200">{chat.message}</p>
                     </div>
