@@ -1763,9 +1763,102 @@ const CojiUniverse = () => {
                   Today's Tasks
                 </h3>
                 {todaysTasks.length === 0 ? (
-                  <p className="text-slate-400 text-sm">
-                    No tasks yet. Click "Add Task" to get started! {"\u{1F680}"}
-                  </p>
+                  <div>
+                    <p className="text-slate-400 text-sm mb-4">
+                      Here's an example of how your tasks will look:
+                    </p>
+                    <div className="space-y-3">
+                      {/* Mock task 1 - Completed */}
+                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center bg-teal-500 border-teal-500">
+                            <CheckCircle size={16} className="text-white" />
+                          </div>
+                          <span className="line-through text-slate-500">
+                            Morning meditation
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-teal-300">
+                            2{"\u{1F50B}"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Mock task 2 - Active */}
+                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
+                          </div>
+                          <span>
+                            Reply to important emails
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-teal-300">
+                            4{"\u{1F50B}"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Mock task 3 - Active */}
+                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
+                          </div>
+                          <span>
+                            Prepare presentation slides
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-teal-300">
+                            6{"\u{1F50B}"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Mock task 4 - High energy (shows Eisenpower button) */}
+                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg border border-amber-500 border-opacity-30">
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
+                          </div>
+                          <span>
+                            Deep work: Project research
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-amber-300">
+                            10{"\u{1F50B}"}
+                          </span>
+                          <span className="bg-amber-500 bg-opacity-20 px-2 py-1 rounded text-xs text-amber-300 border border-amber-500 border-opacity-30">
+                            High energy
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Mock task 5 - Active */}
+                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
+                          </div>
+                          <span>
+                            Grocery shopping
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-teal-300">
+                            3{"\u{1F50B}"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Summary stats */}
+                    <div className="mt-4 pt-4 border-t border-slate-700 flex justify-between text-sm">
+                      <span className="text-slate-400">5 tasks today</span>
+                      <span className="text-teal-300 font-semibold">Total: 25{"\u{1F50B}"}</span>
+                    </div>
+                  </div>
                 ) : (
                   <div className="space-y-3">
                     {todaysTasks.map((task) => (
@@ -1828,9 +1921,101 @@ const CojiUniverse = () => {
                   Battery Over Time
                 </h3>
                 {trackingData.length === 0 ? (
-                  <p className="text-slate-400 text-sm">
-                    Start tracking to see patterns {"\u{1F31F}"}
-                  </p>
+                  <div>
+                    <p className="text-slate-400 text-sm mb-6">
+                      Here's a preview of your energy patterns over the past 14 days
+                    </p>
+                    {/* Mock line graph */}
+                    <div className="relative h-64 bg-slate-900 bg-opacity-50 rounded-lg p-4">
+                      {/* Y-axis labels */}
+                      <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-500 pr-2">
+                        <span>12</span>
+                        <span>9</span>
+                        <span>6</span>
+                        <span>3</span>
+                        <span>0</span>
+                      </div>
+
+                      {/* Graph area */}
+                      <div className="ml-8 h-full relative">
+                        {/* Grid lines */}
+                        <div className="absolute inset-0 flex flex-col justify-between">
+                          <div className="border-t border-slate-700 border-opacity-50"></div>
+                          <div className="border-t border-slate-700 border-opacity-50"></div>
+                          <div className="border-t border-slate-700 border-opacity-50"></div>
+                          <div className="border-t border-slate-700 border-opacity-50"></div>
+                          <div className="border-t border-slate-700 border-opacity-50"></div>
+                        </div>
+
+                        {/* Line graph with mock data */}
+                        <svg className="w-full h-full" viewBox="0 0 280 200" preserveAspectRatio="none">
+                          {/* Gradient fill under line */}
+                          <defs>
+                            <linearGradient id="batteryGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="rgb(45, 212, 191)" stopOpacity="0.3" />
+                              <stop offset="100%" stopColor="rgb(45, 212, 191)" stopOpacity="0" />
+                            </linearGradient>
+                          </defs>
+
+                          {/* Area under the line */}
+                          <path
+                            d="M 0,120 L 20,100 L 40,110 L 60,80 L 80,95 L 100,70 L 120,85 L 140,60 L 160,75 L 180,50 L 200,65 L 220,55 L 240,70 L 260,45 L 280,60 L 280,200 L 0,200 Z"
+                            fill="url(#batteryGradient)"
+                          />
+
+                          {/* The line itself */}
+                          <path
+                            d="M 0,120 L 20,100 L 40,110 L 60,80 L 80,95 L 100,70 L 120,85 L 140,60 L 160,75 L 180,50 L 200,65 L 220,55 L 240,70 L 260,45 L 280,60"
+                            fill="none"
+                            stroke="rgb(45, 212, 191)"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+
+                          {/* Data points */}
+                          <circle cx="0" cy="120" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="20" cy="100" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="40" cy="110" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="60" cy="80" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="80" cy="95" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="100" cy="70" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="120" cy="85" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="140" cy="60" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="160" cy="75" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="180" cy="50" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="200" cy="65" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="220" cy="55" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="240" cy="70" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="260" cy="45" r="4" fill="rgb(45, 212, 191)" />
+                          <circle cx="280" cy="60" r="4" fill="rgb(45, 212, 191)" />
+                        </svg>
+                      </div>
+
+                      {/* X-axis labels */}
+                      <div className="flex justify-between text-xs text-slate-500 mt-2 ml-8">
+                        <span>14d ago</span>
+                        <span>7d ago</span>
+                        <span>Today</span>
+                      </div>
+                    </div>
+
+                    {/* Stats summary */}
+                    <div className="grid grid-cols-3 gap-4 mt-4">
+                      <div className="bg-slate-900 bg-opacity-50 p-3 rounded-lg text-center">
+                        <p className="text-xs text-slate-400">Average</p>
+                        <p className="text-xl font-bold text-teal-300">7.2</p>
+                      </div>
+                      <div className="bg-slate-900 bg-opacity-50 p-3 rounded-lg text-center">
+                        <p className="text-xs text-slate-400">Highest</p>
+                        <p className="text-xl font-bold text-green-300">10</p>
+                      </div>
+                      <div className="bg-slate-900 bg-opacity-50 p-3 rounded-lg text-center">
+                        <p className="text-xs text-slate-400">Lowest</p>
+                        <p className="text-xl font-bold text-amber-300">4</p>
+                      </div>
+                    </div>
+                  </div>
                 ) : (
                   <div className="space-y-3">
                     {getEnergyReserveData().map((day, idx) => (
@@ -1852,79 +2037,6 @@ const CojiUniverse = () => {
                     ))}
                   </div>
                 )}
-              </div>
-            </div>
-
-            <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-              <h3 className="text-xl font-bold mb-4 text-teal-300">
-                Superpowers & Support
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-semibold mb-3 flex items-center gap-2 text-amber-300">
-                    <Star size={18} />
-                    Your Superpowers
-                  </h4>
-                  <div className="space-y-2 mb-3">
-                    {superpowers.map((power) => (
-                      <div
-                        key={power.id}
-                        className="bg-amber-500 bg-opacity-10 p-3 rounded-lg text-sm border border-amber-500 border-opacity-20"
-                      >
-                        {"\u{2B50}"} {power.text}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Add superpower..."
-                      value={newSuperpower}
-                      onChange={(e) => setNewSuperpower(e.target.value)}
-                      onKeyPress={(e) => e.key === "Enter" && addSuperpower()}
-                      className="flex-1 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500"
-                    />
-                    <button
-                      onClick={addSuperpower}
-                      className="bg-amber-500 hover:bg-amber-600 p-2 rounded-lg"
-                    >
-                      <Plus size={18} />
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 flex items-center gap-2 text-blue-300">
-                    <Shield size={18} />
-                    Support Needs
-                  </h4>
-                  <div className="space-y-2 mb-3">
-                    {supportNeeds.map((need) => (
-                      <div
-                        key={need.id}
-                        className="bg-blue-500 bg-opacity-10 p-3 rounded-lg text-sm border border-blue-500 border-opacity-20"
-                      >
-                        {"\u{1F499}"} {need.text}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Add support need..."
-                      value={newSupportNeed}
-                      onChange={(e) => setNewSupportNeed(e.target.value)}
-                      onKeyPress={(e) => e.key === "Enter" && addSupportNeed()}
-                      className="flex-1 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500"
-                    />
-                    <button
-                      onClick={addSupportNeed}
-                      className="bg-blue-500 hover:bg-blue-600 p-2 rounded-lg"
-                    >
-                      <Plus size={18} />
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -2103,6 +2215,79 @@ const CojiUniverse = () => {
             <p className="text-xs text-slate-500 mt-2 text-center">
               Voice notes coming soon! {"\u{1F3A4}"}
             </p>
+
+            <div className="mt-6 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+              <h3 className="text-xl font-bold mb-4 text-teal-300">
+                Superpowers & Support
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3 flex items-center gap-2 text-amber-300">
+                    <Star size={18} />
+                    Your Superpowers
+                  </h4>
+                  <div className="space-y-2 mb-3">
+                    {superpowers.map((power) => (
+                      <div
+                        key={power.id}
+                        className="bg-amber-500 bg-opacity-10 p-3 rounded-lg text-sm border border-amber-500 border-opacity-20"
+                      >
+                        {"\u{2B50}"} {power.text}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Add superpower..."
+                      value={newSuperpower}
+                      onChange={(e) => setNewSuperpower(e.target.value)}
+                      onKeyPress={(e) => e.key === "Enter" && addSuperpower()}
+                      className="flex-1 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500"
+                    />
+                    <button
+                      onClick={addSuperpower}
+                      className="bg-amber-500 hover:bg-amber-600 p-2 rounded-lg"
+                    >
+                      <Plus size={18} />
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 flex items-center gap-2 text-blue-300">
+                    <Shield size={18} />
+                    Support Needs
+                  </h4>
+                  <div className="space-y-2 mb-3">
+                    {supportNeeds.map((need) => (
+                      <div
+                        key={need.id}
+                        className="bg-blue-500 bg-opacity-10 p-3 rounded-lg text-sm border border-blue-500 border-opacity-20"
+                      >
+                        {"\u{1F499}"} {need.text}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Add support need..."
+                      value={newSupportNeed}
+                      onChange={(e) => setNewSupportNeed(e.target.value)}
+                      onKeyPress={(e) => e.key === "Enter" && addSupportNeed()}
+                      className="flex-1 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500"
+                    />
+                    <button
+                      onClick={addSupportNeed}
+                      className="bg-blue-500 hover:bg-blue-600 p-2 rounded-lg"
+                    >
+                      <Plus size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
