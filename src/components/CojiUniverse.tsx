@@ -926,95 +926,6 @@ const CojiUniverse = () => {
         </div>
       )}
 
-        {/* Therapist booking, Sleep support and Personality quizzes */}
-        {activeTab === "mentalhealth" && (
-          <div className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2 items-stretch">
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 flex flex-col min-h-48">
-                <h3 className="text-xl font-bold mb-4 text-teal-300">Book a Therapist Session</h3>
-                <p className="text-slate-400 text-sm mb-4">Schedule a session with a vetted therapist. We store bookings securely (Supabase) or locally if offline.</p>
-
-                <div className="space-y-3">
-                  <input
-                    type="text"
-                    placeholder="Your name"
-                    value={bookingName}
-                    onChange={(e) => setBookingName(e.target.value)}
-                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white placeholder-slate-500"
-                  />
-                  <input
-                    type="date"
-                    value={bookingDate}
-                    onChange={(e) => setBookingDate(e.target.value)}
-                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white"
-                  />
-                  <input
-                    type="time"
-                    value={bookingTime}
-                    onChange={(e) => setBookingTime(e.target.value)}
-                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white"
-                  />
-                  <textarea
-                    placeholder="Reason or notes (optional)"
-                    value={bookingReason}
-                    onChange={(e) => setBookingReason(e.target.value)}
-                    className="w-full h-24 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white resize-none"
-                  />
-
-                  <div className="flex gap-2">
-                    <button
-                      onClick={submitBooking}
-                      className="flex-1 bg-gradient-to-r from-teal-500 to-fuchsia-500 px-4 py-2 rounded-lg font-medium"
-                    >
-                      Request Booking
-                    </button>
-                    <button
-                      onClick={() => {
-                        setBookingName("");
-                        setBookingDate("");
-                        setBookingTime("");
-                        setBookingReason("");
-                      }}
-                      className="px-4 py-2 bg-slate-700 rounded-lg"
-                    >
-                      Clear
-                    </button>
-                  </div>
-
-                  {bookingConfirmed && (
-                    <div className="mt-2 text-sm text-teal-300">Booking requested — we'll notify you when it's confirmed.</div>
-                  )}
-                </div>
-              </div>
-
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 flex flex-col min-h-48">
-                <h3 className="text-xl font-bold mb-4 text-fuchsia-300">Sleep Support</h3>
-                <p className="text-slate-400 mb-3">Tips, tools and gentle routines to improve sleep and recovery.</p>
-                <ul className="text-sm text-slate-300 space-y-2">
-                  <li>{"\u2022"} Wind-down routine suggestions</li>
-                  <li>{"\u2022"} Sensory-friendly sleep setups</li>
-                  <li>{"\u2022"} Light sleep diary and tracking</li>
-                </ul>
-                <div className="mt-4">
-                  <button className="bg-fuchsia-500 px-4 py-2 rounded-lg">Open Sleep Support</button>
-                </div>
-              </div>
-
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 flex flex-col min-h-48">
-                <h3 className="text-xl font-bold mb-4 text-teal-300">Personality & Quizzes</h3>
-                <p className="text-slate-400 mb-3">Short quizzes to learn more about your preferences and strengths.</p>
-                <div className="space-y-2">
-                  <button className="w-full bg-teal-500 px-4 py-2 rounded-lg">Start Sleep Style Quiz</button>
-                  <button className="w-full bg-fuchsia-500 px-4 py-2 rounded-lg">Start Personality Quiz</button>
-                </div>
-                <p className="text-xs text-slate-400 mt-3">Results can be saved to your profile for personalised suggestions.</p>
-              </div>
-            </div>
-          </div>
-        )}
-      
-      
-
       {showTaskModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-xl p-8 max-w-md w-full border border-teal-500 border-opacity-30">
@@ -1754,7 +1665,7 @@ const CojiUniverse = () => {
                   Parenting Hub
                 </h3>
                 <p className="text-sm text-slate-400">
-                  EHCP, SEND law, advocacy, local offer
+                  EHCP, SEND law, therapeutic parenting, managing behaviours
                 </p>
               </div>
 
@@ -1801,10 +1712,40 @@ const CojiUniverse = () => {
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F48A}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Chronic Illness
+                  Chronic Illness Resources
                 </h3>
                 <p className="text-sm text-slate-400">
-                  Spoon theory, pacing, medical advocacy
+                  Benefits, workplace rights, exercise, physiotherapy
+                </p>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{23F0}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Time Management
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Scheduling, prioritization, time blocking tools
+                </p>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Memory Tools
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Working memory strategies, reminders, recall aids
+                </p>
+              </div>
+
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F3C3}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Dyspraxia
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Motor skills, coordination, movement support
                 </p>
               </div>
             </div>
@@ -1820,138 +1761,137 @@ const CojiUniverse = () => {
               Videos, therapy info, and support {"\u{1F496}"}
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 flex flex-col min-h-64">
-                <h3 className="text-xl font-bold mb-4 text-fuchsia-300">
-                  {"\u{1F4F9}"} Helpful Videos
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Helpful Videos Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F4F9}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Helpful Videos
                 </h3>
-                <div className="space-y-3 flex-1">
-                  <div className="bg-slate-700 bg-opacity-30 p-3 rounded-lg hover:bg-opacity-50 transition-all cursor-pointer">
-                    <p className="font-semibold text-sm">
-                      Understanding Attachment Styles {"\u{1F495}"}
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      How relationships shape patterns (12 min)
-                    </p>
-                  </div>
-                  <div className="bg-slate-700 bg-opacity-30 p-3 rounded-lg hover:bg-opacity-50 transition-all cursor-pointer">
-                    <p className="font-semibold text-sm">
-                      Emotional Regulation {"\u{1F9D8}"}
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      Self-soothing techniques (15 min)
-                    </p>
-                  </div>
-                  <div className="bg-slate-700 bg-opacity-30 p-3 rounded-lg hover:bg-opacity-50 transition-all cursor-pointer">
-                    <p className="font-semibold text-sm">
-                      Should I Get Diagnosed? {"\u{1F914}"}
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      Pros and cons (20 min)
-                    </p>
-                  </div>
-                </div>
+                <p className="text-sm text-slate-400">
+                  Attachment styles, emotional regulation, diagnosis info
+                </p>
               </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 flex flex-col min-h-64">
-                <h3 className="text-xl font-bold mb-4 text-teal-300">
-                  {"\u{1F9E0}"} Types of Therapy
+              {/* Types of Therapy Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Types of Therapy
                 </h3>
-                <div className="space-y-3 flex-1">
-                  {[
-                    { id: "CBT", title: "CBT", desc: "Changing thought patterns" },
-                    { id: "DBT", title: "DBT", desc: "Emotional regulation skills" },
-                    { id: "EMDR", title: "EMDR", desc: "Trauma processing therapy" },
-                    { id: "NVR", title: "NVR", desc: "Non-Violent Resistance" },
-                    { id: "Systemic", title: "Systemic Families Therapy", desc: "Family systems and relationships" },
-                    { id: "Somatic", title: "Somatic Therapy", desc: "Body-based healing" },
-                  ].map((t) => (
-                    <button
-                      key={t.id}
-                      onClick={() => setSelectedTherapy(t.id)}
-                      className={`w-full text-left bg-slate-700 bg-opacity-30 p-3 rounded-lg hover:bg-opacity-50 transition-all cursor-pointer ${selectedTherapy === t.id ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg" : ""}`}
-                    >
-                      <p className="font-semibold text-sm">{t.title} {"\u{1F4AD}"}</p>
-                      <p className="text-xs text-slate-400">{t.desc}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Personality & Quizzes Section */}
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold mb-6 text-teal-300">Personality & Quizzes</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
-                  <div className="text-4xl mb-3">{"\u{1F491}"}</div>
-                  <h4 className="text-lg font-bold mb-2 text-fuchsia-300">
-                    Romance Roulette
-                  </h4>
-                  <p className="text-sm text-slate-400">
-                    A game about healthy relationships
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Digital Worksheets Section */}
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold mb-6 text-teal-300">Digital Worksheets</h3>
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h4 className="text-xl font-bold mb-4 text-teal-300">
-                  {"\u{1F4DD}"} Self-Growth Resources
-                </h4>
-                <p className="text-slate-400 mb-4">
-                  Interactive worksheets to work through common challenges
+                <p className="text-sm text-slate-400">
+                  CBT, DBT, EMDR, NVR, Systemic, Somatic
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <button className="bg-slate-700 bg-opacity-50 p-4 rounded-lg hover:bg-opacity-70 transition-all text-left">
-                    <p className="font-semibold text-sm text-teal-300 mb-1">Self Esteem Worksheet</p>
-                    <p className="text-xs text-slate-400">Build confidence and self-worth</p>
-                  </button>
-                  <button className="bg-slate-700 bg-opacity-50 p-4 rounded-lg hover:bg-opacity-70 transition-all text-left">
-                    <p className="font-semibold text-sm text-fuchsia-300 mb-1">Perfectionism Worksheet</p>
-                    <p className="text-xs text-slate-400">Challenge all-or-nothing thinking</p>
-                  </button>
-                </div>
               </div>
-            </div>
 
-            {/* Daily Check-in Section */}
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold mb-6 text-fuchsia-300">Daily Check-in</h3>
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
-                <h4 className="text-xl font-bold mb-4 text-fuchsia-300">
-                  {"\u{2728}"} Three Things I Did Well Today
-                </h4>
-                <p className="text-slate-400 mb-4">
-                  Celebrate your wins, no matter how small
+              {/* Book in with a Therapist Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F4C5}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Book in with a Therapist
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Schedule sessions with vetted professionals
                 </p>
-                <div className="space-y-3 mb-4">
-                  <input
-                    type="text"
-                    placeholder="1. Something I did well today..."
-                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-3 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
-                  />
-                  <input
-                    type="text"
-                    placeholder="2. Something I did well today..."
-                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-3 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
-                  />
-                  <input
-                    type="text"
-                    placeholder="3. Something I did well today..."
-                    className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-3 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
-                  />
-                </div>
-                <button className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-all">
-                  Save Today's Wins
-                </button>
-                <div className="mt-6">
-                  <h5 className="font-bold text-sm mb-3 text-teal-300">Recent Check-ins</h5>
-                  <p className="text-slate-400 text-sm">No check-ins yet. Start celebrating your daily wins!</p>
-                </div>
+              </div>
+
+              {/* Romance Roulette Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F491}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Romance Roulette
+                </h3>
+                <p className="text-sm text-slate-400">
+                  A game about healthy relationships
+                </p>
+              </div>
+
+              {/* Digital Worksheets Card - Combined */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F4DD}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Digital Worksheets
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Self-esteem, perfectionism, and growth exercises
+                </p>
+              </div>
+
+              {/* Daily Check-in Card - Interactive */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{2728}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Three Things I Did Well
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Daily check-in to celebrate your wins
+                </p>
+              </div>
+
+              {/* Mindfulness Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F9D8}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Mindfulness
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Breathing exercises, meditation, and grounding
+                </p>
+              </div>
+
+              {/* Spirituality Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F52E}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Spirituality
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Explore meaning, purpose, and connection
+                </p>
+              </div>
+
+              {/* Be in Nature Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F333}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Be in Nature
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Nature walks, outdoor activities, eco-therapy
+                </p>
+              </div>
+
+              {/* Family Mapping Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F465}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  Family Mapping
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Visualize family relationships and connections
+                </p>
+              </div>
+
+              {/* Ecosystem Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F30D}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                  Ecosystem
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Map your support network and community
+                </p>
+              </div>
+
+              {/* My Life Story Card */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer">
+                <div className="text-4xl mb-3">{"\u{1F4D6}"}</div>
+                <h3 className="text-lg font-bold mb-2 text-teal-300">
+                  My Life Story
+                </h3>
+                <p className="text-sm text-slate-400">
+                  Create a timeline of your life journey
+                </p>
               </div>
             </div>
           </div>
