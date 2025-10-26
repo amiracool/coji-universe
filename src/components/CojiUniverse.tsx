@@ -21,6 +21,8 @@ import {
   BatteryMedium,
   BatteryLow,
   BarChart,
+  Maximize,
+  Minimize,
 } from "lucide-react";
 import { supabase, DEMO_USER_ID } from "@/lib/supabase";
 
@@ -142,6 +144,7 @@ const CojiUniverse = () => {
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0],
   );
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Health state
   const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
@@ -639,6 +642,49 @@ const CojiUniverse = () => {
     0,
   );
   const remainingBattery = batteryLevel - totalEnergyRequired;
+
+  // Fullscreen toggle function
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      // Enter fullscreen
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if ((elem as any).webkitRequestFullscreen) {
+        (elem as any).webkitRequestFullscreen();
+      } else if ((elem as any).msRequestFullscreen) {
+        (elem as any).msRequestFullscreen();
+      }
+      setIsFullscreen(true);
+    } else {
+      // Exit fullscreen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
+      } else if ((document as any).msExitFullscreen) {
+        (document as any).msExitFullscreen();
+      }
+      setIsFullscreen(false);
+    }
+  };
+
+  // Listen for fullscreen changes (in case user exits with ESC)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
 
   // --- Journal helpers ---
   const journalQuestions = [
@@ -1171,12 +1217,25 @@ const CojiUniverse = () => {
                 animation: glow 3s ease-in-out infinite;
               }
             `}</style>
-            {activeTab !== "landing" && (
-              <div className="flex items-center gap-4">
-                {getBatteryIcon(batteryLevel)}
-                <span className="text-sm font-medium">{batteryLevel}/12</span>
-              </div>
-            )}
+            <div className="flex items-center gap-4">
+              {activeTab !== "landing" && (
+                <>
+                  {getBatteryIcon(batteryLevel)}
+                  <span className="text-sm font-medium">{batteryLevel}/12</span>
+                </>
+              )}
+              <button
+                onClick={toggleFullscreen}
+                className="p-2 hover:bg-teal-500 hover:bg-opacity-20 rounded-lg transition-colors"
+                title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+              >
+                {isFullscreen ? (
+                  <Minimize size={20} className="text-teal-400" />
+                ) : (
+                  <Maximize size={20} className="text-teal-400" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
