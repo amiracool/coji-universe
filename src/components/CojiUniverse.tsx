@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import {
   Home,
   Sparkles,
@@ -23,8 +24,17 @@ import {
   BarChart,
   Maximize,
   Minimize,
+  BookOpen,
+  Activity,
+  DollarSign,
 } from "lucide-react";
 import { supabase, DEMO_USER_ID } from "@/lib/supabase";
+
+// Lazy-load FeatureIcon component for better performance
+const FeatureIcon = dynamic(() => import("@/components/FeatureIcon"), {
+  ssr: false,
+  loading: () => <div className="w-20 h-20 md:w-24 md:h-24 bg-slate-800 bg-opacity-30 rounded-2xl animate-pulse" />,
+});
 
 interface TrackingData {
   id?: string;
@@ -1879,140 +1889,115 @@ const CojiUniverse = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {/* Mobile-Optimized Icon Grid */}
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-8 md:gap-12 mb-16 px-4">
               {/* Battery Tracking */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F50B}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Energy Battery System
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Track your daily energy levels, understand patterns, and plan tasks around your battery capacity
-                </p>
-              </div>
+              <FeatureIcon
+                icon={Battery}
+                label="Energy Tracking"
+                description="Track your daily energy levels, understand patterns, and plan tasks around your battery capacity"
+                color="teal"
+                onClick={() => setActiveTab("dashboard")}
+              />
 
               {/* Coji Buddy AI */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="mb-3">
-                  <img src="/coji- logo.png" alt="Coji" className="w-12 h-12 object-contain" />
-                </div>
-                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
-                  Coji Buddy AI Assistant
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Your neurodivergent-friendly AI companion for task breakdown, emotional support, and life strategies
-                </p>
-              </div>
+              <FeatureIcon
+                icon={Sparkles}
+                label="Coji Buddy"
+                description="Your neurodivergent-friendly AI companion for task breakdown, emotional support, and life strategies"
+                color="fuchsia"
+                onClick={() => setActiveTab("cojiBuddy")}
+              />
 
               {/* Mental Health Hub */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-amber-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-amber-300">
-                  Mental Health Hub
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Access therapy tools, mindfulness exercises, digital worksheets, and daily check-ins for wellbeing
-                </p>
-              </div>
+              <FeatureIcon
+                icon={Heart}
+                label="Mental Health"
+                description="Access therapy tools, mindfulness exercises, digital worksheets, and daily check-ins for wellbeing"
+                color="amber"
+                onClick={() => setActiveTab("mentalhealth")}
+              />
 
               {/* Task Management */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{2705}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Smart Task Management
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Eisenhower Matrix prioritization, energy-aware scheduling, and automatic task breakdown
-                </p>
-              </div>
+              <FeatureIcon
+                icon={CheckCircle}
+                label="Tasks"
+                description="Eisenhower Matrix prioritization, energy-aware scheduling, and automatic task breakdown"
+                color="teal"
+                onClick={() => setActiveTab("dashboard")}
+              />
 
               {/* Library & Resources */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-blue-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F4DA}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-blue-300">
-                  Resource Library
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Comprehensive guides on ADHD, autism, dyslexia, dyspraxia, chronic illness, parenting, relationships, and more
-                </p>
-              </div>
+              <FeatureIcon
+                icon={BookOpen}
+                label="Library"
+                description="Comprehensive guides on ADHD, autism, dyslexia, dyspraxia, chronic illness, parenting, and relationships"
+                color="blue"
+                onClick={() => setActiveTab("library")}
+              />
 
               {/* Health Tracking */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-pink-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{2764}\u{FE0F}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-pink-300">
-                  Health Tracking
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Track appointments, medications, menstrual cycles, pregnancy, daily activity, and water intake
-                </p>
-              </div>
+              <FeatureIcon
+                icon={Activity}
+                label="Health"
+                description="Track appointments, medications, menstrual cycles, pregnancy, daily activity, and water intake"
+                color="purple"
+                onClick={() => setActiveTab("health")}
+              />
 
               {/* Analytics & Insights */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-purple-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F4CA}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-purple-300">
-                  Smart Analytics
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Visualize mood patterns, productivity hours, energy trends, and busiest days with actionable insights
-                </p>
-              </div>
+              <FeatureIcon
+                icon={BarChart}
+                label="Analytics"
+                description="Visualize mood patterns, productivity hours, energy trends, and busiest days with actionable insights"
+                color="purple"
+                onClick={() => setActiveTab("analysis")}
+              />
 
               {/* Financial Management */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-green-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F4B0}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-green-300">
-                  Financial Management
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Track income, expenses, wants vs needs, budgets, and cash flow with neurodivergent-friendly tools
-                </p>
-              </div>
+              <FeatureIcon
+                icon={DollarSign}
+                label="Finances"
+                description="Track income, expenses, wants vs needs, budgets, and cash flow with neurodivergent-friendly tools"
+                color="green"
+                onClick={() => setActiveTab("finances")}
+              />
 
               {/* Journal & Reflection */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-yellow-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{2B50}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-yellow-300">
-                  Journal & Clipboard
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Daily journaling, thought capturing, gratitude tracking, and personal reflection space
-                </p>
-              </div>
+              <FeatureIcon
+                icon={Star}
+                label="Journal"
+                description="Daily journaling, thought capturing, gratitude tracking, and personal reflection space"
+                color="amber"
+                onClick={() => setActiveTab("journal")}
+              />
 
               {/* Calendar Integration */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-indigo-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F4C5}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-indigo-300">
-                  Smart Calendar
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Sync with Google & Outlook calendars, manage events with energy-aware scheduling
-                </p>
-              </div>
+              <FeatureIcon
+                icon={Calendar}
+                label="Calendar"
+                description="Sync with Google & Outlook calendars, manage events with energy-aware scheduling"
+                color="blue"
+                onClick={() => setActiveTab("calendar")}
+              />
 
               {/* Community Forum */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-orange-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F465}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-orange-300">
-                  Community Forum
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Connect with others, share experiences, get support, and build meaningful relationships
-                </p>
-              </div>
+              <FeatureIcon
+                icon={Users}
+                label="Community"
+                description="Connect with others, share experiences, get support, and build meaningful relationships"
+                color="fuchsia"
+                onClick={() => setActiveTab("forum")}
+              />
 
-              {/* Family & Life Tools */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-rose-500 border-opacity-20 hover:border-opacity-40 transition-colors hover:scale-105 transform duration-200">
-                <div className="text-4xl mb-3">{"\u{1F3E1}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-rose-300">
-                  Family & Life Tools
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Family mapping, ecosystem visualization, life timeline, and relationship management tools
-                </p>
-              </div>
+              {/* Dashboard */}
+              <FeatureIcon
+                icon={TrendingUp}
+                label="Dashboard"
+                description="Your central hub for tracking battery, tasks, mood, and accessing all Coji Universe features"
+                color="teal"
+                onClick={() => setActiveTab("dashboard")}
+              />
             </div>
           </div>
         )}

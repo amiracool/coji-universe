@@ -216,3 +216,41 @@ img[loading="lazy"].loaded {
     font-size: 0.9375rem !important;
   }
 }
+
+/* Performance-optimized animations for feature icons */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for hover glow */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Mobile: Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes fadeInUp {
+    from, to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    from, to {
+      opacity: 0.2;
+    }
+  }
+}
