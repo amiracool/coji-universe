@@ -2048,9 +2048,44 @@ const CojiUniverse = () => {
                   </div>
                 </div>
 
-                {lastCheckin && (
-                  <div className="mb-4 p-3 bg-teal-500 bg-opacity-10 rounded-lg text-sm text-slate-300">
-                    Last check-in: {new Date(lastCheckin.timestamp || "").toLocaleString()} — Battery: {lastCheckin.battery}/12 | Sleep: {lastCheckin.sleep}h | Pain: {lastCheckin.pain}
+                {/* Recent Check-ins - Show last 2 */}
+                {trackingData.length > 0 && (
+                  <div className="mb-6 space-y-2">
+                    <h4 className="text-sm font-semibold text-slate-400 mb-3">Recent Check-ins</h4>
+                    {trackingData.slice(0, 2).map((checkin, idx) => {
+                      const timeAgo = new Date(checkin.timestamp || checkin.date).toLocaleString('en-GB', {
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      });
+
+                      return (
+                        <div
+                          key={idx}
+                          className="p-3 bg-slate-700 bg-opacity-30 rounded-lg border border-teal-500 border-opacity-10"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              {getBatteryIcon(checkin.battery)}
+                              <div>
+                                <span className="font-bold text-teal-300 text-lg">
+                                  {checkin.battery}/12
+                                </span>
+                                <span className="text-slate-500 text-xs ml-2">
+                                  {timeAgo}
+                                </span>
+                              </div>
+                            </div>
+                            {idx === 0 && (
+                              <span className="text-xs bg-teal-500 bg-opacity-20 text-teal-300 px-2 py-1 rounded">
+                                Latest
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
 
