@@ -1872,19 +1872,13 @@ const CojiUniverse = () => {
                 Helping you make sense of chaos: plan life, not burnout
               </p>
 
-              <div className="flex gap-4 justify-center mb-6">
+              <div className="flex gap-4 justify-center mb-12">
                 <button
                   onClick={() => setActiveTab("dashboard")}
                   className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-10 py-4 rounded-xl font-bold text-xl transition-colors shadow-lg"
                 >
-                  Get Cosy with Coji
-                </button>
-              </div>
-
-              <div className="inline-block bg-teal-500 bg-opacity-10 border border-teal-400 border-opacity-40 px-8 py-4 rounded-xl mb-12">
-                <p className="text-xl font-semibold text-teal-300">
                   Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
-                </p>
+                </button>
               </div>
             </div>
 
