@@ -27,6 +27,8 @@ import {
   BookOpen,
   Activity,
   DollarSign,
+  Menu,
+  X,
 } from "lucide-react";
 import { supabase, DEMO_USER_ID } from "@/lib/supabase";
 
@@ -158,6 +160,7 @@ const CojiUniverse = () => {
     new Date().toISOString().split("T")[0],
   );
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Health state
   const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
@@ -1405,29 +1408,85 @@ const CojiUniverse = () => {
       </div>
 
       {activeTab !== "landing" && (
-        <div className="bg-slate-950 bg-opacity-50 border-b border-teal-500 border-opacity-10">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex items-center gap-1 overflow-x-auto py-3">
-              {tabs.slice(1).map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm whitespace-nowrap ${
-                      activeTab === tab.id
-                        ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg"
-                        : "text-teal-300 hover:bg-teal-500 hover:bg-opacity-10"
-                    }`}
-                  >
-                    <Icon size={16} />
-                    {tab.label}
-                  </button>
-                );
-              })}
+        <>
+          {/* Desktop Navigation - Hidden on Mobile */}
+          <div className="hidden md:block bg-slate-950 bg-opacity-50 border-b border-teal-500 border-opacity-10">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex items-center gap-1 overflow-x-auto py-3">
+                {tabs.slice(1).map((tab) => {
+                  const Icon = tab.icon;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm whitespace-nowrap ${
+                        activeTab === tab.id
+                          ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg"
+                          : "text-teal-300 hover:bg-teal-500 hover:bg-opacity-10"
+                      }`}
+                    >
+                      <Icon size={16} />
+                      {tab.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
+
+          {/* Mobile Hamburger Menu - Shows only Dashboard, Calendar, Coji Buddy, Library */}
+          <div className="md:hidden bg-slate-950 bg-opacity-50 border-b border-teal-500 border-opacity-10">
+            <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+              <span className="text-teal-300 font-medium">
+                {tabs.find(t => t.id === activeTab)?.label || "Menu"}
+              </span>
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-teal-300 hover:bg-teal-500 hover:bg-opacity-10 rounded-lg transition-colors"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+
+            {/* Mobile Menu Dropdown */}
+            {isMobileMenuOpen && (
+              <div className="absolute top-full left-0 right-0 bg-slate-900 bg-opacity-98 border-b border-teal-500 border-opacity-20 z-50 shadow-2xl">
+                <div className="max-w-7xl mx-auto px-6 py-4 space-y-2">
+                  {[
+                    { id: "dashboard", icon: Battery, label: "Energy Management" },
+                    { id: "cojiBuddy", icon: Sparkles, label: "Coji Buddy" },
+                    { id: "library", icon: Brain, label: "Library" },
+                    { id: "comingsoon", icon: Star, label: "Coming Soon", disabled: true },
+                  ].map((tab) => {
+                    const Icon = tab.icon;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => {
+                          if (!tab.disabled) {
+                            setActiveTab(tab.id);
+                            setIsMobileMenuOpen(false);
+                          }
+                        }}
+                        disabled={tab.disabled}
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors text-base ${
+                          tab.disabled
+                            ? "text-slate-500 cursor-not-allowed opacity-50"
+                            : activeTab === tab.id
+                            ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg"
+                            : "text-teal-300 hover:bg-teal-500 hover:bg-opacity-10"
+                        }`}
+                      >
+                        <Icon size={20} />
+                        {tab.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </>
       )}
 
       {showTaskModal && (
