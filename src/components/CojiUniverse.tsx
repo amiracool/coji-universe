@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import {
   Home,
   Sparkles,
@@ -31,12 +30,7 @@ import {
   X,
 } from "lucide-react";
 import { supabase, DEMO_USER_ID } from "@/lib/supabase";
-
-// Lazy-load FeatureIcon component for better performance
-const FeatureIcon = dynamic(() => import("@/components/FeatureIcon"), {
-  ssr: false,
-  loading: () => <div className="w-20 h-20 md:w-24 md:h-24 bg-slate-800 bg-opacity-30 rounded-2xl animate-pulse" />,
-});
+import FeatureIcon from "@/components/FeatureIcon";
 
 interface TrackingData {
   id?: string;
