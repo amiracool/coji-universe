@@ -351,11 +351,6 @@ const CojiUniverse = () => {
   };
 
   const saveTracking = async () => {
-    if (!todayFeeling) {
-      alert("Please select how you're feeling now! \u{1F60A}");
-      return;
-    }
-
     const today = new Date().toISOString().split("T")[0];
 
     // Insert a new check-in row so users can check in multiple times per day
@@ -363,7 +358,7 @@ const CojiUniverse = () => {
       user_id: DEMO_USER_ID,
       date: today,
       battery: batteryLevel,
-      feeling: todayFeeling,
+      feeling: todayFeeling || "neutral",
       sleep: sleepHours,
       pain: painScore,
       pain_note: painNote,
@@ -376,13 +371,14 @@ const CojiUniverse = () => {
       const recent: TrackingData = {
         date: today,
         battery: batteryLevel,
-        feeling: todayFeeling,
+        feeling: todayFeeling || "neutral",
         sleep: sleepHours,
         pain: painScore,
         timestamp: new Date().toISOString(),
       } as any;
       setLastCheckin(recent);
       loadData();
+      alert("Saved! \u{1F389}");
     }
   };
 
