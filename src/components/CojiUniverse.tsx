@@ -2192,11 +2192,11 @@ const CojiUniverse = () => {
                   </div>
                 </div>
 
-                {/* Recent Check-ins - Show last 2 */}
+                {/* Recent Check-ins - Show last 3 */}
                 {trackingData.length > 0 && (
                   <div className="mb-6 space-y-2">
                     <h4 className="text-sm font-semibold text-slate-400 mb-3">Recent Check-ins</h4>
-                    {trackingData.slice(0, 2).map((checkin, idx) => {
+                    {trackingData.slice(0, 3).map((checkin, idx) => {
                       const timeAgo = new Date(checkin.timestamp || checkin.date).toLocaleString('en-GB', {
                         month: 'short',
                         day: 'numeric',
@@ -2296,6 +2296,23 @@ const CojiUniverse = () => {
                         }}
                       />
                     </div>
+
+                    {/* Emotional copy for low energy */}
+                    {batteryLevel <= 3 && (
+                      <div className="mt-4 p-4 bg-gradient-to-r from-amber-900/30 to-red-900/30 border border-amber-500/30 rounded-xl">
+                        <p className="text-amber-200 text-sm leading-relaxed">
+                          {batteryLevel === 0 ? (
+                            <>💙 You've done your best today — maybe it's time to rest. You deserve care and softness right now.</>
+                          ) : batteryLevel === 1 ? (
+                            <>🌙 Running on empty isn't sustainable, friend. Let's protect your energy and prioritise rest.</>
+                          ) : batteryLevel === 2 ? (
+                            <>✨ You're doing your best with what you have. Be gentle with yourself today — that's more than enough.</>
+                          ) : (
+                            <>🌸 Low energy doesn't mean low worth. You're still showing up, and that's beautiful.</>
+                          )}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   <button

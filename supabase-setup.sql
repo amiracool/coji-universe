@@ -7,11 +7,13 @@ CREATE TABLE IF NOT EXISTS tracking_data (
   user_id UUID NOT NULL,
   date DATE NOT NULL,
   battery INT,
+  battery_level INT, -- Alias for clarity
   feeling TEXT,
   sleep DECIMAL,
   pain INT,
   pain_note TEXT,
-  timestamp TIMESTAMPTZ DEFAULT NOW()
+  timestamp TIMESTAMPTZ DEFAULT NOW(),
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- Create tasks table for daily tasks
@@ -82,6 +84,27 @@ VALUES (
   2,
   NOW()
 );
+
+-- Create beta_signups table for early access signups
+CREATE TABLE IF NOT EXISTS beta_signups (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  source TEXT DEFAULT 'web',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable Row Level Security for beta_signups
+ALTER TABLE beta_signups ENABLE ROW LEVEL SECURITY;
+
+-- Allow anyone to insert signups (public access)
+CREATE POLICY "Anyone can sign up for beta" ON beta_signups
+  FOR INSERT
+  WITH CHECK (true);
+
+-- Only authenticated users can view signups (admin access)
+CREATE POLICY "Authenticated users can view beta signups" ON beta_signups
+  FOR SELECT
+  USING (auth.role() = 'authenticated');
 
 -- Success message
 SELECT 'Database tables created successfully! 🎉' as message;
