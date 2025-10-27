@@ -35,16 +35,41 @@ CREATE INDEX IF NOT EXISTS tasks_completed_idx ON tasks(completed);
 ALTER TABLE tracking_data ENABLE ROW LEVEL SECURITY;
 ALTER TABLE tasks ENABLE ROW LEVEL SECURITY;
 
--- Create policies to allow all operations for now (we'll add proper auth later)
-CREATE POLICY "Enable all operations for tracking_data" ON tracking_data
-  FOR ALL
-  USING (true)
-  WITH CHECK (true);
+-- Create policies to restrict data access to authenticated users
+-- Users can only see and modify their own data
+CREATE POLICY "Users can view their own tracking_data" ON tracking_data
+  FOR SELECT
+  USING (auth.uid() = user_id);
 
-CREATE POLICY "Enable all operations for tasks" ON tasks
-  FOR ALL
-  USING (true)
-  WITH CHECK (true);
+CREATE POLICY "Users can insert their own tracking_data" ON tracking_data
+  FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update their own tracking_data" ON tracking_data
+  FOR UPDATE
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own tracking_data" ON tracking_data
+  FOR DELETE
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can view their own tasks" ON tasks
+  FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert their own tasks" ON tasks
+  FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update their own tasks" ON tasks
+  FOR UPDATE
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own tasks" ON tasks
+  FOR DELETE
+  USING (auth.uid() = user_id);
 
 -- Insert a test battery level to verify it works
 INSERT INTO tracking_data (user_id, date, battery, feeling, sleep, pain, timestamp)
