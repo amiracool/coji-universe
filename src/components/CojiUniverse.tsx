@@ -1352,7 +1352,7 @@ const CojiUniverse = () => {
         }
       `}} />
 
-      <div className="bg-slate-950 bg-opacity-80 bg-opacity-95 border-b border-teal-500 border-opacity-20 relative z-10">
+      <div className="bg-slate-950 bg-opacity-95 border-b border-teal-500 border-opacity-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <button
