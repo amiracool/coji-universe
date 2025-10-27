@@ -1005,16 +1005,10 @@ const CojiUniverse = () => {
 
   const tabs = [
     { id: "landing", icon: Home, label: "Home" },
-    { id: "dashboard", icon: TrendingUp, label: "Dashboard" },
+    { id: "dashboard", icon: Battery, label: "Energy Management" },
     { id: "calendar", icon: Calendar, label: "Calendar" },
     { id: "cojiBuddy", icon: Sparkles, label: "Coji Buddy" },
     { id: "library", icon: Brain, label: "Library" },
-    { id: "mentalhealth", icon: Heart, label: "Mental Health" },
-    { id: "finances", icon: TrendingUp, label: "Finances" },
-    { id: "forum", icon: Users, label: "Forum" },
-    { id: "journal", icon: Star, label: "Journal" },
-    { id: "analysis", icon: BarChart, label: "Analysis" },
-    { id: "health", icon: Heart, label: "Health" }, // New Health tab
   ];
 
   return (
@@ -1435,7 +1429,7 @@ const CojiUniverse = () => {
           </div>
 
           {/* Mobile Hamburger Menu - Shows only Dashboard, Calendar, Coji Buddy, Library */}
-          <div className="md:hidden bg-slate-950 bg-opacity-50 border-b border-teal-500 border-opacity-10">
+          <div className="md:hidden bg-slate-950 bg-opacity-50 border-b border-teal-500 border-opacity-10 relative">
             <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
               <span className="text-teal-300 font-medium">
                 {tabs.find(t => t.id === activeTab)?.label || "Menu"}
@@ -1451,7 +1445,7 @@ const CojiUniverse = () => {
             {/* Mobile Menu Dropdown */}
             {isMobileMenuOpen && (
               <div className="absolute top-full left-0 right-0 bg-slate-900 bg-opacity-98 border-b border-teal-500 border-opacity-20 z-50 shadow-2xl">
-                <div className="max-w-7xl mx-auto px-6 py-4 space-y-2">
+                <div className="px-6 py-4 space-y-2">
                   {[
                     { id: "dashboard", icon: Battery, label: "Energy Management" },
                     { id: "calendar", icon: Calendar, label: "Calendar" },
