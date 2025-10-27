@@ -2061,28 +2061,6 @@ const CojiUniverse = () => {
 
                 <div className="space-y-6">
                   <div>
-                    <p className="font-semibold mb-3 text-slate-300">
-                      Select your feeling
-                    </p>
-                    <div className="flex gap-3 overflow-x-auto md:flex-wrap md:overflow-visible whitespace-nowrap md:whitespace-normal pb-2">
-                      {feelings.map((feeling) => (
-                        <button
-                          key={feeling.value}
-                          onClick={() => setTodayFeeling(feeling.value)}
-                          className={`px-5 py-4 rounded-xl transition-colors ${
-                            todayFeeling === feeling.value
-                              ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 shadow-lg scale-105"
-                              : "bg-slate-700 bg-opacity-50 hover:bg-opacity-70"
-                          }`}
-                        >
-                          <div className="text-3xl mb-1">{feeling.emoji}</div>
-                          <div className="text-xs">{feeling.label}</div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
                     <p className="font-semibold mb-2 text-slate-300">
                       Battery level {"\u{1F50B}"}
                     </p>
@@ -2097,7 +2075,7 @@ const CojiUniverse = () => {
                       onChange={(e) =>
                         setBatteryLevel(parseInt(e.target.value))
                       }
-                      className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+                      className="w-full h-6 bg-slate-700 rounded-lg appearance-none cursor-pointer"
                     />
                     <div className="flex justify-between items-center text-sm mt-2">
                       <span className="text-slate-500">Empty</span>
@@ -2111,61 +2089,6 @@ const CojiUniverse = () => {
                     </div>
                   </div>
 
-                  <div>
-                    <p className="font-semibold mb-2 text-slate-300">
-                      Sleep hours {"\u{1F634}"}
-                    </p>
-                    <input
-                      type="range"
-                      min="0"
-                      max="12"
-                      step="0.5"
-                      value={sleepHours}
-                      onChange={(e) =>
-                        setSleepHours(parseFloat(e.target.value))
-                      }
-                      className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
-                    />
-                    <div className="text-center mt-2">
-                      <span className="font-bold text-xl text-fuchsia-300">
-                        {sleepHours} hours
-                      </span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="font-semibold mb-2 text-slate-300">Pain score (0–10)</p>
-                    <p className="text-xs text-slate-500 mb-2">Track any physical pain right now — helps spot patterns.</p>
-                    <input
-                      type="range"
-                      min="0"
-                      max="10"
-                      step="1"
-                      value={painScore}
-                      onChange={(e) => setPainScore(parseInt(e.target.value))}
-                      className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
-                    />
-                    <div className="flex items-center justify-between mt-2">
-                      <div className="text-sm text-slate-400">No pain</div>
-                      <div className="font-bold text-xl text-teal-300">{painScore}</div>
-                      <div className="text-sm text-slate-400">Severe</div>
-                    </div>
-
-                    <div className="mt-3 flex gap-2 flex-wrap">
-                      <button onClick={() => setPainScore(0)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">No pain</button>
-                      <button onClick={() => setPainScore(2)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">Mild</button>
-                      <button onClick={() => setPainScore(5)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">Moderate</button>
-                      <button onClick={() => setPainScore(8)} className="px-3 py-1 rounded bg-slate-700 bg-opacity-50 text-xs">Severe</button>
-                    </div>
-
-                    <textarea
-                      placeholder="Optional: notes about location/type of pain"
-                      value={painNote}
-                      onChange={(e) => setPainNote(e.target.value)}
-                      className="w-full mt-3 bg-slate-700 bg-opacity-50 rounded-lg px-3 py-2 text-white placeholder-slate-500 resize-none"
-                    />
-                  </div>
-
                   <button
                     onClick={saveTracking}
                     className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-xl font-bold transition-colors shadow-lg"
@@ -2175,7 +2098,7 @@ const CojiUniverse = () => {
                 </div>
               </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 gap-6 mb-8">
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-bold text-teal-300">
@@ -2336,129 +2259,6 @@ const CojiUniverse = () => {
                           >
                             <Trash2 size={16} />
                           </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="text-xl font-bold mb-4 text-teal-300">
-                  Battery Over Time
-                </h3>
-                {trackingData.length === 0 ? (
-                  <div>
-                    <p className="text-slate-400 text-sm mb-6">
-                      Here's a preview of your energy patterns over the past 14 days
-                    </p>
-                    {/* Mock line graph */}
-                    <div className="relative h-64 bg-slate-900 bg-opacity-50 rounded-lg p-4">
-                      {/* Y-axis labels */}
-                      <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-500 pr-2">
-                        <span>12</span>
-                        <span>9</span>
-                        <span>6</span>
-                        <span>3</span>
-                        <span>0</span>
-                      </div>
-
-                      {/* Graph area */}
-                      <div className="ml-8 h-full relative">
-                        {/* Grid lines */}
-                        <div className="absolute inset-0 flex flex-col justify-between">
-                          <div className="border-t border-slate-700 border-opacity-50"></div>
-                          <div className="border-t border-slate-700 border-opacity-50"></div>
-                          <div className="border-t border-slate-700 border-opacity-50"></div>
-                          <div className="border-t border-slate-700 border-opacity-50"></div>
-                          <div className="border-t border-slate-700 border-opacity-50"></div>
-                        </div>
-
-                        {/* Line graph with mock data */}
-                        <svg className="w-full h-full" viewBox="0 0 280 200" preserveAspectRatio="none">
-                          {/* Gradient fill under line */}
-                          <defs>
-                            <linearGradient id="batteryGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                              <stop offset="0%" stopColor="rgb(45, 212, 191)" stopOpacity="0.3" />
-                              <stop offset="100%" stopColor="rgb(45, 212, 191)" stopOpacity="0" />
-                            </linearGradient>
-                          </defs>
-
-                          {/* Area under the line */}
-                          <path
-                            d="M 0,120 L 20,100 L 40,110 L 60,80 L 80,95 L 100,70 L 120,85 L 140,60 L 160,75 L 180,50 L 200,65 L 220,55 L 240,70 L 260,45 L 280,60 L 280,200 L 0,200 Z"
-                            fill="url(#batteryGradient)"
-                          />
-
-                          {/* The line itself */}
-                          <path
-                            d="M 0,120 L 20,100 L 40,110 L 60,80 L 80,95 L 100,70 L 120,85 L 140,60 L 160,75 L 180,50 L 200,65 L 220,55 L 240,70 L 260,45 L 280,60"
-                            fill="none"
-                            stroke="rgb(45, 212, 191)"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-
-                          {/* Data points */}
-                          <circle cx="0" cy="120" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="20" cy="100" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="40" cy="110" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="60" cy="80" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="80" cy="95" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="100" cy="70" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="120" cy="85" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="140" cy="60" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="160" cy="75" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="180" cy="50" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="200" cy="65" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="220" cy="55" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="240" cy="70" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="260" cy="45" r="4" fill="rgb(45, 212, 191)" />
-                          <circle cx="280" cy="60" r="4" fill="rgb(45, 212, 191)" />
-                        </svg>
-                      </div>
-
-                      {/* X-axis labels */}
-                      <div className="flex justify-between text-xs text-slate-500 mt-2 ml-8">
-                        <span>14d ago</span>
-                        <span>7d ago</span>
-                        <span>Today</span>
-                      </div>
-                    </div>
-
-                    {/* Stats summary */}
-                    <div className="grid grid-cols-3 gap-4 mt-4">
-                      <div className="bg-slate-900 bg-opacity-50 p-3 rounded-lg text-center">
-                        <p className="text-xs text-slate-400">Average</p>
-                        <p className="text-xl font-bold text-teal-300">7.2</p>
-                      </div>
-                      <div className="bg-slate-900 bg-opacity-50 p-3 rounded-lg text-center">
-                        <p className="text-xs text-slate-400">Highest</p>
-                        <p className="text-xl font-bold text-green-300">10</p>
-                      </div>
-                      <div className="bg-slate-900 bg-opacity-50 p-3 rounded-lg text-center">
-                        <p className="text-xs text-slate-400">Lowest</p>
-                        <p className="text-xl font-bold text-amber-300">4</p>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    {getEnergyReserveData().map((day, idx) => (
-                      <div key={idx} className="flex items-center gap-4">
-                        <span className="text-sm text-slate-400 w-12">
-                          {day.date}
-                        </span>
-                        <div className="flex-1 bg-slate-700 bg-opacity-50 rounded-full h-6">
-                          <div
-                            className="bg-gradient-to-r from-teal-400 to-fuchsia-400 h-6 rounded-full flex items-center justify-end pr-2"
-                            style={{ width: `${(day.battery / 12) * 100}%` }}
-                          >
-                            <span className="text-xs font-bold">
-                              {day.battery}
-                            </span>
-                          </div>
                         </div>
                       </div>
                     ))}
