@@ -1872,35 +1872,33 @@ const CojiUniverse = () => {
                 Helping you make sense of chaos: plan life, not burnout
               </p>
 
-              <div className="flex gap-4 justify-center mb-10">
+              <div className="flex gap-4 justify-center mb-6">
                 <button
                   onClick={() => setActiveTab("dashboard")}
-                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg"
+                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-10 py-4 rounded-xl font-bold text-xl transition-colors shadow-lg"
                 >
-                  Get Started
+                  Get Cosy with Coji
                 </button>
               </div>
 
-              <div className="inline-block bg-teal-500 bg-opacity-10 border border-teal-400 border-opacity-40 px-8 py-4 rounded-xl">
-                <p className="text-2xl font-bold text-teal-300">
-                  {"\u{00A3}"}5.99/month annually or {"\u{00A3}"}7.99/month
+              <div className="inline-block bg-teal-500 bg-opacity-10 border border-teal-400 border-opacity-40 px-8 py-4 rounded-xl mb-12">
+                <p className="text-xl font-semibold text-teal-300">
+                  Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
                 </p>
-                <p className="text-sm text-slate-400">14-day free trial</p>
               </div>
             </div>
 
-            {/* Mobile-Optimized Icon Grid */}
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-8 md:gap-12 mb-16 px-4">
-              {/* Battery Tracking */}
+            {/* 3x3 Icon Grid */}
+            <div className="grid grid-cols-3 gap-8 md:gap-12 mb-16 px-4 max-w-3xl mx-auto">
+              {/* Row 1 */}
               <FeatureIcon
                 icon={Battery}
-                label="Energy Tracking"
+                label="Energy"
                 description="Track your daily energy levels, understand patterns, and plan tasks around your battery capacity"
                 color="teal"
                 onClick={() => setActiveTab("dashboard")}
               />
 
-              {/* Coji Buddy AI */}
               <FeatureIcon
                 icon={Sparkles}
                 label="Coji Buddy"
@@ -1909,7 +1907,6 @@ const CojiUniverse = () => {
                 onClick={() => setActiveTab("cojiBuddy")}
               />
 
-              {/* Mental Health Hub */}
               <FeatureIcon
                 icon={Heart}
                 label="Mental Health"
@@ -1918,25 +1915,15 @@ const CojiUniverse = () => {
                 onClick={() => setActiveTab("mentalhealth")}
               />
 
-              {/* Task Management */}
+              {/* Row 2 */}
               <FeatureIcon
                 icon={CheckCircle}
                 label="Tasks"
-                description="Eisenhower Matrix prioritization, energy-aware scheduling, and automatic task breakdown"
+                description="Eisenhower Matrix prioritisation, energy-aware scheduling, and automatic task breakdown"
                 color="teal"
                 onClick={() => setActiveTab("dashboard")}
               />
 
-              {/* Library & Resources */}
-              <FeatureIcon
-                icon={BookOpen}
-                label="Library"
-                description="Comprehensive guides on ADHD, autism, dyslexia, dyspraxia, chronic illness, parenting, and relationships"
-                color="blue"
-                onClick={() => setActiveTab("library")}
-              />
-
-              {/* Health Tracking */}
               <FeatureIcon
                 icon={Activity}
                 label="Health"
@@ -1945,16 +1932,6 @@ const CojiUniverse = () => {
                 onClick={() => setActiveTab("health")}
               />
 
-              {/* Analytics & Insights */}
-              <FeatureIcon
-                icon={BarChart}
-                label="Analytics"
-                description="Visualize mood patterns, productivity hours, energy trends, and busiest days with actionable insights"
-                color="purple"
-                onClick={() => setActiveTab("analysis")}
-              />
-
-              {/* Financial Management */}
               <FeatureIcon
                 icon={DollarSign}
                 label="Finances"
@@ -1963,16 +1940,15 @@ const CojiUniverse = () => {
                 onClick={() => setActiveTab("finances")}
               />
 
-              {/* Journal & Reflection */}
+              {/* Row 3 */}
               <FeatureIcon
                 icon={Star}
                 label="Journal"
-                description="Daily journaling, thought capturing, gratitude tracking, and personal reflection space"
+                description="Daily journalling, thought capturing, gratitude tracking, and personal reflection space"
                 color="amber"
                 onClick={() => setActiveTab("journal")}
               />
 
-              {/* Calendar Integration */}
               <FeatureIcon
                 icon={Calendar}
                 label="Calendar"
@@ -1981,22 +1957,12 @@ const CojiUniverse = () => {
                 onClick={() => setActiveTab("calendar")}
               />
 
-              {/* Community Forum */}
               <FeatureIcon
                 icon={Users}
                 label="Community"
                 description="Connect with others, share experiences, get support, and build meaningful relationships"
                 color="fuchsia"
                 onClick={() => setActiveTab("forum")}
-              />
-
-              {/* Dashboard */}
-              <FeatureIcon
-                icon={TrendingUp}
-                label="Dashboard"
-                description="Your central hub for tracking battery, tasks, mood, and accessing all Coji Universe features"
-                color="teal"
-                onClick={() => setActiveTab("dashboard")}
               />
             </div>
           </div>
