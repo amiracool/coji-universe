@@ -5,7 +5,10 @@
       "Bash(npx tsc:*)",
       "Bash(npx eslint:*)",
       "Bash(node:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Read(//c/Users/amira/Downloads/**)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

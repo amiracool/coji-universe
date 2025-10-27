@@ -142,39 +142,41 @@ const FeatureIcon = memo(({ icon: Icon, label, description, color, onClick, emoj
       {/* Tooltip - Description on hover/touch */}
       {showTooltip && (
         <div
-          className="absolute left-1/2 -translate-x-1/2 z-50 pointer-events-none"
+          className="fixed z-50 pointer-events-none px-2"
           style={{
-            top: 'calc(100% + 12px)',
-            width: '220px',
-            maxWidth: '90vw',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '280px',
+            maxWidth: 'calc(100vw - 32px)',
           }}
         >
           <div
             className={`
-              ${colors.tooltip} bg-opacity-95
-              text-white text-xs md:text-sm
-              px-4 py-3
-              rounded-lg
+              ${colors.tooltip} bg-opacity-98
+              text-white text-sm md:text-base
+              px-5 py-4
+              rounded-2xl
               shadow-2xl
-              border ${colors.border} border-opacity-50
+              border-2 ${colors.border} border-opacity-60
             `}
             style={{
               animation: 'fadeInUp 0.3s ease-out forwards',
             }}
           >
-            <p className="leading-relaxed">{description}</p>
+            <p className="leading-relaxed font-medium">{description}</p>
 
-            {/* Arrow pointing up */}
-            <div
-              className={`absolute left-1/2 -translate-x-1/2 -top-2 w-0 h-0`}
-              style={{
-                borderLeft: '8px solid transparent',
-                borderRight: '8px solid transparent',
-                borderBottom: `8px solid currentColor`,
-                color: `rgba(var(--${color}-500), 0.95)`,
-              }}
-            />
+            {/* Close hint for mobile */}
+            <p className="text-xs opacity-70 mt-2 md:hidden">Tap anywhere to close</p>
           </div>
+
+          {/* Semi-transparent backdrop on mobile to make text more readable */}
+          <div
+            className="fixed inset-0 bg-slate-900 bg-opacity-70 -z-10 md:hidden"
+            style={{
+              animation: 'fadeIn 0.2s ease-out',
+            }}
+          />
         </div>
       )}
     </div>

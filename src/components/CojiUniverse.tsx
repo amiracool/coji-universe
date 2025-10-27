@@ -1875,22 +1875,22 @@ const CojiUniverse = () => {
               <div className="flex gap-4 justify-center mb-12">
                 <button
                   onClick={() => setActiveTab("dashboard")}
-                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-10 py-4 rounded-xl font-bold text-xl transition-colors shadow-lg"
+                  className="relative bg-gradient-to-br from-teal-400 via-fuchsia-400 to-teal-500 hover:from-teal-500 hover:via-fuchsia-500 hover:to-teal-600 px-12 py-5 rounded-2xl font-bold text-xl text-white transition-all shadow-2xl hover:shadow-fuchsia-500/50 hover:scale-105"
                 >
-                  Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
+                  <span className="relative z-10">
+                    Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
+                  </span>
                 </button>
               </div>
             </div>
 
-            {/* 3x3 Icon Grid */}
-            <div className="grid grid-cols-3 gap-8 md:gap-12 mb-16 px-4 max-w-3xl mx-auto">
-              {/* Row 1 */}
+            {/* Feature Icons Grid - 3 columns on mobile, 4 on tablet+  */}
+            <div className="grid grid-cols-3 md:grid-cols-4 gap-6 md:gap-10 mb-16 px-4 max-w-4xl mx-auto">
               <FeatureIcon
                 icon={Battery}
                 label="Energy"
                 description="Track your daily energy levels, understand patterns, and plan tasks around your battery capacity"
                 color="teal"
-                onClick={() => setActiveTab("dashboard")}
               />
 
               <FeatureIcon
@@ -1898,7 +1898,6 @@ const CojiUniverse = () => {
                 label="Coji Buddy"
                 description="Your neurodivergent-friendly AI companion for task breakdown, emotional support, and life strategies"
                 color="fuchsia"
-                onClick={() => setActiveTab("cojiBuddy")}
               />
 
               <FeatureIcon
@@ -1906,16 +1905,20 @@ const CojiUniverse = () => {
                 label="Mental Health"
                 description="Access therapy tools, mindfulness exercises, digital worksheets, and daily check-ins for wellbeing"
                 color="amber"
-                onClick={() => setActiveTab("mentalhealth")}
               />
 
-              {/* Row 2 */}
               <FeatureIcon
                 icon={CheckCircle}
                 label="Tasks"
                 description="Eisenhower Matrix prioritisation, energy-aware scheduling, and automatic task breakdown"
                 color="teal"
-                onClick={() => setActiveTab("dashboard")}
+              />
+
+              <FeatureIcon
+                icon={BookOpen}
+                label="Library"
+                description="Comprehensive guides on ADHD, autism, dyslexia, dyspraxia, chronic illness, parenting, and relationships"
+                color="blue"
               />
 
               <FeatureIcon
@@ -1923,7 +1926,13 @@ const CojiUniverse = () => {
                 label="Health"
                 description="Track appointments, medications, menstrual cycles, pregnancy, daily activity, and water intake"
                 color="purple"
-                onClick={() => setActiveTab("health")}
+              />
+
+              <FeatureIcon
+                icon={BarChart}
+                label="Analytics"
+                description="Visualise mood patterns, productivity hours, energy trends, and busiest days with actionable insights"
+                color="purple"
               />
 
               <FeatureIcon
@@ -1931,16 +1940,13 @@ const CojiUniverse = () => {
                 label="Finances"
                 description="Track income, expenses, wants vs needs, budgets, and cash flow with neurodivergent-friendly tools"
                 color="green"
-                onClick={() => setActiveTab("finances")}
               />
 
-              {/* Row 3 */}
               <FeatureIcon
                 icon={Star}
                 label="Journal"
                 description="Daily journalling, thought capturing, gratitude tracking, and personal reflection space"
                 color="amber"
-                onClick={() => setActiveTab("journal")}
               />
 
               <FeatureIcon
@@ -1948,7 +1954,6 @@ const CojiUniverse = () => {
                 label="Calendar"
                 description="Sync with Google & Outlook calendars, manage events with energy-aware scheduling"
                 color="blue"
-                onClick={() => setActiveTab("calendar")}
               />
 
               <FeatureIcon
@@ -1956,7 +1961,13 @@ const CojiUniverse = () => {
                 label="Community"
                 description="Connect with others, share experiences, get support, and build meaningful relationships"
                 color="fuchsia"
-                onClick={() => setActiveTab("forum")}
+              />
+
+              <FeatureIcon
+                icon={TrendingUp}
+                label="Dashboard"
+                description="Your central hub for tracking battery, tasks, mood, and accessing all Coji Universe features"
+                color="teal"
               />
             </div>
           </div>
