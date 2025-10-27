@@ -1454,6 +1454,7 @@ const CojiUniverse = () => {
                 <div className="max-w-7xl mx-auto px-6 py-4 space-y-2">
                   {[
                     { id: "dashboard", icon: Battery, label: "Energy Management" },
+                    { id: "calendar", icon: Calendar, label: "Calendar" },
                     { id: "cojiBuddy", icon: Sparkles, label: "Coji Buddy" },
                     { id: "library", icon: Brain, label: "Library" },
                     { id: "comingsoon", icon: Star, label: "Coming Soon", disabled: true },
