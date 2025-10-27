@@ -2039,7 +2039,7 @@ const CojiUniverse = () => {
                   <img src="/coji- logo.png" alt="Coji" className="w-24 h-24 object-contain" />
                   <div>
                     <h3 className="text-2xl font-bold text-fuchsia-300">
-                      How are you feeling now?
+                      Battery level {"\u{1F50B}"}
                     </h3>
                     <p className="text-sm text-slate-400">
                       Let's check in before we start
@@ -2055,31 +2055,36 @@ const CojiUniverse = () => {
 
                 <div className="space-y-6">
                   <div>
-                    <p className="font-semibold mb-2 text-slate-300">
-                      Battery level {"\u{1F50B}"}
-                    </p>
-                    <p className="text-xs text-slate-500 mb-3">
-                      How charged do you feel? (Max 12 = fully charged)
-                    </p>
-                    <input
-                      type="range"
-                      min="0"
-                      max="12"
-                      value={batteryLevel}
-                      onChange={(e) =>
-                        setBatteryLevel(parseInt(e.target.value))
-                      }
-                      className="w-full h-6 bg-slate-700 rounded-lg appearance-none cursor-pointer"
-                    />
-                    <div className="flex justify-between items-center text-sm mt-2">
+                    <div className="flex justify-between items-center text-sm mb-3">
                       <span className="text-slate-500">Empty</span>
                       <div className="flex items-center gap-2">
                         {getBatteryIcon(batteryLevel)}
-                        <span className="font-bold text-xl text-teal-300">
+                        <span className="font-bold text-2xl text-teal-300">
                           {batteryLevel}/12
                         </span>
                       </div>
                       <span className="text-slate-500">Full</span>
+                    </div>
+
+                    {/* Custom slider with gradient fill */}
+                    <div className="relative">
+                      <input
+                        type="range"
+                        min="0"
+                        max="12"
+                        value={batteryLevel}
+                        onChange={(e) =>
+                          setBatteryLevel(parseInt(e.target.value))
+                        }
+                        className="w-full h-6 bg-slate-700 rounded-lg appearance-none cursor-pointer relative z-10"
+                        style={{
+                          background: `linear-gradient(to right,
+                            #2DD4BF 0%,
+                            #E879F9 ${(batteryLevel / 12) * 100}%,
+                            #334155 ${(batteryLevel / 12) * 100}%,
+                            #334155 100%)`
+                        }}
+                      />
                     </div>
                   </div>
 
@@ -2087,7 +2092,7 @@ const CojiUniverse = () => {
                     onClick={saveTracking}
                     className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-4 rounded-xl font-bold transition-colors shadow-lg"
                   >
-                    Save Check-in {"\u{1F49C}"}
+                    Save Battery Level
                   </button>
                 </div>
               </div>

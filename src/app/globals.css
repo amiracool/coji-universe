@@ -246,6 +246,39 @@ img[loading="lazy"].loaded {
   }
 }
 
+/* Custom slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2DD4BF, #E879F9);
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(45, 212, 191, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2DD4BF, #E879F9);
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(45, 212, 191, 0.5);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 4px 12px rgba(45, 212, 191, 0.8);
+  transform: scale(1.1);
+}
+
 /* Mobile: Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   @keyframes fadeInUp {
