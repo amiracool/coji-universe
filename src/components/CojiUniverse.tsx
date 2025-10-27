@@ -1502,7 +1502,7 @@ const CojiUniverse = () => {
                     { id: "calendar", icon: Calendar, label: "Calendar" },
                     { id: "cojiBuddy", icon: Sparkles, label: "Coji Buddy" },
                     { id: "library", icon: Brain, label: "Library" },
-                    { id: "comingsoon", icon: Star, label: "Coming Soon", disabled: true },
+                    { id: "comingsoon", icon: Star, label: "Coming Soon" },
                   ].map((tab) => {
                     const Icon = tab.icon;
                     return (
@@ -2780,6 +2780,67 @@ const CojiUniverse = () => {
                 <p className="text-sm text-slate-400">
                   Motor skills, coordination, movement support
                 </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "comingsoon" && (
+          <div className="min-h-screen flex items-center justify-center px-4 py-12">
+            <div className="max-w-2xl w-full text-center">
+              <div className="mb-8">
+                <img
+                  src="/coji- logo.png"
+                  alt="Coji"
+                  className="w-32 h-32 md:w-40 md:h-40 mx-auto object-contain mb-6"
+                  style={{ animation: 'spin 3s linear infinite' }}
+                />
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-fuchsia-400 to-teal-300">
+                  Coming Soon!
+                </h1>
+                <p className="text-lg md:text-xl text-slate-300 mb-8">
+                  Coji is still growing {"\u{1F331}"} — here's what's on the way
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                  <div className="text-3xl mb-3">{"\u{1F469}\u{200D}\u{2695}\u{FE0F}"}</div>
+                  <h3 className="text-lg font-bold text-teal-300 mb-2">Healthcare Hub</h3>
+                  <p className="text-sm text-slate-400">Track appointments, medications, and menstrual cycles</p>
+                </div>
+
+                <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                  <div className="text-3xl mb-3">{"\u{1F4B8}"}</div>
+                  <h3 className="text-lg font-bold text-fuchsia-300 mb-2">Finances Manager</h3>
+                  <p className="text-sm text-slate-400">Budget tracking, sticky notes for wants & needs</p>
+                </div>
+
+                <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+                  <div className="text-3xl mb-3">{"\u{1F4DD}"}</div>
+                  <h3 className="text-lg font-bold text-teal-300 mb-2">Journaling</h3>
+                  <p className="text-sm text-slate-400">Daily prompts & reflection tools for self-discovery</p>
+                </div>
+
+                <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
+                  <div className="text-3xl mb-3">{"\u{1F468}\u{200D}\u{2696}\u{FE0F}"}</div>
+                  <h3 className="text-lg font-bold text-fuchsia-300 mb-2">Therapist Booking</h3>
+                  <p className="text-sm text-slate-400">Schedule sessions and manage therapy appointments</p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-teal-900/30 to-fuchsia-900/30 border border-teal-500 border-opacity-30 rounded-xl p-8">
+                <p className="text-teal-200 text-base md:text-lg leading-relaxed mb-4">
+                  ✨ Want early access when these features launch?
+                </p>
+                <p className="text-slate-400 text-sm mb-6">
+                  Join my early circle and I'll let you know when new features are ready. You'll be the first to try them!
+                </p>
+                <button
+                  className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl"
+                >
+                  Join My Early Circle
+                </button>
               </div>
             </div>
           </div>
