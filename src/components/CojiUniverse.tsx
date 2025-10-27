@@ -1919,9 +1919,14 @@ const CojiUniverse = () => {
               <div className="flex gap-4 justify-center mb-12">
                 <button
                   onClick={() => setActiveTab("dashboard")}
-                  className="relative bg-gradient-to-br from-teal-400 via-fuchsia-400 to-teal-500 hover:from-teal-500 hover:via-fuchsia-500 hover:to-teal-600 px-12 py-5 rounded-2xl font-bold text-xl text-white transition-all shadow-2xl hover:shadow-fuchsia-500/50 hover:scale-105"
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setActiveTab("dashboard");
+                  }}
+                  className="relative bg-gradient-to-br from-teal-400 via-fuchsia-400 to-teal-500 hover:from-teal-500 hover:via-fuchsia-500 hover:to-teal-600 px-12 py-5 rounded-2xl font-bold text-xl text-white transition-all shadow-2xl hover:shadow-fuchsia-500/50 hover:scale-105 cursor-pointer touch-manipulation"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <span className="relative z-10">
+                  <span className="relative z-10 pointer-events-none">
                     Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
                   </span>
                 </button>
