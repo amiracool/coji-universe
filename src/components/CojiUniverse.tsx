@@ -137,8 +137,8 @@ const CojiUniverse = () => {
   );
   const [showEisenpowerPrompt, setShowEisenpowerPrompt] = useState(false);
   const [pendingTask, setPendingTask] = useState<{title: string; energy: number; date: string} | null>(null);
-  const [showEisenhowerMatrix, setShowEisenhowerMatrix] = useState(false);
-  const [eisenhowerTasks, setEisenhowerTasks] = useState<{
+  const [showEisenpowerMatrix, setShowEisenpowerMatrix] = useState(false);
+  const [eisenhowerTasks, setEisenpowerTasks] = useState<{
     urgentImportant: string[];
     urgentNotImportant: string[];
     notUrgentImportant: string[];
@@ -149,7 +149,7 @@ const CojiUniverse = () => {
     notUrgentImportant: [],
     notUrgentNotImportant: []
   });
-  const [newEisenhowerTask, setNewEisenhowerTask] = useState("");
+  const [newEisenpowerTask, setNewEisenpowerTask] = useState("");
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0],
   );
@@ -1584,7 +1584,7 @@ const CojiUniverse = () => {
               <button
                 onClick={() => {
                   setShowEisenpowerPrompt(false);
-                  setShowEisenhowerMatrix(true);
+                  setShowEisenpowerMatrix(true);
                 }}
                 className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-6 py-4 rounded-lg font-bold transition-colors"
               >
@@ -1629,16 +1629,16 @@ const CojiUniverse = () => {
         </div>
       )}
 
-      {showEisenhowerMatrix && (
+      {showEisenpowerMatrix && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 overflow-y-auto">
           <div className="bg-slate-800 rounded-xl p-6 max-w-6xl w-full border border-amber-500 border-opacity-50 my-8">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-amber-300">
-                {"\u{1F50B}"} Eisenhower Matrix
+                {"\u{1F50B}"} Eisenpower Matrix
               </h2>
               <button
                 onClick={() => {
-                  setShowEisenhowerMatrix(false);
+                  setShowEisenpowerMatrix(false);
                   // Clean up pending task and reset form
                   setPendingTask(null);
                   setNewTaskTitle("");
@@ -1670,12 +1670,12 @@ const CojiUniverse = () => {
             <div className="mb-6 bg-slate-700 bg-opacity-50 p-4 rounded-xl">
               <input
                 type="text"
-                value={newEisenhowerTask}
-                onChange={(e) => setNewEisenhowerTask(e.target.value)}
+                value={newEisenpowerTask}
+                onChange={(e) => setNewEisenpowerTask(e.target.value)}
                 placeholder="Type a task and click a quadrant below to add it..."
                 className="w-full bg-slate-600 px-4 py-3 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 onKeyPress={(e) => {
-                  if (e.key === 'Enter' && newEisenhowerTask.trim()) {
+                  if (e.key === 'Enter' && newEisenpowerTask.trim()) {
                     e.preventDefault();
                   }
                 }}
@@ -1684,20 +1684,20 @@ const CojiUniverse = () => {
 
             {/* 4-Quadrant Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              {/* Quadrant 1: Urgent & Important */}
+              {/* Quadrant 1: DO NOW */}
               <div className="bg-red-900 bg-opacity-30 border-2 border-red-500 rounded-xl p-4">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="text-lg font-bold text-red-300">
-                    {"\u{1F525}"} Urgent & Important
+                    {"\u{1F525}"} DO NOW
                   </h3>
                   <button
                     onClick={() => {
-                      if (newEisenhowerTask.trim()) {
-                        setEisenhowerTasks(prev => ({
+                      if (newEisenpowerTask.trim()) {
+                        setEisenpowerTasks(prev => ({
                           ...prev,
-                          urgentImportant: [...prev.urgentImportant, newEisenhowerTask.trim()]
+                          urgentImportant: [...prev.urgentImportant, newEisenpowerTask.trim()]
                         }));
-                        setNewEisenhowerTask("");
+                        setNewEisenpowerTask("");
                       }
                     }}
                     className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-xs font-bold transition-colors"
@@ -1705,14 +1705,14 @@ const CojiUniverse = () => {
                     + Add Here
                   </button>
                 </div>
-                <p className="text-xs text-red-200 mb-3">Do these tasks first!</p>
+                <p className="text-xs text-red-200 mb-3">Urgent & Important - Do immediately!</p>
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.urgentImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
                       <span className="text-sm text-white flex-1">{task}</span>
                       <button
                         onClick={() => {
-                          setEisenhowerTasks(prev => ({
+                          setEisenpowerTasks(prev => ({
                             ...prev,
                             urgentImportant: prev.urgentImportant.filter((_, i) => i !== idx)
                           }));
@@ -1729,20 +1729,20 @@ const CojiUniverse = () => {
                 </div>
               </div>
 
-              {/* Quadrant 2: Not Urgent & Important */}
+              {/* Quadrant 2: DEFER */}
               <div className="bg-amber-900 bg-opacity-30 border-2 border-amber-500 rounded-xl p-4">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="text-lg font-bold text-amber-300">
-                    {"\u{1F4C5}"} Not Urgent & Important
+                    {"\u{1F4C5}"} DEFER
                   </h3>
                   <button
                     onClick={() => {
-                      if (newEisenhowerTask.trim()) {
-                        setEisenhowerTasks(prev => ({
+                      if (newEisenpowerTask.trim()) {
+                        setEisenpowerTasks(prev => ({
                           ...prev,
-                          notUrgentImportant: [...prev.notUrgentImportant, newEisenhowerTask.trim()]
+                          notUrgentImportant: [...prev.notUrgentImportant, newEisenpowerTask.trim()]
                         }));
-                        setNewEisenhowerTask("");
+                        setNewEisenpowerTask("");
                       }
                     }}
                     className="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded text-xs font-bold transition-colors"
@@ -1750,14 +1750,14 @@ const CojiUniverse = () => {
                     + Add Here
                   </button>
                 </div>
-                <p className="text-xs text-amber-200 mb-3">Schedule these tasks</p>
+                <p className="text-xs text-amber-200 mb-3">Important but not urgent - Schedule these</p>
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.notUrgentImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
                       <span className="text-sm text-white flex-1">{task}</span>
                       <button
                         onClick={() => {
-                          setEisenhowerTasks(prev => ({
+                          setEisenpowerTasks(prev => ({
                             ...prev,
                             notUrgentImportant: prev.notUrgentImportant.filter((_, i) => i !== idx)
                           }));
@@ -1774,20 +1774,20 @@ const CojiUniverse = () => {
                 </div>
               </div>
 
-              {/* Quadrant 3: Urgent & Not Important */}
+              {/* Quadrant 3: DELEGATE */}
               <div className="bg-blue-900 bg-opacity-30 border-2 border-blue-500 rounded-xl p-4">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="text-lg font-bold text-blue-300">
-                    {"\u{1F4E9}"} Urgent & Not Important
+                    {"\u{1F4E9}"} DELEGATE
                   </h3>
                   <button
                     onClick={() => {
-                      if (newEisenhowerTask.trim()) {
-                        setEisenhowerTasks(prev => ({
+                      if (newEisenpowerTask.trim()) {
+                        setEisenpowerTasks(prev => ({
                           ...prev,
-                          urgentNotImportant: [...prev.urgentNotImportant, newEisenhowerTask.trim()]
+                          urgentNotImportant: [...prev.urgentNotImportant, newEisenpowerTask.trim()]
                         }));
-                        setNewEisenhowerTask("");
+                        setNewEisenpowerTask("");
                       }
                     }}
                     className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-xs font-bold transition-colors"
@@ -1795,14 +1795,14 @@ const CojiUniverse = () => {
                     + Add Here
                   </button>
                 </div>
-                <p className="text-xs text-blue-200 mb-3">Delegate if possible</p>
+                <p className="text-xs text-blue-200 mb-3">Urgent but not important - Ask for help!</p>
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.urgentNotImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
                       <span className="text-sm text-white flex-1">{task}</span>
                       <button
                         onClick={() => {
-                          setEisenhowerTasks(prev => ({
+                          setEisenpowerTasks(prev => ({
                             ...prev,
                             urgentNotImportant: prev.urgentNotImportant.filter((_, i) => i !== idx)
                           }));
@@ -1819,20 +1819,20 @@ const CojiUniverse = () => {
                 </div>
               </div>
 
-              {/* Quadrant 4: Not Urgent & Not Important */}
+              {/* Quadrant 4: DELETE */}
               <div className="bg-slate-700 bg-opacity-50 border-2 border-slate-500 rounded-xl p-4">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="text-lg font-bold text-slate-300">
-                    {"\u{1F4AD}"} Not Urgent & Not Important
+                    {"\u{1F5D1}\u{FE0F}"} DELETE
                   </h3>
                   <button
                     onClick={() => {
-                      if (newEisenhowerTask.trim()) {
-                        setEisenhowerTasks(prev => ({
+                      if (newEisenpowerTask.trim()) {
+                        setEisenpowerTasks(prev => ({
                           ...prev,
-                          notUrgentNotImportant: [...prev.notUrgentNotImportant, newEisenhowerTask.trim()]
+                          notUrgentNotImportant: [...prev.notUrgentNotImportant, newEisenpowerTask.trim()]
                         }));
-                        setNewEisenhowerTask("");
+                        setNewEisenpowerTask("");
                       }
                     }}
                     className="bg-slate-500 hover:bg-slate-600 px-3 py-1 rounded text-xs font-bold transition-colors"
@@ -1840,14 +1840,14 @@ const CojiUniverse = () => {
                     + Add Here
                   </button>
                 </div>
-                <p className="text-xs text-slate-400 mb-3">Consider eliminating these</p>
+                <p className="text-xs text-slate-400 mb-3">Not urgent or important - Eliminate!</p>
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.notUrgentNotImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
                       <span className="text-sm text-white flex-1">{task}</span>
                       <button
                         onClick={() => {
-                          setEisenhowerTasks(prev => ({
+                          setEisenpowerTasks(prev => ({
                             ...prev,
                             notUrgentNotImportant: prev.notUrgentNotImportant.filter((_, i) => i !== idx)
                           }));
@@ -1870,7 +1870,7 @@ const CojiUniverse = () => {
               <button
                 onClick={() => {
                   // Clear all tasks
-                  setEisenhowerTasks({
+                  setEisenpowerTasks({
                     urgentImportant: [],
                     urgentNotImportant: [],
                     notUrgentImportant: [],
@@ -1883,7 +1883,7 @@ const CojiUniverse = () => {
               </button>
               <button
                 onClick={() => {
-                  setShowEisenhowerMatrix(false);
+                  setShowEisenpowerMatrix(false);
                   // Clean up pending task and reset form
                   setPendingTask(null);
                   setNewTaskTitle("");
@@ -1954,7 +1954,7 @@ const CojiUniverse = () => {
               <FeatureIcon
                 icon={CheckCircle}
                 label="Tasks"
-                description="Eisenhower Matrix prioritisation, energy-aware scheduling, and automatic task breakdown"
+                description="Eisenpower Matrix prioritisation with Do Now, Defer, Delegate, Delete quadrants for energy-aware task management"
                 color="teal"
               />
 
@@ -2108,101 +2108,9 @@ const CojiUniverse = () => {
                   </button>
                 </div>
                 {todaysTasks.length === 0 ? (
-                  <div>
-                    <p className="text-slate-400 text-sm mb-4">
-                      Here's an example of how your tasks will look:
-                    </p>
-                    <div className="space-y-3">
-                      {/* Mock task 1 - Completed */}
-                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                        <div className="flex items-center gap-3 flex-1">
-                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center bg-teal-500 border-teal-500">
-                            <CheckCircle size={16} className="text-white" />
-                          </div>
-                          <span className="line-through text-slate-500">
-                            Morning meditation
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-teal-300">
-                            2{"\u{1F50B}"}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Mock task 2 - Active */}
-                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                        <div className="flex items-center gap-3 flex-1">
-                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
-                          </div>
-                          <span>
-                            Reply to important emails
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-teal-300">
-                            4{"\u{1F50B}"}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Mock task 3 - Active */}
-                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                        <div className="flex items-center gap-3 flex-1">
-                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
-                          </div>
-                          <span>
-                            Prepare presentation slides
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-teal-300">
-                            6{"\u{1F50B}"}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Mock task 4 - High energy (shows Eisenpower button) */}
-                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg border border-amber-500 border-opacity-30">
-                        <div className="flex items-center gap-3 flex-1">
-                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
-                          </div>
-                          <span>
-                            Deep work: Project research
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-amber-300">
-                            10{"\u{1F50B}"}
-                          </span>
-                          <span className="bg-amber-500 bg-opacity-20 px-2 py-1 rounded text-xs text-amber-300 border border-amber-500 border-opacity-30">
-                            High energy
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Mock task 5 - Active */}
-                      <div className="flex items-center justify-between p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                        <div className="flex items-center gap-3 flex-1">
-                          <div className="w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center border-slate-500">
-                          </div>
-                          <span>
-                            Grocery shopping
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-teal-300">
-                            3{"\u{1F50B}"}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Summary stats */}
-                    <div className="mt-4 pt-4 border-t border-slate-700 flex justify-between text-sm">
-                      <span className="text-slate-400">5 tasks today</span>
-                      <span className="text-teal-300 font-semibold">Total: 25{"\u{1F50B}"}</span>
-                    </div>
+                  <div className="text-center py-12">
+                    <p className="text-slate-400 text-lg mb-2">No tasks yet for today</p>
+                    <p className="text-slate-500 text-sm">Click "Add Task" to get started!</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
