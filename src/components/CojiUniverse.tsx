@@ -197,6 +197,10 @@ const CojiUniverse = () => {
   });
   const [caloriesToday, setCaloriesToday] = useState<number>(0);
   const [stepsToday, setStepsToday] = useState<number>(0);
+
+  // Google Calendar state
+  const [calendarEvents, setCalendarEvents] = useState<any[]>([]);
+  const [isLoadingCalendar, setIsLoadingCalendar] = useState(false);
   const [eatReminders, setEatReminders] = useState<{ id: string; time: string }[]>(() => {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('eats');
@@ -386,7 +390,8 @@ const CojiUniverse = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}`
+        redirectTo: `${window.location.origin}`,
+        scopes: 'email profile https://www.googleapis.com/auth/calendar'
       }
     });
     if (error) {
@@ -451,6 +456,98 @@ const CojiUniverse = () => {
     } else {
       setAuthError('');
       alert('Check your email to confirm your account! 📧');
+    }
+  };
+
+  // Google Calendar Functions
+  const fetchCalendarEvents = async () => {
+    if (!user) return;
+
+    setIsLoadingCalendar(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session?.provider_token) {
+        console.log('No provider token available for Calendar API');
+        setIsLoadingCalendar(false);
+        return;
+      }
+
+      const response = await fetch(
+        `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${new Date().toISOString()}&maxResults=20&singleEvents=true&orderBy=startTime`,
+        {
+          headers: {
+            Authorization: `Bearer ${session.provider_token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setCalendarEvents(data.items || []);
+      } else {
+        console.error('Failed to fetch calendar events:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error fetching calendar events:', error);
+    } finally {
+      setIsLoadingCalendar(false);
+    }
+  };
+
+  const addTaskToCalendar = async (task: Task) => {
+    if (!user) return;
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session?.provider_token) {
+        alert('Please sign in with Google to use Calendar features');
+        return;
+      }
+
+      // Create event for the task date
+      const startDate = new Date(task.date);
+      startDate.setHours(9, 0, 0); // Default to 9 AM
+      const endDate = new Date(startDate);
+      endDate.setHours(10, 0, 0); // 1 hour duration
+
+      const event = {
+        summary: task.title,
+        description: `Energy required: ${task.energy_required}/12\nCreated from Coji Universe`,
+        start: {
+          dateTime: startDate.toISOString(),
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        },
+        end: {
+          dateTime: endDate.toISOString(),
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        },
+      };
+
+      const response = await fetch(
+        'https://www.googleapis.com/calendar/v3/calendars/primary/events',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${session.provider_token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(event),
+        }
+      );
+
+      if (response.ok) {
+        alert('Task added to Google Calendar! 🎉');
+        fetchCalendarEvents(); // Refresh calendar events
+      } else {
+        const error = await response.text();
+        console.error('Failed to add event to calendar:', error);
+        alert('Failed to add task to calendar. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error adding task to calendar:', error);
+      alert('Failed to add task to calendar. Please try again.');
     }
   };
 
@@ -2509,6 +2606,16 @@ const CojiUniverse = () => {
                             {task.energy_required}
                             {"\u{1F50B}"}
                           </span>
+                          {!task.completed && user?.app_metadata?.provider === 'google' && (
+                            <button
+                              onClick={() => addTaskToCalendar(task)}
+                              className="bg-blue-500 hover:bg-blue-600 px-2 py-1 rounded text-xs transition-colors flex items-center gap-1"
+                              title="Add to Google Calendar"
+                            >
+                              <Calendar size={14} />
+                              Calendar
+                            </button>
+                          )}
                           {task.energy_required > batteryLevel &&
                             !task.completed && (
                               <button
@@ -2542,19 +2649,30 @@ const CojiUniverse = () => {
 
             <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
               <h3 className="text-xl font-bold mb-4 text-fuchsia-300">
-                Sync Your Calendars
+                Google Calendar Integration
               </h3>
               <p className="text-slate-400 mb-4">
-                Connect Google Calendar and Microsoft Outlook to see all your
-                events in one place
+                {user?.app_metadata?.provider === 'google'
+                  ? 'Load your Google Calendar events and manage them here'
+                  : 'Sign in with Google to access Calendar features'}
               </p>
               <div className="flex gap-4">
-                <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg font-medium transition-colors">
-                  Connect Google Calendar
-                </button>
-                <button className="bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 px-6 py-3 rounded-lg font-medium transition-colors">
-                  Connect Outlook
-                </button>
+                {user?.app_metadata?.provider === 'google' ? (
+                  <button
+                    onClick={fetchCalendarEvents}
+                    disabled={isLoadingCalendar}
+                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoadingCalendar ? 'Loading...' : 'Load Calendar Events'}
+                  </button>
+                ) : (
+                  <button
+                    onClick={signInWithGoogle}
+                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg font-medium transition-colors"
+                  >
+                    Sign in with Google
+                  </button>
+                )}
               </div>
             </div>
 
@@ -2587,13 +2705,68 @@ const CojiUniverse = () => {
                 )}
               </div>
 
-              <div className="text-center py-12 text-slate-400">
-                <Calendar size={48} className="mx-auto mb-4 text-teal-400" />
-                <p>
-                  Your events and tasks will appear here once you connect your
-                  calendars {"\u{1F4C6}"}
-                </p>
-              </div>
+              {calendarEvents.length === 0 ? (
+                <div className="text-center py-12 text-slate-400">
+                  <Calendar size={48} className="mx-auto mb-4 text-teal-400" />
+                  <p>
+                    {user?.app_metadata?.provider === 'google'
+                      ? 'Click "Load Calendar Events" to see your Google Calendar here'
+                      : 'Your events and tasks will appear here once you connect your calendars'} {"\u{1F4C6}"}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-lg text-teal-300 mb-4">
+                    Upcoming Events
+                  </h4>
+                  {calendarEvents.map((event) => (
+                    <div
+                      key={event.id}
+                      className="bg-slate-700 bg-opacity-50 p-4 rounded-lg border border-teal-500 border-opacity-20"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h5 className="font-medium text-white mb-1">
+                            {event.summary || 'Untitled Event'}
+                          </h5>
+                          <p className="text-sm text-slate-400">
+                            {event.start?.dateTime
+                              ? new Date(event.start.dateTime).toLocaleString('en-US', {
+                                  weekday: 'short',
+                                  month: 'short',
+                                  day: 'numeric',
+                                  hour: 'numeric',
+                                  minute: '2-digit',
+                                })
+                              : event.start?.date
+                              ? new Date(event.start.date).toLocaleDateString('en-US', {
+                                  weekday: 'short',
+                                  month: 'short',
+                                  day: 'numeric',
+                                })
+                              : 'No date'}
+                          </p>
+                          {event.description && (
+                            <p className="text-sm text-slate-500 mt-2">
+                              {event.description}
+                            </p>
+                          )}
+                        </div>
+                        {event.htmlLink && (
+                          <a
+                            href={event.htmlLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-teal-400 hover:text-teal-300 text-sm"
+                          >
+                            View in Google
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
