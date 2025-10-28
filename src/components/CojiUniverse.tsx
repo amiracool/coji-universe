@@ -29,7 +29,7 @@ import {
   Menu,
   X,
   LogOut,
-  Grid3x3,
+  LayoutGrid,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import FeatureIcon from "@/components/FeatureIcon";
@@ -1482,7 +1482,7 @@ const CojiUniverse = () => {
                     className="p-2 hover:bg-amber-500 hover:bg-opacity-20 rounded-lg transition-colors"
                     title="Open Eisenpower Matrix"
                   >
-                    <Grid3x3 size={20} className="text-amber-400" />
+                    <LayoutGrid size={20} className="text-amber-400" />
                   </button>
                 </>
               )}
