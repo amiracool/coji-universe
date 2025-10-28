@@ -203,7 +203,7 @@ const CojiUniverse = () => {
   const [isLoadingCalendar, setIsLoadingCalendar] = useState(false);
 
   // Analysis state
-  const [analysisPeriod, setAnalysisPeriod] = useState<'day' | 'week' | 'month'>('week');
+  const [analysisPeriod, setAnalysisPeriod] = useState<'day' | 'week' | 'month' | 'year'>('week');
   const [eatReminders, setEatReminders] = useState<{ id: string; time: string }[]>(() => {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('eats');
@@ -2781,65 +2781,83 @@ const CojiUniverse = () => {
               Analysis & Insights {"\u{1F4CA}"}
             </h2>
 
-            {/* Time Period Toggle */}
-            <div className="mb-6 flex gap-3 justify-center">
-              <button
-                onClick={() => setAnalysisPeriod('day')}
-                className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                  analysisPeriod === 'day'
-                    ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
-                    : 'bg-slate-700 hover:bg-slate-600'
-                }`}
-              >
-                Day
-              </button>
-              <button
-                onClick={() => setAnalysisPeriod('week')}
-                className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                  analysisPeriod === 'week'
-                    ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
-                    : 'bg-slate-700 hover:bg-slate-600'
-                }`}
-              >
-                Week
-              </button>
-              <button
-                onClick={() => setAnalysisPeriod('month')}
-                className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                  analysisPeriod === 'month'
-                    ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
-                    : 'bg-slate-700 hover:bg-slate-600'
-                }`}
-              >
-                Month
-              </button>
-            </div>
-
             {/* Energy Tracking Graph */}
             <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-              <h3 className="text-xl font-bold mb-4 text-fuchsia-300">
-                Energy Levels Over Time
-              </h3>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold text-fuchsia-300">
+                  Energy Levels Over Time
+                </h3>
+                {/* Time Period Toggle - Inside Box */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setAnalysisPeriod('day')}
+                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                      analysisPeriod === 'day'
+                        ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
+                        : 'bg-slate-700 hover:bg-slate-600'
+                    }`}
+                  >
+                    Day
+                  </button>
+                  <button
+                    onClick={() => setAnalysisPeriod('week')}
+                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                      analysisPeriod === 'week'
+                        ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
+                        : 'bg-slate-700 hover:bg-slate-600'
+                    }`}
+                  >
+                    Week
+                  </button>
+                  <button
+                    onClick={() => setAnalysisPeriod('month')}
+                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                      analysisPeriod === 'month'
+                        ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
+                        : 'bg-slate-700 hover:bg-slate-600'
+                    }`}
+                  >
+                    Month
+                  </button>
+                  <button
+                    onClick={() => setAnalysisPeriod('year')}
+                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                      analysisPeriod === 'year'
+                        ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
+                        : 'bg-slate-700 hover:bg-slate-600'
+                    }`}
+                  >
+                    Year
+                  </button>
+                </div>
+              </div>
               <div className="h-64 flex items-end justify-around gap-2">
                 {(() => {
                   const now = new Date();
                   let dataPoints: { label: string; value: number }[] = [];
 
                   if (analysisPeriod === 'day') {
-                    // Last 24 hours - show tracking data from today
+                    // Last 24 hours - show tracking data from today with timestamps
                     const todayData = trackingData.filter(
                       (d) => d.date === new Date().toISOString().split('T')[0]
                     );
                     if (todayData.length > 0) {
-                      dataPoints = todayData.map((d, i) => ({
-                        label: `Check ${i + 1}`,
-                        value: d.battery,
-                      }));
+                      dataPoints = todayData.map((d) => {
+                        const timestamp = d.timestamp ? new Date(d.timestamp) : new Date();
+                        return {
+                          label: timestamp.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+                          value: d.battery,
+                        };
+                      });
                     } else {
-                      dataPoints = [{ label: 'Today', value: batteryLevel }];
+                      const now = new Date();
+                      dataPoints = [{
+                        label: now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+                        value: batteryLevel
+                      }];
                     }
                   } else if (analysisPeriod === 'week') {
-                    // Last 7 days
+                    // Last 7 days with dates
                     for (let i = 6; i >= 0; i--) {
                       const date = new Date(now);
                       date.setDate(date.getDate() - i);
@@ -2850,12 +2868,12 @@ const CojiUniverse = () => {
                           ? dayData.reduce((sum, d) => sum + d.battery, 0) / dayData.length
                           : 0;
                       dataPoints.push({
-                        label: date.toLocaleDateString('en-US', { weekday: 'short' }),
+                        label: date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
                         value: Math.round(avgBattery),
                       });
                     }
-                  } else {
-                    // Last 30 days - grouped by weeks
+                  } else if (analysisPeriod === 'month') {
+                    // Last 30 days - grouped by weeks with date ranges
                     for (let week = 4; week >= 0; week--) {
                       const startDate = new Date(now);
                       startDate.setDate(startDate.getDate() - (week * 7 + 6));
@@ -2873,7 +2891,30 @@ const CojiUniverse = () => {
                           : 0;
 
                       dataPoints.push({
-                        label: `W${5 - week}`,
+                        label: `${startDate.getDate()}/${startDate.getMonth() + 1}`,
+                        value: Math.round(avgBattery),
+                      });
+                    }
+                  } else {
+                    // Last year - grouped by months with month names
+                    for (let monthOffset = 11; monthOffset >= 0; monthOffset--) {
+                      const date = new Date(now);
+                      date.setMonth(date.getMonth() - monthOffset);
+                      const monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
+                      const monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+                      const monthData = trackingData.filter((d) => {
+                        const dDate = new Date(d.date);
+                        return dDate >= monthStart && dDate <= monthEnd;
+                      });
+
+                      const avgBattery =
+                        monthData.length > 0
+                          ? monthData.reduce((sum, d) => sum + d.battery, 0) / monthData.length
+                          : 0;
+
+                      dataPoints.push({
+                        label: date.toLocaleDateString('en-GB', { month: 'short', year: '2-digit' }),
                         value: Math.round(avgBattery),
                       });
                     }
@@ -2993,7 +3034,7 @@ const CojiUniverse = () => {
                 {"\u{26A1}"} Eisenpower Savings
               </h3>
               <p className="text-slate-400 mb-6">
-                Energy saved by using the Eisenpower Matrix to delegate, delete, and defer tasks
+                You've saved this amount of energy from Eisenpower (delegate, delete, and defer)
               </p>
               {(() => {
                 // Count tasks in each Eisenpower quadrant
