@@ -2651,33 +2651,72 @@ const CojiUniverse = () => {
               Calendar & Events {"\u{1F4C5}"}
             </h2>
 
+            {/* Calendar Integration Box */}
             <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
               <h3 className="text-xl font-bold mb-4 text-fuchsia-300">
-                Google Calendar Integration
+                Calendar Integration
               </h3>
-              <p className="text-slate-400 mb-4">
-                {user?.app_metadata?.provider === 'google'
-                  ? 'Load your Google Calendar events and manage them here'
-                  : 'Sign in with Google to access Calendar features'}
-              </p>
-              <div className="flex gap-4">
-                {user?.app_metadata?.provider === 'google' ? (
+
+              {user?.app_metadata?.provider === 'google' ? (
+                // Connected with Google
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <p className="text-slate-300">Connected with Google Calendar</p>
+                  </div>
                   <button
                     onClick={fetchCalendarEvents}
                     disabled={isLoadingCalendar}
-                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isLoadingCalendar ? 'Loading...' : 'Load Calendar Events'}
+                    {isLoadingCalendar ? 'Loading...' : 'Refresh Calendar Events'}
                   </button>
-                ) : (
-                  <button
-                    onClick={signInWithGoogle}
-                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 px-6 py-3 rounded-lg font-medium transition-colors"
-                  >
-                    Sign in with Google
-                  </button>
-                )}
-              </div>
+                </div>
+              ) : (
+                // Not connected
+                <div>
+                  <p className="text-slate-400 mb-4">
+                    Connect your calendar to sync tasks and view upcoming events
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-blue-500 border-opacity-20">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                          <Calendar size={20} />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white">Google Calendar</h4>
+                          <p className="text-xs text-slate-400">Sync with Google</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={signInWithGoogle}
+                        className="w-full bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                      >
+                        Connect Google
+                      </button>
+                    </div>
+
+                    <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-cyan-500 border-opacity-20">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center">
+                          <Calendar size={20} />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white">Outlook Calendar</h4>
+                          <p className="text-xs text-slate-400">Sync with Microsoft</p>
+                        </div>
+                      </div>
+                      <button
+                        disabled
+                        className="w-full bg-slate-600 px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed"
+                      >
+                        Coming Soon
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
