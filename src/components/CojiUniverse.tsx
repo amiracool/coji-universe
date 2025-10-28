@@ -98,6 +98,17 @@ interface StickyNote {
   created_at?: string;
 }
 
+interface UserProfile {
+  id?: string;
+  user_id: string;
+  preferred_name: string;
+  age?: number;
+  country?: string;
+  city?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 const CojiUniverse = () => {
   // Hydration control - prevent flash on initial load
   const [isHydrated, setIsHydrated] = useState(false);
@@ -163,6 +174,14 @@ const CojiUniverse = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
+
+  // User profile state
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [showProfileSetup, setShowProfileSetup] = useState(false);
+  const [profileName, setProfileName] = useState('');
+  const [profileAge, setProfileAge] = useState('');
+  const [profileCountry, setProfileCountry] = useState('');
+  const [profileCity, setProfileCity] = useState('');
 
   // Health state
   const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
@@ -371,6 +390,9 @@ const CojiUniverse = () => {
   // load finances notes and income
   await loadFinancialData();
 
+  // load user profile
+  await loadUserProfile();
+
       // try loading any local therapist bookings (fallback)
       try {
         const rawBk = localStorage.getItem("coji_therapist_bookings");
@@ -386,6 +408,73 @@ const CojiUniverse = () => {
       }
     } catch (error) {
       console.log("Loading data:", error);
+    }
+  };
+
+  // Load user profile from database
+  const loadUserProfile = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+
+      if (error && error.code !== 'PGRST116') {
+        // PGRST116 means no rows returned, which is expected for new users
+        console.error('Error loading user profile:', error);
+        return;
+      }
+
+      if (data) {
+        setUserProfile(data);
+      } else {
+        // No profile found, show profile setup modal for new users
+        setShowProfileSetup(true);
+      }
+    } catch (error) {
+      console.error('Error loading user profile:', error);
+    }
+  };
+
+  // Save user profile to database
+  const saveUserProfile = async () => {
+    if (!user || !profileName.trim()) {
+      alert('Please enter your name');
+      return;
+    }
+
+    try {
+      const profileData: UserProfile = {
+        user_id: user.id,
+        preferred_name: profileName.trim(),
+        age: profileAge ? parseInt(profileAge) : undefined,
+        country: profileCountry.trim() || undefined,
+        city: profileCity.trim() || undefined,
+      };
+
+      const { data, error } = await supabase
+        .from('user_profiles')
+        .upsert(profileData, { onConflict: 'user_id' })
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error saving user profile:', error);
+        alert('Failed to save profile. Please try again.');
+        return;
+      }
+
+      if (data) {
+        setUserProfile(data);
+        setShowProfileSetup(false);
+        alert('Profile saved successfully!');
+      }
+    } catch (error) {
+      console.error('Error saving user profile:', error);
+      alert('Failed to save profile. Please try again.');
     }
   };
 
@@ -1762,6 +1851,86 @@ const CojiUniverse = () => {
         </>
       )}
 
+      {showProfileSetup && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-xl p-8 max-w-md w-full border border-teal-500 border-opacity-30">
+            <div className="text-center mb-6">
+              <h3 className="text-3xl font-bold mb-2 text-teal-300">
+                Welcome to Coji Universe!
+              </h3>
+              <p className="text-slate-400">
+                Let's get to know you better
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  What would you like us to call you? <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={profileName}
+                  onChange={(e) => setProfileName(e.target.value)}
+                  placeholder="Your preferred name"
+                  className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  How old are you?
+                </label>
+                <input
+                  type="number"
+                  value={profileAge}
+                  onChange={(e) => setProfileAge(e.target.value)}
+                  placeholder="Your age (optional)"
+                  min="1"
+                  max="150"
+                  className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Where are you from?
+                </label>
+                <input
+                  type="text"
+                  value={profileCountry}
+                  onChange={(e) => setProfileCountry(e.target.value)}
+                  placeholder="Country (optional)"
+                  className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Which city?
+                </label>
+                <input
+                  type="text"
+                  value={profileCity}
+                  onChange={(e) => setProfileCity(e.target.value)}
+                  placeholder="City (optional)"
+                  className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500"
+                />
+              </div>
+
+              <div className="pt-4">
+                <button
+                  onClick={saveUserProfile}
+                  className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-lg font-bold transition-colors"
+                >
+                  Let's Get Started!
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showTaskModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-xl p-8 max-w-md w-full border border-teal-500 border-opacity-30">
@@ -2240,7 +2409,7 @@ const CojiUniverse = () => {
               </div>
               <h1 className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-fuchsia-400 to-teal-300 pb-2">
                 {user ? (
-                  <>Welcome back, {user.email?.split('@')[0] || user.user_metadata?.name || 'friend'} {"\u{1F49C}"}</>
+                  <>Welcome back, {userProfile?.preferred_name || user.email?.split('@')[0] || user.user_metadata?.name || 'friend'} {"\u{1F49C}"}</>
                 ) : (
                   'Welcome to Coji Universe'
                 )}
@@ -2503,7 +2672,7 @@ const CojiUniverse = () => {
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <h2 className="text-3xl font-bold mb-2 text-teal-300">
-                  Hey friend! {"\u{1F49C}"}
+                  Hey {userProfile?.preferred_name || user?.email?.split('@')[0] || user?.user_metadata?.name || 'friend'}! {"\u{1F49C}"}
                 </h2>
                 <p className="text-slate-400">
                   I'm Coji, and I'm here to help you navigate today with care. Let's see how you're feeling and plan your day around what you can actually handle {"\u{2728}"}

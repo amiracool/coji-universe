@@ -85,6 +85,18 @@ VALUES (
   NOW()
 );
 
+-- Create user_profiles table for user information
+CREATE TABLE IF NOT EXISTS user_profiles (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL UNIQUE REFERENCES auth.users(id) ON DELETE CASCADE,
+  preferred_name TEXT NOT NULL,
+  age INT,
+  country TEXT,
+  city TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- Create beta_signups table for early access signups
 CREATE TABLE IF NOT EXISTS beta_signups (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -92,6 +104,25 @@ CREATE TABLE IF NOT EXISTS beta_signups (
   source TEXT DEFAULT 'web',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Enable Row Level Security for user_profiles
+ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
+
+-- Users can view their own profile
+CREATE POLICY "Users can view their own profile" ON user_profiles
+  FOR SELECT
+  USING (auth.uid() = user_id);
+
+-- Users can insert their own profile
+CREATE POLICY "Users can insert their own profile" ON user_profiles
+  FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- Users can update their own profile
+CREATE POLICY "Users can update their own profile" ON user_profiles
+  FOR UPDATE
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
 -- Enable Row Level Security for beta_signups
 ALTER TABLE beta_signups ENABLE ROW LEVEL SECURITY;
