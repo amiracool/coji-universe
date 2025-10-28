@@ -201,6 +201,9 @@ const CojiUniverse = () => {
   // Google Calendar state
   const [calendarEvents, setCalendarEvents] = useState<any[]>([]);
   const [isLoadingCalendar, setIsLoadingCalendar] = useState(false);
+
+  // Analysis state
+  const [analysisPeriod, setAnalysisPeriod] = useState<'day' | 'week' | 'month'>('week');
   const [eatReminders, setEatReminders] = useState<{ id: string; time: string }[]>(() => {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('eats');
@@ -1198,6 +1201,7 @@ const CojiUniverse = () => {
     { id: "landing", icon: Home, label: "Home" },
     { id: "dashboard", icon: Battery, label: "Energy Management" },
     { id: "calendar", icon: Calendar, label: "Calendar" },
+    { id: "analysis", icon: TrendingUp, label: "Analysis" },
     { id: "cojiBuddy", icon: Sparkles, label: "Coji Buddy" },
     { id: "library", icon: Brain, label: "Library" },
   ];
@@ -2767,6 +2771,269 @@ const CojiUniverse = () => {
                   ))}
                 </div>
               )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "analysis" && (
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-teal-300">
+              Analysis & Insights {"\u{1F4CA}"}
+            </h2>
+
+            {/* Time Period Toggle */}
+            <div className="mb-6 flex gap-3 justify-center">
+              <button
+                onClick={() => setAnalysisPeriod('day')}
+                className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                  analysisPeriod === 'day'
+                    ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
+                    : 'bg-slate-700 hover:bg-slate-600'
+                }`}
+              >
+                Day
+              </button>
+              <button
+                onClick={() => setAnalysisPeriod('week')}
+                className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                  analysisPeriod === 'week'
+                    ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
+                    : 'bg-slate-700 hover:bg-slate-600'
+                }`}
+              >
+                Week
+              </button>
+              <button
+                onClick={() => setAnalysisPeriod('month')}
+                className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                  analysisPeriod === 'month'
+                    ? 'bg-gradient-to-r from-teal-500 to-fuchsia-500'
+                    : 'bg-slate-700 hover:bg-slate-600'
+                }`}
+              >
+                Month
+              </button>
+            </div>
+
+            {/* Energy Tracking Graph */}
+            <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
+              <h3 className="text-xl font-bold mb-4 text-fuchsia-300">
+                Energy Levels Over Time
+              </h3>
+              <div className="h-64 flex items-end justify-around gap-2">
+                {(() => {
+                  const now = new Date();
+                  let dataPoints: { label: string; value: number }[] = [];
+
+                  if (analysisPeriod === 'day') {
+                    // Last 24 hours - show tracking data from today
+                    const todayData = trackingData.filter(
+                      (d) => d.date === new Date().toISOString().split('T')[0]
+                    );
+                    if (todayData.length > 0) {
+                      dataPoints = todayData.map((d, i) => ({
+                        label: `Check ${i + 1}`,
+                        value: d.battery,
+                      }));
+                    } else {
+                      dataPoints = [{ label: 'Today', value: batteryLevel }];
+                    }
+                  } else if (analysisPeriod === 'week') {
+                    // Last 7 days
+                    for (let i = 6; i >= 0; i--) {
+                      const date = new Date(now);
+                      date.setDate(date.getDate() - i);
+                      const dateStr = date.toISOString().split('T')[0];
+                      const dayData = trackingData.filter((d) => d.date === dateStr);
+                      const avgBattery =
+                        dayData.length > 0
+                          ? dayData.reduce((sum, d) => sum + d.battery, 0) / dayData.length
+                          : 0;
+                      dataPoints.push({
+                        label: date.toLocaleDateString('en-US', { weekday: 'short' }),
+                        value: Math.round(avgBattery),
+                      });
+                    }
+                  } else {
+                    // Last 30 days - grouped by weeks
+                    for (let week = 4; week >= 0; week--) {
+                      const startDate = new Date(now);
+                      startDate.setDate(startDate.getDate() - (week * 7 + 6));
+                      const endDate = new Date(now);
+                      endDate.setDate(endDate.getDate() - week * 7);
+
+                      const weekData = trackingData.filter((d) => {
+                        const dDate = new Date(d.date);
+                        return dDate >= startDate && dDate <= endDate;
+                      });
+
+                      const avgBattery =
+                        weekData.length > 0
+                          ? weekData.reduce((sum, d) => sum + d.battery, 0) / weekData.length
+                          : 0;
+
+                      dataPoints.push({
+                        label: `W${5 - week}`,
+                        value: Math.round(avgBattery),
+                      });
+                    }
+                  }
+
+                  const maxValue = 12;
+
+                  return dataPoints.map((point, idx) => (
+                    <div key={idx} className="flex-1 flex flex-col items-center gap-2">
+                      <div className="w-full bg-slate-700 rounded-lg overflow-hidden h-48 flex items-end">
+                        <div
+                          className="w-full bg-gradient-to-t from-teal-500 to-fuchsia-500 rounded-t-lg transition-all duration-500"
+                          style={{
+                            height: `${(point.value / maxValue) * 100}%`,
+                          }}
+                        />
+                      </div>
+                      <span className="text-xs text-slate-400">{point.label}</span>
+                      <span className="text-sm font-bold text-teal-300">
+                        {point.value > 0 ? point.value : '-'}
+                      </span>
+                    </div>
+                  ));
+                })()}
+              </div>
+            </div>
+
+            {/* Task Impact Analysis */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              {/* Depleting Tasks */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-red-500 border-opacity-20">
+                <h3 className="text-xl font-bold mb-4 text-red-300">
+                  {"\u{1F4C9}"} Tasks That Deplete You
+                </h3>
+                <p className="text-sm text-slate-400 mb-4">
+                  I've noticed these tasks drain your energy:
+                </p>
+                {(() => {
+                  // Find high-energy tasks
+                  const depletingTasks = tasks
+                    .filter((t) => t.energy_required >= 6)
+                    .slice(0, 8);
+
+                  if (depletingTasks.length === 0) {
+                    return (
+                      <p className="text-slate-500 text-center py-8">
+                        No high-energy tasks tracked yet
+                      </p>
+                    );
+                  }
+
+                  // Create word cloud effect with different sizes
+                  return (
+                    <div className="flex flex-wrap gap-3 justify-center">
+                      {depletingTasks.map((task, idx) => {
+                        const size = task.energy_required >= 9 ? 'text-lg' : 'text-base';
+                        const opacity = task.energy_required >= 9 ? 'opacity-100' : 'opacity-75';
+                        return (
+                          <span
+                            key={idx}
+                            className={`${size} ${opacity} font-medium text-red-300 bg-red-500 bg-opacity-10 px-3 py-1 rounded-lg`}
+                          >
+                            {task.title}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Energizing Tasks */}
+              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-green-500 border-opacity-20">
+                <h3 className="text-xl font-bold mb-4 text-green-300">
+                  {"\u{1F4C8}"} Tasks That Energize You
+                </h3>
+                <p className="text-sm text-slate-400 mb-4">
+                  I've noticed these tasks energize you:
+                </p>
+                {(() => {
+                  // Find low-energy completed tasks (things you did easily)
+                  const energizingTasks = tasks
+                    .filter((t) => t.completed && t.energy_required <= 3)
+                    .slice(0, 8);
+
+                  if (energizingTasks.length === 0) {
+                    return (
+                      <p className="text-slate-500 text-center py-8">
+                        Complete some low-energy tasks to see patterns
+                      </p>
+                    );
+                  }
+
+                  return (
+                    <div className="flex flex-wrap gap-3 justify-center">
+                      {energizingTasks.map((task, idx) => {
+                        const size = task.energy_required <= 1 ? 'text-lg' : 'text-base';
+                        const opacity = task.energy_required <= 1 ? 'opacity-100' : 'opacity-75';
+                        return (
+                          <span
+                            key={idx}
+                            className={`${size} ${opacity} font-medium text-green-300 bg-green-500 bg-opacity-10 px-3 py-1 rounded-lg`}
+                          >
+                            {task.title}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+
+            {/* Eisenpower Savings */}
+            <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-amber-500 border-opacity-20">
+              <h3 className="text-2xl font-bold mb-4 text-amber-300">
+                {"\u{26A1}"} Eisenpower Savings
+              </h3>
+              <p className="text-slate-400 mb-6">
+                Energy saved by using the Eisenpower Matrix to delegate, delete, and defer tasks
+              </p>
+              {(() => {
+                // Count tasks in each Eisenpower quadrant
+                const delegated = eisenhowerTasks.urgentNotImportant.length;
+                const deferred = eisenhowerTasks.notUrgentImportant.length;
+                const deleted = eisenhowerTasks.notUrgentNotImportant.length;
+
+                // Estimate energy saved (assuming each task would have used ~5 energy)
+                const totalSaved = (delegated + deferred + deleted) * 5;
+
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="text-center">
+                      <div className="text-5xl font-bold text-amber-400 mb-2">
+                        {totalSaved}
+                      </div>
+                      <div className="text-lg text-slate-300">
+                        Energy Units Saved
+                      </div>
+                      <div className="text-sm text-slate-500 mt-2">
+                        Equivalent to {Math.floor(totalSaved / 12)} full battery charges
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center bg-slate-700 bg-opacity-30 p-3 rounded-lg">
+                        <span className="text-slate-300">Delegated Tasks:</span>
+                        <span className="font-bold text-teal-300">{delegated}</span>
+                      </div>
+                      <div className="flex justify-between items-center bg-slate-700 bg-opacity-30 p-3 rounded-lg">
+                        <span className="text-slate-300">Deferred Tasks:</span>
+                        <span className="font-bold text-fuchsia-300">{deferred}</span>
+                      </div>
+                      <div className="flex justify-between items-center bg-slate-700 bg-opacity-30 p-3 rounded-lg">
+                        <span className="text-slate-300">Deleted Tasks:</span>
+                        <span className="font-bold text-amber-300">{deleted}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           </div>
         )}
