@@ -158,6 +158,10 @@ const CojiUniverse = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
 
   // Health state
   const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
@@ -397,6 +401,55 @@ const CojiUniverse = () => {
     } else {
       setUser(null);
       setActiveTab('landing');
+    }
+  };
+
+  const signInWithEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthError('');
+
+    if (!email || !password) {
+      setAuthError('Please enter both email and password');
+      return;
+    }
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setAuthError(error.message);
+    }
+  };
+
+  const signUpWithEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthError('');
+
+    if (!email || !password) {
+      setAuthError('Please enter both email and password');
+      return;
+    }
+
+    if (password.length < 6) {
+      setAuthError('Password must be at least 6 characters');
+      return;
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}`
+      }
+    });
+
+    if (error) {
+      setAuthError(error.message);
+    } else {
+      setAuthError('');
+      alert('Check your email to confirm your account! 📧');
     }
   };
 
@@ -2114,6 +2167,76 @@ const CojiUniverse = () => {
               </div>
 
               <div className="bg-slate-800 bg-opacity-50 p-6 md:p-8 rounded-xl border border-teal-500 border-opacity-30 shadow-2xl">
+                {/* Email/Password Form */}
+                <form onSubmit={authMode === 'signin' ? signInWithEmail : signUpWithEmail} className="space-y-4">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-2">
+                      Password
+                    </label>
+                    <input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                      required
+                    />
+                  </div>
+
+                  {authError && (
+                    <div className="p-3 bg-red-900 bg-opacity-30 border border-red-500 border-opacity-30 rounded-lg">
+                      <p className="text-red-300 text-sm">{authError}</p>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl"
+                  >
+                    {authMode === 'signin' ? 'Sign In' : 'Sign Up'}
+                  </button>
+                </form>
+
+                {/* Toggle between Sign In / Sign Up */}
+                <div className="mt-4 text-center">
+                  <button
+                    onClick={() => {
+                      setAuthMode(authMode === 'signin' ? 'signup' : 'signin');
+                      setAuthError('');
+                    }}
+                    className="text-sm text-slate-400 hover:text-teal-300 transition-colors"
+                  >
+                    {authMode === 'signin' ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
+                  </button>
+                </div>
+
+                {/* Divider */}
+                <div className="relative my-6">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-slate-600"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-4 bg-slate-800 text-slate-400">Or continue with</span>
+                  </div>
+                </div>
+
+                {/* Google Sign In */}
                 <button
                   onClick={signInWithGoogle}
                   onTouchEnd={(e) => {
@@ -2141,7 +2264,7 @@ const CojiUniverse = () => {
                       d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                     />
                   </svg>
-                  <span className="text-sm md:text-base">Sign in with Google</span>
+                  <span className="text-sm md:text-base">Google</span>
                 </button>
 
                 <div className="mt-5 md:mt-6 text-center">
