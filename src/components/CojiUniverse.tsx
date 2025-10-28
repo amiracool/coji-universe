@@ -953,6 +953,13 @@ const CojiUniverse = () => {
     };
   }, []);
 
+  // Auto-fetch calendar events when calendar tab is active
+  useEffect(() => {
+    if (activeTab === 'calendar' && user?.app_metadata?.provider === 'google' && calendarEvents.length === 0) {
+      fetchCalendarEvents();
+    }
+  }, [activeTab, user]);
+
   // --- Journal helpers ---
   const journalQuestions = [
     // Sample prompts (expand to 365 as you like). The index is used to allocate a question each day.
@@ -2225,7 +2232,11 @@ const CojiUniverse = () => {
                 <img src="/coji- logo.png" alt="Coji" className="w-28 h-28 object-contain" />
               </div>
               <h1 className="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-fuchsia-400 to-teal-300 pb-2">
-                Welcome to Coji Universe
+                {user ? (
+                  <>Welcome back, {user.email?.split('@')[0] || user.user_metadata?.name || 'friend'} {"\u{1F49C}"}</>
+                ) : (
+                  'Welcome to Coji Universe'
+                )}
               </h1>
               <p className="text-xl text-slate-300 mb-3 max-w-2xl mx-auto">
                 Your all-in-one neurodivergent life management hub {"\u{1F49C}"}
@@ -2234,21 +2245,23 @@ const CojiUniverse = () => {
                 Helping you make sense of chaos: plan life, not burnout
               </p>
 
-              <div className="flex gap-4 justify-center mb-12">
-                <button
-                  onClick={() => setActiveTab("login")}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    setActiveTab("login");
-                  }}
-                  className="relative bg-gradient-to-br from-teal-400 via-fuchsia-400 to-teal-500 hover:from-teal-500 hover:via-fuchsia-500 hover:to-teal-600 px-12 py-5 rounded-2xl font-bold text-xl text-white transition-all shadow-2xl hover:shadow-fuchsia-500/50 hover:scale-105 cursor-pointer touch-manipulation"
-                  style={{ WebkitTapHighlightColor: 'transparent' }}
-                >
-                  <span className="relative z-10 pointer-events-none">
-                    Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
-                  </span>
-                </button>
-              </div>
+              {!user && (
+                <div className="flex gap-4 justify-center mb-12">
+                  <button
+                    onClick={() => setActiveTab("login")}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      setActiveTab("login");
+                    }}
+                    className="relative bg-gradient-to-br from-teal-400 via-fuchsia-400 to-teal-500 hover:from-teal-500 hover:via-fuchsia-500 hover:to-teal-600 px-12 py-5 rounded-2xl font-bold text-xl text-white transition-all shadow-2xl hover:shadow-fuchsia-500/50 hover:scale-105 cursor-pointer touch-manipulation"
+                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                  >
+                    <span className="relative z-10 pointer-events-none">
+                      Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
+                    </span>
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Feature Icons Grid - 3 columns on mobile, 4 on tablet+  */}
@@ -4121,8 +4134,8 @@ const CojiUniverse = () => {
 
         {activeTab === "analysis" && (
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-teal-300">Analysis</h2>
-            <p className="text-slate-400 mb-8">Quick insights about when you have the most energy, sleep patterns, pain peaks, and happiest times of day.</p>
+            <h2 className="text-3xl font-bold mb-6 text-teal-300">Analysis & Insights {"\u{1F4CA}"}</h2>
+            <p className="text-slate-400 mb-8">Quick insights about when you have the most energy and your busiest days of the week.</p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
@@ -4133,93 +4146,13 @@ const CojiUniverse = () => {
                   <div className="text-xs text-slate-300">
                     <div className="flex justify-between mb-1">
                       <span>Peak Energy:</span>
-                      <span className="text-teal-300 font-semibold">10:00 AM (85%)</span>
+                      <span className="text-teal-300 font-semibold">10:00 (85%)</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Lowest Energy:</span>
-                      <span className="text-amber-300 font-semibold">3:00 PM (35%)</span>
+                      <span className="text-amber-300 font-semibold">15:00 (35%)</span>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Sleep Patterns (Last 14 Days)</h3>
-                <SleepSparkline series={recentSleepSeries(14)} />
-                {/* Mock Data Summary */}
-                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                  <div className="text-xs text-slate-300">
-                    <div className="flex justify-between mb-1">
-                      <span>Average Sleep:</span>
-                      <span className="text-fuchsia-300 font-semibold">6.8 hours</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Average Bedtime:</span>
-                      <span className="text-fuchsia-300 font-semibold">11:45 PM</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-teal-300 mb-3">Pain Score by Time of Day</h3>
-                <EnergyByHourChart data={averageByHour("pain")} colorStart="#F472B6" colorEnd="#EF4444" />
-                {/* Mock Data Summary */}
-                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                  <div className="text-xs text-slate-300">
-                    <div className="flex justify-between mb-1">
-                      <span>Highest Pain:</span>
-                      <span className="text-red-400 font-semibold">Evening (7/10)</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Lowest Pain:</span>
-                      <span className="text-teal-300 font-semibold">Morning (3/10)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Happiest Time of Day</h3>
-                <BarChartCounts counts={happiestByHour()} />
-                {/* Mock Data Summary */}
-                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                  <div className="text-xs text-slate-300">
-                    <div className="flex justify-between">
-                      <span>Most positive mood:</span>
-                      <span className="text-fuchsia-300 font-semibold">9:00 AM - 11:00 AM</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* New Analysis Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              {/* Lowest Mood Times */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-amber-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-amber-300 mb-3">Lowest Mood Times</h3>
-                <div className="space-y-3">
-                  {[
-                    { time: '2:00 PM - 4:00 PM', mood: 'Low', percentage: 45, color: 'bg-red-500' },
-                    { time: '8:00 PM - 10:00 PM', mood: 'Okay', percentage: 35, color: 'bg-amber-500' },
-                    { time: '6:00 AM - 8:00 AM', mood: 'Low', percentage: 30, color: 'bg-red-400' },
-                  ].map((item, i) => (
-                    <div key={i}>
-                      <div className="flex justify-between text-xs mb-1">
-                        <span>{item.time}</span>
-                        <span className="text-amber-300">{item.mood} mood {item.percentage}% of time</span>
-                      </div>
-                      <div className="w-full bg-slate-600 rounded-full h-2">
-                        <div className={`${item.color} h-2 rounded-full`} style={{ width: `${item.percentage}%` }}></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg text-xs text-slate-300">
-                  💡 Tip: Consider scheduling important tasks outside these times
                 </div>
               </div>
 
@@ -4249,78 +4182,6 @@ const CojiUniverse = () => {
                 </div>
                 <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg text-xs text-slate-300">
                   🏆 Busiest: Monday | 🌴 Most relaxed: Sunday
-                </div>
-              </div>
-            </div>
-
-            {/* Additional Insights */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Most Productive Hours */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-fuchsia-300 mb-3">Most Productive Hours</h3>
-                <div className="grid grid-cols-4 gap-2 mb-4">
-                  {Array.from({ length: 24 }, (_, i) => {
-                    const hour = i;
-                    const isProductive = hour >= 9 && hour <= 11;
-                    const isMedium = (hour >= 14 && hour <= 16) || (hour >= 19 && hour <= 21);
-                    return (
-                      <div
-                        key={i}
-                        className={`h-12 rounded flex flex-col items-center justify-center text-xs ${
-                          isProductive ? 'bg-teal-500' :
-                          isMedium ? 'bg-amber-500 bg-opacity-40' :
-                          'bg-slate-600 bg-opacity-20'
-                        }`}
-                      >
-                        <span className="text-[10px]">{hour}:00</span>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="flex gap-3 text-xs">
-                  <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-teal-500 rounded"></div>
-                    <span>High</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-amber-500 bg-opacity-40 rounded"></div>
-                    <span>Medium</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-slate-600 bg-opacity-20 rounded"></div>
-                    <span>Low</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Weekly Summary Stats */}
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">
-                <h3 className="text-lg font-bold text-teal-300 mb-3">Weekly Summary</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-teal-300">68%</div>
-                    <div className="text-xs text-slate-400">Average Mood</div>
-                  </div>
-                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-fuchsia-300">42</div>
-                    <div className="text-xs text-slate-400">Tasks Completed</div>
-                  </div>
-                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-amber-300">6.8h</div>
-                    <div className="text-xs text-slate-400">Avg Sleep</div>
-                  </div>
-                  <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-teal-300">5/7</div>
-                    <div className="text-xs text-slate-400">Exercise Days</div>
-                  </div>
-                </div>
-                <div className="mt-4 p-3 bg-slate-700 bg-opacity-30 rounded-lg">
-                  <div className="text-xs text-slate-300 mb-2 font-semibold">Trends this week:</div>
-                  <div className="text-xs text-slate-400 space-y-1">
-                    <div>↗️ Mood improving (+12%)</div>
-                    <div>↘️ Sleep slightly down (-0.3h)</div>
-                    <div>→ Energy levels stable</div>
-                  </div>
                 </div>
               </div>
             </div>
