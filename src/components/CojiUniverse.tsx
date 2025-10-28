@@ -960,6 +960,13 @@ const CojiUniverse = () => {
     }
   }, [activeTab, user]);
 
+  // Auto-redirect logged-in users from landing page to Energy Management
+  useEffect(() => {
+    if (user && activeTab === 'landing') {
+      setActiveTab('dashboard');
+    }
+  }, [user]);
+
   // --- Journal helpers ---
   const journalQuestions = [
     // Sample prompts (expand to 365 as you like). The index is used to allocate a question each day.
