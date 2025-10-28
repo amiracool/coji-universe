@@ -554,6 +554,37 @@ const CojiUniverse = () => {
     }
   };
 
+  const importCalendarEventToTask = async (event: any) => {
+    if (!user) return;
+
+    try {
+      // Extract event date
+      const eventDate = event.start?.dateTime
+        ? new Date(event.start.dateTime).toISOString().split('T')[0]
+        : event.start?.date
+        ? event.start.date
+        : new Date().toISOString().split('T')[0];
+
+      // Default energy to 3 (medium)
+      const energyRequired = 3;
+
+      await supabase.from("tasks").insert({
+        user_id: user?.id,
+        title: event.summary || 'Untitled Event',
+        energy_required: energyRequired,
+        date: eventDate,
+        completed: false,
+        eisenpowered: false,
+      });
+
+      alert('Event imported to Today\'s Tasks! ✅');
+      loadData();
+    } catch (error) {
+      console.error('Error importing event to tasks:', error);
+      alert('Failed to import event. Please try again.');
+    }
+  };
+
   const saveTracking = async () => {
     const today = new Date().toISOString().split("T")[0];
 
@@ -610,14 +641,19 @@ const CojiUniverse = () => {
       return; // Don't add task yet - wait for user decision
     }
 
-    await supabase.from("tasks").insert({
+    const { data, error } = await supabase.from("tasks").insert({
       user_id: user?.id,
       title: newTaskTitle,
       energy_required: newTaskEnergy,
       date: newTaskDate,
       completed: false,
       eisenpowered: false,
-    });
+    }).select();
+
+    // Automatically sync to Google Calendar if connected
+    if (!error && data && data.length > 0 && user?.app_metadata?.provider === 'google') {
+      await addTaskToCalendar(data[0]);
+    }
 
     setNewTaskTitle("");
     setNewTaskEnergy(3);
@@ -1947,7 +1983,18 @@ const CojiUniverse = () => {
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.urgentImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
-                      <span className="text-sm text-white flex-1">{task}</span>
+                      <input
+                        type="text"
+                        value={task}
+                        onChange={(e) => {
+                          setEisenpowerTasks(prev => ({
+                            ...prev,
+                            urgentImportant: prev.urgentImportant.map((t, i) => i === idx ? e.target.value : t)
+                          }));
+                        }}
+                        className="text-sm text-white flex-1 bg-transparent border-none outline-none focus:bg-slate-700 focus:bg-opacity-50 px-2 py-1 rounded"
+                        placeholder="Edit task..."
+                      />
                       <button
                         onClick={() => {
                           setEisenpowerTasks(prev => ({
@@ -1955,7 +2002,7 @@ const CojiUniverse = () => {
                             urgentImportant: prev.urgentImportant.filter((_, i) => i !== idx)
                           }));
                         }}
-                        className="text-red-400 hover:text-red-300 ml-2 text-lg"
+                        className="text-red-400 hover:text-red-300 ml-2 text-lg flex-shrink-0"
                       >
                         ×
                       </button>
@@ -1992,7 +2039,18 @@ const CojiUniverse = () => {
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.notUrgentImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
-                      <span className="text-sm text-white flex-1">{task}</span>
+                      <input
+                        type="text"
+                        value={task}
+                        onChange={(e) => {
+                          setEisenpowerTasks(prev => ({
+                            ...prev,
+                            notUrgentImportant: prev.notUrgentImportant.map((t, i) => i === idx ? e.target.value : t)
+                          }));
+                        }}
+                        className="text-sm text-white flex-1 bg-transparent border-none outline-none focus:bg-slate-700 focus:bg-opacity-50 px-2 py-1 rounded"
+                        placeholder="Edit task..."
+                      />
                       <button
                         onClick={() => {
                           setEisenpowerTasks(prev => ({
@@ -2000,7 +2058,7 @@ const CojiUniverse = () => {
                             notUrgentImportant: prev.notUrgentImportant.filter((_, i) => i !== idx)
                           }));
                         }}
-                        className="text-amber-400 hover:text-amber-300 ml-2 text-lg"
+                        className="text-amber-400 hover:text-amber-300 ml-2 text-lg flex-shrink-0"
                       >
                         ×
                       </button>
@@ -2037,7 +2095,18 @@ const CojiUniverse = () => {
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.urgentNotImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
-                      <span className="text-sm text-white flex-1">{task}</span>
+                      <input
+                        type="text"
+                        value={task}
+                        onChange={(e) => {
+                          setEisenpowerTasks(prev => ({
+                            ...prev,
+                            urgentNotImportant: prev.urgentNotImportant.map((t, i) => i === idx ? e.target.value : t)
+                          }));
+                        }}
+                        className="text-sm text-white flex-1 bg-transparent border-none outline-none focus:bg-slate-700 focus:bg-opacity-50 px-2 py-1 rounded"
+                        placeholder="Edit task..."
+                      />
                       <button
                         onClick={() => {
                           setEisenpowerTasks(prev => ({
@@ -2045,7 +2114,7 @@ const CojiUniverse = () => {
                             urgentNotImportant: prev.urgentNotImportant.filter((_, i) => i !== idx)
                           }));
                         }}
-                        className="text-blue-400 hover:text-blue-300 ml-2 text-lg"
+                        className="text-blue-400 hover:text-blue-300 ml-2 text-lg flex-shrink-0"
                       >
                         ×
                       </button>
@@ -2082,7 +2151,18 @@ const CojiUniverse = () => {
                 <div className="space-y-2 max-h-48 overflow-y-auto">
                   {eisenhowerTasks.notUrgentNotImportant.map((task, idx) => (
                     <div key={idx} className="bg-slate-800 bg-opacity-50 p-3 rounded-lg flex justify-between items-start">
-                      <span className="text-sm text-white flex-1">{task}</span>
+                      <input
+                        type="text"
+                        value={task}
+                        onChange={(e) => {
+                          setEisenpowerTasks(prev => ({
+                            ...prev,
+                            notUrgentNotImportant: prev.notUrgentNotImportant.map((t, i) => i === idx ? e.target.value : t)
+                          }));
+                        }}
+                        className="text-sm text-white flex-1 bg-transparent border-none outline-none focus:bg-slate-700 focus:bg-opacity-50 px-2 py-1 rounded"
+                        placeholder="Edit task..."
+                      />
                       <button
                         onClick={() => {
                           setEisenpowerTasks(prev => ({
@@ -2090,7 +2170,7 @@ const CojiUniverse = () => {
                             notUrgentNotImportant: prev.notUrgentNotImportant.filter((_, i) => i !== idx)
                           }));
                         }}
-                        className="text-slate-400 hover:text-slate-300 ml-2 text-lg"
+                        className="text-slate-400 hover:text-slate-300 ml-2 text-lg flex-shrink-0"
                       >
                         ×
                       </button>
@@ -2767,14 +2847,14 @@ const CojiUniverse = () => {
                       key={event.id}
                       className="bg-slate-700 bg-opacity-50 p-4 rounded-lg border border-teal-500 border-opacity-20"
                     >
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
                           <h5 className="font-medium text-white mb-1">
                             {event.summary || 'Untitled Event'}
                           </h5>
                           <p className="text-sm text-slate-400">
                             {event.start?.dateTime
-                              ? new Date(event.start.dateTime).toLocaleString('en-US', {
+                              ? new Date(event.start.dateTime).toLocaleString('en-GB', {
                                   weekday: 'short',
                                   month: 'short',
                                   day: 'numeric',
@@ -2782,7 +2862,7 @@ const CojiUniverse = () => {
                                   minute: '2-digit',
                                 })
                               : event.start?.date
-                              ? new Date(event.start.date).toLocaleDateString('en-US', {
+                              ? new Date(event.start.date).toLocaleDateString('en-GB', {
                                   weekday: 'short',
                                   month: 'short',
                                   day: 'numeric',
@@ -2795,16 +2875,25 @@ const CojiUniverse = () => {
                             </p>
                           )}
                         </div>
-                        {event.htmlLink && (
-                          <a
-                            href={event.htmlLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-teal-400 hover:text-teal-300 text-sm"
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => importCalendarEventToTask(event)}
+                            className="bg-teal-500 hover:bg-teal-600 px-3 py-1.5 rounded text-xs font-medium transition-colors whitespace-nowrap"
+                            title="Import to Today's Tasks"
                           >
-                            View in Google
-                          </a>
-                        )}
+                            Import to Tasks
+                          </button>
+                          {event.htmlLink && (
+                            <a
+                              href={event.htmlLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-teal-400 hover:text-teal-300 text-xs text-center"
+                            >
+                              View in Google
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}
