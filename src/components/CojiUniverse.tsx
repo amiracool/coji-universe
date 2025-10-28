@@ -29,6 +29,7 @@ import {
   Menu,
   X,
   LogOut,
+  Grid3x3,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import FeatureIcon from "@/components/FeatureIcon";
@@ -1472,10 +1473,17 @@ const CojiUniverse = () => {
               </h1>
             </button>
             <div className="flex items-center gap-4">
-              {activeTab !== "landing" && (
+              {activeTab !== "landing" && activeTab !== "login" && (
                 <>
                   {getBatteryIcon(batteryLevel)}
                   <span className="text-sm font-medium">{batteryLevel}/12</span>
+                  <button
+                    onClick={() => setShowEisenpowerMatrix(true)}
+                    className="p-2 hover:bg-amber-500 hover:bg-opacity-20 rounded-lg transition-colors"
+                    title="Open Eisenpower Matrix"
+                  >
+                    <Grid3x3 size={20} className="text-amber-400" />
+                  </button>
                 </>
               )}
               <button
@@ -2310,7 +2318,7 @@ const CojiUniverse = () => {
                       Battery level {"\u{1F50B}"}
                     </h3>
                     <p className="text-sm text-slate-400">
-                      Let's check in before we start
+                      How charged do you feel?
                     </p>
                   </div>
                 </div>
