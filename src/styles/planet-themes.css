@@ -1,0 +1,169 @@
+/* Planet Theme CSS Variables */
+
+/* Base theme (default) */
+:root {
+  --planet-primary: #14b8a6;
+  --planet-secondary: #06b6d4;
+  --planet-accent: #0891b2;
+  --planet-bg: rgba(20, 184, 166, 0.05);
+  --planet-border: rgba(20, 184, 166, 0.2);
+  --planet-glow: rgba(20, 184, 166, 0.1);
+}
+
+/* Autism - Lavender/Cyan/Indigo */
+.planet-autism-support {
+  --planet-primary: #a78bfa;
+  --planet-secondary: #06b6d4;
+  --planet-accent: #6366f1;
+  --planet-bg: rgba(167, 139, 250, 0.05);
+  --planet-border: rgba(167, 139, 250, 0.2);
+  --planet-glow: rgba(167, 139, 250, 0.15);
+}
+
+/* ADHD - Tangerine/Coral/Gold */
+.planet-adhd-support {
+  --planet-primary: #fb923c;
+  --planet-secondary: #f472b6;
+  --planet-accent: #fbbf24;
+  --planet-bg: rgba(251, 146, 60, 0.05);
+  --planet-border: rgba(251, 146, 60, 0.2);
+  --planet-glow: rgba(251, 146, 60, 0.15);
+}
+
+/* Anxiety - Teal/Mint */
+.planet-anxiety-tools {
+  --planet-primary: #14b8a6;
+  --planet-secondary: #5eead4;
+  --planet-accent: #0d9488;
+  --planet-bg: rgba(20, 184, 166, 0.05);
+  --planet-border: rgba(20, 184, 166, 0.2);
+  --planet-glow: rgba(20, 184, 166, 0.15);
+}
+
+/* Depression - Soft Blue/Purple */
+.planet-depression-support {
+  --planet-primary: #818cf8;
+  --planet-secondary: #c4b5fd;
+  --planet-accent: #6366f1;
+  --planet-bg: rgba(129, 140, 248, 0.05);
+  --planet-border: rgba(129, 140, 248, 0.2);
+  --planet-glow: rgba(129, 140, 248, 0.15);
+}
+
+/* Dyspraxia - Warm Orange/Peach */
+.planet-dyspraxia {
+  --planet-primary: #fb923c;
+  --planet-secondary: #fdba74;
+  --planet-accent: #f97316;
+  --planet-bg: rgba(251, 146, 60, 0.05);
+  --planet-border: rgba(251, 146, 60, 0.2);
+  --planet-glow: rgba(251, 146, 60, 0.15);
+}
+
+/* Parenting - Soft Pink/Rose */
+.planet-parenting-hub {
+  --planet-primary: #f472b6;
+  --planet-secondary: #fda4af;
+  --planet-accent: #ec4899;
+  --planet-bg: rgba(244, 114, 182, 0.05);
+  --planet-border: rgba(244, 114, 182, 0.2);
+  --planet-glow: rgba(244, 114, 182, 0.15);
+}
+
+/* Work - Professional Teal */
+.planet-work-wellbeing {
+  --planet-primary: #14b8a6;
+  --planet-secondary: #2dd4bf;
+  --planet-accent: #0d9488;
+  --planet-bg: rgba(20, 184, 166, 0.05);
+  --planet-border: rgba(20, 184, 166, 0.2);
+  --planet-glow: rgba(20, 184, 166, 0.15);
+}
+
+/* Relationships - Warm Pink */
+.planet-relationships {
+  --planet-primary: #f472b6;
+  --planet-secondary: #f9a8d4;
+  --planet-accent: #ec4899;
+  --planet-bg: rgba(244, 114, 182, 0.05);
+  --planet-border: rgba(244, 114, 182, 0.2);
+  --planet-glow: rgba(244, 114, 182, 0.15);
+}
+
+/* Dyslexia/Dyscalculia - Bright Purple */
+.planet-dyslexia-dyscalculia {
+  --planet-primary: #a78bfa;
+  --planet-secondary: #c4b5fd;
+  --planet-accent: #8b5cf6;
+  --planet-bg: rgba(167, 139, 250, 0.05);
+  --planet-border: rgba(167, 139, 250, 0.2);
+  --planet-glow: rgba(167, 139, 250, 0.15);
+}
+
+/* Chronic Illness - Calming Blue */
+.planet-chronic-illness {
+  --planet-primary: #60a5fa;
+  --planet-secondary: #93c5fd;
+  --planet-accent: #3b82f6;
+  --planet-bg: rgba(96, 165, 250, 0.05);
+  --planet-border: rgba(96, 165, 250, 0.2);
+  --planet-glow: rgba(96, 165, 250, 0.15);
+}
+
+/* Time Management - Amber/Yellow */
+.planet-time-management {
+  --planet-primary: #fbbf24;
+  --planet-secondary: #fcd34d;
+  --planet-accent: #f59e0b;
+  --planet-bg: rgba(251, 191, 36, 0.05);
+  --planet-border: rgba(251, 191, 36, 0.2);
+  --planet-glow: rgba(251, 191, 36, 0.15);
+}
+
+/* Memory Tools - Cool Purple */
+.planet-memory-tools {
+  --planet-primary: #a78bfa;
+  --planet-secondary: #c4b5fd;
+  --planet-accent: #8b5cf6;
+  --planet-bg: rgba(167, 139, 250, 0.05);
+  --planet-border: rgba(167, 139, 250, 0.2);
+  --planet-glow: rgba(167, 139, 250, 0.15);
+}
+
+/* Rotating planet animation */
+.planet-orb {
+  will-change: transform;
+  animation: spin 24s linear infinite;
+}
+
+.planet-orb.paused {
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Performance gates */
+@media (prefers-reduced-motion: reduce) {
+  .planet-orb {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .planet-orb {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :root,
+  [class^="planet-"] {
+    --planet-border: rgba(255, 255, 255, 0.5);
+    --planet-bg: rgba(255, 255, 255, 0.1);
+  }
+}

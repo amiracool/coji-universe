@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useRef, useEffect } from 'react';
-import { FixedSizeList as List } from 'react-window';
+import { List, type ListImperativeAPI } from 'react-window';
 
 interface Tip {
   id: string;
@@ -23,11 +23,10 @@ interface VirtualisedTipListProps {
 
 const ITEM_HEIGHT = 140;
 
-const TipRow = React.memo(({ data, index, style }: any) => {
-  const { tips, onTipClick } = data;
+function TipRow({ tips, onTipClick, index, style }: any) {
   const tip = tips[index];
 
-  if (!tip) return null;
+  if (!tip) return <div style={style} />;
 
   return (
     <div style={style} className="px-4 py-2">
@@ -59,9 +58,7 @@ const TipRow = React.memo(({ data, index, style }: any) => {
       </div>
     </div>
   );
-});
-
-TipRow.displayName = 'TipRow';
+}
 
 export default function VirtualisedTipList({
   tips,
@@ -70,7 +67,7 @@ export default function VirtualisedTipList({
   hasMore,
   isLoading
 }: VirtualisedTipListProps) {
-  const listRef = useRef<List>(null);
+  const listRef = useRef<ListImperativeAPI>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -106,15 +103,13 @@ export default function VirtualisedTipList({
   return (
     <div>
       <List
-        ref={listRef}
-        height={Math.min(600, window.innerHeight - 200)}
-        itemCount={tips.length}
-        itemSize={ITEM_HEIGHT}
-        width="100%"
-        itemData={itemData}
-      >
-        {TipRow}
-      </List>
+        listRef={listRef}
+        rowComponent={TipRow}
+        rowCount={tips.length}
+        rowHeight={ITEM_HEIGHT}
+        rowProps={itemData}
+        style={{ height: '600px', width: '100%' }}
+      />
       {hasMore && (
         <div ref={sentinelRef} className="h-10 flex items-center justify-center">
           {isLoading ? (

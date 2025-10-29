@@ -37,6 +37,13 @@ import {
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import FeatureIcon from "@/components/FeatureIcon";
+import PlanetOrb from "@/components/PlanetOrb";
+import PlanetPage from "@/components/PlanetPage";
+import { getPlanetTheme } from "@/lib/planetThemes";
+import { AutismPage } from "@/components/library/AutismPage";
+import { AdhdPage } from "@/components/library/AdhdPage";
+import { AnxietyPage } from "@/components/library/AnxietyPage";
+import { DepressionPage } from "@/components/library/DepressionPage";
 
 interface TrackingData {
   id?: string;
@@ -1793,21 +1800,53 @@ const CojiUniverse = () => {
       {activeTab !== "landing" && (
         <>
           {/* Desktop Navigation - Hidden on Mobile */}
-          <div className="hidden md:block bg-slate-950 bg-opacity-50 border-b border-teal-500 border-opacity-10">
+          <div
+            className="hidden md:block bg-opacity-50 border-b border-opacity-10"
+            style={{
+              backgroundColor: selectedPlanet ? `${getPlanetTheme(selectedPlanet).colours.primary}10` : 'rgba(2, 6, 23, 0.5)',
+              borderColor: selectedPlanet ? getPlanetTheme(selectedPlanet).colours.primary : 'rgb(20, 184, 166)',
+              backdropFilter: 'blur(12px)'
+            }}
+          >
             <div className="max-w-7xl mx-auto px-6">
               <div className="flex items-center justify-between gap-1 overflow-x-auto py-3">
                 <div className="flex items-center gap-1">
                   {tabs.slice(1).map((tab) => {
                     const Icon = tab.icon;
+                    const planetTheme = selectedPlanet ? getPlanetTheme(selectedPlanet) : null;
                     return (
                       <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors text-sm whitespace-nowrap ${
                           activeTab === tab.id
-                            ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg"
-                            : "text-teal-300 hover:bg-teal-500 hover:bg-opacity-10"
+                            ? "text-white shadow-lg"
+                            : "hover:bg-opacity-10"
                         }`}
+                        style={{
+                          background: activeTab === tab.id
+                            ? planetTheme
+                              ? `linear-gradient(to right, ${planetTheme.colours.primary}, ${planetTheme.colours.secondary})`
+                              : 'linear-gradient(to right, rgb(20, 184, 166), rgb(217, 70, 239))'
+                            : 'transparent',
+                          color: activeTab === tab.id
+                            ? '#fff'
+                            : planetTheme
+                              ? planetTheme.colours.primary
+                              : 'rgb(94, 234, 212)'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (activeTab !== tab.id) {
+                            e.currentTarget.style.backgroundColor = planetTheme
+                              ? `${planetTheme.colours.primary}10`
+                              : 'rgba(20, 184, 166, 0.1)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (activeTab !== tab.id) {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                          }
+                        }}
                       >
                         <Icon size={16} />
                         {tab.label}
@@ -1829,14 +1868,38 @@ const CojiUniverse = () => {
           </div>
 
           {/* Mobile Hamburger Menu - Shows only Dashboard, Calendar, Coji Buddy, Library */}
-          <div className="md:hidden bg-slate-950 bg-opacity-50 border-b border-teal-500 border-opacity-10 relative">
+          <div
+            className="md:hidden bg-opacity-50 border-b border-opacity-10 relative"
+            style={{
+              backgroundColor: selectedPlanet ? `${getPlanetTheme(selectedPlanet).colours.primary}10` : 'rgba(2, 6, 23, 0.5)',
+              borderColor: selectedPlanet ? getPlanetTheme(selectedPlanet).colours.primary : 'rgb(20, 184, 166)',
+              backdropFilter: 'blur(12px)'
+            }}
+          >
             <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-              <span className="text-teal-300 font-medium">
+              <span
+                className="font-medium"
+                style={{
+                  color: selectedPlanet ? getPlanetTheme(selectedPlanet).colours.primary : 'rgb(94, 234, 212)'
+                }}
+              >
                 {tabs.find(t => t.id === activeTab)?.label || "Menu"}
               </span>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-teal-300 hover:bg-teal-500 hover:bg-opacity-10 rounded-lg transition-colors"
+                className="p-2 rounded-lg transition-colors"
+                style={{
+                  color: selectedPlanet ? getPlanetTheme(selectedPlanet).colours.primary : 'rgb(94, 234, 212)'
+                }}
+                onMouseEnter={(e) => {
+                  const planetTheme = selectedPlanet ? getPlanetTheme(selectedPlanet) : null;
+                  e.currentTarget.style.backgroundColor = planetTheme
+                    ? `${planetTheme.colours.primary}10`
+                    : 'rgba(20, 184, 166, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -1844,7 +1907,14 @@ const CojiUniverse = () => {
 
             {/* Mobile Menu Dropdown */}
             {isMobileMenuOpen && (
-              <div className="absolute top-full left-0 right-0 bg-slate-900 bg-opacity-98 border-b border-teal-500 border-opacity-20 z-50 shadow-2xl">
+              <div
+                className="absolute top-full left-0 right-0 bg-opacity-98 border-b border-opacity-20 z-50 shadow-2xl"
+                style={{
+                  backgroundColor: selectedPlanet ? `${getPlanetTheme(selectedPlanet).colours.primary}05` : 'rgba(15, 23, 42, 0.98)',
+                  borderColor: selectedPlanet ? getPlanetTheme(selectedPlanet).colours.primary : 'rgb(20, 184, 166)',
+                  backdropFilter: 'blur(16px)'
+                }}
+              >
                 <div className="px-6 py-4 space-y-2">
                   {[
                     { id: "dashboard", icon: Battery, label: "Energy Management" },
@@ -1854,6 +1924,7 @@ const CojiUniverse = () => {
                     { id: "comingsoon", icon: Star, label: "Coming Soon" },
                   ].map((tab) => {
                     const Icon = tab.icon;
+                    const planetTheme = selectedPlanet ? getPlanetTheme(selectedPlanet) : null;
                     return (
                       <button
                         key={tab.id}
@@ -1863,9 +1934,33 @@ const CojiUniverse = () => {
                         }}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors text-base ${
                           activeTab === tab.id
-                            ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg"
-                            : "text-teal-300 hover:bg-teal-500 hover:bg-opacity-10"
+                            ? "text-white shadow-lg"
+                            : ""
                         }`}
+                        style={{
+                          background: activeTab === tab.id
+                            ? planetTheme
+                              ? `linear-gradient(to right, ${planetTheme.colours.primary}, ${planetTheme.colours.secondary})`
+                              : 'linear-gradient(to right, rgb(20, 184, 166), rgb(217, 70, 239))'
+                            : 'transparent',
+                          color: activeTab === tab.id
+                            ? '#fff'
+                            : planetTheme
+                              ? planetTheme.colours.primary
+                              : 'rgb(94, 234, 212)'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (activeTab !== tab.id) {
+                            e.currentTarget.style.backgroundColor = planetTheme
+                              ? `${planetTheme.colours.primary}10`
+                              : 'rgba(20, 184, 166, 0.1)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (activeTab !== tab.id) {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                          }
+                        }}
                       >
                         <Icon size={20} />
                         {tab.label}
@@ -3646,7 +3741,7 @@ const CojiUniverse = () => {
               // Library Home - Grid of Planet Cards
               <>
                 <h2 className="text-3xl font-bold mb-4 text-teal-300">
-                  ND Superpowers Library
+                  Superpowers Library
                 </h2>
                 <p className="text-slate-400 mb-6">
                   Every quirk is a feature, not a bug. Find your strengths & strategies ✨
@@ -3957,290 +4052,378 @@ const CojiUniverse = () => {
                 )}
 
                 {/* Planet Grid - Hidden when searching */}
-                <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ${librarySearch ? 'opacity-50' : ''}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${librarySearch ? 'opacity-50' : ''}`}>
                   <div
                     onClick={() => setSelectedPlanet('adhd-support')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('adhd-support').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('adhd-support').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F3AF}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('adhd-support').emoji}
+                        colour={getPlanetTheme('adhd-support').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('adhd-support').colours.primary }}>
                       ADHD Support
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Body doubling, time blocking, dopamine menus
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('autism-support')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('autism-support').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('autism-support').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F308}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('autism-support').emoji}
+                        colour={getPlanetTheme('autism-support').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('autism-support').colours.primary }}>
                       Autism Support
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Sensory tools, social scripts, stim acceptance
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('anxiety-tools')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('anxiety-tools').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('anxiety-tools').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F630}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('anxiety-tools').emoji}
+                        colour={getPlanetTheme('anxiety-tools').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('anxiety-tools').colours.primary }}>
                       Anxiety Tools
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Grounding, breathing, worry management
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('parenting-hub')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('parenting-hub').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('parenting-hub').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F46A}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('parenting-hub').emoji}
+                        colour={getPlanetTheme('parenting-hub').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('parenting-hub').colours.primary }}>
                       Parenting Hub
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Therapeutic parenting, school support, managing behaviours
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('work-wellbeing')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('work-wellbeing').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('work-wellbeing').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F4BC}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('work-wellbeing').emoji}
+                        colour={getPlanetTheme('work-wellbeing').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('work-wellbeing').colours.primary }}>
                       ND & Work
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Workplace accommodations, interviews, managing work
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('depression-support')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('depression-support').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('depression-support').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F499}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('depression-support').emoji}
+                        colour={getPlanetTheme('depression-support').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('depression-support').colours.primary }}>
                       Depression Support
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       No zero days, minimum baseline
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('relationships')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('relationships').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('relationships').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F491}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('relationships').emoji}
+                        colour={getPlanetTheme('relationships').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('relationships').colours.primary }}>
                       Relationships
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Communication, boundaries, ND relationships
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('dyslexia-dyscalculia')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('dyslexia-dyscalculia').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('dyslexia-dyscalculia').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F4D6}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('dyslexia-dyscalculia').emoji}
+                        colour={getPlanetTheme('dyslexia-dyscalculia').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('dyslexia-dyscalculia').colours.primary }}>
                       Dyslexia & Dyscalculia
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Reading tools, maths support, assistive tech
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('chronic-illness')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('chronic-illness').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('chronic-illness').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F48A}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('chronic-illness').emoji}
+                        colour={getPlanetTheme('chronic-illness').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('chronic-illness').colours.primary }}>
                       Chronic Illness Resources
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Pacing, exercise, physiotherapy, daily management
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('time-management')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('time-management').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('time-management').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{23F0}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('time-management').emoji}
+                        colour={getPlanetTheme('time-management').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('time-management').colours.primary }}>
                       Time Management
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Scheduling, prioritisation, time blocking tools
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('memory-tools')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('memory-tools').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('memory-tools').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('memory-tools').emoji}
+                        colour={getPlanetTheme('memory-tools').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('memory-tools').colours.primary }}>
                       Memory Tools
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Working memory strategies, reminders, recall aids
                     </p>
                   </div>
 
                   <div
                     onClick={() => setSelectedPlanet('dyspraxia')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      borderColor: getPlanetTheme('dyspraxia').colours.primary,
+                      boxShadow: `0 0 20px ${getPlanetTheme('dyspraxia').colours.primary}10`
+                    }}
                   >
-                    <div className="text-4xl mb-3">{"\u{1F3C3}"}</div>
-                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                    <div className="flex justify-center mb-4">
+                      <PlanetOrb
+                        emoji={getPlanetTheme('dyspraxia').emoji}
+                        colour={getPlanetTheme('dyspraxia').colours.primary}
+                        size="small"
+                        showOrbitRing={false}
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('dyspraxia').colours.primary }}>
                       Dyspraxia
                     </h3>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-400 text-center">
                       Motor skills, coordination, movement support
                     </p>
                   </div>
                 </div>
               </>
             ) : (
-              // Planet View - Universe with spinning planet
+              // Planet View - Modular library pages
               (() => {
-                const planet = libraryData?.planets?.find((p: any) => p.slug === selectedPlanet);
-                if (!planet) return null;
-
-                return (
-                  <div>
-                    {/* Back Button */}
+                // Back button component for reuse
+                const BackButton = () => {
+                  const planetTheme = selectedPlanet ? getPlanetTheme(selectedPlanet) : null;
+                  return (
                     <button
                       onClick={() => setSelectedPlanet(null)}
-                      className="mb-6 flex items-center gap-2 text-slate-400 hover:text-teal-300 transition-colors"
+                      className="mb-6 flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg relative z-20"
+                      style={{
+                        background: planetTheme
+                          ? `linear-gradient(135deg, ${planetTheme.colours.primary}25, ${planetTheme.colours.tertiary}20)`
+                          : 'rgba(71, 85, 105, 0.2)',
+                        border: planetTheme
+                          ? `1.5px solid ${planetTheme.colours.primary}50`
+                          : '1.5px solid rgba(148, 163, 184, 0.3)',
+                        color: planetTheme ? planetTheme.colours.primary : '#cbd5e1',
+                        boxShadow: planetTheme
+                          ? `0 4px 12px ${planetTheme.colours.primary}20, 0 0 20px ${planetTheme.colours.tertiary}15`
+                          : '0 4px 12px rgba(0, 0, 0, 0.1)',
+                        backdropFilter: 'blur(8px)'
+                      }}
                     >
                       <ArrowLeft size={20} />
                       Back to Library
                     </button>
+                  );
+                };
 
-                    {/* Planet Header */}
-                    <div className="text-center mb-12">
-                      <div className="relative inline-block mb-6">
-                        {/* Spinning Planet */}
-                        <div
-                          className="w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center text-6xl md:text-7xl"
-                          style={{
-                            background: `radial-gradient(circle at 30% 30%, ${planet.colour}88, ${planet.colour}44, ${planet.colour}22)`,
-                            boxShadow: `0 0 60px ${planet.colour}66, inset -10px -10px 40px rgba(0,0,0,0.3)`,
-                            animation: 'spin 20s linear infinite'
-                          }}
-                        >
-                          {planet.icon}
-                        </div>
-
-                        {/* Orbit ring */}
-                        <div
-                          className="absolute inset-0 rounded-full border-2 opacity-30"
-                          style={{
-                            borderColor: planet.colour,
-                            width: '140%',
-                            height: '140%',
-                            top: '-20%',
-                            left: '-20%'
-                          }}
-                        />
-                      </div>
-
-                      <h2 className="text-4xl font-bold mb-4" style={{ color: planet.colour }}>
-                        {planet.title}
-                      </h2>
-                      <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-                        {planet.description}
-                      </p>
+                // Use new modular library pages for main support planets
+                if (selectedPlanet === 'autism-support') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <AutismPage />
                     </div>
+                  );
+                }
 
-                    {/* Did You Know Section */}
-                    {planet.mindgram?.did_you_know && planet.mindgram.did_you_know.length > 0 && (
-                      <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20" style={{ borderColor: planet.colour }}>
-                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: planet.colour }}>
-                          <Sparkles size={20} />
-                          Did You Know?
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {planet.mindgram.did_you_know.slice(0, 6).map((fact: string, idx: number) => (
-                            <div key={idx} className="bg-slate-700 bg-opacity-40 p-4 rounded-lg text-sm text-slate-300 leading-relaxed">
-                              {fact}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Orbit Tags - Symptoms/Struggles that orbit this planet */}
-                    {planet.orbit_tags && planet.orbit_tags.length > 0 && (
-                      <div className="mb-8">
-                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: planet.colour }}>
-                          <Activity size={20} />
-                          Your Superpowers in Disguise
-                        </h3>
-                        <p className="text-sm text-slate-400 mb-4">
-                          Click any experience to find strategies & strengths 💪
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {planet.orbit_tags.map((tag: string, idx: number) => (
-                            <button
-                              key={idx}
-                              onClick={() => {
-                                setLibrarySearch(tag);
-                                setSelectedPlanet(null); // Go back to main library page to see search results
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                              }}
-                              className="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-700 bg-opacity-50 text-slate-300 border border-opacity-30 hover:border-opacity-80 hover:bg-opacity-70 transition-all cursor-pointer hover:scale-105"
-                              style={{ borderColor: planet.colour }}
-                            >
-                              {tag}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Overlaps Section */}
-                    {planet.mindgram?.overlaps && planet.mindgram.overlaps.length > 0 && (
-                      <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20" style={{ borderColor: planet.colour }}>
-                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: planet.colour }}>
-                          <Users size={20} />
-                          Often Overlaps With
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {planet.mindgram.overlaps.map((overlap: string, idx: number) => (
-                            <div key={idx} className="bg-slate-700 bg-opacity-40 p-3 rounded-lg text-sm text-slate-300">
-                              {overlap}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Back Button at Bottom */}
-                    <div className="mt-12 text-center">
-                      <button
-                        onClick={() => setSelectedPlanet(null)}
-                        className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-3 rounded-xl font-medium transition-colors"
-                      >
-                        Explore More Planets
-                      </button>
+                if (selectedPlanet === 'adhd-support') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <AdhdPage />
                     </div>
-                  </div>
+                  );
+                }
+
+                if (selectedPlanet === 'anxiety-tools') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <AnxietyPage />
+                    </div>
+                  );
+                }
+
+                if (selectedPlanet === 'depression-support') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <DepressionPage />
+                    </div>
+                  );
+                }
+
+                // Fallback to old PlanetPage for other planets
+                const planet = libraryData?.planets?.find((p: any) => p.slug === selectedPlanet);
+                if (!planet) return null;
+
+                return (
+                  <PlanetPage
+                    planetId={selectedPlanet}
+                    planetData={planet}
+                    onBack={() => setSelectedPlanet(null)}
+                    onTagClick={(tag: string) => {
+                      setLibrarySearch(tag);
+                      setSelectedPlanet(null);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  />
                 );
               })()
             )}

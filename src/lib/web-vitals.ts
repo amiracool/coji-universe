@@ -1,4 +1,4 @@
-import { onCLS, onFID, onLCP, onTTFB, onINP } from 'web-vitals';
+import { onCLS, onLCP, onTTFB, onINP } from 'web-vitals';
 
 interface VitalsData {
   name: string;
@@ -42,16 +42,6 @@ export function initWebVitals() {
   onCLS((metric) => {
     sendToAnalytics({
       name: 'CLS',
-      value: metric.value,
-      rating: metric.rating,
-      route,
-      deviceType,
-    });
-  });
-
-  onFID((metric) => {
-    sendToAnalytics({
-      name: 'FID',
       value: metric.value,
       rating: metric.rating,
       route,
