@@ -4653,7 +4653,7 @@ const CojiUniverse = () => {
                     {"\u{1F46A}"} Parenting
                   </p>
                   <p className="text-xs text-slate-400">
-                    EHCP and school strategies
+                    School support and strategies
                   </p>
                 </div>
                 <div className="bg-slate-700 bg-opacity-30 p-4 rounded-lg border border-fuchsia-500 border-opacity-10 hover:border-opacity-30 transition-colors cursor-pointer">
@@ -4805,7 +4805,7 @@ const CojiUniverse = () => {
             <div className="mt-8">
               <h3 className="text-2xl font-bold mb-4 text-teal-300">Clipboard</h3>
               <p className="text-slate-400 mb-6">
-                Save important notes, EHCP reviews, appointments {"\u{1F4CC}"}
+                Save important notes, school reviews, appointments {"\u{1F4CC}"}
               </p>
 
               <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
@@ -4815,7 +4815,7 @@ const CojiUniverse = () => {
                 <div className="space-y-3">
                   <input
                     type="text"
-                    placeholder="Title (e.g., EHCP Annual Review Notes)"
+                    placeholder="Title (e.g., School Annual Review Notes)"
                     className="w-full bg-slate-700 bg-opacity-50 rounded-lg px-4 py-2 text-white placeholder-slate-500 border border-teal-500 border-opacity-20"
                   />
                   <textarea

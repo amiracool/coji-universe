@@ -14,7 +14,8 @@
       "Bash(cat:*)",
       "Bash(python merge_library.py:*)",
       "Bash(python:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []
