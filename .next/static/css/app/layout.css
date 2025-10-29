@@ -2949,6 +2949,14 @@ input[type="range"]::-moz-range-thumb:hover {
     margin-bottom: 0.75rem;
   }
 
+  .sm\:mb-10 {
+    margin-bottom: 2.5rem;
+  }
+
+  .sm\:mb-7 {
+    margin-bottom: 1.75rem;
+  }
+
   .sm\:h-5 {
     height: 1.25rem;
   }
@@ -3299,6 +3307,11 @@ input[type="range"]::-moz-range-thumb:hover {
   .md\:py-3\.5 {
     padding-top: 0.875rem;
     padding-bottom: 0.875rem;
+  }
+
+  .md\:py-2\.5 {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
   }
 
   .md\:text-2xl {
