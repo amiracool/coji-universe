@@ -1,0 +1,1943 @@
+{
+  "library_metadata": {
+    "version": "1.0.0",
+    "total_planets": 12,
+    "british_english": true,
+    "part": "3 of 4",
+    "planets_in_this_file": ["dyslexia-dyscalculia", "chronic-illness", "time-management", "memory-tools"]
+  },
+
+  "tabs": [
+    {
+      "slug": "dyslexia-dyscalculia",
+      "title": "Dyslexia & Dyscalculia",
+      "icon": "📖",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know dyslexia isn't about 'seeing letters backwards' — it's a phonological processing difference?",
+          "Did you know dyslexia affects working memory, not just reading?",
+          "Did you know many dyslexic people have strong visual-spatial, creative, or problem-solving skills?",
+          "Did you know dyscalculia is a maths learning difference, not 'being bad at maths'?",
+          "Did you know dyslexia and dyscalculia often overlap with ADHD, dyspraxia, and autism?",
+          "Did you know assistive technology (text-to-speech, speech-to-text) dramatically improves access?",
+          "Did you know coloured overlays or fonts can reduce visual stress for some dyslexic readers?",
+          "Did you know dyscalculia affects number sense, time perception, and spatial reasoning?",
+          "Did you know dyslexia affects reading speed, not intelligence?",
+          "Did you know many successful people are dyslexic (Richard Branson, Whoopi Goldberg, Keira Knightley)?",
+          "Did you know audiobooks are real reading?",
+          "Did you know multisensory learning (seeing, hearing, touching) helps dyslexic brains?",
+          "Did you know dyscalculia can make telling time, handling money, and estimating difficult?",
+          "Did you know tiredness and stress worsen dyslexia and dyscalculia symptoms?",
+          "Did you know accommodations like extra time aren't 'cheating' — they're access?"
+        ],
+        "overlaps": [
+          "ADHD (working memory, attention)",
+          "Dyspraxia (sequencing, coordination)",
+          "Autism (processing differences)",
+          "Anxiety (reading or maths anxiety)",
+          "Visual processing issues"
+        ]
+      },
+      "orbit_tags": [
+        "Slow reading",
+        "Losing place while reading",
+        "Skipping words or lines",
+        "Re-reading same line",
+        "Letters moving or blurring",
+        "Visual stress",
+        "Tired eyes",
+        "Headaches from reading",
+        "Can't remember what I read",
+        "Comprehension difficulty",
+        "Decoding struggle",
+        "Phonics hard",
+        "Spelling mistakes",
+        "Can't spell consistently",
+        "Writing difficulty",
+        "Slow writing",
+        "Handwriting messy",
+        "Mixing up letters (b/d, p/q)",
+        "Sequencing problems",
+        "Left-right confusion",
+        "Directional confusion",
+        "Working memory issues",
+        "Forgetting instructions",
+        "Processing delay",
+        "Need extra time",
+        "Reading aloud anxiety",
+        "Fear of being asked to read",
+        "Embarrassment",
+        "Avoiding reading tasks",
+        "Maths anxiety",
+        "Number confusion",
+        "Can't do mental maths",
+        "Times tables impossible",
+        "Can't estimate",
+        "Counting on fingers",
+        "Money handling hard",
+        "Making change difficult",
+        "Can't read clocks",
+        "Time telling struggle",
+        "Measurement confusion",
+        "Fractions incomprehensible",
+        "Word problems overwhelming",
+        "Symbol confusion (+, -, ×, ÷)",
+        "Number reversals",
+        "Place value confusion",
+        "Can't memorise formulas",
+        "Test anxiety",
+        "Timed tests panic",
+        "Assistive tech stigma",
+        "Feeling stupid",
+        "Imposter syndrome",
+        "Compensation fatigue",
+        "Masking difficulty",
+        "Audiobook guilt",
+        "Calculator shame",
+        "Accommodations fear"
+      ],
+      "tips": [
+        {
+          "id": "dyslexia_001",
+          "title": "Text-to-Speech Liberation",
+          "summary": "Let your device read to you. Listening to text is real reading. No guilt.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "assistive-tech", "reading", "work", "study"],
+          "energy": "low",
+          "what_happens": "Dyslexia makes decoding text exhausting. Text-to-speech bypasses the decoding struggle, letting you access information without the cognitive cost.",
+          "try_this": [
+            "Use built-in text-to-speech (iOS: Speak Screen, Android: TalkBack, Chrome: Read Aloud extensions)",
+            "Try dedicated apps: Natural Reader, Voice Dream Reader, Speechify",
+            "Adjust speed to what feels comfortable",
+            "Follow along visually if helpful, or just listen",
+            "Use for emails, articles, documents, books"
+          ],
+          "why_it_helps": "You're accessing the content without the decoding barrier. Your brain can focus on comprehension, not decoding.",
+          "variations": [
+            "Pair with audiobooks for literature",
+            "Use text-to-speech for work emails to catch errors",
+            "Listen at faster speeds once comfortable"
+          ],
+          "pitfalls": "Don't guilt yourself for 'not really reading'. Comprehension is what matters.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Listening to text is real reading."
+        },
+        {
+          "id": "dyslexia_002",
+          "title": "Speech-to-Text for Writing",
+          "summary": "Speak your ideas instead of typing. Your brain knows what to say — let technology handle spelling.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "assistive-tech", "writing", "work", "study"],
+          "energy": "low",
+          "what_happens": "Dyslexia makes writing slow and error-prone. Speech-to-text lets you get ideas out without the spelling and typing bottleneck.",
+          "try_this": [
+            "Use voice typing (Google Docs voice typing, iPhone dictation, Dragon software)",
+            "Speak your ideas in full sentences",
+            "Edit afterwards for clarity and errors",
+            "Use punctuation commands ('comma', 'full stop', 'new paragraph')",
+            "Practise until it feels natural"
+          ],
+          "why_it_helps": "You're separating idea generation from transcription. Your ideas can flow without spelling blocking you.",
+          "variations": [
+            "Dictate rough drafts, then edit with text-to-speech",
+            "Use voice notes for brainstorming",
+            "Combine with Grammarly or spellcheck for polishing"
+          ],
+          "pitfalls": "Don't expect perfection on the first pass. Dictation requires editing.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I can speak my ideas instead of typing."
+        },
+        {
+          "id": "dyslexia_003",
+          "title": "Dyslexia-Friendly Fonts",
+          "summary": "Change fonts to OpenDyslexic, Comic Sans, or Arial. Weighted fonts reduce letter confusion.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "visual-stress", "assistive-tech", "reading", "work", "study"],
+          "energy": "medium",
+          "what_happens": "Some fonts make letters easier to distinguish. Dyslexia-friendly fonts have weighted bottoms and unique letter shapes.",
+          "try_this": [
+            "Install OpenDyslexic font (free download)",
+            "Change device or browser fonts to OpenDyslexic, Comic Sans, or Arial",
+            "Increase font size (14pt or larger)",
+            "Use 1.5 or double line spacing",
+            "Experiment to find what reduces visual stress for you"
+          ],
+          "why_it_helps": "Clearer letter shapes reduce decoding effort. Your brain spends less energy distinguishing letters.",
+          "variations": [
+            "Try different fonts (Lexend, Verdana, Calibri)",
+            "Use browser extensions (OpenDyslexic for Chrome)",
+            "Request documents in dyslexia-friendly format"
+          ],
+          "pitfalls": "Don't assume one font works for everyone. Experiment personally.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Font choice affects reading ease."
+        },
+        {
+          "id": "dyslexia_004",
+          "title": "Coloured Overlays or Backgrounds",
+          "summary": "Try reading with coloured overlays (physical or digital). Some dyslexic brains find this reduces visual stress.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "visual-stress", "reading", "study"],
+          "energy": "medium",
+          "what_happens": "Visual stress (Irlen Syndrome) causes text to move, blur, or strain eyes. Coloured overlays or backgrounds can reduce this.",
+          "try_this": [
+            "Try coloured overlays (physical plastic sheets in different colours)",
+            "Use digital alternatives: blue light filters, dark mode, beige/cream backgrounds",
+            "Change background colour in reading apps or documents",
+            "Experiment with different colours (pale yellow, blue, pink, green)",
+            "Notice if it reduces headaches, eye strain, or movement"
+          ],
+          "why_it_helps": "The right colour reduces visual stress, making text more stable and easier to read.",
+          "variations": [
+            "Use tinted glasses (available from optometrists specialising in Irlen)",
+            "Try browser extensions (colour filters, dark reader)",
+            "Adjust screen brightness and contrast"
+          ],
+          "pitfalls": "Don't assume everyone benefits. This helps some dyslexic people, not all.",
+          "context": ["study", "work", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Colour can reduce visual stress."
+        },
+        {
+          "id": "dyslexia_005",
+          "title": "Audiobooks Are Real Reading",
+          "summary": "Audiobooks let you access stories without decoding struggle. It's reading.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "audiobooks", "reading", "home", "study"],
+          "energy": "low",
+          "what_happens": "Reading print can be exhausting or inaccessible for dyslexic people. Audiobooks provide full access to literature without the decoding barrier.",
+          "try_this": [
+            "Use audiobook platforms: Audible, Libby (library app), Speechify, Google Play Books",
+            "Listen while commuting, exercising, cooking, or resting",
+            "Adjust playback speed (slower or faster) to preference",
+            "Follow along with the text if helpful (Whispersync)",
+            "Don't guilt yourself — this is real reading"
+          ],
+          "why_it_helps": "You're accessing stories and information without the exhaustion. Comprehension and enjoyment matter, not method.",
+          "variations": [
+            "Try dramatised audiobooks or full-cast recordings",
+            "Use for academic texts if available",
+            "Pair with note-taking or highlighting in a separate document"
+          ],
+          "pitfalls": "Don't let anyone shame you for audiobooks. Access is what matters.",
+          "context": ["home", "study", "commute"],
+          "resources": [],
+          "copy_to_clipboard": "Audiobooks are real reading."
+        },
+        {
+          "id": "dyslexia_006",
+          "title": "Chunk Text Visually",
+          "summary": "Break large blocks of text into smaller chunks. Use a reading ruler or finger to track.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "reading", "working-memory", "study"],
+          "energy": "low",
+          "what_happens": "Large blocks of text are overwhelming for dyslexic brains. Chunking reduces cognitive load and helps tracking.",
+          "try_this": [
+            "Use a ruler, card, or finger to cover text above or below the line you're reading",
+            "Read one paragraph at a time, then pause",
+            "Use digital tools: Spritz or Reedy (rapid serial visual presentation apps)",
+            "Increase line spacing and margins in documents",
+            "Take breaks between chunks"
+          ],
+          "why_it_helps": "You're reducing visual overwhelm and making tracking easier. Your brain can focus on one section at a time.",
+          "variations": [
+            "Use a reading window (card with a cut-out rectangle)",
+            "Try reading guides or typoscopes (available online)",
+            "Adjust page layout: wider margins, fewer words per line"
+          ],
+          "pitfalls": "Don't force yourself to read large sections. Small chunks are sustainable.",
+          "context": ["study", "work"],
+          "resources": [],
+          "copy_to_clipboard": "Small chunks reduce overwhelm."
+        },
+        {
+          "id": "dyslexia_007",
+          "title": "Spelling Without Shame",
+          "summary": "Use spellcheck, autocorrect, or Grammarly. Spelling doesn't measure intelligence.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "spelling", "assistive-tech", "work", "study"],
+          "energy": "low",
+          "what_happens": "Dyslexia makes consistent spelling nearly impossible. Assistive tech removes the barrier without shame.",
+          "try_this": [
+            "Turn on spellcheck and autocorrect everywhere",
+            "Use Grammarly (free or premium) for writing support",
+            "Use predictive text to finish words",
+            "Don't disable autocorrect out of pride — it's a tool",
+            "Proofread with text-to-speech to catch errors"
+          ],
+          "why_it_helps": "You're compensating for a neurological difference. Spelling accuracy doesn't reflect your intelligence or ideas.",
+          "variations": [
+            "Use word prediction software (Co:Writer, Read&Write)",
+            "Keep a personal dictionary of commonly misspelled words",
+            "Ask someone to proofread important documents"
+          ],
+          "pitfalls": "Don't refuse help out of shame. Assistive tech levels the playing field.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Spelling doesn't measure intelligence."
+        },
+        {
+          "id": "dyslexia_008",
+          "title": "Multisensory Learning",
+          "summary": "Learn by seeing, hearing, and doing. Use videos, audio, movement, and hands-on practice.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "learning-style", "study", "memory"],
+          "energy": "medium",
+          "what_happens": "Dyslexic brains often learn better through multiple senses. Engaging sight, sound, and touch strengthens memory and understanding.",
+          "try_this": [
+            "Watch videos or tutorials instead of reading manuals",
+            "Listen to podcasts or lectures on topics",
+            "Use physical objects (manipulatives, models) to understand concepts",
+            "Draw, doodle, or diagram while learning",
+            "Move or gesture while memorising"
+          ],
+          "why_it_helps": "You're using your brain's strengths. Multisensory input creates stronger neural connections than text alone.",
+          "variations": [
+            "Use colour-coding for organisation",
+            "Create mind maps or visual notes",
+            "Teach someone else to reinforce learning"
+          ],
+          "pitfalls": "Don't force text-only learning. Use what works for your brain.",
+          "context": ["study", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I learn through seeing, hearing, and doing."
+        },
+        {
+          "id": "dyslexia_009",
+          "title": "Extra Time Isn't Cheating",
+          "summary": "Request extra time for tests and tasks. You need it to process, not because you're less capable.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "accommodations", "study", "work"],
+          "energy": "medium",
+          "what_happens": "Dyslexia slows reading and processing speed. Extra time allows you to demonstrate your actual knowledge, not your reading speed.",
+          "try_this": [
+            "Request extra time formally (through disability services, HR, or educational accommodations)",
+            "Use the time for processing, re-reading, or checking work",
+            "Don't rush out of guilt — use what you're entitled to",
+            "Practise using extra time so it feels normal",
+            "Advocate for yourself: 'I need this to show what I know'"
+          ],
+          "why_it_helps": "You're levelling the playing field. Extra time measures knowledge, not decoding speed.",
+          "variations": [
+            "Request other accommodations: quiet rooms, digital formats, oral exams",
+            "Use extra time even if you finish early — check your work",
+            "Know your rights (UK: Equality Act, US: ADA)"
+          ],
+          "pitfalls": "Don't refuse accommodations out of pride. They're access, not advantage.",
+          "context": ["study", "work"],
+          "resources": [],
+          "copy_to_clipboard": "Extra time is access, not cheating."
+        },
+        {
+          "id": "dyslexia_010",
+          "title": "Break Instructions Into Steps",
+          "summary": "Multi-step instructions vanish from dyslexic working memory. Write them down, one step at a time.",
+          "category": "Work & Study",
+          "tags": ["Dyslexia", "working-memory", "executive-dysfunction", "work", "study", "home"],
+          "energy": "low",
+          "what_happens": "Dyslexia affects working memory. Multi-step instructions overwhelm the brain's capacity to hold information.",
+          "try_this": [
+            "When given instructions, ask for them in writing",
+            "Break them into single steps: Step 1, Step 2, Step 3",
+            "Check off each step as you complete it",
+            "Don't rely on memory — externalise everything",
+            "Ask for clarification if steps are unclear"
+          ],
+          "why_it_helps": "You're compensating for working memory limits. Written steps create an external guide.",
+          "variations": [
+            "Use checklists or task apps",
+            "Record voice memos of instructions",
+            "Ask for demonstrations alongside verbal instructions"
+          ],
+          "pitfalls": "Don't pretend you've retained multi-step instructions. Write them down.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "One step at a time. Written down."
+        },
+        {
+          "id": "dyscalculia_001",
+          "title": "Calculator Without Shame",
+          "summary": "Use a calculator for all maths. Number processing is hard for your brain. Tools help.",
+          "category": "Work & Study",
+          "tags": ["Dyscalculia", "assistive-tech", "maths", "work", "home"],
+          "energy": "low",
+          "what_happens": "Dyscalculia makes mental maths and number processing extremely difficult. Calculators bypass this barrier.",
+          "try_this": [
+            "Keep a calculator accessible (phone, physical, computer)",
+            "Use it for all calculations, including 'simple' ones",
+            "Don't apologise or feel ashamed",
+            "Double-check results if you're unsure",
+            "Use calculator apps with history so you can review steps"
+          ],
+          "why_it_helps": "You're compensating for a neurological difference. Calculators ensure accuracy without cognitive strain.",
+          "variations": [
+            "Use talking calculators or large-button calculators",
+            "Try apps designed for dyscalculia (MathTalk, MyScript Calculator)",
+            "Keep a calculator by your bed, in your bag, at your desk"
+          ],
+          "pitfalls": "Don't force mental maths to 'prove' yourself. Use tools without guilt.",
+          "context": ["work", "home", "errands"],
+          "resources": [],
+          "copy_to_clipboard": "Calculators are tools, not cheating."
+        },
+        {
+          "id": "dyscalculia_002",
+          "title": "Digital Clocks Over Analogue",
+          "summary": "Telling time on analogue clocks is hard with dyscalculia. Use digital everywhere.",
+          "category": "Planning & Time",
+          "tags": ["Dyscalculia", "time-management", "assistive-tech", "home", "work"],
+          "energy": "low",
+          "what_happens": "Dyscalculia affects spatial reasoning and number sense, making analogue clocks incredibly difficult to read.",
+          "try_this": [
+            "Use digital clocks and watches exclusively",
+            "Change phone, computer, and home clocks to digital",
+            "Don't guilt yourself for not 'learning' analogue",
+            "Use time apps with visual countdowns if helpful",
+            "Ask for digital time displays in public spaces if needed"
+          ],
+          "why_it_helps": "Digital clocks remove the spatial-processing demand. You can access time without translation.",
+          "variations": [
+            "Use speaking clocks or time-telling apps",
+            "Set alarms instead of checking clocks",
+            "Use visual timers for task management"
+          ],
+          "pitfalls": "Don't force analogue clock practice. It's not essential in the digital age.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "Digital clocks are easier. Use them."
+        },
+        {
+          "id": "dyscalculia_003",
+          "title": "Money Handling Strategies",
+          "summary": "Use card payments, apps, or round numbers. Counting change is hard with dyscalculia.",
+          "category": "Home & Environment",
+          "tags": ["Dyscalculia", "money", "executive-dysfunction", "errands", "home"],
+          "energy": "low",
+          "what_happens": "Dyscalculia makes handling cash, making change, and mental maths around money extremely stressful.",
+          "try_this": [
+            "Use contactless cards or payment apps (Apple Pay, Google Pay)",
+            "Avoid cash transactions when possible",
+            "If using cash, pay with large notes and accept change without checking",
+            "Use banking apps to track spending instead of mental maths",
+            "Ask trusted people to help with financial decisions"
+          ],
+          "why_it_helps": "You're reducing the number-processing demand. Digital payments remove the mental maths barrier.",
+          "variations": [
+            "Pre-budget using apps (YNAB, Monzo)",
+            "Use automatic payments for bills",
+            "Keep a financial 'external brain' (spreadsheet or app)"
+          ],
+          "pitfalls": "Don't force cash handling. Digital tools are reliable and stress-free.",
+          "context": ["errands", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Digital payments reduce maths stress."
+        },
+        {
+          "id": "dyscalculia_004",
+          "title": "Visual Maths Tools",
+          "summary": "Use physical objects, diagrams, or apps to visualise maths problems. Abstract numbers are hard.",
+          "category": "Work & Study",
+          "tags": ["Dyscalculia", "learning-style", "maths", "study"],
+          "energy": "medium",
+          "what_happens": "Dyscalculic brains struggle with abstract number concepts. Visual and tactile tools make maths concrete.",
+          "try_this": [
+            "Use physical manipulatives (blocks, beads, counters) to solve problems",
+            "Draw diagrams or use graph paper",
+            "Use apps with visual representations (Mathway, Photomath)",
+            "Colour-code steps in problem-solving",
+            "Break problems into visual steps"
+          ],
+          "why_it_helps": "You're translating abstract numbers into concrete, visual information your brain can process.",
+          "variations": [
+            "Use number lines or hundred squares",
+            "Try maths apps designed for dyscalculia",
+            "Watch video tutorials with visual demonstrations"
+          ],
+          "pitfalls": "Don't force abstract methods. Visual/tactile is valid and effective.",
+          "context": ["study", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I need to see and touch maths problems."
+        },
+        {
+          "id": "dyscalculia_005",
+          "title": "Number Confusion Workarounds",
+          "summary": "Write numbers clearly, say them aloud, double-check. Reversals and transpositions are common.",
+          "category": "Work & Study",
+          "tags": ["Dyscalculia", "number-processing", "work", "home"],
+          "energy": "low",
+          "what_happens": "Dyscalculia causes number reversals (6/9, 12/21) and transpositions. This leads to errors in maths, phone numbers, addresses, etc.",
+          "try_this": [
+            "Write numbers extra clearly and large",
+            "Say numbers aloud as you write or type them",
+            "Double-check all number entries",
+            "Use voice-to-text for phone numbers or addresses",
+            "Ask someone to verify important numbers"
+          ],
+          "why_it_helps": "You're adding extra checks to catch errors your brain makes automatically. Redundancy prevents mistakes.",
+          "variations": [
+            "Use contact lists instead of dialling manually",
+            "Copy-paste numbers instead of retyping",
+            "Use mnemonic tricks for important numbers"
+          ],
+          "pitfalls": "Don't rush number entry. Slow and accurate beats fast and wrong.",
+          "context": ["work", "home", "errands"],
+          "resources": [],
+          "copy_to_clipboard": "Say numbers aloud. Double-check always."
+        }
+      ]
+    },
+    {
+      "slug": "chronic-illness",
+      "title": "Chronic Illness Resources",
+      "icon": "💊",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know pacing (managing energy) is one of the most effective tools for chronic illness?",
+          "Did you know 'pushing through' often causes post-exertional malaise (PEM) or flare-ups?",
+          "Did you know chronic illness and neurodivergence frequently overlap?",
+          "Did you know rest is productive when you're chronically ill — it's treatment?",
+          "Did you know boom-bust cycles (overdoing it, then crashing) worsen symptoms long-term?",
+          "Did you know many chronic illnesses fluctuate — good days don't mean you're 'cured'?",
+          "Did you know invisible illness is still real illness, even if others can't see it?",
+          "Did you know grieving your pre-illness life is valid and necessary?",
+          "Did you know chronic pain changes the nervous system — it's not 'all in your head'?",
+          "Did you know self-advocacy in healthcare is essential but exhausting?",
+          "Did you know adaptive equipment isn't 'giving up' — it's living well?",
+          "Did you know many people with chronic illness also have ADHD, autism, or PMDD?",
+          "Did you know energy accounting (tracking energy in and out) helps prevent crashes?",
+          "Did you know guilt about resting worsens symptoms — rest without shame is healing?",
+          "Did you know small adaptations (shower stool, grabbers, meal delivery) make huge differences?"
+        ],
+        "overlaps": [
+          "ADHD (executive dysfunction, sensory issues)",
+          "Autism (sensory sensitivities, burnout)",
+          "Depression (fatigue, pain overlap)",
+          "Anxiety (health anxiety, medical trauma)",
+          "PMDD (hormonal symptom fluctuations)",
+          "Fibromyalgia, ME/CFS, EDS, POTS, chronic pain conditions"
+        ]
+      },
+      "orbit_tags": [
+        "Chronic fatigue",
+        "Exhaustion always",
+        "No energy",
+        "Heavy limbs",
+        "Post-exertional malaise (PEM)",
+        "Crash after activity",
+        "Boom-bust cycle",
+        "Overdoing it then crashing",
+        "Chronic pain",
+        "Pain everywhere",
+        "Nerve pain",
+        "Joint pain",
+        "Muscle pain",
+        "Pain flare-ups",
+        "Brain fog",
+        "Memory problems",
+        "Concentration difficulty",
+        "Processing slow",
+        "Sensory sensitivities",
+        "Light sensitivity",
+        "Noise sensitivity",
+        "Temperature regulation",
+        "Always cold or hot",
+        "Dizziness",
+        "Lightheadedness",
+        "Fainting",
+        "POTS symptoms",
+        "Nausea",
+        "Digestive issues",
+        "Sleep problems",
+        "Unrefreshing sleep",
+        "Insomnia from pain",
+        "Medication side effects",
+        "Pill fatigue",
+        "Medical appointments exhausting",
+        "Healthcare trauma",
+        "Not believed by doctors",
+        "Dismissed symptoms",
+        "Diagnostic odyssey",
+        "Losing abilities",
+        "Can't do what I used to",
+        "Grief for old life",
+        "Identity loss",
+        "Isolation",
+        "Housebound",
+        "Bedbound periods",
+        "Mobility issues",
+        "Walking difficulty",
+        "Wheelchair use",
+        "Mobility aids stigma",
+        "Guilt about resting",
+        "Feeling lazy",
+        "Should be doing more",
+        "Others don't understand",
+        "Invisible illness",
+        "Looking fine but not",
+        "Cancelled plans",
+        "Unreliable body",
+        "Can't commit",
+        "Financial stress",
+        "Can't work full-time",
+        "Benefits struggle"
+      ],
+      "tips": [
+        {
+          "id": "chronic_001",
+          "title": "The Spoon Theory",
+          "summary": "You have limited 'spoons' (energy units) daily. Every task costs spoons. Budget carefully.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "energy-pacing", "fatigue", "home"],
+          "energy": "low",
+          "what_happens": "Chronic illness means you start each day with limited energy (spoons). Every activity depletes your supply. Running out causes crashes.",
+          "try_this": [
+            "Visualise your energy as 12 spoons at the start of the day",
+            "Assign spoon costs to activities (shower = 2 spoons, cooking = 3, social event = 5)",
+            "Track what you spend throughout the day",
+            "When you hit zero, stop and rest",
+            "Plan your day to stay within your spoon budget"
+          ],
+          "why_it_helps": "You're making invisible energy limits visible. Budgeting prevents crashes.",
+          "variations": [
+            "Use an app or journal to track spoons",
+            "Share the spoon metaphor with others to explain limits",
+            "Notice if your daily spoon count varies"
+          ],
+          "pitfalls": "Don't borrow tomorrow's spoons. You'll pay with a crash.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "I have limited spoons. I budget carefully."
+        },
+        {
+          "id": "chronic_002",
+          "title": "Pacing: The 50% Rule",
+          "summary": "On good days, only do 50% of what you think you can. Prevent boom-bust cycles.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "energy-pacing", "PEM", "home"],
+          "energy": "low",
+          "what_happens": "Boom-bust cycles happen when you overdo it on good days, then crash for days after. Pacing prevents this by staying below your limit.",
+          "try_this": [
+            "On good days, notice the urge to 'make up for lost time'",
+            "Consciously do only 50% of what you feel capable of",
+            "Stop before you feel tired",
+            "Use the saved energy for tomorrow",
+            "Track whether this reduces crashes"
+          ],
+          "why_it_helps": "You're preventing PEM and crashes. Consistency beats intensity for chronic illness.",
+          "variations": [
+            "Use timers to limit activities (stop after 20 minutes)",
+            "Plan rest breaks between tasks",
+            "Celebrate stopping early as success, not failure"
+          ],
+          "pitfalls": "Don't push to 100% just because you can in the moment. You'll pay later.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "I stop at 50%, even on good days."
+        },
+        {
+          "id": "chronic_003",
+          "title": "Rest Before You're Tired",
+          "summary": "Don't wait until you're exhausted. Rest proactively, before symptoms spike.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "energy-pacing", "rest", "home"],
+          "energy": "low",
+          "what_happens": "Waiting until you're exhausted makes recovery longer. Proactive rest prevents crashes.",
+          "try_this": [
+            "Schedule rest breaks every 30-60 minutes during activity",
+            "Lie down or sit quietly for 10-15 minutes",
+            "Don't wait for exhaustion signals — they come too late",
+            "Rest even if you feel okay",
+            "Think of rest as maintenance, not reward"
+          ],
+          "why_it_helps": "You're preventing energy debt. Small, frequent rest is more effective than one long crash.",
+          "variations": [
+            "Use alarms to remind you to rest",
+            "Rest horizontally if possible (lying down > sitting)",
+            "Close eyes, reduce sensory input during rest"
+          ],
+          "pitfalls": "Don't skip rest because you're 'not tired yet'. Prevention is key.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Rest before I'm tired, not after."
+        },
+        {
+          "id": "chronic_004",
+          "title": "Shower Stool Liberation",
+          "summary": "Sitting while showering saves massive energy. Adaptive equipment isn't defeat — it's smart.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "adaptive-equipment", "self-care", "home"],
+          "energy": "low",
+          "what_happens": "Standing in the shower drains energy and causes dizziness or exhaustion. A shower stool or chair removes this cost.",
+          "try_this": [
+            "Get a shower stool, chair, or bench (cheap on Amazon or medical supply stores)",
+            "Sit while washing — it's safer and less exhausting",
+            "Don't feel ashamed — it's practical",
+            "Notice how much energy you save",
+            "Use saved energy for something else"
+          ],
+          "why_it_helps": "You're conserving energy for things that matter. Adaptive equipment is independence, not defeat.",
+          "variations": [
+            "Use a handheld showerhead for easier reach",
+            "Lower water temperature to reduce dizziness (POTS)",
+            "Keep soap, shampoo within easy reach"
+          ],
+          "pitfalls": "Don't refuse adaptive equipment out of pride. It improves quality of life.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Adaptive equipment is smart, not defeat."
+        },
+        {
+          "id": "chronic_005",
+          "title": "The 'Bare Minimum' Day Plan",
+          "summary": "Identify your absolute essentials. On bad days, only those. Everything else waits.",
+          "category": "Planning & Time",
+          "tags": ["Chronic-Illness", "energy-pacing", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "Chronic illness means many days are survival mode. Knowing your minimum baseline prevents guilt and decision fatigue.",
+          "try_this": [
+            "Write down your bare minimum: take meds, drink water, eat something, rest",
+            "On bad days, only do the minimum",
+            "Everything else is optional",
+            "Don't guilt yourself — minimum is enough",
+            "Return to normal tasks when capacity returns"
+          ],
+          "why_it_helps": "You're protecting your body from further depletion. Minimum baseline prevents spirals.",
+          "variations": [
+            "Keep easy foods accessible for bare minimum days",
+            "Set medication alarms",
+            "Ask someone to check on you if needed"
+          ],
+          "pitfalls": "Don't add 'shoulds' to your minimum. Keep it truly minimal.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Bare minimum is enough on bad days."
+        },
+        {
+          "id": "chronic_006",
+          "title": "Energy Accounting",
+          "summary": "Track energy in (rest, food, sleep) and energy out (activity). Balance the books daily.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "energy-pacing", "tracking", "home"],
+          "energy": "medium",
+          "what_happens": "Chronic illness means energy is a limited resource. Tracking helps you avoid overdrafts (crashes).",
+          "try_this": [
+            "Keep a simple log: energy in (rest, sleep, nourishment) and energy out (activity, social, mental effort)",
+            "Rate each on a scale (1-10)",
+            "If energy out > energy in, you'll crash",
+            "Adjust activities to balance the books",
+            "Review weekly to spot patterns"
+          ],
+          "why_it_helps": "You're making energy management visible and intentional. Data guides better pacing.",
+          "variations": [
+            "Use an app (MyCFS, Visible, HowWeFeel)",
+            "Track symptoms alongside energy to spot triggers",
+            "Share logs with doctors if helpful"
+          ],
+          "pitfalls": "Don't over-complicate. Simple tracking is sustainable.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "I track energy in and out."
+        },
+        {
+          "id": "chronic_007",
+          "title": "The 'Invisible Illness' Script",
+          "summary": "Say: 'I have a chronic illness. I might look fine, but I'm not.' Educate without over-explaining.",
+          "category": "Communication & Social",
+          "tags": ["Chronic-Illness", "advocacy", "invisible-illness", "relationships", "work"],
+          "energy": "medium",
+          "what_happens": "Invisible illness means people assume you're fine. Explaining is exhausting but sometimes necessary.",
+          "try_this": [
+            "Keep a short script ready: 'I have [condition]. It's invisible but real. I need to pace my energy.'",
+            "Don't over-explain or justify",
+            "Share resources if people want to learn more (but don't make it your job)",
+            "Use the spoon metaphor if helpful",
+            "Set boundaries: 'I can't explain right now'"
+          ],
+          "why_it_helps": "You're advocating for yourself without depleting your energy. Clear, brief communication is enough.",
+          "variations": [
+            "Write an email or text to explain once, then refer people to it",
+            "Use visual aids (spoon theory infographic)",
+            "Decide who needs to know and who doesn't"
+          ],
+          "pitfalls": "Don't exhaust yourself educating everyone. Protect your energy.",
+          "context": ["relationships", "work", "social-events"],
+          "resources": [],
+          "copy_to_clipboard": "I look fine, but I'm not."
+        },
+        {
+          "id": "chronic_008",
+          "title": "Meal Simplification",
+          "summary": "Cooking is high-cost. Use meal delivery, ready meals, or ultra-simple recipes. Nutrition > effort.",
+          "category": "Home & Environment",
+          "tags": ["Chronic-Illness", "energy-pacing", "nutrition", "home"],
+          "energy": "low",
+          "what_happens": "Cooking depletes energy fast. Simplifying meals protects energy for other things.",
+          "try_this": [
+            "Use meal delivery services (HelloFresh, pre-made meal delivery, grocery delivery)",
+            "Stock easy foods: ready meals, canned soup, cereal, fruit, crackers",
+            "Cook in bulk on good days and freeze portions",
+            "Use one-pot or slow cooker recipes",
+            "Don't guilt yourself for 'not cooking properly'"
+          ],
+          "why_it_helps": "You're prioritising nutrition without the energy cost. Eating matters more than method.",
+          "variations": [
+            "Ask friends/family to cook for you",
+            "Use a microwave or air fryer for speed",
+            "Keep protein bars or shakes for ultra-low days"
+          ],
+          "pitfalls": "Don't force cooking as 'self-care'. It's a high-energy task.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Easy meals are valid meals."
+        },
+        {
+          "id": "chronic_009",
+          "title": "Cancelling Plans Without Guilt",
+          "summary": "Say: 'I need to cancel. My body isn't cooperating today.' Your health comes first.",
+          "category": "Communication & Social",
+          "tags": ["Chronic-Illness", "boundaries", "self-compassion", "social-events", "relationships"],
+          "energy": "low",
+          "what_happens": "Chronic illness is unpredictable. Cancelling plans is sometimes necessary, but guilt makes it harder.",
+          "try_this": [
+            "Use a clear script: 'I need to cancel. My health isn't cooperating today. I'm sorry.'",
+            "Don't over-explain or justify",
+            "Suggest rescheduling if you want to",
+            "Surround yourself with people who understand",
+            "Release guilt: your body's needs are valid"
+          ],
+          "why_it_helps": "You're honouring your body's limits. People who care will understand.",
+          "variations": [
+            "Send a text instead of calling if that's easier",
+            "Have a friend who can cancel on your behalf if you're too unwell",
+            "Make flexible plans: 'Let's see how I'm doing that day'"
+          ],
+          "pitfalls": "Don't push through out of guilt. You'll pay with a crash.",
+          "context": ["social-events", "relationships"],
+          "resources": [],
+          "copy_to_clipboard": "My health comes first. Cancelling is okay."
+        },
+        {
+          "id": "chronic_010",
+          "title": "Grieving Your Old Life",
+          "summary": "It's okay to mourn what you've lost. Grief is part of chronic illness. Let yourself feel it.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "grief", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "Chronic illness often means losing abilities, identity, plans. Grief is valid and necessary, not self-pity.",
+          "try_this": [
+            "Acknowledge what you've lost: 'I miss being able to X'",
+            "Let yourself feel sad, angry, or frustrated",
+            "Don't force positivity or 'gratitude' before you're ready",
+            "Talk to someone who understands (therapist, support group, trusted friend)",
+            "Grief comes in waves — it's not linear"
+          ],
+          "why_it_helps": "You're processing loss, which makes space for acceptance and adaptation. Grief isn't giving up.",
+          "variations": [
+            "Write about what you miss",
+            "Join a chronic illness support community",
+            "Allow yourself bad days without judgment"
+          ],
+          "pitfalls": "Don't suppress grief to appear 'strong'. Feeling it is strength.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Grief for my old life is valid."
+        },
+        {
+          "id": "chronic_011",
+          "title": "Medical Appointment Prep",
+          "summary": "Write down symptoms, questions, and goals before appointments. Brain fog makes verbal recall hard.",
+          "category": "Planning & Time",
+          "tags": ["Chronic-Illness", "advocacy", "brain-fog", "appointments"],
+          "energy": "medium",
+          "what_happens": "Medical appointments are exhausting and brain fog makes it hard to remember what to say. Preparation ensures you're heard.",
+          "try_this": [
+            "Before appointments, write down: symptoms, questions, medication concerns, what you need",
+            "Bring the list and read from it if needed",
+            "Ask for a copy of notes or record the appointment (with permission)",
+            "Bring someone with you if possible for support and memory",
+            "Don't leave without clarity on next steps"
+          ],
+          "why_it_helps": "You're advocating effectively despite brain fog and fatigue. Preparation ensures your needs are communicated.",
+          "variations": [
+            "Use symptom-tracking apps to show doctors data",
+            "Bring previous test results or records",
+            "Practice what you'll say beforehand"
+          ],
+          "pitfalls": "Don't wing it. Preparation makes appointments more effective.",
+          "context": ["appointments"],
+          "resources": [],
+          "copy_to_clipboard": "I prepare for appointments. Brain fog is real."
+        },
+        {
+          "id": "chronic_012",
+          "title": "Rest Is Productive",
+          "summary": "Rest is treatment for chronic illness. It's not laziness. Your body needs it to function.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "rest", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "Chronic illness makes rest physiologically necessary, not optional. Guilt about resting worsens symptoms.",
+          "try_this": [
+            "Reframe rest as medicine: 'I'm treating my illness by resting'",
+            "Schedule rest like you schedule tasks",
+            "Rest without phone, TV, or stimulation if possible",
+            "Notice how rest improves symptoms",
+            "Defend rest time from others' expectations"
+          ],
+          "why_it_helps": "You're treating rest as the medical necessity it is. Guilt-free rest allows healing.",
+          "variations": [
+            "Use a mantra: 'Rest is productive for my body'",
+            "Track how rest impacts symptoms",
+            "Educate others: 'Rest is part of managing my condition'"
+          ],
+          "pitfalls": "Don't productive-ise rest. Just rest.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Rest is treatment, not laziness."
+        },
+        {
+          "id": "chronic_013",
+          "title": "Mobility Aids Without Shame",
+          "summary": "Wheelchairs, canes, walkers aren't defeat. They're freedom. Use them without guilt.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "adaptive-equipment", "mobility", "errands", "home"],
+          "energy": "low",
+          "what_happens": "Mobility aids conserve energy and reduce pain. Refusing them out of shame limits your life.",
+          "try_this": [
+            "If walking depletes you, consider a wheelchair, rollator, or cane",
+            "Part-time wheelchair use is valid",
+            "Use aids on bad days, not just 'when you really need them'",
+            "Ignore others' judgment — your body, your choice",
+            "Notice how aids increase your freedom and capacity"
+          ],
+          "why_it_helps": "You're conserving energy and reducing pain. Mobility aids are tools for living well.",
+          "variations": [
+            "Decorate aids to make them feel personal",
+            "Educate others: 'This helps me conserve energy'",
+            "Join communities of aid users for support"
+          ],
+          "pitfalls": "Don't wait until you're bedbound. Use aids proactively.",
+          "context": ["errands", "home", "social-events"],
+          "resources": [],
+          "copy_to_clipboard": "Mobility aids are freedom, not defeat."
+        },
+        {
+          "id": "chronic_014",
+          "title": "The 'Good Day' Temptation",
+          "summary": "Good days make you want to do everything. Resist. Pacing applies on good days too.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "energy-pacing", "boom-bust", "home"],
+          "energy": "low",
+          "what_happens": "Good days trigger the urge to catch up on everything. Overdoing it causes crashes that erase the good day.",
+          "try_this": [
+            "On good days, notice the 'catch-up' urge",
+            "Pick one or two meaningful tasks, not ten",
+            "Use the 50% rule: do half of what you could",
+            "Save some capacity for tomorrow",
+            "Celebrate moderation, not maximum output"
+          ],
+          "why_it_helps": "You're sustaining good days instead of burning through them. Consistency beats intensity.",
+          "variations": [
+            "Plan good-day activities in advance (so you don't have to decide in the moment)",
+            "Rest between tasks even on good days",
+            "Check in: 'Am I at 50% yet?'"
+          ],
+          "pitfalls": "Don't go to 100% just because you can. You'll crash.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Good days need pacing too."
+        },
+        {
+          "id": "chronic_015",
+          "title": "Finding Your Baseline",
+          "summary": "Identify your 'baseline' — the activity level you can sustain without crashing. Stay there consistently.",
+          "category": "Body & Energy",
+          "tags": ["Chronic-Illness", "energy-pacing", "tracking", "home"],
+          "energy": "medium",
+          "what_happens": "Your baseline is the amount of activity you can do daily without causing crashes. Finding and maintaining it prevents boom-bust cycles.",
+          "try_this": [
+            "Track activity and symptoms for 2 weeks",
+            "Notice what level of activity you can sustain without crashes",
+            "That's your baseline (it might be very low — that's okay)",
+            "Stay at baseline consistently for several weeks",
+            "Slowly increase only if baseline is stable"
+          ],
+          "why_it_helps": "You're creating a sustainable foundation. Stability allows gradual improvement.",
+          "variations": [
+            "Work with a physiotherapist or occupational therapist",
+            "Use pacing apps to track baseline",
+            "Accept that baseline may fluctuate (PMDD, seasons, illness)"
+          ],
+          "pitfalls": "Don't rush to increase. Stability comes first.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "I honour my baseline."
+        }
+      ]
+    },
+    {
+      "slug": "time-management",
+      "title": "Time Management",
+      "icon": "⏰",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know time blindness means your brain doesn't send time-passing signals?",
+          "Did you know neurodivergent brains often struggle with time estimation?",
+          "Did you know visual timers work better than digital for ADHD brains?",
+          "Did you know transition time (switching tasks) is often underestimated?",
+          "Did you know time management isn't about discipline — it's about external systems?",
+          "Did you know 'just five more minutes' often turns into an hour with ADHD?",
+          "Did you know planning backwards (from deadline) is more effective than forward?",
+          "Did you know urgent vs important is hard to judge with executive dysfunction?",
+          "Did you know neurodivergent people often underestimate task duration by 50%+?",
+          "Did you know buffer time prevents lateness better than rushing?",
+          "Did you know time blocking (scheduling specific times for tasks) reduces decision fatigue?",
+          "Did you know hyperfocus makes hours vanish without awareness?",
+          "Did you know alarms are external time signals your brain needs?",
+          "Did you know routines create time anchors for neurodivergent brains?",
+          "Did you know waiting mode (anxiety before an appointment) wastes hours of productivity?"
+        ],
+        "overlaps": [
+          "ADHD (time blindness, hyperfocus)",
+          "Autism (transition difficulty, routine need)",
+          "Anxiety (waiting mode, anticipatory stress)",
+          "Chronic Illness (energy accounting)",
+          "Depression (task initiation, motivation)"
+        ]
+      },
+      "orbit_tags": [
+        "Always late",
+        "Losing track of time",
+        "Time blindness",
+        "Time disappearing",
+        "Underestimating duration",
+        "Can't tell how long things take",
+        "Five minutes becomes an hour",
+        "Hyperfocus time loss",
+        "Missing appointments",
+        "Forgetting commitments",
+        "Double-booking",
+        "Overcommitting",
+        "Saying yes then regretting",
+        "No time for anything",
+        "Constantly rushed",
+        "Last-minute panic",
+        "Deadline anxiety",
+        "Procrastination",
+        "Waiting mode paralysis",
+        "Can't do anything before appointment",
+        "Transition difficulty",
+        "Switching tasks hard",
+        "Getting stuck in activities",
+        "Can't stop scrolling",
+        "Task paralysis",
+        "Don't know where to start",
+        "Prioritisation impossible",
+        "Everything feels urgent",
+        "Nothing feels urgent",
+        "Planning overwhelm",
+        "Can't estimate time",
+        "Schedules don't stick",
+        "Calendar confusion",
+        "Forgetting what day it is",
+        "Time perception distorted",
+        "Mornings disappear",
+        "Evenings vanish",
+        "Weekends gone in a flash",
+        "No work-life balance",
+        "Overworking",
+        "Undersleeping",
+        "No downtime",
+        "Constant guilt about time",
+        "Should be doing more",
+        "Wasting time",
+        "Productivity shame",
+        "Time slipping away",
+        "Years passing too fast",
+        "Routines don't stick",
+        "Structure collapses",
+        "Executive dysfunction",
+        "Decision fatigue about scheduling",
+        "Too many choices",
+        "Can't commit to plans",
+        "Fear of being tied down",
+        "Need flexibility",
+        "Rigid schedules feel suffocating"
+      ],
+      "tips": [
+        {
+          "id": "time_001",
+          "title": "Time Doubling Rule",
+          "summary": "Whatever time you think a task will take, double it. Your brain underestimates consistently.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-blindness", "planning", "work", "home"],
+          "energy": "low",
+          "what_happens": "ADHD and neurodivergent brains consistently underestimate task duration. This causes lateness, stress, and overcommitment.",
+          "try_this": [
+            "When planning, estimate how long something will take",
+            "Double that number",
+            "Use the doubled time for scheduling",
+            "Track actual time to refine future estimates",
+            "Build in buffer time between tasks"
+          ],
+          "why_it_helps": "You're compensating for systematic underestimation. Realistic timing prevents rushing and lateness.",
+          "variations": [
+            "For chronic underestimators, try tripling",
+            "Time yourself doing routine tasks to build a database",
+            "Use timers to track actual duration vs estimated"
+          ],
+          "pitfalls": "Don't trust your gut estimate. Your brain lies about time.",
+          "context": ["work", "home", "errands"],
+          "resources": [],
+          "copy_to_clipboard": "Double my time estimate. Always."
+        },
+        {
+          "id": "time_002",
+          "title": "Backwards Planning",
+          "summary": "Start with the deadline, work backwards. 'I need to leave at 3pm, so I need to start getting ready at 2:30pm.'",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-management", "planning", "work", "home"],
+          "energy": "medium",
+          "what_happens": "Forward planning (starting from now) doesn't account for time passing. Backwards planning anchors to the deadline.",
+          "try_this": [
+            "Write down the deadline or appointment time",
+            "Work backwards: 'To leave at 3pm, I need to finish this by 2:45pm, start getting ready at 2:30pm'",
+            "Set alarms for each backwards step",
+            "Include transition time and buffer",
+            "Visualise the timeline"
+          ],
+          "why_it_helps": "You're creating time anchors. Backwards planning makes time visible and urgent.",
+          "variations": [
+            "Draw a timeline visually",
+            "Use a countdown timer app",
+            "Set multiple alarms (30 min, 15 min, 5 min warnings)"
+          ],
+          "pitfalls": "Don't forget transition and buffer time. Add them into the backwards plan.",
+          "context": ["work", "home", "appointments"],
+          "resources": [],
+          "copy_to_clipboard": "I plan backwards from deadlines."
+        },
+        {
+          "id": "time_003",
+          "title": "The 'Getting Ready' Buffer",
+          "summary": "Add 30 minutes to your leaving time for unexpected delays. Buffer time prevents lateness.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-blindness", "lateness", "home"],
+          "energy": "low",
+          "what_happens": "Unexpected delays (can't find keys, need the toilet, one more thing) always happen. Buffer time absorbs them.",
+          "try_this": [
+            "Calculate when you need to leave",
+            "Add 30 minutes",
+            "Aim to be ready at the buffered time",
+            "If you're early, you have time to decompress or check your bag",
+            "Use buffer time for transitions, not more tasks"
+          ],
+          "why_it_helps": "You're building in slack for the inevitable. Buffer time eliminates last-minute panic.",
+          "variations": [
+            "Use the buffer to sit quietly before leaving",
+            "If you're consistently early, reduce buffer slightly",
+            "Pair buffer time with a pre-leaving checklist"
+          ],
+          "pitfalls": "Don't fill buffer time with 'one more thing'. Protect it.",
+          "context": ["home", "appointments", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I add 30 minutes buffer to leaving time."
+        },
+        {
+          "id": "time_004",
+          "title": "Time Blocking",
+          "summary": "Assign specific time blocks to tasks in your calendar. 'Study 9-11am, lunch 12-1pm, email 2-3pm.'",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-management", "focus", "work", "study"],
+          "energy": "medium",
+          "what_happens": "Decision fatigue about 'what to do now' wastes time and energy. Time blocking pre-decides your day.",
+          "try_this": [
+            "At the start of the day (or week), assign time blocks to tasks",
+            "Be specific: '9-11am: work on report'",
+            "Block breaks, meals, and rest too",
+            "Follow the schedule without renegotiating in the moment",
+            "Adjust future schedules based on what works"
+          ],
+          "why_it_helps": "You're removing constant decision-making. Time blocks create external structure.",
+          "variations": [
+            "Use colour-coding in your calendar",
+            "Include 'flex blocks' for overflow or rest",
+            "Set alarms for block transitions"
+          ],
+          "pitfalls": "Don't over-schedule. Leave white space.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I time-block my day."
+        },
+        {
+          "id": "time_005",
+          "title": "The 'Waiting Mode' Workaround",
+          "summary": "Appointments cause waiting mode paralysis. Schedule them early, or plan specific tasks before them.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "Anxiety", "waiting-mode", "appointments"],
+          "energy": "low",
+          "what_happens": "Knowing you have an appointment later creates 'waiting mode' — you can't focus on anything else. Time is wasted.",
+          "try_this": [
+            "Schedule appointments as early in the day as possible",
+            "If that's not possible, plan specific, low-cognitive-load tasks before the appointment",
+            "Set alarms so you don't have to track time",
+            "Use the waiting time for small tasks (admin, tidying, self-care)",
+            "Accept that waiting mode is real and plan accordingly"
+          ],
+          "why_it_helps": "You're working with your brain, not against it. Early appointments or planned low-stakes tasks prevent wasted time.",
+          "variations": [
+            "Use waiting mode time for rest or enjoyable activities",
+            "Batch appointments on one day to free up other days",
+            "Set a timer: 'I'll do X for 30 minutes, then get ready'"
+          ],
+          "pitfalls": "Don't fight waiting mode. Plan around it.",
+          "context": ["appointments", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I schedule appointments early or plan around waiting mode."
+        },
+        {
+          "id": "time_006",
+          "title": "Visual Timers Everywhere",
+          "summary": "Use timers that show time shrinking visually (red disc, progress bar). See time, don't just feel it.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-blindness", "visual-timer", "work", "study", "home"],
+          "energy": "low",
+          "what_happens": "Time blindness means you can't sense time passing. Visual timers make time concrete and visible.",
+          "try_this": [
+            "Use a Time Timer app or physical timer",
+            "Place it in your line of sight",
+            "Use for tasks, breaks, transitions",
+            "Pair with alarms for double signal",
+            "Experiment with different visual styles"
+          ],
+          "why_it_helps": "You're externalising time. Seeing it shrink gives your brain the signal it's missing.",
+          "variations": [
+            "Use different colours for different activities",
+            "Try Pomodoro timer apps (visual 25-min blocks)",
+            "Keep multiple timers (desk, kitchen, bedside)"
+          ],
+          "pitfalls": "Don't rely on your internal clock. It doesn't work.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I need to see time, not feel it."
+        },
+        {
+          "id": "time_007",
+          "title": "The 'One Thing' Morning Rule",
+          "summary": "Do only one important task before noon. Anything else is bonus.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "executive-dysfunction", "prioritisation", "work", "home"],
+          "energy": "low",
+          "what_happens": "Trying to do too much creates paralysis. One task creates momentum and feels achievable.",
+          "try_this": [
+            "Choose your most important task the night before",
+            "Do that task first thing (or as soon as possible)",
+            "Everything else is optional",
+            "If you complete it, celebrate",
+            "If you do more, that's a bonus"
+          ],
+          "why_it_helps": "You're reducing overwhelm and building success. One task is better than zero.",
+          "variations": [
+            "Use the 'eat the frog' method (hardest task first)",
+            "Pair your one thing with body doubling or accountability",
+            "Track daily wins to build momentum"
+          ],
+          "pitfalls": "Don't add more 'must-dos'. Keep it to one.",
+          "context": ["work", "home", "study"],
+          "resources": [],
+          "copy_to_clipboard": "One important thing before noon."
+        },
+        {
+          "id": "time_008",
+          "title": "Transition Alarms",
+          "summary": "Set alarms 10 minutes before you need to switch tasks. Your brain needs warning to unstick.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "Autism", "transition-lag", "work", "home"],
+          "energy": "low",
+          "what_happens": "Switching tasks is cognitively expensive. Transition alarms give your brain time to prepare.",
+          "try_this": [
+            "Set alarms 10 minutes before transitions",
+            "Label them clearly ('Switch to next task', 'Leave in 10 mins')",
+            "Use the 10 minutes to mentally prepare, not start something new",
+            "When the alarm goes, do a small transition action (stand up, close tabs)",
+            "Set a second alarm for the actual transition"
+          ],
+          "why_it_helps": "You're giving your brain time to disengage. Warnings make transitions less jarring.",
+          "variations": [
+            "Use different alarm sounds for different types of transitions",
+            "Pair alarms with physical cues (put on shoes, close laptop)",
+            "Ask someone to give you verbal warnings if you live with others"
+          ],
+          "pitfalls": "Don't ignore the warning alarm. That's the most important one.",
+          "context": ["work", "home", "appointments"],
+          "resources": [],
+          "copy_to_clipboard": "I set alarms 10 minutes before transitions."
+        },
+        {
+          "id": "time_009",
+          "title": "The 'No More Tasks After 8pm' Rule",
+          "summary": "Cut off work or tasks at a specific time. Protect evening wind-down time.",
+          "category": "Planning & Time",
+          "tags": ["work-life-balance", "burnout", "rest", "home"],
+          "energy": "low",
+          "what_happens": "Without clear boundaries, work bleeds into evenings, preventing rest and sleep. Hard cut-offs protect downtime.",
+          "try_this": [
+            "Choose a cut-off time (e.g., 8pm)",
+            "After that time, no work, admin, or effortful tasks",
+            "Use evening for rest, pleasure, connection",
+            "Set an alarm for cut-off time",
+            "Defend this boundary fiercely"
+          ],
+          "why_it_helps": "You're protecting rest and preventing burnout. Clear boundaries improve sleep and recovery.",
+          "variations": [
+            "Adjust cut-off time to what works for you",
+            "Use a physical cue (close laptop, change clothes)",
+            "Plan evening activities in advance so you're not tempted to work"
+          ],
+          "pitfalls": "Don't negotiate with yourself at 8pm. The rule stands.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "No tasks after 8pm. Rest time is protected."
+        },
+        {
+          "id": "time_010",
+          "title": "Eisenhower Matrix (Urgent vs Important)",
+          "summary": "Sort tasks into four boxes: urgent+important, important not urgent, urgent not important, neither. Focus on important.",
+          "category": "Planning & Time",
+          "tags": ["prioritisation", "executive-dysfunction", "work", "home"],
+          "energy": "medium",
+          "what_happens": "Executive dysfunction makes prioritisation impossible. The Eisenhower Matrix creates external structure for decisions.",
+          "try_this": [
+            "Draw four boxes: 1) Urgent & Important, 2) Important not Urgent, 3) Urgent not Important, 4) Neither",
+            "Sort your tasks into boxes",
+            "Do box 1 first, schedule box 2, delegate or batch box 3, eliminate box 4",
+            "Review weekly",
+            "Focus energy on box 2 (important not urgent) to prevent fires"
+          ],
+          "why_it_helps": "You're separating urgency from importance. This prevents constant crisis mode.",
+          "variations": [
+            "Use an app (Eisenhower Matrix apps, Notion template)",
+            "Colour-code your calendar by quadrant",
+            "Regularly review: are you living in box 1?"
+          ],
+          "pitfalls": "Don't let everything become urgent. Question urgency assumptions.",
+          "context": ["work", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Urgent isn't always important."
+        },
+        {
+          "id": "time_011",
+          "title": "The 'Leave on Time' Alarm",
+          "summary": "Set an alarm for exactly when you need to leave. No 'just one more thing'.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-blindness", "lateness", "work", "home"],
+          "energy": "low",
+          "what_happens": "'Just one more thing' makes you late. A non-negotiable leaving alarm prevents this.",
+          "try_this": [
+            "Calculate exactly when you need to leave",
+            "Set an alarm labelled 'LEAVE NOW'",
+            "When it goes off, stop immediately",
+            "Don't finish the sentence, email, or task",
+            "Walk out the door"
+          ],
+          "why_it_helps": "You're creating external enforcement. The alarm decides, not your brain.",
+          "variations": [
+            "Use a very loud or annoying alarm",
+            "Pair with a visual cue (keys by the door)",
+            "Ask someone to enforce if you ignore alarms"
+          ],
+          "pitfalls": "Don't negotiate. When the alarm goes, you leave.",
+          "context": ["home", "work", "appointments"],
+          "resources": [],
+          "copy_to_clipboard": "When the alarm goes, I leave. No negotiation."
+        },
+        {
+          "id": "time_012",
+          "title": "Sunday Planning Ritual",
+          "summary": "Spend 15 minutes every Sunday planning the week. Block time, identify priorities, prep meals.",
+          "category": "Planning & Time",
+          "tags": ["planning", "executive-dysfunction", "work", "home"],
+          "energy": "medium",
+          "what_happens": "Winging the week creates constant decisions and stress. Weekly planning front-loads decisions.",
+          "try_this": [
+            "Every Sunday (or your chosen day), sit down for 15 minutes",
+            "Review your calendar: what's coming up?",
+            "Block time for key tasks",
+            "Identify your top 3 priorities for the week",
+            "Prep what you can (meals, outfits, documents)"
+          ],
+          "why_it_helps": "You're removing daily decision-making. Knowing the plan reduces anxiety and overwhelm.",
+          "variations": [
+            "Use a planner, app, or bullet journal",
+            "Include self-care and rest in your plan",
+            "Review last week: what worked, what didn't?"
+          ],
+          "pitfalls": "Don't over-plan. Keep it realistic and flexible.",
+          "context": ["work", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I plan my week every Sunday."
+        },
+        {
+          "id": "time_013",
+          "title": "The 'Just 10 Minutes' Trick",
+          "summary": "Can't start a task? Commit to just 10 minutes. Usually momentum carries you further.",
+          "category": "Focus & Motivation",
+          "tags": ["ADHD", "task-initiation", "procrastination", "work", "home"],
+          "energy": "low",
+          "what_happens": "Task initiation is hard. 10 minutes feels achievable. Starting is the hardest part.",
+          "try_this": [
+            "Set a timer for 10 minutes",
+            "Tell yourself: 'Just 10 minutes, then I can stop guilt-free'",
+            "Start the task",
+            "When the timer goes, check in: do you want to continue or genuinely stop?",
+            "If you stop, you've reduced activation energy for next time"
+          ],
+          "why_it_helps": "You're lowering the barrier to starting. Momentum usually takes over after 10 minutes.",
+          "variations": [
+            "Try 5 minutes if 10 feels too long",
+            "Pair with body doubling",
+            "Use for tasks you're avoiding"
+          ],
+          "pitfalls": "Don't guilt yourself if you stop at 10 minutes. That's success.",
+          "context": ["work", "home", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Just 10 minutes. I can stop after."
+        },
+        {
+          "id": "time_014",
+          "title": "The 'Theme Days' System",
+          "summary": "Assign themes to days: Monday = meetings, Tuesday = deep work, Wednesday = admin. Reduce context-switching.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-management", "work"],
+          "energy": "medium",
+          "what_happens": "Constantly switching between task types is exhausting. Theme days batch similar tasks.",
+          "try_this": [
+            "Assign themes to days of the week (e.g., Monday = meetings, Tuesday = creative work)",
+            "Schedule tasks according to themes",
+            "Protect theme days from off-theme tasks",
+            "Adjust themes based on your work patterns",
+            "Use weekends for rest or personal projects"
+          ],
+          "why_it_helps": "You're reducing context-switching. Your brain can stay in one mode per day.",
+          "variations": [
+            "Use morning/afternoon themes if full days don't work",
+            "Include a 'catch-all' day for miscellaneous tasks",
+            "Communicate your themes to colleagues"
+          ],
+          "pitfalls": "Don't let themes become rigid. Adjust as needed.",
+          "context": ["work"],
+          "resources": [],
+          "copy_to_clipboard": "Each day has a theme. Less switching."
+        },
+        {
+          "id": "time_015",
+          "title": "The 'Time Confetti' Audit",
+          "summary": "Track where small pockets of time go (5 mins scrolling, 10 mins deciding). Reclaim them intentionally.",
+          "category": "Planning & Time",
+          "tags": ["ADHD", "time-awareness", "phone-use", "home", "work"],
+          "energy": "medium",
+          "what_happens": "'Time confetti' is small fragments of time lost to low-value activities. They accumulate.",
+          "try_this": [
+            "For one day, track every time pocket (waiting, scrolling, indecision)",
+            "Notice patterns: where does time leak?",
+            "Decide: which pockets can you reclaim?",
+            "Replace low-value activities with intentional ones (rest, reading, connection)",
+            "Use timers or app limits to prevent leaks"
+          ],
+          "why_it_helps": "You're making invisible time loss visible. Reclaiming confetti adds hours weekly.",
+          "variations": [
+            "Use screen time tracking apps",
+            "Audit weekly or monthly",
+            "Focus on one leak at a time"
+          ],
+          "pitfalls": "Don't judge yourself. Observation first, change second.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I notice where time leaks. I reclaim it."
+        }
+      ]
+    },
+    {
+      "slug": "memory-tools",
+      "title": "Memory Tools",
+      "icon": "🧠",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know working memory is like mental sticky notes — ADHD and dyslexia brains have fewer?",
+          "Did you know stress and fatigue worsen memory significantly?",
+          "Did you know external memory systems (notes, reminders) are more reliable than your brain?",
+          "Did you know memory isn't one thing — working memory, short-term, and long-term are different?",
+          "Did you know ADHD affects working memory, not long-term memory?",
+          "Did you know multisensory learning (visual + auditory + movement) strengthens memory?",
+          "Did you know 'out of sight, out of mind' is a real working memory issue?",
+          "Did you know repetition and spaced retrieval improve long-term memory?",
+          "Did you know chunking (grouping information) reduces memory load?",
+          "Did you know visual memory is often stronger than verbal for neurodivergent people?",
+          "Did you know forgetting isn't a moral failing — it's neurology?",
+          "Did you know prospective memory (remembering to do things in future) is especially hard with ADHD?",
+          "Did you know sleep is essential for memory consolidation?",
+          "Did you know you can't 'just remember' — your brain needs systems?",
+          "Did you know emotional significance strengthens memory (good or bad)?"
+        ],
+        "overlaps": [
+          "ADHD (working memory)",
+          "Dyslexia (verbal memory, sequencing)",
+          "Autism (detail memory, context shifts)",
+          "Chronic Illness (brain fog, fatigue)",
+          "Depression (concentration, encoding)",
+          "Anxiety (overwhelm, intrusive thoughts)"
+        ]
+      },
+      "orbit_tags": [
+        "Forget everything",
+        "Walk into room and forget why",
+        "Losing things constantly",
+        "Can't find keys phone wallet",
+        "Forget what I was saying",
+        "Lose train of thought",
+        "Forget instructions immediately",
+        "Working memory issues",
+        "Can't hold numbers in head",
+        "Forget names instantly",
+        "Face blindness",
+        "Forget appointments",
+        "Miss deadlines",
+        "Forget to reply",
+        "Messages pile up",
+        "Forget what I read",
+        "Forget conversations",
+        "People say I already knew this",
+        "Forget important dates",
+        "Birthdays anniversaries forgotten",
+        "Forget to eat drink water",
+        "Forget medication",
+        "Forget to pay bills",
+        "Forget commitments",
+        "Double-booking",
+        "Forget passwords",
+        "Forget where I parked",
+        "Forget what I bought",
+        "Shopping without list = chaos",
+        "Forget steps in process",
+        "Lose place in tasks",
+        "Forget what day it is",
+        "Time and date confusion",
+        "Forget people's stories",
+        "Repeat myself",
+        "Ask same question twice",
+        "Forget I already told someone",
+        "Memory gaps",
+        "Can't recall recent events",
+        "Brain fog",
+        "Mental blur",
+        "Thoughts slip away",
+        "Tip of tongue constantly",
+        "Word-finding difficulty",
+        "Forget intentions",
+        "Mean to do something then forget",
+        "Object permanence issues",
+        "Out of sight out of mind",
+        "Forget tasks if not written",
+        "Prospective memory failure",
+        "Forget future plans",
+        "Sleep deprivation worsens memory",
+        "Stress kills memory",
+        "Overwhelm erases memory"
+      ],
+      "tips": [
+        {
+          "id": "memory_001",
+          "title": "The 'Immediately Write It Down' Rule",
+          "summary": "The second a thought or task occurs, write it down. Don't trust 'I'll remember'.",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "working-memory", "external-brain", "work", "home"],
+          "energy": "low",
+          "what_happens": "Working memory is unreliable. Thoughts vanish seconds after appearing. Writing down immediately captures them.",
+          "try_this": [
+            "Keep a notepad or phone always accessible",
+            "The instant something occurs to you, stop and write it",
+            "Don't trust 'I'll write it down later' — you won't remember",
+            "Use voice memos if writing is too slow",
+            "Transfer notes to your main system later"
+          ],
+          "why_it_helps": "You're externalising memory immediately. Your brain doesn't have to hold onto information.",
+          "variations": [
+            "Use a smartwatch for quick voice notes",
+            "Keep sticky notes everywhere",
+            "Use a 'brain dump' app (Google Keep, Notion, Apple Notes)"
+          ],
+          "pitfalls": "Don't delay. Write it now or it's gone.",
+          "context": ["work", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Write it down now, not later."
+        },
+        {
+          "id": "memory_002",
+          "title": "Visual Reminders Over Mental Ones",
+          "summary": "Put things where you'll see them. Reminders on doors, sticky notes, objects in your path.",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "object-permanence", "visual-cues", "home", "work"],
+          "energy": "low",
+          "what_happens": "'Out of sight, out of mind' is a working memory issue. Visual cues bypass this.",
+          "try_this": [
+            "Put items you need in your path (keys by door, meds by coffee machine)",
+            "Use sticky notes on doors, mirrors, or screens",
+            "Keep frequently used items visible, not in drawers",
+            "Use clear containers for storage",
+            "Make reminders impossible to miss"
+          ],
+          "why_it_helps": "You're making memory external and visual. You don't have to remember — you see it.",
+          "variations": [
+            "Use colour-coding for urgency",
+            "Take photos of where you put things",
+            "Pin reminders to your phone wallpaper"
+          ],
+          "pitfalls": "Don't hide reminders. They only work if you see them.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "If I can't see it, I'll forget it."
+        },
+        {
+          "id": "memory_003",
+          "title": "Alarm-Based Reminders",
+          "summary": "Set alarms for everything you need to remember. Future-you will thank present-you.",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "prospective-memory", "reminders", "home", "work"],
+          "energy": "low",
+          "what_happens": "Prospective memory (remembering to do future things) is terrible with ADHD. Alarms are external triggers.",
+          "try_this": [
+            "Set alarms for medication, appointments, tasks, leaving times",
+            "Label alarms clearly ('Take meds', 'Leave for dentist')",
+            "Set multiple alarms if needed (warning + action)",
+            "Use different sounds for different types",
+            "Don't dismiss alarms — act immediately"
+          ],
+          "why_it_helps": "You're outsourcing memory to your phone. The alarm remembers so you don't have to.",
+          "variations": [
+            "Use location-based reminders ('When I arrive home, do X')",
+            "Pair alarms with calendar events",
+            "Use voice assistants (Alexa, Siri) for quick alarms"
+          ],
+          "pitfalls": "Don't set so many alarms you ignore them. Be selective.",
+          "context": ["home", "work", "appointments"],
+          "resources": [],
+          "copy_to_clipboard": "Alarms remember for me."
+        },
+        {
+          "id": "memory_004",
+          "title": "The 'One Place' Rule",
+          "summary": "Keep essentials (keys, phone, wallet) in the same place always. Every time. No exceptions.",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "object-permanence", "organisation", "home"],
+          "energy": "low",
+          "what_happens": "Losing things wastes time and energy. Assigning one place creates automatic retrieval.",
+          "try_this": [
+            "Choose one spot for each essential item",
+            "Every time you come home, put items in their spot",
+            "No exceptions, even when tired",
+            "Make the spot visible and accessible",
+            "Use baskets, hooks, or trays"
+          ],
+          "why_it_helps": "You're creating a habit that bypasses memory. The location is automatic.",
+          "variations": [
+            "Use a 'launch pad' by the door for all essentials",
+            "Label spots if helpful",
+            "Add a checklist: 'Keys? Phone? Wallet?'"
+          ],
+          "pitfalls": "Don't vary the spot. Consistency is everything.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Everything has one place. Always."
+        },
+        {
+          "id": "memory_005",
+          "title": "Chunking Information",
+          "summary": "Break information into small chunks (phone numbers: 07700-900-123, not 07700900123).",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "Dyslexia", "working-memory", "study", "work"],
+          "energy": "medium",
+          "what_happens": "Working memory can hold 4-7 chunks. Breaking information into chunks makes it manageable.",
+          "try_this": [
+            "Break long numbers into groups (phone numbers, card numbers)",
+            "Break instructions into single steps",
+            "Use bullet points instead of paragraphs",
+            "Group similar items together",
+            "Chunk by meaning or pattern"
+          ],
+          "why_it_helps": "You're reducing cognitive load. Smaller chunks fit into working memory capacity.",
+          "variations": [
+            "Use acronyms or mnemonics for chunks",
+            "Visualise chunks as images",
+            "Colour-code different chunks"
+          ],
+          "pitfalls": "Don't try to hold unchunked information. Break it first.",
+          "context": ["work", "study", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Small chunks fit in my memory."
+        },
+        {
+          "id": "memory_006",
+          "title": "Spaced Repetition",
+          "summary": "Review information at increasing intervals (1 day, 3 days, 1 week). Builds long-term memory.",
+          "category": "Memory Tools",
+          "tags": ["learning", "memory", "study"],
+          "energy": "medium",
+          "what_happens": "Single exposure doesn't create long-term memory. Spaced repetition strengthens neural pathways.",
+          "try_this": [
+            "After learning something, review it the next day",
+            "Review again 3 days later",
+            "Review again 1 week later",
+            "Use flashcard apps (Anki, Quizlet) with built-in spacing",
+            "Focus on retrieval, not re-reading"
+          ],
+          "why_it_helps": "You're working with how memory forms. Spacing is more effective than cramming.",
+          "variations": [
+            "Use spaced repetition apps",
+            "Test yourself instead of re-reading",
+            "Space out practice for skills too"
+          ],
+          "pitfalls": "Don't cram. Spacing works better even if it feels slower.",
+          "context": ["study"],
+          "resources": [],
+          "copy_to_clipboard": "Spaced repetition builds long-term memory."
+        },
+        {
+          "id": "memory_007",
+          "title": "Visual Memory Hacks",
+          "summary": "Turn information into images, diagrams, or mind maps. Visual memory is stronger.",
+          "category": "Memory Tools",
+          "tags": ["Dyslexia", "ADHD", "visual-memory", "study", "work"],
+          "energy": "medium",
+          "what_happens": "Many neurodivergent people have stronger visual than verbal memory. Using visuals leverages this strength.",
+          "try_this": [
+            "Convert text into diagrams, flowcharts, or mind maps",
+            "Use colour, images, and symbols",
+            "Draw concepts even if you're not 'artistic'",
+            "Use visual note-taking (sketchnoting)",
+            "Create visual associations for facts"
+          ],
+          "why_it_helps": "You're using your brain's strengths. Visual encoding creates stronger memory traces.",
+          "variations": [
+            "Use apps (MindMeister, Miro, Notion)",
+            "Take photos of important information",
+            "Use visual metaphors"
+          ],
+          "pitfalls": "Don't force text-only methods. Use what works for your brain.",
+          "context": ["study", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I remember pictures better than words."
+        },
+        {
+          "id": "memory_008",
+          "title": "The 'Daily Brain Dump'",
+          "summary": "Every evening, write down everything in your head. Clear mental clutter, remember important things.",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "rumination", "external-brain", "home"],
+          "energy": "low",
+          "what_happens": "Trying to hold everything in your head creates overwhelm and forgetting. Dumping it out clears space.",
+          "try_this": [
+            "Every evening (or morning), spend 5 minutes writing everything down",
+            "Tasks, worries, ideas, reminders — everything",
+            "Don't organise yet, just dump",
+            "Review and organise the next day",
+            "Clear your brain before sleep"
+          ],
+          "why_it_helps": "You're clearing working memory. Your brain can rest instead of trying to hold onto everything.",
+          "variations": [
+            "Use voice memos if writing is hard",
+            "Brain dump into a task app",
+            "Do it whenever you feel mentally cluttered"
+          ],
+          "pitfalls": "Don't skip this when you're tired. That's when you need it most.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "I dump everything out of my head daily."
+        },
+        {
+          "id": "memory_009",
+          "title": "Medication Reminder Systems",
+          "summary": "Use pill organisers, alarms, and habit stacking. Forgetting meds is dangerous.",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "prospective-memory", "medication", "home"],
+          "energy": "low",
+          "what_happens": "Forgetting medication has serious consequences. Multiple reminder layers prevent this.",
+          "try_this": [
+            "Use a weekly pill organiser (you can see if you've taken today's dose)",
+            "Set daily alarms labelled 'Take meds'",
+            "Stack medication with an existing habit (with breakfast, brushing teeth)",
+            "Keep meds visible where you'll see them",
+            "Use apps (Medisafe, Round) for reminders"
+          ],
+          "why_it_helps": "You're creating redundancy. Multiple systems catch what one might miss.",
+          "variations": [
+            "Ask someone to remind you",
+            "Leave meds by your coffee/tea",
+            "Use a smart pill bottle that reminds you"
+          ],
+          "pitfalls": "Don't rely on memory alone. Build systems.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "I don't trust memory for medication."
+        },
+        {
+          "id": "memory_010",
+          "title": "The 'Repeat It Back' Technique",
+          "summary": "When given information, repeat it back immediately. 'So you're saying X?'",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "Dyslexia", "working-memory", "work", "home"],
+          "energy": "low",
+          "what_happens": "Repeating information strengthens encoding and confirms understanding.",
+          "try_this": [
+            "When someone gives you information or instructions, repeat it back",
+            "Say: 'Just to confirm, you're saying [X]?'",
+            "This catches misunderstandings immediately",
+            "Also write it down",
+            "Use for important information only (don't overdo it)"
+          ],
+          "why_it_helps": "You're checking understanding and encoding simultaneously. Repetition strengthens memory.",
+          "variations": [
+            "Paraphrase instead of exact repetition",
+            "Ask for written confirmation too",
+            "Use for verbal instructions, appointments, key details"
+          ],
+          "pitfalls": "Don't skip this to save time. Confirming prevents mistakes.",
+          "context": ["work", "home", "appointments"],
+          "resources": [],
+          "copy_to_clipboard": "I repeat information back to encode it."
+        },
+        {
+          "id": "memory_011",
+          "title": "Context Reinstatement",
+          "summary": "Can't remember? Go back to where/when you had the thought. Context triggers memory.",
+          "category": "Memory Tools",
+          "tags": ["memory-retrieval", "ADHD", "home", "work"],
+          "energy": "low",
+          "what_happens": "Memory is context-dependent. Returning to the original context helps retrieval.",
+          "try_this": [
+            "If you forget why you entered a room, go back to where you were",
+            "Recreate the context (what were you thinking about? Doing?)",
+            "Often the memory returns",
+            "Use this for 'tip of tongue' moments too",
+            "Wait a moment — sometimes memory catches up"
+          ],
+          "why_it_helps": "You're giving your brain the cues it needs to retrieve the memory.",
+          "variations": [
+            "Retrace your steps literally",
+            "Ask yourself: 'What was I just doing/thinking?'",
+            "Use location as a memory trigger"
+          ],
+          "pitfalls": "Don't force it. If it doesn't come back, let it go.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I go back to the context to remember."
+        },
+        {
+          "id": "memory_012",
+          "title": "The 'Photo Everything' Method",
+          "summary": "Take photos of information you need later: parking spots, shopping lists, where you put things.",
+          "category": "Memory Tools",
+          "tags": ["ADHD", "visual-memory", "external-brain", "home", "errands"],
+          "energy": "low",
+          "what_happens": "Photos create external visual memory. You can reference them instead of trying to remember.",
+          "try_this": [
+            "Photo where you parked",
+            "Photo the aisle/shelf of items in stores",
+            "Photo whiteboards, notes, or handwritten info",
+            "Photo where you store things at home",
+            "Keep a 'reference' album"
+          ],
+          "why_it_helps": "You're creating a visual external brain. Photos are faster and more reliable than memory.",
+          "variations": [
+            "Use screenshot for digital information",
+            "Add location tags to photos",
+            "Create albums by category (home, work, errands)"
+          ],
+          "pitfalls": "Don't forget to check the photos. They only help if you look.",
+          "context": ["home", "work", "errands"],
+          "resources": [],
+          "copy_to_clipboard": "I photo information instead of memorising."
+        },
+        {
+          "id": "memory_013",
+          "title": "Sleep for Memory Consolidation",
+          "summary": "Memory forms during sleep. Prioritise sleep if you're learning or need to remember.",
+          "category": "Body & Energy",
+          "tags": ["sleep", "memory", "learning", "home"],
+          "energy": "low",
+          "what_happens": "Sleep consolidates memory — it moves information from short-term to long-term storage. Poor sleep worsens memory.",
+          "try_this": [
+            "Prioritise 7-9 hours of sleep, especially when learning",
+            "Don't pull all-nighters — sleep after studying is essential",
+            "Nap after learning if possible (even 20 mins helps)",
+            "Protect sleep quality (dark room, cool temperature, consistent schedule)",
+            "Notice how sleep affects your memory"
+          ],
+          "why_it_helps": "You're supporting the biological process of memory formation. Sleep isn't optional for memory.",
+          "variations": [
+            "Review material before sleep (consolidates overnight)",
+            "Use sleep tracking to optimise",
+            "Address sleep issues (insomnia, apnoea) with a doctor"
+          ],
+          "pitfalls": "Don't sacrifice sleep for productivity. You'll remember less, not more.",
+          "context": ["home", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Sleep builds memory. I prioritise it."
+        },
+        {
+          "id": "memory_014",
+          "title": "The 'Name Association' Trick",
+          "summary": "Repeat someone's name immediately, create a visual association. 'Nice to meet you, Sarah.'",
+          "category": "Memory Tools",
+          "tags": ["social-memory", "name-recall", "ADHD", "work", "social-events"],
+          "energy": "medium",
+          "what_happens": "Names vanish immediately because they're arbitrary. Repetition + association strengthens encoding.",
+          "try_this": [
+            "When introduced, repeat the name immediately: 'Nice to meet you, [Name]'",
+            "Create a visual association (rhyme, image, person you know with that name)",
+            "Use the name again in conversation within 2 minutes",
+            "Write it down if possible",
+            "Don't stress if you forget — ask again"
+          ],
+          "why_it_helps": "You're strengthening encoding at the moment of introduction. Repetition + association = better retention.",
+          "variations": [
+            "Ask for spelling if it helps",
+            "Use name tags or seating charts",
+            "Take a photo with the person (with permission) and label it"
+          ],
+          "pitfalls": "Don't be too hard on yourself. Many people struggle with names.",
+          "context": ["work", "social-events"],
+          "resources": [],
+          "copy_to_clipboard": "I repeat names immediately and create associations."
+        },
+        {
+          "id": "memory_015",
+          "title": "The 'Forgetting Is Okay' Mindset",
+          "summary": "Forgetting is neurology, not failure. Build systems instead of guilting yourself.",
+          "category": "Memory Tools",
+          "tags": ["self-compassion", "ADHD", "Dyslexia", "home"],
+          "energy": "low",
+          "what_happens": "Guilt about forgetting worsens memory (stress impairs encoding). Self-compassion + systems work better.",
+          "try_this": [
+            "When you forget, pause and say: 'My brain works differently. I need systems.'",
+            "Build external systems (notes, alarms, photos) without shame",
+            "Notice when you rely on systems successfully",
+            "Share with others: 'I have memory challenges. I use tools to compensate.'",
+            "Celebrate systems use, not memory"
+          ],
+          "why_it_helps": "You're reducing shame and focusing energy on solutions. Systems work; self-criticism doesn't.",
+          "variations": [
+            "Keep a 'wins' list of times your systems saved you",
+            "Educate others about neurodivergent memory",
+            "Model system use for others who struggle"
+          ],
+          "pitfalls": "Don't blame yourself. Your brain needs support, not judgment.",
+          "context": ["home", "work", "relationships"],
+          "resources": [],
+          "copy_to_clipboard": "Forgetting is neurology. I build systems."
+        }
+      ]
+    }
+  ]
+}

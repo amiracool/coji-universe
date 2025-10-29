@@ -137,5 +137,213 @@ CREATE POLICY "Authenticated users can view beta signups" ON beta_signups
   FOR SELECT
   USING (auth.role() = 'authenticated');
 
+-- Create eisenpower_tasks table for Eisenhower Matrix tasks
+CREATE TABLE IF NOT EXISTS eisenpower_tasks (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  task_text TEXT NOT NULL,
+  energy_required INT NOT NULL DEFAULT 3,
+  quadrant TEXT NOT NULL CHECK (quadrant IN ('urgentImportant', 'urgentNotImportant', 'notUrgentImportant', 'notUrgentNotImportant')),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create health data tables
+CREATE TABLE IF NOT EXISTS menstrual_cycles (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS appointments (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  title TEXT NOT NULL,
+  appointment_date DATE NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS medications (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  name TEXT NOT NULL,
+  time TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS prescription_reminders (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  medication TEXT NOT NULL,
+  days_remaining TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS screening_reminders (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  screening_type TEXT NOT NULL,
+  screening_date DATE NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS pregnancy_tracking (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL UNIQUE,
+  is_pregnant BOOLEAN DEFAULT FALSE,
+  due_date DATE,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS eat_reminders (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  reminder_time TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS activity_tracking (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL,
+  date DATE NOT NULL DEFAULT CURRENT_DATE,
+  calories INT DEFAULT 0,
+  steps INT DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS health_card_preferences (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL UNIQUE,
+  menstrual BOOLEAN DEFAULT TRUE,
+  appointments BOOLEAN DEFAULT TRUE,
+  prescriptions BOOLEAN DEFAULT TRUE,
+  pregnancy BOOLEAN DEFAULT TRUE,
+  activity BOOLEAN DEFAULT TRUE,
+  water BOOLEAN DEFAULT TRUE,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create indexes for health tables
+CREATE INDEX IF NOT EXISTS eisenpower_tasks_user_idx ON eisenpower_tasks(user_id);
+CREATE INDEX IF NOT EXISTS menstrual_cycles_user_idx ON menstrual_cycles(user_id);
+CREATE INDEX IF NOT EXISTS appointments_user_idx ON appointments(user_id);
+CREATE INDEX IF NOT EXISTS medications_user_idx ON medications(user_id);
+CREATE INDEX IF NOT EXISTS prescription_reminders_user_idx ON prescription_reminders(user_id);
+CREATE INDEX IF NOT EXISTS screening_reminders_user_idx ON screening_reminders(user_id);
+CREATE INDEX IF NOT EXISTS eat_reminders_user_idx ON eat_reminders(user_id);
+CREATE INDEX IF NOT EXISTS activity_tracking_user_date_idx ON activity_tracking(user_id, date);
+
+-- Enable Row Level Security for all new tables
+ALTER TABLE eisenpower_tasks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE menstrual_cycles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE appointments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE medications ENABLE ROW LEVEL SECURITY;
+ALTER TABLE prescription_reminders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE screening_reminders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE pregnancy_tracking ENABLE ROW LEVEL SECURITY;
+ALTER TABLE eat_reminders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE activity_tracking ENABLE ROW LEVEL SECURITY;
+ALTER TABLE health_card_preferences ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies for eisenpower_tasks
+CREATE POLICY "Users can view their own eisenpower tasks" ON eisenpower_tasks
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own eisenpower tasks" ON eisenpower_tasks
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own eisenpower tasks" ON eisenpower_tasks
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own eisenpower tasks" ON eisenpower_tasks
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for menstrual_cycles
+CREATE POLICY "Users can view their own cycles" ON menstrual_cycles
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own cycles" ON menstrual_cycles
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own cycles" ON menstrual_cycles
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own cycles" ON menstrual_cycles
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for appointments
+CREATE POLICY "Users can view their own appointments" ON appointments
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own appointments" ON appointments
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own appointments" ON appointments
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own appointments" ON appointments
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for medications
+CREATE POLICY "Users can view their own medications" ON medications
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own medications" ON medications
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own medications" ON medications
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own medications" ON medications
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for prescription_reminders
+CREATE POLICY "Users can view their own prescription reminders" ON prescription_reminders
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own prescription reminders" ON prescription_reminders
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own prescription reminders" ON prescription_reminders
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own prescription reminders" ON prescription_reminders
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for screening_reminders
+CREATE POLICY "Users can view their own screening reminders" ON screening_reminders
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own screening reminders" ON screening_reminders
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own screening reminders" ON screening_reminders
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own screening reminders" ON screening_reminders
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for pregnancy_tracking
+CREATE POLICY "Users can view their own pregnancy tracking" ON pregnancy_tracking
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own pregnancy tracking" ON pregnancy_tracking
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own pregnancy tracking" ON pregnancy_tracking
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own pregnancy tracking" ON pregnancy_tracking
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for eat_reminders
+CREATE POLICY "Users can view their own eat reminders" ON eat_reminders
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own eat reminders" ON eat_reminders
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own eat reminders" ON eat_reminders
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own eat reminders" ON eat_reminders
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for activity_tracking
+CREATE POLICY "Users can view their own activity tracking" ON activity_tracking
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own activity tracking" ON activity_tracking
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own activity tracking" ON activity_tracking
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete their own activity tracking" ON activity_tracking
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- RLS Policies for health_card_preferences
+CREATE POLICY "Users can view their own preferences" ON health_card_preferences
+  FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert their own preferences" ON health_card_preferences
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update their own preferences" ON health_card_preferences
+  FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+
 -- Success message
 SELECT 'Database tables created successfully! 🎉' as message;

@@ -1,0 +1,1947 @@
+{
+  "library_metadata": {
+    "version": "1.0.0",
+    "total_planets": 12,
+    "british_english": true,
+    "part": "2 of 4",
+    "planets_in_this_file": ["parenting-hub", "neurodivergent-work", "depression-support", "relationships"]
+  },
+
+  "tabs": [
+    {
+      "slug": "parenting-hub",
+      "title": "Parenting Hub",
+      "icon": "👪",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know neurodivergent parents often experience more parenting stress due to sensory overload and executive dysfunction?",
+          "Did you know co-regulation (calming yourself to help your child calm) is more effective than demanding children 'calm down'?",
+          "Did you know meltdowns are nervous system overwhelm, not bad behaviour?",
+          "Did you know many neurodivergent children are demand avoidant, meaning pressure triggers resistance?",
+          "Did you know your own dysregulation makes it harder to support your child's regulation?",
+          "Did you know sensory-sensitive children aren't 'fussy' — their nervous systems genuinely process input differently?",
+          "Did you know neurodivergent children often have lagging skills, not bad attitudes?",
+          "Did you know shame-based discipline damages trust and increases dysregulation?",
+          "Did you know lowering demands during high-stress periods prevents burnout for both you and your child?",
+          "Did you know parallel play and independent play are developmentally normal and healthy?",
+          "Did you know routine and predictability are regulating for neurodivergent children?",
+          "Did you know connection before correction builds trust and reduces resistance?",
+          "Did you know accommodations aren't 'giving in' — they're meeting needs?",
+          "Did you know repair after rupture (apologising and reconnecting) models resilience?",
+          "Did you know parenting burnout is real and needs active prevention, not just willpower?"
+        ],
+        "overlaps": [
+          "ADHD (time management, routine struggle)",
+          "Autism (sensory needs, demand avoidance)",
+          "Anxiety (parental and child)",
+          "Chronic Illness (fatigue and capacity)",
+          "Depression (low energy parenting)",
+          "Dyspraxia (motor skills support)"
+        ]
+      },
+      "orbit_tags": [
+        "Bedtime battles",
+        "Morning chaos",
+        "Mealtime struggles",
+        "Picky eating",
+        "Food refusal",
+        "Sensory sensitivities",
+        "Clothing refusal",
+        "Transition meltdowns",
+        "School refusal",
+        "Homework battles",
+        "Sibling conflict",
+        "Aggressive behaviour",
+        "Hitting or biting",
+        "Emotional outbursts",
+        "Meltdowns",
+        "Tantrums vs meltdowns",
+        "Co-regulation",
+        "Demand avoidance",
+        "Can't get them to listen",
+        "Defiance",
+        "Boundary testing",
+        "Screen time battles",
+        "Clinginess",
+        "Separation anxiety",
+        "Big feelings",
+        "Dysregulation",
+        "Can't calm down",
+        "Overstimulation",
+        "Sensory seeking",
+        "Constant movement",
+        "Fidgeting",
+        "Attention-seeking",
+        "Whining",
+        "Complaining",
+        "Difficulty following instructions",
+        "Forgetfulness",
+        "Losing things",
+        "Disorganisation",
+        "Executive function struggles",
+        "Task refusal",
+        "Procrastination",
+        "Hyperfocus on interests",
+        "Rigid thinking",
+        "Change difficulty",
+        "Routine need",
+        "Rituals and repetition",
+        "Social struggles",
+        "Friendship difficulties",
+        "Loneliness",
+        "Parental guilt",
+        "Parenting burnout",
+        "Touched out",
+        "No patience left",
+        "Yelling",
+        "Losing temper",
+        "Inconsistent discipline",
+        "Partner disagreements",
+        "Lack of support",
+        "Isolation"
+      ],
+      "tips": [
+        {
+          "id": "parenting_001",
+          "title": "Co-Regulation First",
+          "summary": "You can't regulate your child if you're dysregulated. Calm yourself first, then help them.",
+          "category": "Parenting",
+          "tags": ["parenting", "emotional-regulation", "co-regulation", "meltdown-prep", "home"],
+          "energy": "medium",
+          "what_happens": "Children co-regulate through their caregivers. If you're panicked, angry, or overwhelmed, your child's nervous system mirrors yours. They can't calm down until you model calm.",
+          "try_this": [
+            "When your child is dysregulated, pause and check yourself first",
+            "Take three slow breaths before responding",
+            "Lower your voice, slow your movements",
+            "Say to yourself: 'I am calm, I am safe, I can handle this'",
+            "Once you're regulated, offer calm presence to your child (not demands or logic)"
+          ],
+          "why_it_helps": "Your nervous system is the anchor. Regulating yourself first gives your child a safe system to borrow from.",
+          "variations": [
+            "Step away for 60 seconds if safe to do so",
+            "Use a physical cue: press feet into floor, feel your breath",
+            "Say aloud (calmly): 'I'm here, you're safe, we'll get through this together'"
+          ],
+          "pitfalls": "Don't try to reason, lecture, or discipline during dysregulation. Wait until both of you are calm.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "I regulate myself first, then help them."
+        },
+        {
+          "id": "parenting_002",
+          "title": "Connection Before Correction",
+          "summary": "Children can't hear corrections when their nervous system is in threat mode. Connect first.",
+          "category": "Parenting",
+          "tags": ["parenting", "emotional-regulation", "co-regulation", "discipline", "home"],
+          "energy": "medium",
+          "what_happens": "When a child is upset, their prefrontal cortex (thinking brain) goes offline. Lecturing, reasoning, or disciplining won't work because they can't process it. Connection brings them back online.",
+          "try_this": [
+            "Before addressing the behaviour, connect: get down to their level, make your body language open",
+            "Validate their feeling: 'You're really upset right now'",
+            "Offer comfort: a hug, calm presence, or space (depending on what they need)",
+            "Wait until they're calm before discussing the behaviour",
+            "Then set the boundary or consequence gently"
+          ],
+          "why_it_helps": "Connection signals safety, which brings the thinking brain back online. Then learning and behaviour change can happen.",
+          "variations": [
+            "Use a phrase: 'I see you're struggling. I'm here.'",
+            "Offer choices: 'Do you need a hug or some space?'",
+            "Match their energy level first, then gradually calm"
+          ],
+          "pitfalls": "Don't skip connection to 'teach a lesson'. They can't learn when dysregulated.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "Connection first, correction second."
+        },
+        {
+          "id": "parenting_003",
+          "title": "Transition Warnings",
+          "summary": "Give 10-minute, 5-minute, and 1-minute warnings before transitions. Neurodivergent kids need time to shift gears.",
+          "category": "Parenting",
+          "tags": ["parenting", "transition-lag", "ADHD", "Autism", "routine", "home"],
+          "energy": "low",
+          "what_happens": "Neurodivergent children struggle with transitions — their brains need time to disengage from one activity and prepare for the next. Abrupt transitions trigger meltdowns.",
+          "try_this": [
+            "Give a 10-minute warning: 'In 10 minutes, we'll need to leave'",
+            "Follow with a 5-minute warning",
+            "Give a 1-minute warning, then transition",
+            "Use a visual timer if helpful so they can see time shrinking",
+            "Stay calm and consistent — don't negotiate during the transition"
+          ],
+          "why_it_helps": "Warnings give the brain time to prepare. Transitions feel less jarring and threatening.",
+          "variations": [
+            "Use a song or routine that always signals transition",
+            "Offer a transition object (favourite toy to bring along)",
+            "Count down visually (show fingers: 5, 4, 3, 2, 1)"
+          ],
+          "pitfalls": "Don't surprise them with sudden changes if avoidable. Predictability reduces meltdowns.",
+          "context": ["home", "parenting", "errands"],
+          "resources": [],
+          "copy_to_clipboard": "Warnings help their brain prepare to shift."
+        },
+        {
+          "id": "parenting_004",
+          "title": "The 'Calm Corner' Kit",
+          "summary": "Create a sensory-friendly calm space with regulation tools your child can retreat to.",
+          "category": "Parenting",
+          "tags": ["parenting", "sensory-regulation", "meltdown-prep", "Autism", "ADHD", "home"],
+          "energy": "medium",
+          "what_happens": "Overwhelmed children need a safe space to downregulate. A calm corner gives them tools and permission to self-regulate.",
+          "try_this": [
+            "Choose a quiet, low-stimulation spot (corner of a room, under a table, cosy nook)",
+            "Add sensory tools: cushions, weighted blanket, fidgets, soft lighting, noise-cancelling headphones",
+            "Include comfort items: favourite toy, photos, calming visuals",
+            "Teach your child: 'When you're overwhelmed, you can go to the calm corner. No one will bother you there.'",
+            "Don't use it as punishment — it's a safe space, not isolation"
+          ],
+          "why_it_helps": "You're giving them a predictable, safe space to regulate. It empowers them to manage their own emotions.",
+          "variations": [
+            "Let your child help design the space",
+            "Add a 'feelings chart' or emotion wheel",
+            "Keep it accessible and inviting, not clinical"
+          ],
+          "pitfalls": "Don't force them to use it. It's an option, not a command.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "They have a safe space to calm down."
+        },
+        {
+          "id": "parenting_005",
+          "title": "Name the Feeling, Not the Behaviour",
+          "summary": "When they're upset, label the emotion, not the action. 'You're feeling frustrated' not 'Stop being naughty'.",
+          "category": "Parenting",
+          "tags": ["parenting", "emotional-regulation", "Autism", "alexithymia", "home"],
+          "energy": "low",
+          "what_happens": "Many neurodivergent children struggle to identify their emotions (alexithymia). Labelling feelings helps them build emotional vocabulary and feel understood.",
+          "try_this": [
+            "When they're upset, name the feeling: 'You seem really frustrated right now'",
+            "Avoid labelling them as 'naughty', 'bad', or 'difficult'",
+            "Validate the feeling even if the behaviour isn't okay: 'It's okay to feel angry. It's not okay to hit.'",
+            "Use simple, clear emotion words (sad, angry, frustrated, scared, overwhelmed)",
+            "Over time, ask: 'How are you feeling?'"
+          ],
+          "why_it_helps": "Naming emotions helps them understand their internal experience. Feeling understood reduces intensity.",
+          "variations": [
+            "Use a feelings chart or wheel to point to",
+            "Model by naming your own feelings: 'I'm feeling frustrated right now'",
+            "Use books or stories to teach emotion vocabulary"
+          ],
+          "pitfalls": "Don't argue with their feeling ('You're not that upset'). Validate, then set limits on behaviour.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "All feelings are okay. Some behaviours aren't."
+        },
+        {
+          "id": "parenting_006",
+          "title": "Lower Demands During High Stress",
+          "summary": "When life is hard, reduce expectations. Survival mode is valid.",
+          "category": "Parenting",
+          "tags": ["parenting", "autistic-burnout", "demand-avoidance", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "During illness, transitions, or stress, everyone's capacity shrinks. Maintaining high demands during low-capacity periods causes burnout and meltdowns.",
+          "try_this": [
+            "Identify high-stress periods (illness, new school term, family changes)",
+            "Temporarily lower non-essential demands: simpler meals, relaxed routines, more screen time",
+            "Communicate: 'This week is hard. We're doing the basics and that's enough.'",
+            "Prioritise connection, rest, and regulation over productivity",
+            "Return to normal gradually when capacity returns"
+          ],
+          "why_it_helps": "You're matching demands to capacity. This prevents meltdowns and protects everyone's nervous systems.",
+          "variations": [
+            "Use a traffic light system: Green (normal), Amber (reduce demands), Red (survival mode)",
+            "Let your child know: 'It's okay to have easy days'",
+            "Model this for yourself too — you need low-demand periods"
+          ],
+          "pitfalls": "Don't guilt yourself for lowering standards. Surviving is enough sometimes.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "Survival mode is valid. We're doing the basics."
+        },
+        {
+          "id": "parenting_007",
+          "title": "Repair After Rupture",
+          "summary": "When you lose your temper, repair it. Apologise, reconnect, model that mistakes are fixable.",
+          "category": "Parenting",
+          "tags": ["parenting", "emotional-regulation", "guilt", "home", "relationships"],
+          "energy": "medium",
+          "what_happens": "You will lose your temper sometimes. That's human. What matters is repairing the relationship afterwards, which teaches your child that mistakes don't break connection.",
+          "try_this": [
+            "When you've yelled or reacted harshly, take a breath and calm yourself",
+            "Go to your child and say: 'I'm sorry I yelled. That wasn't okay. I was overwhelmed, but you didn't deserve that.'",
+            "Take responsibility — don't blame them for 'making' you yell",
+            "Ask: 'Can we try again?' or 'What can I do to help you feel better?'",
+            "Reconnect with a hug, calm presence, or time together"
+          ],
+          "why_it_helps": "Repair teaches resilience, accountability, and that love survives conflict. It models emotional health.",
+          "variations": [
+            "Use age-appropriate language: 'Mummy got too loud. I'm sorry.'",
+            "Don't over-apologise or make them comfort you — keep it child-focused",
+            "Repair as soon as possible after the rupture"
+          ],
+          "pitfalls": "Don't skip repair to avoid discomfort. Your child needs to know the relationship is safe.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "Repair after rupture. Mistakes don't break us."
+        },
+        {
+          "id": "parenting_008",
+          "title": "Demand Avoidance Workaround",
+          "summary": "Reframe demands as choices or collaboration. 'Shall we get dressed now or in 5 minutes?'",
+          "category": "Parenting",
+          "tags": ["parenting", "demand-avoidance", "Autism", "PDA", "home"],
+          "energy": "medium",
+          "what_happens": "Children with demand avoidance (often part of PDA) resist even things they want to do if it feels like a demand. Pressure triggers automatic resistance.",
+          "try_this": [
+            "Reframe demands as choices: 'Do you want to brush teeth before or after pyjamas?'",
+            "Use indirect language: 'I wonder if we should get ready now?'",
+            "Collaborate: 'Let's do this together' instead of 'You need to do this'",
+            "Reduce direct eye contact and authoritative tone — make it playful or casual",
+            "Give autonomy wherever possible: let them choose how, when, or where"
+          ],
+          "why_it_helps": "Restoring autonomy reduces the threat response. They're more likely to cooperate when it doesn't feel like control.",
+          "variations": [
+            "Use 'we' instead of 'you': 'Shall we tidy up?'",
+            "Gamify: 'Can you beat the timer?' or 'Let's race!'",
+            "Offer a 'choice of no choice': 'Do you want to go now or in 2 minutes?'"
+          ],
+          "pitfalls": "Don't use this manipulatively. Genuine autonomy builds trust; fake choice erodes it.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "Collaboration, not control."
+        },
+        {
+          "id": "parenting_009",
+          "title": "Sensory Toolkit for Outings",
+          "summary": "Pack sensory tools (ear defenders, fidgets, snacks) for trips. Prevent meltdowns before they start.",
+          "category": "Parenting",
+          "tags": ["parenting", "sensory-regulation", "Autism", "ADHD", "errands", "social-events"],
+          "energy": "medium",
+          "what_happens": "Outings are sensory minefields for neurodivergent children: noise, crowds, lights, smells, transitions. A sensory toolkit prevents overload.",
+          "try_this": [
+            "Pack a small bag with: ear defenders or earplugs, sunglasses, fidget toy, chewy item, comfort object, water, safe snack",
+            "Keep it in the car or by the door so it's always ready",
+            "Let your child access it whenever they need",
+            "Teach them: 'If it's too loud/bright/overwhelming, use your tools'",
+            "Restock regularly"
+          ],
+          "why_it_helps": "You're giving them agency to manage their sensory needs. Prevention is easier than managing meltdowns.",
+          "variations": [
+            "Let your child help pack the kit",
+            "Add a communication card if they go non-speaking",
+            "Include a visual schedule for the outing"
+          ],
+          "pitfalls": "Don't forget the kit. Prevention requires consistency.",
+          "context": ["errands", "social-events", "appointments", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "Sensory tools prevent meltdowns."
+        },
+        {
+          "id": "parenting_010",
+          "title": "The 'Yes' Reflex Reset",
+          "summary": "Saying no constantly is exhausting. Find safe 'yeses' to balance necessary boundaries.",
+          "category": "Parenting",
+          "tags": ["parenting", "boundary-setting", "demand-avoidance", "home"],
+          "energy": "low",
+          "what_happens": "Constantly saying no creates power struggles and exhaustion for both of you. Finding safe yeses reduces conflict and builds connection.",
+          "try_this": [
+            "When your instinct is 'no', pause and ask: 'Is this actually unsafe or just inconvenient?'",
+            "If it's safe, say yes: 'Yes, you can jump on the sofa' (even if it's not ideal)",
+            "Save 'no' for genuinely unsafe or harmful things",
+            "Offer alternatives: 'You can't throw that, but you can throw this'",
+            "Notice how saying yes more often reduces resistance"
+          ],
+          "why_it_helps": "Reducing unnecessary nos lowers overall demand. Your essential boundaries become clearer and easier to enforce.",
+          "variations": [
+            "Use 'yes, after...': 'Yes, you can have a snack after we finish this'",
+            "Say 'yes' enthusiastically when you can",
+            "Reflect: are some of your nos based on others' expectations, not your actual values?"
+          ],
+          "pitfalls": "Don't abandon all boundaries. This is about choosing battles wisely, not permissiveness.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "Save 'no' for things that truly matter."
+        },
+        {
+          "id": "parenting_011",
+          "title": "Meltdown vs Tantrum",
+          "summary": "Tantrums stop when they get what they want. Meltdowns are nervous system overwhelm — they can't stop.",
+          "category": "Parenting",
+          "tags": ["parenting", "meltdown-prep", "emotional-regulation", "Autism", "ADHD", "home"],
+          "energy": "low",
+          "what_happens": "Tantrums are goal-directed: the child wants something and uses big emotions to get it. Meltdowns are nervous system overload: the child is in crisis and can't regulate.",
+          "try_this": [
+            "Observe: Does the behaviour stop if you give in? (Tantrum.) Or does it continue regardless? (Meltdown.)",
+            "For tantrums: hold the boundary calmly, validate the feeling ('You're upset, but the answer is still no')",
+            "For meltdowns: prioritise safety, reduce stimulation, offer calm presence, don't lecture",
+            "Don't punish meltdowns — the child is already in distress",
+            "After a meltdown, focus on recovery and connection, not discipline"
+          ],
+          "why_it_helps": "Different responses for different needs. Tantrums need boundaries; meltdowns need support.",
+          "variations": [
+            "Learn your child's meltdown warning signs (irritability, stimming increase, sensory sensitivity)",
+            "Intervene early during meltdowns to prevent escalation",
+            "Discuss strategies with your child when they're calm"
+          ],
+          "pitfalls": "Don't assume all big emotions are manipulation. Meltdowns are real and deserve compassion.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "Meltdowns need support, not discipline."
+        },
+        {
+          "id": "parenting_012",
+          "title": "Bedtime Wind-Down Ritual",
+          "summary": "Create a predictable, calming bedtime routine. Neurodivergent kids need transition time to sleep.",
+          "category": "Parenting",
+          "tags": ["parenting", "bedtime", "routine", "Autism", "ADHD", "sensory-regulation", "home"],
+          "energy": "medium",
+          "what_happens": "Many neurodivergent children struggle with sleep due to sensory sensitivity, anxiety, and difficulty transitioning. A consistent wind-down routine signals the body it's time to sleep.",
+          "try_this": [
+            "Start the routine at the same time every night",
+            "Include calming activities: bath, dim lights, quiet play, reading, cuddles",
+            "Reduce stimulation: no screens 1 hour before bed, lower noise and light",
+            "Use sensory tools if helpful: weighted blanket, white noise, blackout curtains",
+            "Keep the routine predictable — same steps, same order"
+          ],
+          "why_it_helps": "Predictability and sensory regulation prepare the nervous system for sleep. Routines become cues.",
+          "variations": [
+            "Use a visual schedule so your child knows what's coming",
+            "Add a calming scent (lavender spray on pillow)",
+            "Allow a comfort object or stuffed toy"
+          ],
+          "pitfalls": "Don't rush the routine. Sleep transitions take time.",
+          "context": ["home", "parenting", "bedtime"],
+          "resources": [],
+          "copy_to_clipboard": "Predictable routines prepare their body for sleep."
+        },
+        {
+          "id": "parenting_013",
+          "title": "Lagging Skills, Not Bad Attitude",
+          "summary": "If they could do better, they would. Challenging behaviour is often a skills gap, not defiance.",
+          "category": "Parenting",
+          "tags": ["parenting", "executive-dysfunction", "compassion", "home"],
+          "energy": "low",
+          "what_happens": "'Kids do well if they can' (Ross Greene). Challenging behaviour usually signals a lagging skill: emotional regulation, flexibility, frustration tolerance, problem-solving. They're not choosing to be difficult.",
+          "try_this": [
+            "When behaviour is challenging, ask: 'What skill is missing here?'",
+            "Identify the gap: Can they regulate emotions? Tolerate frustration? Shift tasks? Communicate needs?",
+            "Teach the skill explicitly, model it, practise it when calm",
+            "Lower expectations while they're learning",
+            "Replace 'they won't' with 'they can't yet'"
+          ],
+          "why_it_helps": "Shifting to a skills-based lens reduces judgment and guides effective support. You're teaching, not punishing.",
+          "variations": [
+            "Use collaborative problem-solving: 'You're struggling with X. Let's figure out how to make it easier.'",
+            "Break skills into smaller steps",
+            "Celebrate small progress"
+          ],
+          "pitfalls": "Don't assume defiance. Investigate the skill gap first.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "If they could, they would. What skill is missing?"
+        },
+        {
+          "id": "parenting_014",
+          "title": "Parental Self-Compassion Practice",
+          "summary": "You will make mistakes. Parenting is hard. Beating yourself up doesn't help anyone.",
+          "category": "Parenting",
+          "tags": ["parenting", "self-compassion", "guilt", "burnout", "home"],
+          "energy": "low",
+          "what_happens": "Neurodivergent parenting (or parenting neurodivergent children) is uniquely demanding. You'll lose your temper, get it wrong, feel overwhelmed. Self-criticism makes it worse.",
+          "try_this": [
+            "When you make a mistake, pause and say: 'I'm doing my best in a hard situation'",
+            "Talk to yourself like you'd talk to a friend: with kindness, not judgment",
+            "Acknowledge the difficulty: 'This is really hard, and I'm trying'",
+            "Repair with your child if needed, then let the guilt go",
+            "Remind yourself: 'Good enough' parenting is genuinely good enough"
+          ],
+          "why_it_helps": "Self-compassion reduces stress, models emotional health, and makes you more available to your child.",
+          "variations": [
+            "Write yourself a compassionate note when you're struggling",
+            "Ask: 'What would I tell a friend in this situation?'",
+            "Practice daily: 'I'm doing my best, and that's enough'"
+          ],
+          "pitfalls": "Don't confuse self-compassion with excusing harm. You can acknowledge mistakes and still be kind to yourself.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "I'm doing my best in a hard situation."
+        },
+        {
+          "id": "parenting_015",
+          "title": "'Touched Out' Boundaries",
+          "summary": "It's okay to need physical space. Communicate boundaries kindly: 'My body needs a break right now.'",
+          "category": "Parenting",
+          "tags": ["parenting", "sensory-overload", "boundary-setting", "burnout", "home"],
+          "energy": "low",
+          "what_happens": "'Touched out' is sensory overwhelm from constant physical contact. It's common in neurodivergent parents and caregivers. Your nervous system needs space.",
+          "try_this": [
+            "Notice when you're reaching your touch limit",
+            "Communicate kindly: 'I need a little space right now. My body is feeling full.'",
+            "Offer alternatives: 'I can sit next to you, but I need a break from hugs'",
+            "Set a timer: 'In 10 minutes, I'll be ready for cuddles again'",
+            "Don't guilt yourself — your sensory needs are valid"
+          ],
+          "why_it_helps": "Honouring your sensory limits prevents resentment and shutdown. You're modelling healthy boundaries.",
+          "variations": [
+            "Explain to your child age-appropriately: 'Everyone's body has limits'",
+            "Use a signal: 'When I say \"space please\", it means I need a break'",
+            "Plan solo time daily, even if it's just 10 minutes"
+          ],
+          "pitfalls": "Don't push through and explode later. Small boundaries prevent big ruptures.",
+          "context": ["home", "parenting"],
+          "resources": [],
+          "copy_to_clipboard": "My body needs space. That's okay."
+        }
+      ]
+    },
+    {
+      "slug": "neurodivergent-work",
+      "title": "Neurodivergent & Work",
+      "icon": "💼",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know neurodivergent people often have strengths in pattern recognition, hyperfocus, creativity, and systemising?",
+          "Did you know workplace accommodations aren't 'special treatment' — they're adjustments that level the playing field?",
+          "Did you know masking at work is exhausting and contributes to burnout?",
+          "Did you know open-plan offices are sensory nightmares for many neurodivergent people?",
+          "Did you know email and meeting overload can trigger executive dysfunction and anxiety?",
+          "Did you know many neurodivergent people thrive in roles with clear structure, autonomy, or deep focus?",
+          "Did you know 'culture fit' often means 'performs neurotypicality well' — not actual competence?",
+          "Did you know disclosure of neurodivergence at work is a personal choice with pros and cons?",
+          "Did you know burnout at work often stems from chronic masking, not the work itself?",
+          "Did you know flexible working (remote, flexible hours) dramatically improves outcomes for many neurodivergent employees?",
+          "Did you know time-blindness makes deadlines and meetings uniquely stressful for ADHD brains?",
+          "Did you know autistic employees often prefer written communication over verbal?",
+          "Did you know neurodivergent people are overrepresented in creative, technical, and analytical fields?",
+          "Did you know workplace rejection sensitivity is heightened by RSD (rejection sensitive dysphoria)?",
+          "Did you know reasonable adjustments are a legal right in many places?"
+        ],
+        "overlaps": [
+          "ADHD (time management, focus)",
+          "Autism (sensory, social, masking)",
+          "Anxiety (performance, social)",
+          "Dyslexia (reading, processing)",
+          "Dyspraxia (organisation, motor skills)",
+          "Chronic Illness (energy management)"
+        ]
+      },
+      "orbit_tags": [
+        "Email overwhelm",
+        "Inbox anxiety",
+        "Too many meetings",
+        "Zoom fatigue",
+        "Open-plan office hell",
+        "Noise distraction",
+        "Interruptions",
+        "Constant context-switching",
+        "Deadlines panic",
+        "Time blindness at work",
+        "Procrastination",
+        "Task paralysis",
+        "Starting tasks hard",
+        "Hyperfocus then burnout",
+        "Losing track of time",
+        "Forgetfulness",
+        "Missing deadlines",
+        "Poor time estimation",
+        "Decision fatigue",
+        "Perfectionism",
+        "Can't finish projects",
+        "Imposter syndrome",
+        "Fear of being 'found out'",
+        "RSD at work",
+        "Rejection sensitivity",
+        "Criticism cuts deep",
+        "Conflict avoidance",
+        "Difficult conversations",
+        "Masking exhaustion",
+        "Pretending to be neurotypical",
+        "Social exhaustion",
+        "Small talk struggle",
+        "Networking anxiety",
+        "Interview nerves",
+        "Phone anxiety",
+        "Asking for help hard",
+        "Unclear instructions",
+        "Vague feedback",
+        "Ambiguity stress",
+        "Need for structure",
+        "Routine disruption",
+        "Change at work",
+        "Burnout",
+        "No energy left",
+        "Work-life balance",
+        "Overworking",
+        "Can't switch off",
+        "Boundaries hard",
+        "People-pleasing",
+        "Saying no difficult",
+        "Accommodations needed",
+        "Disclosure dilemma",
+        "Should I tell them?",
+        "Workplace adjustments",
+        "Remote work preference",
+        "Flexible hours needed",
+        "Sensory issues at work"
+      ],
+      "tips": [
+        {
+          "id": "work_001",
+          "title": "Email Batching",
+          "summary": "Check and respond to emails in set blocks, not constantly. Protect your focus.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "executive-dysfunction", "email-anxiety", "work", "timeboxing"],
+          "energy": "low",
+          "what_happens": "Constant email checking fragments attention and creates anxiety. ADHD brains struggle with task-switching. Batching contains the demand.",
+          "try_this": [
+            "Set 2-3 specific times daily for email (e.g., 9am, 1pm, 4pm)",
+            "Close email outside those times and silence notifications",
+            "Use the batching time to read, respond, and clear",
+            "Set a timer for each batch (e.g., 30 minutes) to prevent email rabbit holes",
+            "Communicate your system if needed: 'I check email three times daily'"
+          ],
+          "why_it_helps": "You're protecting sustained focus and reducing anxiety. Email becomes a task, not a constant interruption.",
+          "variations": [
+            "Use an autoresponder: 'I check email twice daily and will respond within 24 hours'",
+            "Turn off all email notifications",
+            "Use filters or folders to triage"
+          ],
+          "pitfalls": "Don't check 'just once' outside your batch times. It breaks the system.",
+          "context": ["work"],
+          "resources": [],
+          "copy_to_clipboard": "Email is a task, not a constant demand."
+        },
+        {
+          "id": "work_002",
+          "title": "Meeting Recovery Buffers",
+          "summary": "Block 15 minutes after meetings to process, decompress, and transition. Don't schedule back-to-back.",
+          "category": "Work & Study",
+          "tags": ["Autism", "ADHD", "transition-lag", "masking", "work"],
+          "energy": "low",
+          "what_happens": "Meetings are cognitively and socially expensive, especially for neurodivergent people. Back-to-back meetings cause overload and burnout.",
+          "try_this": [
+            "Block 15 minutes in your calendar after every meeting",
+            "Use that time to decompress: step away from screen, move, breathe, stim, process",
+            "Write down action items or key points before they evaporate",
+            "Don't schedule meetings consecutively",
+            "Protect this buffer time as non-negotiable"
+          ],
+          "why_it_helps": "Buffers allow nervous system recovery and cognitive processing. You're preventing accumulative overload.",
+          "variations": [
+            "Use the buffer for a sensory break (walk, stretch, cold water)",
+            "If you can't control your schedule, micro-buffers: 5 minutes between meetings",
+            "Decline non-essential meetings to protect capacity"
+          ],
+          "pitfalls": "Don't let others book over your buffers. Guard them firmly.",
+          "context": ["work"],
+          "resources": [],
+          "copy_to_clipboard": "Meetings need recovery time, not more meetings."
+        },
+        {
+          "id": "work_003",
+          "title": "The 'Please Be Specific' Script",
+          "summary": "Vague instructions cause paralysis. Ask for clarity: 'Can you clarify exactly what you need?'",
+          "category": "Work & Study",
+          "tags": ["ADHD", "Autism", "executive-dysfunction", "work", "communication"],
+          "energy": "medium",
+          "what_happens": "Ambiguity is cognitively expensive. Neurodivergent brains often need explicit instructions, not implied expectations. Vagueness causes task paralysis.",
+          "try_this": [
+            "When instructions are unclear, ask immediately: 'Can you clarify what success looks like here?'",
+            "Request specifics: 'What's the deadline? What format? What's the priority?'",
+            "Confirm understanding: 'Just to check — you're asking me to X by Y. Is that right?'",
+            "Don't guess and hope — clarify first",
+            "Keep a script ready: 'I want to get this right — can you be more specific?'"
+          ],
+          "why_it_helps": "Clarity reduces anxiety and wasted effort. You're setting yourself up for success.",
+          "variations": [
+            "Follow up with written confirmation of verbal instructions",
+            "Ask for examples if helpful",
+            "Frame it positively: 'I work best with clear parameters'"
+          ],
+          "pitfalls": "Don't apologise excessively for asking. Clarity is professional, not weak.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Clarity is not weakness. It's professionalism."
+        },
+        {
+          "id": "work_004",
+          "title": "Noise-Shaping Tools",
+          "summary": "Control your auditory environment. Use headphones, white noise, or noise-cancelling tools.",
+          "category": "Work & Study",
+          "tags": ["Autism", "ADHD", "sensory-overload", "auditory-processing", "work"],
+          "energy": "low",
+          "what_happens": "Open-plan offices and background noise are sensory hell for many neurodivergent people. Auditory overwhelm kills focus and causes burnout.",
+          "try_this": [
+            "Invest in noise-cancelling headphones",
+            "Use white noise, brown noise, or nature sounds to mask unpredictable noise",
+            "Try instrumental music or binaural beats for focus",
+            "If working remotely, control your sound environment completely",
+            "Communicate: 'I focus better with headphones on — not ignoring you'"
+          ],
+          "why_it_helps": "Reducing auditory input protects attention and reduces sensory overload. You're designing your environment to match your brain.",
+          "variations": [
+            "Use earplugs if music is too distracting",
+            "Experiment with different sound types (rain, cafe ambience, silence)",
+            "Advocate for quiet zones or focus rooms at work"
+          ],
+          "pitfalls": "Don't suffer in noisy environments out of politeness. Your focus matters.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "I control my auditory environment."
+        },
+        {
+          "id": "work_005",
+          "title": "Hyperfocus Harnessing",
+          "summary": "When hyperfocus kicks in, set alarms to check in on time, food, and breaks.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "hyperfocus", "time-blindness", "work", "study"],
+          "energy": "medium",
+          "what_happens": "Hyperfocus is productive but unsustainable. You lose track of time, skip meals, ignore your body, and crash afterwards.",
+          "try_this": [
+            "Before starting deep work, set alarms every 60-90 minutes",
+            "When the alarm goes, pause and check: Have I eaten? Had water? Stretched? Used the toilet?",
+            "Take a 5-10 minute break, even if you don't want to",
+            "Use the break to move, hydrate, or rest your eyes",
+            "Return to work if still in hyperfocus, or transition if it's fading"
+          ],
+          "why_it_helps": "You're protecting your body and preventing the post-hyperfocus crash. Sustainability > intensity.",
+          "variations": [
+            "Use a Pomodoro timer (25 mins work, 5 mins break)",
+            "Keep water and snacks at your desk",
+            "Use reminders to check interoception (body signals)"
+          ],
+          "pitfalls": "Don't ignore the alarms. Hyperfocus lies about sustainability.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Hyperfocus needs guardrails to be sustainable."
+        },
+        {
+          "id": "work_006",
+          "title": "The 'Not Right Now' Script",
+          "summary": "When interrupted, buy time: 'I'm in the middle of something — can I get back to you in 30 minutes?'",
+          "category": "Work & Study",
+          "tags": ["ADHD", "boundary-setting", "focus", "work"],
+          "energy": "low",
+          "what_happens": "Interruptions derail ADHD focus. Task-switching is expensive. Saying 'not now' protects your attention.",
+          "try_this": [
+            "When interrupted, pause and assess: Is this urgent?",
+            "If not urgent, say: 'I'm focused on something right now — can I come find you in 30 minutes?'",
+            "Set a reminder to follow up",
+            "Use a visual signal if working in-person (headphones, do-not-disturb sign)",
+            "Batch non-urgent interruptions to specific times"
+          ],
+          "why_it_helps": "You're protecting sustained focus, which is precious for ADHD brains. Boundaries are productivity tools.",
+          "variations": [
+            "Use a 'focus hour' where you're unavailable",
+            "Communicate your focus times to your team",
+            "Use status indicators (Slack, calendar blocks)"
+          ],
+          "pitfalls": "Don't ghost people. Defer, then follow up.",
+          "context": ["work"],
+          "resources": [],
+          "copy_to_clipboard": "Not now. I'll get back to you."
+        },
+        {
+          "id": "work_007",
+          "title": "Deadline Front-Loading",
+          "summary": "ADHD brains need urgency. Create artificial deadlines earlier than the real one.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "time-blindness", "procrastination", "work", "study"],
+          "energy": "medium",
+          "what_happens": "ADHD brains struggle without urgency. You procrastinate until panic activates you. Artificial deadlines create earlier urgency.",
+          "try_this": [
+            "When given a deadline, subtract 2-3 days and treat that as the real deadline",
+            "Put the fake deadline in your calendar and tell someone else",
+            "Use the real deadline as a buffer for polish or emergencies",
+            "Pair the fake deadline with accountability (body doubling, check-in)",
+            "Don't tell yourself 'it's not really due yet' — commit to the fake date"
+          ],
+          "why_it_helps": "You're hacking your brain's urgency system. The buffer protects against last-minute panic.",
+          "variations": [
+            "Break the project into smaller deadlines leading up to the fake one",
+            "Use external accountability: promise to send a draft by X date",
+            "Reward yourself for hitting the early deadline"
+          ],
+          "pitfalls": "Don't let the buffer erode the fake deadline. Treat it as real.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "I create urgency before panic does."
+        },
+        {
+          "id": "work_008",
+          "title": "RSD Firewall at Work",
+          "summary": "Feedback feels like rejection. Before reacting, wait 24 hours and reality-check with someone neutral.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "RSD", "emotional-regulation", "work", "relationships"],
+          "energy": "medium",
+          "what_happens": "RSD makes work feedback feel catastrophic. Your nervous system floods with shame and panic. Waiting before reacting prevents career-damaging responses.",
+          "try_this": [
+            "When you receive criticism or feedback, notice the RSD wave",
+            "Don't respond immediately — wait at least 24 hours",
+            "Write out your feelings privately to release the intensity",
+            "Reality-check with someone neutral: 'Is this as bad as it feels?'",
+            "Respond professionally once the wave has passed"
+          ],
+          "why_it_helps": "RSD distorts perception. Waiting creates space for rational assessment.",
+          "variations": [
+            "Use a mantra: 'Feedback is not rejection. This feeling will pass.'",
+            "Reframe: 'What can I learn from this?'",
+            "Ask for specifics: 'Can you clarify what needs improvement?'"
+          ],
+          "pitfalls": "Don't respond while flooded. You'll regret it.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "RSD lies. Wait before responding."
+        },
+        {
+          "id": "work_009",
+          "title": "Work-from-Home Sensory Design",
+          "summary": "Optimise your workspace for your sensory needs: lighting, sound, temperature, seating.",
+          "category": "Work & Study",
+          "tags": ["Autism", "ADHD", "sensory-regulation", "work", "home"],
+          "energy": "medium",
+          "what_happens": "Sensory environment massively impacts focus and regulation. Working from home lets you design for your brain.",
+          "try_this": [
+            "Adjust lighting: natural light, lamps, blue light filters",
+            "Control sound: noise-cancelling headphones, white noise, silence",
+            "Temperature: keep the room comfortable (layers, fan, heater)",
+            "Seating: supportive chair, standing desk, wobble cushion, floor cushion",
+            "Add sensory-friendly elements: plants, textures, fidgets"
+          ],
+          "why_it_helps": "You're removing sensory barriers to focus and regulation. Your environment becomes a support, not a stressor.",
+          "variations": [
+            "Experiment with different setups",
+            "Use a 'focus corner' separate from relaxation space",
+            "Keep sensory tools (fidgets, weighted lap pad) at your desk"
+          ],
+          "pitfalls": "Don't tolerate sensory discomfort. Fix it.",
+          "context": ["work", "home", "study"],
+          "resources": [],
+          "copy_to_clipboard": "My workspace matches my sensory needs."
+        },
+        {
+          "id": "work_010",
+          "title": "Accommodations Conversation",
+          "summary": "You're entitled to reasonable adjustments. Frame them as productivity tools, not special treatment.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "Autism", "accommodations", "work", "disclosure"],
+          "energy": "high",
+          "what_happens": "Asking for accommodations feels vulnerable, but they're often legally protected and dramatically improve outcomes. Framing matters.",
+          "try_this": [
+            "Identify what you need: flexible hours, remote work, written instructions, quiet space, etc.",
+            "Frame as productivity: 'I do my best work when I have X'",
+            "Be specific and solution-focused: 'Could I work from home two days a week to reduce sensory overload?'",
+            "Know your rights (check local laws on disability accommodations)",
+            "Don't over-explain or apologise — you're requesting support, not charity"
+          ],
+          "why_it_helps": "Accommodations level the playing field. You're advocating for what you need to thrive.",
+          "variations": [
+            "Request a trial period: 'Can we try this for a month and assess?'",
+            "Bring solutions, not just problems",
+            "Use HR or occupational health if direct requests fail"
+          ],
+          "pitfalls": "Don't suffer in silence out of fear. Many workplaces are more flexible than you think.",
+          "context": ["work"],
+          "resources": [],
+          "copy_to_clipboard": "Accommodations are tools, not favours."
+        },
+        {
+          "id": "work_011",
+          "title": "The 'Imposter' Reality Check",
+          "summary": "Imposter syndrome is common in neurodivergent people. Collect evidence: you're here because you're capable.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "Autism", "imposter-syndrome", "self-compassion", "work"],
+          "energy": "medium",
+          "what_happens": "Masking and RSD fuel imposter syndrome — the feeling you're faking competence and will be 'found out'. It's usually not true.",
+          "try_this": [
+            "Keep a 'wins' document: record achievements, positive feedback, completed projects",
+            "When imposter thoughts arise, review the evidence: 'What proves I'm capable?'",
+            "Ask: 'Would I hire someone with my qualifications? Yes? Then I belong here.'",
+            "Remind yourself: 'I got this job because I'm good at it, not luck'",
+            "Talk to someone who can reality-check"
+          ],
+          "why_it_helps": "You're countering emotional reasoning with facts. Imposter syndrome lies.",
+          "variations": [
+            "Save positive emails or feedback in a folder to review",
+            "Notice if you judge yourself more harshly than others",
+            "Reframe: 'I'm learning' instead of 'I'm faking'"
+          ],
+          "pitfalls": "Don't dismiss your achievements as luck or lowered standards. You earned them.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "I'm here because I'm capable."
+        },
+        {
+          "id": "work_012",
+          "title": "Task Breakdown for Paralysis",
+          "summary": "Big tasks freeze ADHD brains. Break them into tiny, actionable steps.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "task-paralysis", "executive-dysfunction", "work", "study"],
+          "energy": "medium",
+          "what_happens": "ADHD brains struggle to break tasks into steps automatically. Big tasks feel overwhelming and trigger paralysis.",
+          "try_this": [
+            "Write down the big task",
+            "Break it into the smallest possible steps (not 'write report', but 'open document', 'write one sentence')",
+            "Number the steps in order",
+            "Do only step 1, then reassess",
+            "Celebrate each tiny completion"
+          ],
+          "why_it_helps": "You're externalising the planning process. Each step feels achievable, which bypasses paralysis.",
+          "variations": [
+            "Use a mind map or flowchart if linear lists don't work",
+            "Ask someone to help you break it down",
+            "Start with the easiest step, not the first"
+          ],
+          "pitfalls": "Don't skip the breakdown and hope your brain will figure it out. It won't.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Tiny steps bypass paralysis."
+        },
+        {
+          "id": "work_013",
+          "title": "Calendar Colour-Coding",
+          "summary": "Use colours to categorise tasks: meetings, focus time, breaks, deadlines. Visual clarity helps ADHD brains.",
+          "category": "Work & Study",
+          "tags": ["ADHD", "visual-schedules", "organisation", "work"],
+          "energy": "medium",
+          "what_happens": "ADHD brains are visual. Colour-coding creates instant clarity about what's happening when.",
+          "try_this": [
+            "Assign a colour to each category (e.g., blue = meetings, green = focus time, red = deadlines)",
+            "Block time in your calendar with the appropriate colour",
+            "At a glance, you can see what type of day you have",
+            "Protect colour-coded focus time as non-negotiable",
+            "Review weekly to balance task types"
+          ],
+          "why_it_helps": "Visual systems bypass working memory. You can see your schedule, not just remember it.",
+          "variations": [
+            "Use emojis or icons alongside colours",
+            "Block 'buffer time' in a specific colour",
+            "Share your colour system with colleagues if helpful"
+          ],
+          "pitfalls": "Don't over-complicate. Three to five colours is enough.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Colour makes my schedule visible."
+        },
+        {
+          "id": "work_014",
+          "title": "The 'I'll Follow Up' Script",
+          "summary": "When someone gives you information verbally, say: 'Can you email me that so I don't forget?'",
+          "category": "Work & Study",
+          "tags": ["ADHD", "working-memory", "communication", "work"],
+          "energy": "low",
+          "what_happens": "ADHD working memory is unreliable. Verbal instructions evaporate. Written confirmation prevents mistakes.",
+          "try_this": [
+            "After a verbal conversation or meeting, say: 'Can you send me an email summarising that?'",
+            "Or: 'Just to confirm, I'll email you what I understood — can you check I've got it right?'",
+            "Always follow up verbal requests in writing",
+            "Keep a notepad or phone nearby to jot down immediate notes",
+            "Don't rely on memory alone"
+          ],
+          "why_it_helps": "You're creating an external record. Your brain doesn't have to hold the information.",
+          "variations": [
+            "Send a confirmation email immediately after meetings",
+            "Use voice memos if typing is too slow",
+            "Ask for agendas and notes in writing"
+          ],
+          "pitfalls": "Don't trust 'I'll remember'. You probably won't.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Written confirmation saves my working memory."
+        },
+        {
+          "id": "work_015",
+          "title": "Burnout Prevention Checklist",
+          "summary": "Track warning signs weekly: exhaustion, cynicism, reduced performance, physical symptoms. Intervene early.",
+          "category": "Work & Study",
+          "tags": ["burnout", "self-care", "work", "ADHD", "Autism"],
+          "energy": "low",
+          "what_happens": "Neurodivergent people are at higher risk of burnout due to masking, sensory overload, and executive demands. Catching it early is critical.",
+          "try_this": [
+            "Weekly check-in: Rate 1-10 on exhaustion, motivation, physical health, emotional regulation",
+            "Notice red flags: dread going to work, can't rest on weekends, irritability, physical pain, shutdowns",
+            "If scores drop or red flags appear, intervene immediately",
+            "Interventions: reduce hours, take leave, request accommodations, increase rest, lower non-work demands",
+            "Don't wait for collapse"
+          ],
+          "why_it_helps": "Burnout is preventable if caught early. You're making invisible decline visible.",
+          "variations": [
+            "Use a journal or app to track trends",
+            "Share your scores with someone who can hold you accountable",
+            "Create a 'burnout action plan' in advance"
+          ],
+          "pitfalls": "Don't ignore declining scores hoping they'll improve. They won't without intervention.",
+          "context": ["work"],
+          "resources": [],
+          "copy_to_clipboard": "I track burnout and intervene early."
+        }
+      ]
+    },
+    {
+      "slug": "depression-support",
+      "title": "Depression Support",
+      "icon": "💙",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know depression isn't just sadness — it's a neurological condition affecting energy, motivation, and thinking?",
+          "Did you know 'no-zero days' (doing one tiny thing) builds momentum without overwhelm?",
+          "Did you know depression lies — it tells you you're worthless, but that's not true?",
+          "Did you know self-compassion is more effective than self-criticism for recovery?",
+          "Did you know activation (doing things) often has to come before motivation, not after?",
+          "Did you know depression and neurodivergence (ADHD, autism) often overlap?",
+          "Did you know 'minimum baseline' tasks prevent spiral: water, food, sleep, hygiene?",
+          "Did you know depression often gets worse before you notice it — tracking helps?",
+          "Did you know social connection is protective, even when you don't feel like it?",
+          "Did you know small, repetitive actions (walking, washing dishes) can shift mood?",
+          "Did you know guilt and shame worsen depression — they're not motivating?",
+          "Did you know physical health (sleep, movement, nutrition) directly impacts mental health?",
+          "Did you know depression can cause physical pain, not just emotional pain?",
+          "Did you know 'good enough' self-care is genuinely good enough?",
+          "Did you know asking for help is strength, not weakness?"
+        ],
+        "overlaps": [
+          "ADHD (dopamine, motivation)",
+          "Autism (burnout, masking)",
+          "Anxiety (comorbidity)",
+          "Chronic Illness (fatigue, pain)",
+          "PMDD (hormonal mood swings)",
+          "Seasonal Affective Disorder"
+        ]
+      },
+      "orbit_tags": [
+        "Can't get out of bed",
+        "No motivation",
+        "Everything feels pointless",
+        "Numbness",
+        "Anhedonia (no joy)",
+        "Can't feel anything",
+        "Exhaustion",
+        "Heavy limbs",
+        "Brain fog",
+        "Can't think clearly",
+        "Slow processing",
+        "Forgetfulness",
+        "Concentration problems",
+        "Hopelessness",
+        "Worthlessness",
+        "Guilt",
+        "Shame spirals",
+        "Self-loathing",
+        "Suicidal thoughts",
+        "Self-harm urges",
+        "Passive suicidality",
+        "Isolation",
+        "Withdrawing from people",
+        "Can't reply to messages",
+        "Social exhaustion",
+        "Crying easily",
+        "Emotional numbness",
+        "Irritability",
+        "Anger",
+        "Appetite loss",
+        "Overeating",
+        "Sleep too much",
+        "Insomnia",
+        "Waking up tired",
+        "No energy",
+        "Everything is hard",
+        "Basic tasks impossible",
+        "Showering difficult",
+        "Hygiene struggles",
+        "Can't cook",
+        "Can't clean",
+        "Clutter overwhelm",
+        "Procrastination",
+        "Avoidance",
+        "Paralysis",
+        "Guilt for resting",
+        "Should be doing more",
+        "Comparing to others",
+        "Feeling broken",
+        "Nothing helps",
+        "Medication concerns",
+        "Therapy resistance",
+        "Relapse fear",
+        "Loss of interest",
+        "No hobbies",
+        "Can't enjoy things",
+        "Flat mood",
+        "Future feels blank"
+      ],
+      "tips": [
+        {
+          "id": "depression_001",
+          "title": "The No-Zero Day",
+          "summary": "Do one tiny thing today. Anything. It doesn't have to be big to count.",
+          "category": "Focus & Motivation",
+          "tags": ["Depression", "motivation", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "Depression kills motivation and makes everything feel impossible. The pressure to do a lot causes paralysis. One tiny action is better than none.",
+          "try_this": [
+            "Choose one tiny action: brush teeth, drink water, open curtains, send one text",
+            "It can take 30 seconds — that's fine",
+            "Do it, then celebrate: 'I did something. That's not zero.'",
+            "Don't add more if you can't — one thing is enough",
+            "Repeat tomorrow with one more tiny thing"
+          ],
+          "why_it_helps": "Small actions build momentum. You're proving to yourself that you can do things, which depression denies.",
+          "variations": [
+            "Keep a list of 'tiny wins' to choose from",
+            "Track no-zero days in a journal or app",
+            "Share your one thing with someone for accountability"
+          ],
+          "pitfalls": "Don't compare your 'one thing' to what others do. Your depression is harder than their normal day.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "One tiny thing is not zero."
+        },
+        {
+          "id": "depression_002",
+          "title": "Minimum Baseline Checklist",
+          "summary": "When everything is hard, focus on the basics: water, food, sleep, hygiene. That's enough.",
+          "category": "Body & Energy",
+          "tags": ["Depression", "self-care", "minimum-baseline", "home"],
+          "energy": "low",
+          "what_happens": "Depression makes even basic self-care feel impossible. Focusing on a minimum baseline prevents spirals and keeps your body functional.",
+          "try_this": [
+            "Write down your minimum baseline: drink water, eat something, sleep, brush teeth (or whatever feels essential)",
+            "On hard days, those are the only goals",
+            "Check them off as you go",
+            "Don't guilt yourself for 'only' doing the basics — they're genuinely important",
+            "Slowly add more when capacity returns"
+          ],
+          "why_it_helps": "You're preventing physical decline, which worsens depression. Basics first, everything else second.",
+          "variations": [
+            "Use a visual checklist (sticky notes, whiteboard)",
+            "Set alarms for baseline tasks",
+            "Ask someone to gently remind you"
+          ],
+          "pitfalls": "Don't add non-essentials to your baseline. Keep it truly minimal.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Basics are enough when I'm struggling."
+        },
+        {
+          "id": "depression_003",
+          "title": "The 'Depression Lies' Mantra",
+          "summary": "Depression tells you you're worthless, hopeless, a burden. Those are lies. Say it aloud: 'Depression lies.'",
+          "category": "Focus & Motivation",
+          "tags": ["Depression", "cognitive-reframe", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "Depression distorts thinking, making you believe cruel, untrue things about yourself. Naming it as depression, not truth, creates distance.",
+          "try_this": [
+            "When a cruel thought appears ('I'm worthless', 'Nothing will get better'), pause",
+            "Say aloud or write: 'Depression lies. That's not true.'",
+            "You don't have to believe it's a lie yet — just acknowledge the possibility",
+            "Ask: 'Would I say this to someone I love?'",
+            "Repeat the mantra whenever depression speaks"
+          ],
+          "why_it_helps": "You're externalising depression, creating space between you and the thoughts. Depression is something happening to you, not truth.",
+          "variations": [
+            "Name your depression (e.g., 'That's the Depression Voice, not me')",
+            "Write down depression's lies, then write evidence against them",
+            "Share the mantra with someone who can remind you"
+          ],
+          "pitfalls": "Don't argue with depression in the moment. Just name it and move on.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Depression lies. That's not truth."
+        },
+        {
+          "id": "depression_004",
+          "title": "Activation Before Motivation",
+          "summary": "You don't need to feel motivated to act. Do the thing first — motivation follows.",
+          "category": "Focus & Motivation",
+          "tags": ["Depression", "motivation", "behavioural-activation", "home"],
+          "energy": "medium",
+          "what_happens": "Depression destroys motivation. Waiting to 'feel like it' means waiting forever. Action creates momentum, which generates motivation.",
+          "try_this": [
+            "Pick one small action (wash one dish, walk around the block, message one friend)",
+            "Do it mechanically, without waiting for motivation",
+            "Notice if doing it shifts your mood even slightly",
+            "Repeat: action first, feeling second",
+            "Don't expect to feel great — just slightly less stuck"
+          ],
+          "why_it_helps": "You're rewiring the depression loop. Action breaks paralysis and creates evidence that things can shift.",
+          "variations": [
+            "Start with the easiest possible action",
+            "Use external accountability (body doubling, timer)",
+            "Celebrate doing it, even if you still feel bad"
+          ],
+          "pitfalls": "Don't wait for motivation. It's not coming until you move.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Action first, motivation second."
+        },
+        {
+          "id": "depression_005",
+          "title": "The 'Good Enough' Shower",
+          "summary": "You don't have to wash everything perfectly. Rinse face and body with water. That counts.",
+          "category": "Body & Energy",
+          "tags": ["Depression", "hygiene", "self-care", "home"],
+          "energy": "low",
+          "what_happens": "Depression makes hygiene feel insurmountable. The pressure to 'do it properly' causes avoidance. Good enough is genuinely good enough.",
+          "try_this": [
+            "Lower the bar: you don't need to wash hair, shave, or scrub",
+            "Just rinse your body with water, even for 2 minutes",
+            "Use body wipes or dry shampoo if a shower is too much",
+            "Celebrate any hygiene attempt",
+            "Don't guilt yourself — you did something"
+          ],
+          "why_it_helps": "You're removing the all-or-nothing pressure. Some hygiene is infinitely better than none.",
+          "variations": [
+            "Sit in the shower if standing is hard",
+            "Use lukewarm water if hot showers feel overwhelming",
+            "Play music or a podcast to make it less effortful"
+          ],
+          "pitfalls": "Don't wait for the 'perfect' shower. Good enough breaks the avoidance cycle.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Any hygiene is better than none."
+        },
+        {
+          "id": "depression_006",
+          "title": "Sunlight Micro-Dose",
+          "summary": "Get 10 minutes of daylight daily, even if it's just sitting by a window. Light helps mood.",
+          "category": "Body & Energy",
+          "tags": ["Depression", "SAD", "sunlight", "home"],
+          "energy": "low",
+          "what_happens": "Lack of sunlight worsens depression. Even brief exposure to daylight supports circadian rhythm and mood regulation.",
+          "try_this": [
+            "Open curtains in the morning",
+            "Sit by a window for 10 minutes",
+            "Step outside, even just to the doorstep or garden",
+            "If you can't go outside, use a light therapy lamp (10,000 lux)",
+            "Do this daily, especially in winter"
+          ],
+          "why_it_helps": "Sunlight supports serotonin and regulates sleep. Small exposure has measurable impact.",
+          "variations": [
+            "Pair sunlight with another activity (coffee by the window, call a friend outside)",
+            "Use a timer so you don't have to think about duration",
+            "If mobility is limited, move your chair near the window"
+          ],
+          "pitfalls": "Don't dismiss this as too small to matter. Light is powerful.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "10 minutes of light helps my brain."
+        },
+        {
+          "id": "depression_007",
+          "title": "The 'Future Self' Letter",
+          "summary": "When you're less depressed, write a letter to your depressed self. Read it when you're low.",
+          "category": "Focus & Motivation",
+          "tags": ["Depression", "self-compassion", "hope", "home"],
+          "energy": "medium",
+          "what_happens": "Depression makes you forget that you've felt okay before. A letter from your past self proves recovery is possible.",
+          "try_this": [
+            "On a better day, write to your depressed self",
+            "Include: 'This is temporary. You've been here before and come out. I'm proud of you for surviving.'",
+            "Add reminders of what helps: your baseline tasks, people to reach out to, things that have worked before",
+            "Keep it somewhere accessible (phone notes, bedside drawer)",
+            "Read it when depression tells you there's no hope"
+          ],
+          "why_it_helps": "You're providing evidence from yourself that this isn't permanent. Your past self is an anchor.",
+          "variations": [
+            "Record a voice memo instead of writing",
+            "Ask a trusted person to read it to you if you can't",
+            "Update it as you learn new coping tools"
+          ],
+          "pitfalls": "Don't write it when you're very depressed — it won't feel believable. Wait for a clearer day.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Past me knows I can survive this."
+        },
+        {
+          "id": "depression_008",
+          "title": "Social Micro-Connection",
+          "summary": "You don't need to see people. Send one text. One emoji. Anything. Connection helps, even tiny.",
+          "category": "Communication & Social",
+          "tags": ["Depression", "isolation", "social-connection", "home", "relationships"],
+          "energy": "low",
+          "what_happens": "Depression isolates you. Social connection is protective, but big interactions feel impossible. Tiny connection is enough.",
+          "try_this": [
+            "Send one text to someone: 'Thinking of you', a meme, a heart emoji",
+            "Don't wait for the energy to have a conversation",
+            "React to someone's message or social media post",
+            "Let someone know: 'I'm struggling but I'm here'",
+            "Even one tiny connection counts"
+          ],
+          "why_it_helps": "You're breaking isolation without overwhelming yourself. Connection, however small, signals you're not alone.",
+          "variations": [
+            "Set a daily 'send one text' goal",
+            "Use pre-written messages ('Hey, just checking in')",
+            "Ask someone to text you first if initiating is too hard"
+          ],
+          "pitfalls": "Don't guilt yourself for not responding to others. Just send when you can.",
+          "context": ["home", "relationships"],
+          "resources": [],
+          "copy_to_clipboard": "One tiny connection breaks isolation."
+        },
+        {
+          "id": "depression_009",
+          "title": "The 'Impossible Task' Swap",
+          "summary": "If one task feels impossible, do a different one. Momentum from anything helps.",
+          "category": "Focus & Motivation",
+          "tags": ["Depression", "task-paralysis", "executive-dysfunction", "home"],
+          "energy": "low",
+          "what_happens": "Depression makes specific tasks feel insurmountably hard for no clear reason. Switching tasks can bypass the block.",
+          "try_this": [
+            "If you can't do Task A (shower, reply to email), don't force it",
+            "Pick Task B (wash dishes, fold one shirt, drink water)",
+            "Completing Task B creates momentum",
+            "Sometimes after Task B, Task A feels possible",
+            "Don't judge which task you do — any is good"
+          ],
+          "why_it_helps": "You're working with your brain, not against it. Momentum from one task can unlock others.",
+          "variations": [
+            "Keep a list of tasks at different difficulty levels",
+            "Rotate tasks if you hit a wall",
+            "Celebrate any task completion"
+          ],
+          "pitfalls": "Don't force the 'should' task. Your brain will resist harder.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Any task builds momentum."
+        },
+        {
+          "id": "depression_010",
+          "title": "Guilt-Free Rest",
+          "summary": "Rest is not laziness. Your brain is sick. You're allowed to lie down without earning it.",
+          "category": "Body & Energy",
+          "tags": ["Depression", "self-compassion", "rest", "home"],
+          "energy": "low",
+          "what_happens": "Depression makes you exhausted, then punishes you for resting. Guilt about rest worsens depression. You need permission.",
+          "try_this": [
+            "When you need to rest, say: 'My brain is sick. Rest is medicine.'",
+            "Lie down without guilt",
+            "Don't 'earn' rest through productivity — you deserve it always",
+            "Rest without distraction if possible (no phone, just rest)",
+            "Notice if rest actually helps (it usually does)"
+          ],
+          "why_it_helps": "Guilt prevents recovery. Rest without shame allows your nervous system to heal.",
+          "variations": [
+            "Set a 'rest window' daily where rest is scheduled and guilt-free",
+            "Use a mantra: 'Rest is not laziness. Rest is healing.'",
+            "Ask someone to give you permission if you can't give it to yourself"
+          ],
+          "pitfalls": "Don't productive-ise rest. Just rest.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Rest is medicine, not laziness."
+        },
+        {
+          "id": "depression_011",
+          "title": "Movement Micro-Dose",
+          "summary": "Walk for 5 minutes or stretch. You don't need a workout — just move your body slightly.",
+          "category": "Body & Energy",
+          "tags": ["Depression", "movement", "activation", "home"],
+          "energy": "low",
+          "what_happens": "Movement shifts mood through neurochemistry and breaks physical stagnation. Big exercise feels impossible; tiny movement is enough.",
+          "try_this": [
+            "Walk around your house or garden for 5 minutes",
+            "Stretch in bed or on the floor",
+            "Stand and shake your arms and legs",
+            "Dance to one song (even just swaying)",
+            "Notice if it shifts your mood even 1%"
+          ],
+          "why_it_helps": "Movement changes brain chemistry and interrupts rumination. Small is genuinely effective.",
+          "variations": [
+            "Pair movement with something you enjoy (music, podcast)",
+            "Do it with someone (body doubling)",
+            "Don't track it or make it a 'should' — keep it gentle"
+          ],
+          "pitfalls": "Don't force intense exercise. Gentle movement is the goal.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "5 minutes of movement shifts my brain."
+        },
+        {
+          "id": "depression_012",
+          "title": "The 'Evidence Collector' for Hope",
+          "summary": "Depression says nothing will get better. Collect tiny evidence it's lying: one good moment, one thing that worked.",
+          "category": "Focus & Motivation",
+          "tags": ["Depression", "hope", "cognitive-reframe", "home"],
+          "energy": "medium",
+          "what_happens": "Depression creates hopelessness by filtering out positive evidence. Actively collecting counter-evidence fights this.",
+          "try_this": [
+            "Daily, write down one tiny piece of evidence depression is wrong: 'I laughed today', 'Someone was kind', 'I got out of bed'",
+            "Keep the list visible",
+            "When depression says 'nothing helps', review the list",
+            "It doesn't have to be big — tiny counts",
+            "Over time, the evidence accumulates"
+          ],
+          "why_it_helps": "You're training your brain to notice what depression hides. Evidence builds hope incrementally.",
+          "variations": [
+            "Use photos or voice memos instead of writing",
+            "Share your evidence with someone",
+            "Call it 'proof I'm surviving'"
+          ],
+          "pitfalls": "Don't wait for big moments. Tiny evidence is the most important.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Small evidence fights hopelessness."
+        },
+        {
+          "id": "depression_013",
+          "title": "The 'Bare Minimum' Meal",
+          "summary": "Eat something, anything. Toast, cereal, a banana. Nutrition helps mood. Perfection doesn't matter.",
+          "category": "Body & Energy",
+          "tags": ["Depression", "nutrition", "self-care", "home"],
+          "energy": "low",
+          "what_happens": "Depression kills appetite or makes eating feel pointless. But blood sugar crashes worsen mood. Any food is better than none.",
+          "try_this": [
+            "Keep ultra-easy foods accessible: cereal, toast, fruit, crackers, protein bars",
+            "Eat something, even if it's not 'healthy'",
+            "Don't wait for hunger — set a timer if needed",
+            "Pair eating with something comforting (TV, music)",
+            "Celebrate eating, even if it's one bite"
+          ],
+          "why_it_helps": "Blood sugar impacts mood. Food is fuel, not a moral test.",
+          "variations": [
+            "Use meal replacement drinks if chewing is too hard",
+            "Ask someone to bring you food",
+            "Prep grab-and-go options when you have capacity"
+          ],
+          "pitfalls": "Don't judge what you eat. Any food is a win.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Any food is better than none."
+        },
+        {
+          "id": "depression_014",
+          "title": "The 'Crisis Card'",
+          "summary": "Pre-write what helps when you're very depressed. When you can't think, follow the card.",
+          "category": "Planning & Time",
+          "tags": ["Depression", "crisis-plan", "self-care", "home"],
+          "energy": "medium",
+          "what_happens": "Severe depression makes decision-making impossible. A pre-written plan removes the thinking load.",
+          "try_this": [
+            "On a better day, write a 'crisis card'",
+            "Include: minimum baseline tasks, people to contact, crisis numbers, things that have helped before, comfort activities",
+            "Keep it visible (phone wallpaper, bedside table, wallet)",
+            "When very depressed, just follow the card",
+            "Update it as you learn what works"
+          ],
+          "why_it_helps": "You're outsourcing decision-making to your past self. The card guides you when you can't guide yourself.",
+          "variations": [
+            "Include a reminder: 'This is temporary. You've survived before.'",
+            "Add a 'do not do' list (don't make big decisions, don't isolate completely)",
+            "Share the card with a trusted person"
+          ],
+          "pitfalls": "Don't make the card complicated. Keep it simple and actionable.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Past me made a plan. I can follow it."
+        },
+        {
+          "id": "depression_015",
+          "title": "Asking for Help Script",
+          "summary": "Say: 'I'm struggling and need support. Can you help me with X?' Asking is strength.",
+          "category": "Communication & Social",
+          "tags": ["Depression", "support", "relationships", "home"],
+          "energy": "medium",
+          "what_happens": "Depression isolates and convinces you you're a burden. Asking for help is terrifying but often essential.",
+          "try_this": [
+            "Identify one person you trust",
+            "Use a script: 'I'm really struggling right now. Can you help me with [specific task]?'",
+            "Be specific: 'Can you bring me food?', 'Can you sit with me?', 'Can you check in daily?'",
+            "Don't apologise excessively",
+            "Receiving help is not weakness"
+          ],
+          "why_it_helps": "You're not designed to survive depression alone. Asking for help is brave and necessary.",
+          "variations": [
+            "Text instead of calling if that's easier",
+            "Ask for small, specific help (not 'I need you to fix me')",
+            "Let professionals help if friends/family aren't available"
+          ],
+          "pitfalls": "Don't wait until crisis. Ask early.",
+          "context": ["home", "relationships"],
+          "resources": [],
+          "copy_to_clipboard": "Asking for help is strength."
+        }
+      ]
+    },
+    {
+      "slug": "relationships",
+      "title": "Relationships",
+      "icon": "💑",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know communication differences (not deficits) cause most neurodivergent relationship conflict?",
+          "Did you know many neurodivergent people struggle with subtext — they need explicit communication?",
+          "Did you know 'mind-reading' expectations are harmful for everyone, but especially neurodivergent people?",
+          "Did you know repair after conflict is more important than avoiding conflict entirely?",
+          "Did you know healthy boundaries strengthen relationships, not weaken them?",
+          "Did you know people-pleasing and boundary issues often stem from masking or RSD?",
+          "Did you know neurodivergent people often experience love deeply but express it differently?",
+          "Did you know mismatched communication styles (direct vs indirect) cause unnecessary hurt?",
+          "Did you know alexithymia (difficulty naming emotions) doesn't mean you don't feel them?",
+          "Did you know emotional regulation struggles aren't manipulation — they're nervous system responses?",
+          "Did you know autistic people often prefer parallel presence (being near someone without talking)?",
+          "Did you know ADHD time blindness impacts relationships (lateness, forgotten plans) but isn't intentional?",
+          "Did you know many neurodivergent people need explicit reassurance due to RSD or anxiety?",
+          "Did you know sensory needs (need for silence, touch aversion) aren't personal rejection?",
+          "Did you know neurodivergent-neurotypical relationships need bidirectional understanding, not one-sided accommodation?"
+        ],
+        "overlaps": [
+          "ADHD (time blindness, RSD, impulsivity)",
+          "Autism (communication, alexithymia, sensory)",
+          "Anxiety (reassurance-seeking, conflict avoidance)",
+          "Depression (withdrawal, low energy)",
+          "RSD (criticism sensitivity)"
+        ]
+      },
+      "orbit_tags": [
+        "Communication breakdowns",
+        "Misunderstandings",
+        "Taking things literally",
+        "Missing subtext",
+        "Sarcasm confusion",
+        "Tone misreading",
+        "People-pleasing",
+        "Can't say no",
+        "Boundary issues",
+        "Saying yes then resenting",
+        "Conflict avoidance",
+        "Shutting down in arguments",
+        "Emotional flooding",
+        "Stonewalling",
+        "Needing space",
+        "Partner doesn't understand",
+        "Feeling misunderstood",
+        "Rejection sensitivity",
+        "Criticism hurts deeply",
+        "Fear of abandonment",
+        "Reassurance needed",
+        "Clinginess",
+        "Anxious attachment",
+        "Avoidant attachment",
+        "Push-pull dynamic",
+        "Intimacy difficult",
+        "Vulnerability scary",
+        "Trust issues",
+        "Time blindness causes lateness",
+        "Forgetting important dates",
+        "Forgetting plans",
+        "Partner feels neglected",
+        "Hyperfocus excludes partner",
+        "Special interests dominate",
+        "Info-dumping",
+        "One-sided conversations",
+        "Interrupting",
+        "Difficulty listening",
+        "Touch aversion",
+        "Sensory needs misunderstood",
+        "Need alone time",
+        "Partner feels rejected",
+        "Social battery empty",
+        "Parallel play preference",
+        "Don't know how I feel",
+        "Alexithymia in relationships",
+        "Can't name emotions",
+        "Partner wants emotional talk",
+        "Masking exhaustion",
+        "Can't be authentic",
+        "Pretending to be neurotypical",
+        "Burnout from relationship demands",
+        "Co-regulation struggles",
+        "Partner's emotions overwhelming",
+        "Absorbing others' moods",
+        "Friendship difficulties",
+        "Loneliness",
+        "Social isolation"
+      ],
+      "tips": [
+        {
+          "id": "relationships_001",
+          "title": "The 'Say What You Mean' Rule",
+          "summary": "Ask your partner to be explicit, not subtle. 'Can you do X?' not 'It would be nice if...'",
+          "category": "Communication & Social",
+          "tags": ["Autism", "ADHD", "communication", "relationships", "literal-thinking"],
+          "energy": "medium",
+          "what_happens": "Neurodivergent brains often miss subtext, hints, and indirect communication. This causes misunderstandings and hurt feelings. Explicit communication prevents this.",
+          "try_this": [
+            "Explain to your partner: 'I struggle with hints. Please tell me directly what you need.'",
+            "Model it: ask directly yourself ('Can you wash up?' not 'The kitchen is messy')",
+            "When they're indirect, ask: 'Are you asking me to do something? Can you say it directly?'",
+            "Frame it as a communication difference, not a failing",
+            "Both people benefit from clarity"
+          ],
+          "why_it_helps": "Directness removes guessing. You both know what's needed, which reduces conflict and resentment.",
+          "variations": [
+            "Use 'I need you to X' statements",
+            "Agree on a phrase to request directness: 'Can you be explicit?'",
+            "Clarify expectations in advance (e.g., 'What does a clean kitchen mean to you?')"
+          ],
+          "pitfalls": "Don't assume your partner is being deliberately unclear. They might not realise they're hinting.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Say what you mean. I can't read minds."
+        },
+        {
+          "id": "relationships_002",
+          "title": "The 'I Need Space' Script",
+          "summary": "When overwhelmed, say: 'I need 30 minutes alone. It's not about you. I'll come back.'",
+          "category": "Communication & Social",
+          "tags": ["Autism", "ADHD", "sensory-overload", "boundaries", "relationships"],
+          "energy": "low",
+          "what_happens": "Neurodivergent people often need solo time to regulate. Without explanation, partners feel rejected or shut out.",
+          "try_this": [
+            "When you need space, say: 'I'm overwhelmed and need to be alone for [time]. It's not about you. I'll come find you after.'",
+            "Give a timeframe so they're not left uncertain",
+            "Explain in advance (when calm): 'Sometimes I need space to regulate. It's not rejection.'",
+            "Follow through: return when you said you would",
+            "Thank them for respecting your need"
+          ],
+          "why_it_helps": "Clarity prevents misinterpretation. Your partner understands it's regulation, not rejection.",
+          "variations": [
+            "Use a signal: 'When I say \"space please\", I need alone time'",
+            "Suggest what they can do during your space time",
+            "Reassure: 'I still love you. My brain just needs quiet.'"
+          ],
+          "pitfalls": "Don't disappear without explanation. Silence causes anxiety for partners.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I need space to regulate. It's not rejection."
+        },
+        {
+          "id": "relationships_003",
+          "title": "The 'Repair After Conflict' Script",
+          "summary": "After a fight, say: 'I'm sorry I hurt you. Can we reconnect?' Repair builds trust.",
+          "category": "Communication & Social",
+          "tags": ["relationships", "emotional-regulation", "conflict", "home"],
+          "energy": "medium",
+          "what_happens": "Conflict is inevitable. What matters is repairing the connection afterwards. Many neurodivergent people struggle with this due to RSD, shame, or alexithymia.",
+          "try_this": [
+            "After a conflict, once calm, initiate repair",
+            "Say: 'I'm sorry for [specific thing]. I didn't mean to hurt you. Can we reconnect?'",
+            "Take responsibility for your part (not all of it)",
+            "Ask: 'What do you need from me right now?'",
+            "Offer physical or verbal reconnection (hug, reassurance)"
+          ],
+          "why_it_helps": "Repair signals: 'We're safe. Conflict doesn't end us.' It builds resilience in the relationship.",
+          "variations": [
+            "If verbal repair is hard, write a note",
+            "Use a physical cue (hand on heart, specific phrase)",
+            "Discuss repair strategies when you're both calm"
+          ],
+          "pitfalls": "Don't skip repair to avoid discomfort. Unrepaired ruptures accumulate.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Repair rebuilds trust after conflict."
+        },
+        {
+          "id": "relationships_004",
+          "title": "The 'Emotional Translation' Request",
+          "summary": "If you can't name how you feel, say: 'I feel something, but I don't know what. Can you help me figure it out?'",
+          "category": "Communication & Social",
+          "tags": ["Autism", "alexithymia", "communication", "relationships"],
+          "energy": "medium",
+          "what_happens": "Alexithymia makes it hard to identify and name emotions. Partners may want emotional communication, but you genuinely don't know what you feel.",
+          "try_this": [
+            "Explain alexithymia to your partner: 'Sometimes I can't name my feelings. It doesn't mean I don't have them.'",
+            "When asked how you feel, try: 'I feel something, but I don't know what. Can you help?'",
+            "Use body sensations: 'My chest feels tight' or 'I feel heavy'",
+            "Use a feelings wheel or chart together",
+            "Don't force precision — 'bad' or 'uncomfortable' is valid"
+          ],
+          "why_it_helps": "Your partner understands it's a processing difference, not withholding. Collaboration helps you both.",
+          "variations": [
+            "Use non-verbal cues: emoji scale, colour coding",
+            "Agree on a phrase: 'I need help translating'",
+            "Journal together to explore feelings"
+          ],
+          "pitfalls": "Don't shut down emotionally. Engage with the process, even if words are hard.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I feel something, but I need help naming it."
+        },
+        {
+          "id": "relationships_005",
+          "title": "The 'Info-Dump Permission' System",
+          "summary": "Ask: 'Can I tell you about X?' Give your partner the option to say 'not right now'.",
+          "category": "Communication & Social",
+          "tags": ["Autism", "ADHD", "special-interests", "communication", "relationships"],
+          "energy": "low",
+          "what_happens": "Neurodivergent people often info-dump about interests. Without checking capacity, it can overwhelm partners or feel one-sided.",
+          "try_this": [
+            "Before launching into a topic, ask: 'Can I tell you about X? It might take a few minutes.'",
+            "If they say 'not now', don't take it personally",
+            "Agree on a signal: 'When I need to info-dump, I'll ask first'",
+            "Your partner can say: 'I have 5 minutes' or 'Tell me tomorrow'",
+            "Find other outlets too (online communities, friends who share the interest)"
+          ],
+          "why_it_helps": "You're respecting their capacity while protecting your need to share. Consent prevents resentment.",
+          "variations": [
+            "Set a time limit: 'I'll talk for 10 minutes'",
+            "Use a 'special interest hour' where they give full attention",
+            "Journal or record voice memos if they're not available"
+          ],
+          "pitfalls": "Don't assume 'not now' means 'never'. It's about capacity, not interest in you.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Can I tell you about this? No pressure."
+        },
+        {
+          "id": "relationships_006",
+          "title": "The 'RSD Reality Check'",
+          "summary": "When criticism feels catastrophic, say: 'My RSD is triggered. Can you reassure me this isn't rejection?'",
+          "category": "Communication & Social",
+          "tags": ["ADHD", "RSD", "emotional-regulation", "relationships"],
+          "energy": "medium",
+          "what_happens": "RSD makes feedback or criticism feel like total rejection. Naming it and asking for reassurance helps you reality-check.",
+          "try_this": [
+            "Explain RSD to your partner in advance: 'Sometimes criticism feels like you hate me. It's not rational, but it's real.'",
+            "When triggered, say: 'My RSD is going off. Can you reassure me we're okay?'",
+            "Ask for specific reassurance: 'Do you still love me?' 'Are we okay?'",
+            "Your partner says: 'Yes, we're okay. I love you. This is just about [specific issue].'",
+            "Breathe and let the reassurance in"
+          ],
+          "why_it_helps": "You're separating RSD from reality. Your partner's reassurance helps your nervous system calm.",
+          "variations": [
+            "Use a code word for RSD: 'I'm spiralling'",
+            "Write down reassurances to review when alone",
+            "Practice self-reassurance: 'This is RSD, not reality'"
+          ],
+          "pitfalls": "Don't demand constant reassurance. Use it for acute RSD, not daily.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "This is RSD. Can you reassure me we're okay?"
+        },
+        {
+          "id": "relationships_007",
+          "title": "The 'Parallel Presence' Preference",
+          "summary": "Say: 'I love being near you, but I don't always need to talk. Can we just exist together?'",
+          "category": "Communication & Social",
+          "tags": ["Autism", "ADHD", "relationships", "social-energy"],
+          "energy": "low",
+          "what_happens": "Many neurodivergent people recharge through parallel presence — being near someone without interacting. Partners may misinterpret this as disinterest.",
+          "try_this": [
+            "Explain: 'I love you and want to be near you, but I don't always need to talk or interact.'",
+            "Suggest parallel activities: reading in the same room, separate hobbies side-by-side, watching TV without talking",
+            "Reassure: 'This is how I feel connected. Silence isn't rejection.'",
+            "Check in occasionally: 'This is nice, right?'",
+            "Respect if your partner needs more interaction sometimes"
+          ],
+          "why_it_helps": "You're honouring your need for low-demand connection while staying physically close.",
+          "variations": [
+            "Alternate between parallel and interactive time",
+            "Use 'together but separate' time as a default",
+            "Plan interactive time when you both have energy"
+          ],
+          "pitfalls": "Don't withdraw entirely. Balance parallel presence with intentional connection.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I love being near you, even in silence."
+        },
+        {
+          "id": "relationships_008",
+          "title": "The 'Boundary Practice' Script",
+          "summary": "Say no to small things first. 'I'd rather not tonight' builds boundary muscles.",
+          "category": "Communication & Social",
+          "tags": ["boundaries", "people-pleasing", "relationships", "work"],
+          "energy": "medium",
+          "what_happens": "People-pleasing and poor boundaries lead to resentment and burnout. Practising small nos builds capacity for bigger ones.",
+          "try_this": [
+            "Start with low-stakes situations: 'I'd rather not go out tonight'",
+            "Use a gentle script: 'Thanks for thinking of me, but I'm not up for that'",
+            "Don't over-explain or justify — 'No' is complete",
+            "Notice the discomfort but sit with it",
+            "Celebrate: 'I set a boundary. That was hard and I did it.'"
+          ],
+          "why_it_helps": "You're retraining your nervous system that boundaries are safe. Small practice builds confidence.",
+          "variations": [
+            "Write down your boundary before saying it",
+            "Role-play with a safe person",
+            "Use text or written communication if verbal is too hard"
+          ],
+          "pitfalls": "Don't expect comfort immediately. Boundary-setting feels bad at first.",
+          "context": ["relationships", "work", "social-events"],
+          "resources": [],
+          "copy_to_clipboard": "Small nos build boundary muscles."
+        },
+        {
+          "id": "relationships_009",
+          "title": "The 'Sensory Touch' Conversation",
+          "summary": "Explain: 'I love you, but sometimes touch is overwhelming. Can we find touch that works for both of us?'",
+          "category": "Communication & Social",
+          "tags": ["Autism", "sensory-regulation", "relationships", "touch"],
+          "energy": "medium",
+          "what_happens": "Sensory sensitivities can make touch uncomfortable or painful. Partners may feel rejected. Open conversation finds alternatives.",
+          "try_this": [
+            "Explain: 'I have sensory sensitivities. Sometimes touch is overwhelming. It's not about you.'",
+            "Identify what works: deep pressure, holding hands, sitting close without touching, specific touch at specific times",
+            "Communicate in the moment: 'I'm touched out right now. Can we just sit close?'",
+            "Find non-touch ways to express affection: words, acts of service, time together",
+            "Reassure: 'I love you. My sensory needs don't change that.'"
+          ],
+          "why_it_helps": "You're protecting your sensory needs while staying connected. Your partner understands it's not rejection.",
+          "variations": [
+            "Use a traffic light system: green = touch welcome, amber = ask first, red = no touch",
+            "Initiate touch when you're regulated",
+            "Explain sensory differences educationally"
+          ],
+          "pitfalls": "Don't force yourself to tolerate painful touch. Find alternatives together.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "My sensory needs aren't rejection."
+        },
+        {
+          "id": "relationships_010",
+          "title": "The 'Time Blindness Apology'",
+          "summary": "Say: 'I'm late because of time blindness, not because I don't care. I'm working on it.'",
+          "category": "Communication & Social",
+          "tags": ["ADHD", "time-blindness", "relationships", "accountability"],
+          "energy": "medium",
+          "what_happens": "ADHD time blindness makes you late or forget plans. Partners feel unimportant. Explaining the neurological cause + accountability helps.",
+          "try_this": [
+            "Explain time blindness: 'My brain doesn't track time well. I lose track easily. It's not intentional.'",
+            "Apologise when you're late: 'I'm sorry. I know this impacts you.'",
+            "Share what you're doing to improve: alarms, visual timers, buffers, reminders",
+            "Ask for patience: 'I'm working on this, but it's hard for my brain'",
+            "Don't use ADHD as an excuse to avoid accountability"
+          ],
+          "why_it_helps": "Your partner understands it's neurological, not carelessness. You're taking responsibility while explaining the challenge.",
+          "variations": [
+            "Ask them to send reminders",
+            "Set shared calendar alerts",
+            "Build in buffer time for all plans"
+          ],
+          "pitfalls": "Don't stop trying to improve. Explanation isn't excuse.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Time blindness is real. I'm working on it."
+        },
+        {
+          "id": "relationships_011",
+          "title": "The 'Love Languages' Translation",
+          "summary": "Learn how you and your partner give/receive love. Neurodivergence often affects expression.",
+          "category": "Communication & Social",
+          "tags": ["relationships", "communication", "emotional-regulation", "home"],
+          "energy": "medium",
+          "what_happens": "Neurodivergent people may express love differently (acts of service, parallel presence) while partners expect words or touch. Mismatched languages cause hurt.",
+          "try_this": [
+            "Both take the love languages quiz (words, touch, acts of service, quality time, gifts)",
+            "Discuss: 'I feel loved when you X. How do you feel loved?'",
+            "Explain how neurodivergence affects expression: 'I show love through acts of service because words are hard'",
+            "Agree to 'speak' each other's language intentionally",
+            "Notice and appreciate when they try"
+          ],
+          "why_it_helps": "You're both learning to give and receive love in ways that land. Clarity prevents feeling unloved.",
+          "variations": [
+            "Ask: 'Did you notice I did X for you? That was me showing love.'",
+            "Schedule 'love language time' (weekly date, touch time, affirmation practice)",
+            "Be explicit: 'Can you tell me you love me? I need words today.'"
+          ],
+          "pitfalls": "Don't assume your partner knows your language. Teach them explicitly.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "We show love differently. Let's learn each other's language."
+        },
+        {
+          "id": "relationships_012",
+          "title": "The 'Emotional Flooding' Timeout",
+          "summary": "When flooded, say: 'I'm overwhelmed. I need a break. Let's come back to this in 20 minutes.'",
+          "category": "Communication & Social",
+          "tags": ["emotional-regulation", "conflict", "Autism", "ADHD", "relationships"],
+          "energy": "low",
+          "what_happens": "Emotional flooding shuts down thinking. Continuing conflict while flooded escalates harm. Timeouts allow regulation.",
+          "try_this": [
+            "When you feel flooded (heart racing, can't think, shutting down), say: 'I'm overwhelmed. I need a break.'",
+            "Agree on a timeframe: 'Let's come back to this in 20 minutes'",
+            "Use the break to regulate: walk, breathe, splash cold water, stim",
+            "Return when you said you would",
+            "Resume the conversation when both calm"
+          ],
+          "why_it_helps": "You're preventing damage by pausing when your nervous system is overloaded. Regulation first, resolution second.",
+          "variations": [
+            "Use a safe word: 'Pause' or 'Break'",
+            "Reassure: 'I'm not abandoning the conversation, just regulating'",
+            "Agree on timeout rules in advance (when calm)"
+          ],
+          "pitfalls": "Don't use timeouts to avoid difficult conversations. Always return.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I need a break to regulate. I'll come back."
+        },
+        {
+          "id": "relationships_013",
+          "title": "The 'I'm Not Mind-Reading' Reminder",
+          "summary": "Say: 'I can't guess what you need. Please tell me directly.'",
+          "category": "Communication & Social",
+          "tags": ["Autism", "ADHD", "communication", "relationships"],
+          "energy": "low",
+          "what_happens": "Partners sometimes expect you to infer needs from behaviour or hints. Neurodivergent brains often can't. Directness prevents resentment.",
+          "try_this": [
+            "When your partner is upset and expects you to know why, say: 'I can't tell what's wrong. Can you tell me?'",
+            "Explain: 'I'm not good at reading between the lines. I need you to be explicit.'",
+            "Model it: tell them directly what you need",
+            "Don't apologise for needing clarity",
+            "Frame it as a communication style difference"
+          ],
+          "why_it_helps": "You're removing the expectation of mind-reading, which is impossible for most neurodivergent people.",
+          "variations": [
+            "Ask: 'Are you upset with me? I genuinely can't tell.'",
+            "Request check-ins: 'Can you tell me if something bothers you?'",
+            "Reassure: 'I care. I just need help understanding.'"
+          ],
+          "pitfalls": "Don't dismiss their feelings. You're asking for clarity, not dismissing the issue.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I can't mind-read. Please tell me."
+        },
+        {
+          "id": "relationships_014",
+          "title": "The 'Weekly Relationship Check-In'",
+          "summary": "Schedule 15 minutes weekly to ask: 'How are we doing? What do you need from me?'",
+          "category": "Communication & Social",
+          "tags": ["relationships", "communication", "planning", "home"],
+          "energy": "medium",
+          "what_happens": "Neurodivergent people may miss social cues that a relationship is struggling. Scheduled check-ins create space for maintenance.",
+          "try_this": [
+            "Pick a regular time weekly (Sunday evening, Friday after work)",
+            "Both ask: 'How are we doing? What's working? What do you need from me?'",
+            "Keep it short (10-15 minutes) and structured",
+            "Write down action items if needed",
+            "Celebrate what's going well"
+          ],
+          "why_it_helps": "You're creating a predictable space for relationship maintenance. Small issues get addressed before they escalate.",
+          "variations": [
+            "Use a template: 'One thing that went well, one thing to work on'",
+            "Include appreciations: 'One thing I loved this week'",
+            "Alternate who initiates the check-in"
+          ],
+          "pitfalls": "Don't skip check-ins when things are good. Prevention is easier than repair.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "Weekly check-ins prevent big problems."
+        },
+        {
+          "id": "relationships_015",
+          "title": "The 'Unmasking in Relationships' Practice",
+          "summary": "Gradually let your partner see the real you: stimming, scripting, sensory needs, special interests.",
+          "category": "Communication & Social",
+          "tags": ["Autism", "masking", "unmasking", "relationships", "authenticity"],
+          "energy": "high",
+          "what_happens": "Masking in relationships is exhausting and prevents true intimacy. Unmasking is vulnerable but necessary for authentic connection.",
+          "try_this": [
+            "Choose one safe way to unmask: let yourself stim, share a special interest fully, admit when you're overwhelmed",
+            "Explain: 'This is the real me. I've been hiding this because I was scared.'",
+            "Notice how they respond — do they accept or judge?",
+            "Gradually unmask more as safety builds",
+            "Protect your authenticity: you deserve to be loved as you are"
+          ],
+          "why_it_helps": "You're building genuine intimacy. Being loved for who you actually are is deeper than being loved for a performance.",
+          "variations": [
+            "Start with small unmaskings (stimming at home, asking for accommodations)",
+            "Educate your partner about neurodivergence",
+            "Notice if you feel more or less connected as you unmask"
+          ],
+          "pitfalls": "Don't stay with someone who requires you to mask constantly. That's not love.",
+          "context": ["relationships", "home"],
+          "resources": [],
+          "copy_to_clipboard": "I deserve to be loved as I actually am."
+        }
+      ]
+    }
+  ]
+}

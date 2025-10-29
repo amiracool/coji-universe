@@ -11,7 +11,10 @@
       "Bash(git commit:*)",
       "Bash(npm run dev:*)",
       "Bash(pkill:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(python merge_library.py:*)",
+      "Bash(python:*)",
+      "Bash(taskkill:*)"
     ],
     "deny": [],
     "ask": []

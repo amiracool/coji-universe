@@ -1,0 +1,521 @@
+{
+  "library_metadata": {
+    "version": "1.0.0",
+    "total_planets": 12,
+    "british_english": true,
+    "part": "4 of 4 (FINAL)",
+    "planets_in_this_file": ["dyspraxia"],
+    "completion_summary": {
+      "total_planets": 12,
+      "total_tips": 195,
+      "total_mind_gram_facts": 180,
+      "total_orbit_tags": "600+",
+      "total_seed_search_queries": 90
+    }
+  },
+
+  "tabs": [
+    {
+      "slug": "dyspraxia",
+      "title": "Dyspraxia",
+      "icon": "🏃",
+      "mindgram": {
+        "did_you_know": [
+          "Did you know dyspraxia affects motor planning, not just clumsiness?",
+          "Did you know dyspraxia impacts fine motor (writing, buttoning) and gross motor (balance, coordination)?",
+          "Did you know proprioception (sensing where your body is in space) is often affected in dyspraxia?",
+          "Did you know dyspraxia frequently overlaps with ADHD, dyslexia, and autism?",
+          "Did you know dyspraxia can affect speech (verbal dyspraxia) and motor skills?",
+          "Did you know sequencing and planning movements is harder for dyspraxic brains?",
+          "Did you know dyspraxia isn't something you 'grow out of' — but you can learn compensatory strategies?",
+          "Did you know fatigue and stress worsen dyspraxia symptoms?",
+          "Did you know many people with dyspraxia have slow processing speed for motor tasks?",
+          "Did you know dyspraxia can affect handwriting, making it painful or illegible?",
+          "Did you know balance and spatial awareness challenges are common in dyspraxia?",
+          "Did you know dyspraxia can make learning new physical skills (driving, sports) extremely difficult?",
+          "Did you know organisational skills (not just physical) are often impacted by dyspraxia?",
+          "Did you know posture and core strength are often weak in dyspraxia, causing pain?",
+          "Did you know accommodations (typing instead of writing, extra time) are valid and helpful?"
+        ],
+        "overlaps": [
+          "ADHD (motor restlessness, executive dysfunction)",
+          "Autism (proprioception, sensory processing)",
+          "Dyslexia (sequencing, processing speed)",
+          "Chronic Illness (fatigue worsens symptoms)",
+          "Joint hypermobility (EDS, HMS)"
+        ]
+      },
+      "orbit_tags": [
+        "Clumsy",
+        "Bumping into things",
+        "Tripping over nothing",
+        "Dropping things constantly",
+        "Spilling food and drinks",
+        "Knocking things over",
+        "Breaking things accidentally",
+        "Poor balance",
+        "Falling easily",
+        "Unsteady on feet",
+        "Difficulty walking in straight line",
+        "Can't catch a ball",
+        "Terrible at sports",
+        "Poor hand-eye coordination",
+        "Fine motor difficulty",
+        "Buttoning clothing hard",
+        "Tying shoelaces struggle",
+        "Using cutlery awkwardly",
+        "Handwriting painful",
+        "Messy handwriting",
+        "Can't write neatly",
+        "Writing fatigue",
+        "Grip strength weak",
+        "Using scissors difficult",
+        "Craft tasks hard",
+        "Threading needles impossible",
+        "Makeup application difficult",
+        "Shaving tricky",
+        "Hair styling hard",
+        "Left-right confusion",
+        "Directional confusion",
+        "Navigation difficulty",
+        "Getting lost easily",
+        "Map reading hard",
+        "Spatial awareness poor",
+        "Judging distances difficult",
+        "Parking struggle",
+        "Driving anxiety",
+        "Learning to drive hard",
+        "Reversing impossible",
+        "Proprioception issues",
+        "Don't know where limbs are",
+        "Body awareness poor",
+        "Posture problems",
+        "Slouching",
+        "Core weakness",
+        "Back pain",
+        "Joint pain",
+        "Muscle fatigue",
+        "Tire easily",
+        "Slow movement",
+        "Processing movement slowly",
+        "Sequencing movements hard",
+        "Multi-step tasks confusing",
+        "Following instructions difficult",
+        "Verbal dyspraxia",
+        "Speech unclear",
+        "Word retrieval hard",
+        "Organisational difficulty",
+        "Planning movement hard",
+        "Estimating time for tasks",
+        "Packing bags chaotic",
+        "Messy eating",
+        "Food on clothes",
+        "Sensory sensitivities",
+        "Touch sensitivity",
+        "Texture aversions",
+        "Clothing tags unbearable",
+        "Seams uncomfortable",
+        "Coordination with others hard",
+        "Dancing difficult",
+        "Group sports impossible",
+        "Social embarrassment",
+        "Feeling stupid",
+        "Avoiding physical activities",
+        "Gym anxiety",
+        "Self-consciousness"
+      ],
+      "tips": [
+        {
+          "id": "dyspraxia_001",
+          "title": "Type Instead of Write",
+          "summary": "Handwriting is painful and slow with dyspraxia. Use keyboards, voice-to-text, or typing for everything.",
+          "category": "Work & Study",
+          "tags": ["Dyspraxia", "fine-motor", "assistive-tech", "work", "study"],
+          "energy": "low",
+          "what_happens": "Dyspraxia makes handwriting effortful, painful, and illegible. Typing bypasses fine motor demands.",
+          "try_this": [
+            "Use laptops or tablets for note-taking",
+            "Request accommodations for typed assignments or exams",
+            "Use voice-to-text when typing is also tiring",
+            "Keep handwriting minimal (signature, short forms only)",
+            "Don't force handwriting practice — typing is valid"
+          ],
+          "why_it_helps": "You're removing the motor barrier. Your ideas flow without handwriting slowing you down.",
+          "variations": [
+            "Use stylus + tablet if you prefer drawing to typing",
+            "Try ergonomic keyboards or adaptive grips",
+            "Use speech-to-text for longer documents"
+          ],
+          "pitfalls": "Don't let anyone shame you for not writing by hand. It's a legitimate accommodation.",
+          "context": ["work", "study"],
+          "resources": [],
+          "copy_to_clipboard": "Typing is valid. Handwriting is optional."
+        },
+        {
+          "id": "dyspraxia_002",
+          "title": "Slip-On Shoes Forever",
+          "summary": "Tying laces is motor-intensive. Use slip-ons, Velcro, or elastic laces. Save your energy.",
+          "category": "Home & Environment",
+          "tags": ["Dyspraxia", "fine-motor", "adaptive-equipment", "home"],
+          "energy": "low",
+          "what_happens": "Tying shoelaces uses fine motor skills and sequencing. Avoiding them saves energy and frustration.",
+          "try_this": [
+            "Buy slip-on shoes, loafers, or Velcro-fastening shoes",
+            "Use elastic 'no-tie' laces in existing shoes",
+            "Keep shoe choices simple and functional",
+            "Don't struggle with laces daily — eliminate the task",
+            "Choose comfort and ease over style if needed"
+          ],
+          "why_it_helps": "You're removing a daily fine motor task. That energy goes elsewhere.",
+          "variations": [
+            "Use zipper boots instead of lace-ups",
+            "Teach kids with dyspraxia alternative fastening methods",
+            "Use elastic laces in sports shoes"
+          ],
+          "pitfalls": "Don't force laces out of habit. Adaptive solutions are smarter.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Slip-ons save daily energy."
+        },
+        {
+          "id": "dyspraxia_003",
+          "title": "Proprioception Grounding",
+          "summary": "When you feel uncoordinated or 'floaty', do heavy work: push walls, carry weights, press into the floor.",
+          "category": "Sensory & Regulation",
+          "tags": ["Dyspraxia", "proprioception", "body-awareness", "home", "work"],
+          "energy": "low",
+          "what_happens": "Dyspraxia often includes weak proprioception (body position sense). Heavy work (pressure input) helps your brain locate your body.",
+          "try_this": [
+            "Push against a wall with your hands or back for 10 seconds",
+            "Carry something heavy (weighted bag, groceries, books)",
+            "Press your feet firmly into the floor and notice the pressure",
+            "Do wall push-ups or press palms together hard",
+            "Use weighted blankets or compression clothing"
+          ],
+          "why_it_helps": "You're giving your brain the sensory input it needs to map your body. Proprioception improves with pressure.",
+          "variations": [
+            "Use resistance bands or stretch bands",
+            "Try 'body scans' — mentally check in with each body part",
+            "Wear tight-fitting or compression clothing"
+          ],
+          "pitfalls": "Don't ignore feeling 'floaty'. Ground yourself with pressure.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "Heavy work helps me find my body."
+        },
+        {
+          "id": "dyspraxia_004",
+          "title": "Break Down Movement Sequences",
+          "summary": "Multi-step movements are hard. Break them into single steps, practise slowly, repeat.",
+          "category": "Body & Energy",
+          "tags": ["Dyspraxia", "motor-planning", "sequencing", "home", "work"],
+          "energy": "medium",
+          "what_happens": "Dyspraxia affects motor sequencing — your brain struggles to plan and execute multi-step movements. Breaking them down helps.",
+          "try_this": [
+            "Identify the movement sequence (e.g., putting on a coat: step 1, put one arm in; step 2, pull across back; step 3, put other arm in)",
+            "Practise each step separately and slowly",
+            "Use verbal cues or write down steps",
+            "Repeat until it becomes more automatic",
+            "Be patient — motor learning takes longer"
+          ],
+          "why_it_helps": "You're compensating for sequencing difficulty. Conscious breakdown bypasses automatic planning deficits.",
+          "variations": [
+            "Use video demonstrations slowed down",
+            "Mirror someone else doing the movement",
+            "Use rhythm or counting to sequence"
+          ],
+          "pitfalls": "Don't rush. Slow, deliberate practice is more effective.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I break movements into single steps."
+        },
+        {
+          "id": "dyspraxia_005",
+          "title": "Core Strengthening Gently",
+          "summary": "Dyspraxia often means weak core and poor posture. Gentle strengthening (Pilates, physio) helps.",
+          "category": "Body & Energy",
+          "tags": ["Dyspraxia", "posture", "core-strength", "pain", "home"],
+          "energy": "medium",
+          "what_happens": "Weak core muscles lead to poor posture, back pain, and fatigue. Gentle strengthening improves stability.",
+          "try_this": [
+            "Work with a physiotherapist who understands dyspraxia",
+            "Try gentle Pilates, yoga, or core exercises",
+            "Focus on stabilisation, not intensity",
+            "Start with very simple exercises (plank holds, bridges)",
+            "Build slowly — consistency matters more than intensity"
+          ],
+          "why_it_helps": "You're building the foundational strength your body needs. Core stability reduces pain and fatigue.",
+          "variations": [
+            "Use physio apps or videos (search 'core strengthening dyspraxia')",
+            "Try swimming or water-based exercises (low impact)",
+            "Use a stability ball for sitting"
+          ],
+          "pitfalls": "Don't go too hard too fast. Gentle, sustained work is key.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Gentle core work reduces pain."
+        },
+        {
+          "id": "dyspraxia_006",
+          "title": "Pre-Cut or Easy-Prep Foods",
+          "summary": "Cutting, chopping, and food prep are motor-intensive. Use pre-cut, frozen, or simple foods.",
+          "category": "Home & Environment",
+          "tags": ["Dyspraxia", "fine-motor", "coordination", "home"],
+          "energy": "low",
+          "what_happens": "Knife skills and food prep require coordination, grip strength, and fine motor control. Simplifying saves energy and prevents injury.",
+          "try_this": [
+            "Buy pre-cut vegetables, fruit, or frozen chopped options",
+            "Use kitchen tools: food processors, easy choppers, pre-minced garlic",
+            "Choose easy-prep meals (stir-fries with frozen veg, ready-made sauces)",
+            "Don't force knife skills — safety and ease matter more",
+            "Use adaptive cutting boards (with grips or spikes)"
+          ],
+          "why_it_helps": "You're removing motor barriers to eating well. Nutrition doesn't require knife skills.",
+          "variations": [
+            "Batch-cook on good coordination days",
+            "Ask others to help with prep",
+            "Use slow cookers or one-pot meals"
+          ],
+          "pitfalls": "Don't risk injury to prove you can. Adaptive tools are smart.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Easy-prep foods are valid."
+        },
+        {
+          "id": "dyspraxia_007",
+          "title": "GPS and Maps Over Memory",
+          "summary": "Navigation and spatial awareness are hard with dyspraxia. Use GPS without shame.",
+          "category": "Planning & Time",
+          "tags": ["Dyspraxia", "spatial-awareness", "navigation", "errands", "work"],
+          "energy": "low",
+          "what_happens": "Dyspraxia affects spatial awareness and left-right processing. Getting lost is common. GPS compensates.",
+          "try_this": [
+            "Always use GPS, even for familiar routes",
+            "Set GPS before you start driving or walking",
+            "Use voice navigation so you don't have to read maps while moving",
+            "Plan routes in advance, check them visually",
+            "Don't rely on memory or sense of direction"
+          ],
+          "why_it_helps": "You're compensating for spatial processing differences. GPS removes the guesswork and stress.",
+          "variations": [
+            "Use augmented reality navigation (Google Maps AR)",
+            "Screenshot directions as backup",
+            "Leave extra time for wrong turns"
+          ],
+          "pitfalls": "Don't try to navigate 'naturally'. Use tools without guilt.",
+          "context": ["errands", "work", "commute"],
+          "resources": [],
+          "copy_to_clipboard": "GPS is always on. No shame."
+        },
+        {
+          "id": "dyspraxia_008",
+          "title": "Occupational Therapy Strategies",
+          "summary": "Work with an OT who understands dyspraxia. Learn adaptive strategies for daily tasks.",
+          "category": "Body & Energy",
+          "tags": ["Dyspraxia", "adaptive-equipment", "occupational-therapy", "home"],
+          "energy": "high",
+          "what_happens": "Occupational therapists specialise in making daily tasks easier. They can assess and suggest personalised strategies.",
+          "try_this": [
+            "Request referral to an OT (through GP, school, or privately)",
+            "Focus on functional goals (dressing, cooking, writing, self-care)",
+            "Learn adaptive techniques and compensatory strategies",
+            "Get recommendations for adaptive equipment",
+            "Practise strategies at home"
+          ],
+          "why_it_helps": "You're getting expert support tailored to your needs. OT strategies are evidence-based and practical.",
+          "variations": [
+            "Ask for home or workplace assessments",
+            "Request adaptive equipment trials",
+            "Join dyspraxia support groups for peer strategies"
+          ],
+          "pitfalls": "Don't skip OT thinking you 'should manage'. Support is valid.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "OT teaches me adaptive strategies."
+        },
+        {
+          "id": "dyspraxia_009",
+          "title": "The 'Sticky Floor' Metaphor",
+          "summary": "Movement feels like wading through treacle. Rest frequently, don't compare your pace to others.",
+          "category": "Body & Energy",
+          "tags": ["Dyspraxia", "fatigue", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "Dyspraxia makes movement effortful and exhausting. Your baseline is slower, and that's okay.",
+          "try_this": [
+            "Acknowledge: 'My body works harder for movement than others'",
+            "Rest between physical tasks",
+            "Don't compare your pace to non-dyspraxic people",
+            "Celebrate what you do accomplish",
+            "Use energy-saving strategies (sit instead of stand, break tasks into chunks)"
+          ],
+          "why_it_helps": "You're validating your experience and pacing appropriately. Comparison causes shame; acceptance allows adaptation.",
+          "variations": [
+            "Use the 'spoon theory' for physical energy",
+            "Plan rest after physically demanding tasks",
+            "Communicate your needs to others"
+          ],
+          "pitfalls": "Don't push through fatigue. You'll pay with pain and crashes.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "My body works harder. I pace accordingly."
+        },
+        {
+          "id": "dyspraxia_010",
+          "title": "Organising Physical Spaces Visually",
+          "summary": "Use clear containers, labels, and visible storage. 'Out of sight' means lost forever.",
+          "category": "Home & Environment",
+          "tags": ["Dyspraxia", "organisation", "visual-cues", "home"],
+          "energy": "medium",
+          "what_happens": "Dyspraxia overlaps with organisational difficulties and working memory issues. Visible storage helps.",
+          "try_this": [
+            "Use clear plastic containers instead of opaque ones",
+            "Label shelves, drawers, and boxes",
+            "Keep frequently used items in visible, easy-reach spots",
+            "Reduce clutter — less stuff = easier to organise",
+            "Use open shelving instead of closed cupboards"
+          ],
+          "why_it_helps": "You're making organisation visual and intuitive. Seeing items reduces searching and frustration.",
+          "variations": [
+            "Use colour-coding for categories",
+            "Take photos of organised spaces to recreate them",
+            "Minimise possessions to reduce organisation load"
+          ],
+          "pitfalls": "Don't use complex filing systems. Keep it simple and visible.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Visible storage = findable items."
+        },
+        {
+          "id": "dyspraxia_011",
+          "title": "Choose Clothing for Ease",
+          "summary": "Avoid fiddly fastenings, tight clothing, and uncomfortable textures. Comfort and ease first.",
+          "category": "Home & Environment",
+          "tags": ["Dyspraxia", "fine-motor", "sensory", "home"],
+          "energy": "low",
+          "what_happens": "Small buttons, zips, and tight clothing are motor and sensory challenges. Adaptive clothing reduces daily struggle.",
+          "try_this": [
+            "Choose elastic waistbands over buttons and zips",
+            "Buy shirts with magnetic or large buttons",
+            "Avoid clothing that needs complex fastening",
+            "Choose soft, comfortable fabrics (avoid scratchy textures)",
+            "Prioritise function over fashion if needed"
+          ],
+          "why_it_helps": "You're reducing daily fine motor and sensory demands. Getting dressed becomes easier and faster.",
+          "variations": [
+            "Use zipper pulls or button hooks if needed",
+            "Buy adaptive clothing designed for easy dressing",
+            "Remove tags from all clothing"
+          ],
+          "pitfalls": "Don't force uncomfortable or fiddly clothing. Ease matters.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Easy clothing reduces daily struggle."
+        },
+        {
+          "id": "dyspraxia_012",
+          "title": "Driving Adaptations",
+          "summary": "Driving is hard with dyspraxia. Use automatic transmission, GPS, parking sensors. Extra lessons are okay.",
+          "category": "Planning & Time",
+          "tags": ["Dyspraxia", "coordination", "spatial-awareness", "commute"],
+          "energy": "high",
+          "what_happens": "Driving requires coordination, spatial awareness, and quick reactions — all challenging with dyspraxia. Adaptations help.",
+          "try_this": [
+            "Learn in an automatic car (removes gear-changing complexity)",
+            "Use parking sensors and rear cameras",
+            "Always use GPS, even for known routes",
+            "Take extra lessons if needed — there's no shame",
+            "Avoid driving when tired or stressed"
+          ],
+          "why_it_helps": "You're reducing the motor and spatial demands. Driving becomes safer and less stressful.",
+          "variations": [
+            "Request a specialist driving instructor (some understand dyspraxia)",
+            "Practice in quiet areas first",
+            "Use adaptive equipment (e.g., spinner knobs for steering)"
+          ],
+          "pitfalls": "Don't rush learning. Take the time you need.",
+          "context": ["commute"],
+          "resources": [],
+          "copy_to_clipboard": "Adaptive driving tools make it safer."
+        },
+        {
+          "id": "dyspraxia_013",
+          "title": "Verbal Rehearsal for Movement",
+          "summary": "Talk yourself through movements: 'Left foot forward, right hand reaches, turn body.' Verbal cues help sequencing.",
+          "category": "Body & Energy",
+          "tags": ["Dyspraxia", "motor-planning", "sequencing", "home", "work"],
+          "energy": "medium",
+          "what_happens": "Dyspraxic brains struggle with automatic motor sequencing. Verbal cues provide conscious guidance.",
+          "try_this": [
+            "When learning a new movement, talk yourself through each step",
+            "Use simple, clear language: 'Step forward', 'Lift arm', 'Turn left'",
+            "Repeat verbal cues as you practise",
+            "Over time, the movement may become more automatic",
+            "Use this for tricky tasks (parking, tying knots, dressing)"
+          ],
+          "why_it_helps": "You're providing external structure for motor planning. Verbal cues bypass automatic sequencing gaps.",
+          "variations": [
+            "Record yourself giving instructions to replay",
+            "Ask someone to give you verbal cues",
+            "Use rhythm or songs to sequence movements"
+          ],
+          "pitfalls": "Don't rush. Slow, verbalised practice is more effective.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "I talk myself through movements."
+        },
+        {
+          "id": "dyspraxia_014",
+          "title": "Seated Tasks When Possible",
+          "summary": "Standing uses energy and balance. Sit for tasks when you can: cooking, showering, getting ready.",
+          "category": "Body & Energy",
+          "tags": ["Dyspraxia", "fatigue", "balance", "home"],
+          "energy": "low",
+          "what_happens": "Standing requires balance and core strength, both challenging with dyspraxia. Sitting conserves energy.",
+          "try_this": [
+            "Use a stool or chair for cooking, washing up, getting ready",
+            "Sit on a shower stool or bath edge for washing",
+            "Sit to put on shoes and socks",
+            "Don't force standing tasks out of habit",
+            "Notice how much energy sitting saves"
+          ],
+          "why_it_helps": "You're reducing fatigue and balance demands. Sitting makes tasks easier and safer.",
+          "variations": [
+            "Use a perching stool (high stool for kitchen tasks)",
+            "Keep seating accessible in every room",
+            "Use a rolling chair for tasks that require movement"
+          ],
+          "pitfalls": "Don't stand to appear 'capable'. Sitting is adaptive, not lazy.",
+          "context": ["home"],
+          "resources": [],
+          "copy_to_clipboard": "Sitting saves energy and balance."
+        },
+        {
+          "id": "dyspraxia_015",
+          "title": "Celebrate Effort, Not Perfection",
+          "summary": "Dyspraxia means movement is harder for you. Celebrate trying, not perfect execution.",
+          "category": "Body & Energy",
+          "tags": ["Dyspraxia", "self-compassion", "home"],
+          "energy": "low",
+          "what_happens": "Dyspraxia makes 'simple' tasks effortful. Perfectionism causes shame. Celebrating effort builds resilience.",
+          "try_this": [
+            "When you complete a motor task (cooking, dressing, navigating), celebrate it",
+            "Acknowledge: 'This was hard for my brain and body. I did it anyway.'",
+            "Don't compare to others' ease or speed",
+            "Notice your effort, not just the outcome",
+            "Share your wins with people who understand"
+          ],
+          "why_it_helps": "You're validating your experience and building self-compassion. Effort is achievement.",
+          "variations": [
+            "Keep a wins journal",
+            "Reframe 'mistakes' as learning",
+            "Find dyspraxia communities for mutual support"
+          ],
+          "pitfalls": "Don't dismiss your achievements. Dyspraxia makes everything harder — you're doing brilliantly.",
+          "context": ["home", "work"],
+          "resources": [],
+          "copy_to_clipboard": "Effort is achievement. I celebrate trying."
+        }
+      ]
+    }
+  ]
+}

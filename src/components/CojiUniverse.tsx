@@ -332,13 +332,17 @@ const CojiUniverse = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Redirect logged-in users from landing/login to dashboard
+  useEffect(() => {
+    if (user && (activeTab === "login" || activeTab === "landing")) {
+      setActiveTab("dashboard");
+    }
+  }, [user]);
+
+  // Load user data when user is available
   useEffect(() => {
     if (user) {
       loadData();
-      // Redirect to dashboard if user is logged in and on login page
-      if (activeTab === "login") {
-        setActiveTab("dashboard");
-      }
     }
   }, [user]);
 
@@ -1854,16 +1858,11 @@ const CojiUniverse = () => {
                       <button
                         key={tab.id}
                         onClick={() => {
-                          if (!tab.disabled) {
-                            setActiveTab(tab.id);
-                            setIsMobileMenuOpen(false);
-                          }
+                          setActiveTab(tab.id);
+                          setIsMobileMenuOpen(false);
                         }}
-                        disabled={tab.disabled}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors text-base ${
-                          tab.disabled
-                            ? "text-slate-500 cursor-not-allowed opacity-50"
-                            : activeTab === tab.id
+                          activeTab === tab.id
                             ? "bg-gradient-to-r from-teal-500 to-fuchsia-500 text-white shadow-lg"
                             : "text-teal-300 hover:bg-teal-500 hover:bg-opacity-10"
                         }`}
@@ -2155,16 +2154,16 @@ const CojiUniverse = () => {
             {pendingTask && (
               <div className="bg-amber-900 bg-opacity-30 border border-amber-500 rounded-lg p-4 mb-4">
                 <p className="text-amber-200 text-sm">
-                  <strong>High-energy task to organize:</strong> "{pendingTask.title}"
+                  <strong>High-energy task to organise:</strong> "{pendingTask.title}"
                 </p>
                 <p className="text-amber-300 text-xs mt-1">
-                  Add this task to one of the quadrants below to help break it down and prioritize it.
+                  Add this task to one of the quadrants below to help break it down and prioritise it.
                 </p>
               </div>
             )}
 
             <p className="text-slate-300 mb-6 text-center">
-              Organize your tasks by urgency and importance. This helps you prioritize what to do first!
+              Organise your tasks by urgency and importance. This helps you prioritise what to do first!
             </p>
 
             {/* Input for new task */}
@@ -2465,7 +2464,7 @@ const CojiUniverse = () => {
                 Helping you make sense of chaos: plan life, not burnout
               </p>
 
-              {!user && (
+              {!user ? (
                 <div className="flex gap-4 justify-center mb-12">
                   <button
                     onClick={() => setActiveTab("login")}
@@ -2478,6 +2477,22 @@ const CojiUniverse = () => {
                   >
                     <span className="relative z-10 pointer-events-none">
                       Free for my first friends {"\u{1F496}"}{"\u{2601}\u{FE0F}"}
+                    </span>
+                  </button>
+                </div>
+              ) : (
+                <div className="flex gap-4 justify-center mb-12">
+                  <button
+                    onClick={() => setActiveTab("dashboard")}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      setActiveTab("dashboard");
+                    }}
+                    className="relative bg-gradient-to-br from-teal-400 via-fuchsia-400 to-teal-500 hover:from-teal-500 hover:via-fuchsia-500 hover:to-teal-600 px-12 py-5 rounded-2xl font-bold text-xl text-white transition-all shadow-2xl hover:shadow-fuchsia-500/50 hover:scale-105 cursor-pointer touch-manipulation"
+                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                  >
+                    <span className="relative z-10 pointer-events-none">
+                      Enter Coji Universe {"\u{2728}"}
                     </span>
                   </button>
                 </div>
@@ -3347,13 +3362,13 @@ const CojiUniverse = () => {
                 })()}
               </div>
 
-              {/* Energizing Tasks */}
+              {/* Energising Tasks */}
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-green-500 border-opacity-20">
                 <h3 className="text-xl font-bold mb-4 text-green-300">
-                  {"\u{1F4C8}"} Tasks That Energize You
+                  {"\u{1F4C8}"} Tasks That Energise You
                 </h3>
                 <p className="text-sm text-slate-400 mb-4">
-                  I've noticed these tasks energize you:
+                  I've noticed these tasks energise you:
                 </p>
                 {(() => {
                   // Find low-energy completed tasks (things you did easily)
@@ -3627,134 +3642,608 @@ const CojiUniverse = () => {
 
         {activeTab === "library" && (
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-teal-300">
-              Library
-            </h2>
-            <p className="text-slate-400 mb-8">
-              Resources and strategies for neurodivergent life {"\u{1F4DA}"}
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F3AF}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  ADHD Support
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Body doubling, time blocking, dopamine menus
+            {!selectedPlanet ? (
+              // Library Home - Grid of Planet Cards
+              <>
+                <h2 className="text-3xl font-bold mb-4 text-teal-300">
+                  ND Superpowers Library
+                </h2>
+                <p className="text-slate-400 mb-6">
+                  Every quirk is a feature, not a bug. Find your strengths & strategies ✨
                 </p>
-              </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F308}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
-                  Autism Support
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Sensory tools, social scripts, stim acceptance
-                </p>
-              </div>
+                {/* Search Bar */}
+                <div className="mb-8">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search symptoms, feelings, or struggles... (typos welcome!)"
+                      value={librarySearch}
+                      onChange={(e) => setLibrarySearch(e.target.value)}
+                      className="w-full px-4 py-3 pl-12 bg-slate-800 bg-opacity-50 border border-teal-500 border-opacity-30 rounded-xl text-slate-300 placeholder-slate-500 focus:outline-none focus:border-opacity-60 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-30 transition-all"
+                    />
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500" size={20} />
+                  </div>
+                  {librarySearch && (
+                    <div className="mt-3 text-sm text-slate-400">
+                      Searching for: <span className="text-teal-300 font-medium">{librarySearch}</span>
+                    </div>
+                  )}
+                </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F630}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Anxiety Tools
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Grounding, breathing, worry management
-                </p>
-              </div>
+                {/* Search Results */}
+                {librarySearch && libraryData?.planets && (() => {
+                  const searchLower = librarySearch.toLowerCase();
+                  let allMatchingTips: any[] = [];
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F46A}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
-                  Parenting Hub
-                </h3>
-                <p className="text-sm text-slate-400">
-                  EHCP, SEND law, therapeutic parenting, managing behaviours
-                </p>
-              </div>
+                  // Search through all planets and tips
+                  libraryData.planets.forEach((planet: any) => {
+                    planet.tips?.forEach((tip: any) => {
+                      const matches =
+                        tip.title?.toLowerCase().includes(searchLower) ||
+                        tip.summary?.toLowerCase().includes(searchLower) ||
+                        tip.tags?.some((tag: string) => tag.toLowerCase().includes(searchLower)) ||
+                        tip.what_happens?.toLowerCase().includes(searchLower) ||
+                        planet.orbit_tags?.some((tag: string) => tag.toLowerCase().includes(searchLower));
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F4BC}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  ND & Work
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Benefits, workplace rights, interviews
-                </p>
-              </div>
+                      if (matches) {
+                        allMatchingTips.push({ ...tip, planetName: planet.title, planetColour: planet.colour });
+                      }
+                    });
+                  });
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F499}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
-                  Depression Support
-                </h3>
-                <p className="text-sm text-slate-400">
-                  No zero days, minimum baseline
-                </p>
-              </div>
+                  if (allMatchingTips.length > 0) {
+                    return (
+                      <div className="mb-8">
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-xl font-bold text-teal-300">
+                            Found {allMatchingTips.length} {allMatchingTips.length === 1 ? 'Strategy' : 'Strategies'}
+                          </h3>
+                          <button
+                            onClick={() => setLibrarySearch('')}
+                            className="text-sm text-slate-400 hover:text-teal-300 transition-colors"
+                          >
+                            Clear Search
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                          {allMatchingTips.slice(0, 12).map((tip: any, idx: number) => (
+                            <div
+                              key={idx}
+                              className="bg-slate-800 bg-opacity-50 p-5 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all hover:scale-[1.02]"
+                              style={{ borderColor: tip.planetColour }}
+                            >
+                              <div className="flex items-start justify-between mb-3">
+                                <span className="text-xs px-2 py-1 rounded-full bg-slate-700 bg-opacity-50 text-slate-400">
+                                  {tip.planetName}
+                                </span>
+                                {tip.energy && (
+                                  <span className="text-xs px-2 py-1 rounded-full bg-slate-700 bg-opacity-50 text-slate-400">
+                                    {tip.energy} energy
+                                  </span>
+                                )}
+                              </div>
+                              <h4 className="text-lg font-bold mb-2 text-teal-300">
+                                {tip.title}
+                              </h4>
+                              <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+                                {tip.summary}
+                              </p>
+                              <button
+                                onClick={() => {
+                                  setSelectedTip(tip);
+                                }}
+                                className="text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors"
+                              >
+                                View Full Strategy →
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                        {allMatchingTips.length > 12 && (
+                          <div className="text-center text-sm text-slate-400">
+                            Showing first 12 results. Refine your search for more specific results.
+                          </div>
+                        )}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div className="mb-8 text-center py-12 bg-slate-800 bg-opacity-30 rounded-xl border border-slate-700 border-opacity-30">
+                        <p className="text-slate-400 mb-2">
+                          No matches found for "{librarySearch}"
+                        </p>
+                        <p className="text-sm text-slate-500">
+                          Try different keywords or browse the planets below
+                        </p>
+                      </div>
+                    );
+                  }
+                })()}
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F491}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Relationships
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Communication, boundaries, ND relationships
-                </p>
-              </div>
+                {/* Tip Detail Modal */}
+                {selectedTip && (
+                  <div
+                    className="fixed inset-0 bg-black bg-opacity-80 flex items-start sm:items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto"
+                    onClick={(e) => {
+                      // Close modal if clicking on backdrop
+                      if (e.target === e.currentTarget) {
+                        setSelectedTip(null);
+                      }
+                    }}
+                  >
+                    <div className="bg-slate-900 border-0 sm:border border-teal-500 border-opacity-30 rounded-none sm:rounded-2xl max-w-3xl w-full min-h-screen sm:min-h-0 sm:max-h-[90vh] overflow-y-auto sm:my-8">
+                      {/* Modal Header */}
+                      <div className="sticky top-0 bg-slate-900 border-b border-slate-700 border-opacity-50 p-6 flex items-start justify-between">
+                        <div className="flex-1 pr-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            {selectedTip.planetName && (
+                              <span className="text-xs px-2 py-1 rounded-full bg-slate-700 bg-opacity-50 text-slate-400">
+                                {selectedTip.planetName}
+                              </span>
+                            )}
+                            {selectedTip.energy && (
+                              <span className="text-xs px-2 py-1 rounded-full bg-slate-700 bg-opacity-50 text-slate-400">
+                                {selectedTip.energy} energy
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="text-2xl font-bold text-teal-300 mb-2">
+                            {selectedTip.title}
+                          </h3>
+                          {selectedTip.tags && selectedTip.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                              {selectedTip.tags.map((tag: string, idx: number) => (
+                                <span
+                                  key={idx}
+                                  className="text-xs px-2 py-1 rounded-full bg-slate-800 bg-opacity-50 text-slate-400 border border-slate-700"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        <button
+                          onClick={() => setSelectedTip(null)}
+                          className="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-lg"
+                        >
+                          <X size={24} />
+                        </button>
+                      </div>
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F4D6}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
-                  Dyslexia & Dyscalculia
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Reading tools, math support, assistive tech
-                </p>
-              </div>
+                      {/* Modal Body */}
+                      <div className="p-6 space-y-6">
+                        {/* Summary */}
+                        {selectedTip.summary && (
+                          <div>
+                            <p className="text-lg text-slate-300 leading-relaxed">
+                              {selectedTip.summary}
+                            </p>
+                          </div>
+                        )}
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F48A}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Chronic Illness Resources
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Benefits, workplace rights, exercise, physiotherapy
-                </p>
-              </div>
+                        {/* What Happens */}
+                        {selectedTip.what_happens && (
+                          <div className="bg-slate-800 bg-opacity-50 p-5 rounded-xl border border-slate-700 border-opacity-50">
+                            <h4 className="text-lg font-bold text-teal-300 mb-3 flex items-center gap-2">
+                              <Brain size={20} />
+                              What's Happening
+                            </h4>
+                            <p className="text-slate-300 leading-relaxed">
+                              {selectedTip.what_happens}
+                            </p>
+                          </div>
+                        )}
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{23F0}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
-                  Time Management
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Scheduling, prioritization, time blocking tools
-                </p>
-              </div>
+                        {/* Try This */}
+                        {selectedTip.try_this && selectedTip.try_this.length > 0 && (
+                          <div className="bg-slate-800 bg-opacity-50 p-5 rounded-xl border border-slate-700 border-opacity-50">
+                            <h4 className="text-lg font-bold text-teal-300 mb-4 flex items-center gap-2">
+                              <Sparkles size={20} />
+                              Try This
+                            </h4>
+                            <div className="space-y-3">
+                              {selectedTip.try_this.map((step: string, idx: number) => (
+                                <div key={idx} className="flex gap-3">
+                                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 bg-opacity-20 flex items-center justify-center text-teal-300 text-sm font-bold">
+                                    {idx + 1}
+                                  </div>
+                                  <p className="text-slate-300 leading-relaxed flex-1">
+                                    {step}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Memory Tools
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Working memory strategies, reminders, recall aids
-                </p>
-              </div>
+                        {/* Why It Helps */}
+                        {selectedTip.why_it_helps && (
+                          <div className="bg-slate-800 bg-opacity-50 p-5 rounded-xl border border-slate-700 border-opacity-50">
+                            <h4 className="text-lg font-bold text-fuchsia-300 mb-3 flex items-center gap-2">
+                              <Heart size={20} />
+                              Why This Helps
+                            </h4>
+                            <p className="text-slate-300 leading-relaxed">
+                              {selectedTip.why_it_helps}
+                            </p>
+                          </div>
+                        )}
 
-              <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
-                <div className="text-4xl mb-3">{"\u{1F3C3}"}</div>
-                <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
-                  Dyspraxia
-                </h3>
-                <p className="text-sm text-slate-400">
-                  Motor skills, coordination, movement support
-                </p>
-              </div>
-            </div>
+                        {/* Variations */}
+                        {selectedTip.variations && (
+                          <div className="bg-slate-800 bg-opacity-50 p-5 rounded-xl border border-slate-700 border-opacity-50">
+                            <h4 className="text-lg font-bold text-teal-300 mb-4 flex items-center gap-2">
+                              <Zap size={20} />
+                              Variations
+                            </h4>
+                            {Array.isArray(selectedTip.variations) ? (
+                              <div className="space-y-3">
+                                {selectedTip.variations.map((variation: string, idx: number) => (
+                                  <div key={idx} className="flex gap-3">
+                                    <div className="text-teal-400">•</div>
+                                    <p className="text-slate-300 leading-relaxed flex-1">
+                                      {variation}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <p className="text-slate-300 leading-relaxed">
+                                {selectedTip.variations}
+                              </p>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Pitfalls */}
+                        {selectedTip.pitfalls && (
+                          <div className="bg-slate-800 bg-opacity-50 p-5 rounded-xl border border-amber-600 border-opacity-30">
+                            <h4 className="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
+                              <Shield size={20} />
+                              Watch Out For
+                            </h4>
+                            {Array.isArray(selectedTip.pitfalls) ? (
+                              <div className="space-y-3">
+                                {selectedTip.pitfalls.map((pitfall: string, idx: number) => (
+                                  <div key={idx} className="flex gap-3">
+                                    <div className="text-amber-400">⚠</div>
+                                    <p className="text-slate-300 leading-relaxed flex-1">
+                                      {pitfall}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="flex gap-3">
+                                <div className="text-amber-400">⚠</div>
+                                <p className="text-slate-300 leading-relaxed flex-1">
+                                  {selectedTip.pitfalls}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Copy to Clipboard Button */}
+                        {selectedTip.copy_to_clipboard && (
+                          <div className="border-t border-slate-700 border-opacity-50 pt-6">
+                            <button
+                              onClick={() => {
+                                navigator.clipboard.writeText(selectedTip.copy_to_clipboard);
+                                alert('Copied to clipboard!');
+                              }}
+                              className="w-full bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-6 py-3 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
+                            >
+                              <Copy size={20} />
+                              Copy Strategy to Clipboard
+                            </button>
+                          </div>
+                        )}
+
+                        {/* Close Button */}
+                        <div className="text-center">
+                          <button
+                            onClick={() => setSelectedTip(null)}
+                            className="text-slate-400 hover:text-white transition-colors text-sm"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Planet Grid - Hidden when searching */}
+                <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ${librarySearch ? 'opacity-50' : ''}`}>
+                  <div
+                    onClick={() => setSelectedPlanet('adhd-support')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F3AF}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                      ADHD Support
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Body doubling, time blocking, dopamine menus
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('autism-support')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F308}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                      Autism Support
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Sensory tools, social scripts, stim acceptance
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('anxiety-tools')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F630}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                      Anxiety Tools
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Grounding, breathing, worry management
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('parenting-hub')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F46A}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                      Parenting Hub
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Therapeutic parenting, school support, managing behaviours
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('work-wellbeing')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F4BC}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                      ND & Work
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Benefits, workplace rights, interviews
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('depression-support')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F499}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                      Depression Support
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      No zero days, minimum baseline
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('relationships')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F491}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                      Relationships
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Communication, boundaries, ND relationships
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('dyslexia-dyscalculia')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F4D6}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                      Dyslexia & Dyscalculia
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Reading tools, maths support, assistive tech
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('chronic-illness')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F48A}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                      Chronic Illness Resources
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Benefits, workplace rights, exercise, physiotherapy
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('time-management')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{23F0}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                      Time Management
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Scheduling, prioritisation, time blocking tools
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('memory-tools')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-teal-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-teal-300">
+                      Memory Tools
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Working memory strategies, reminders, recall aids
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => setSelectedPlanet('dyspraxia')}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-fuchsia-500/20"
+                  >
+                    <div className="text-4xl mb-3">{"\u{1F3C3}"}</div>
+                    <h3 className="text-lg font-bold mb-2 text-fuchsia-300">
+                      Dyspraxia
+                    </h3>
+                    <p className="text-sm text-slate-400">
+                      Motor skills, coordination, movement support
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              // Planet View - Universe with spinning planet
+              (() => {
+                const planet = libraryData?.planets?.find((p: any) => p.slug === selectedPlanet);
+                if (!planet) return null;
+
+                return (
+                  <div>
+                    {/* Back Button */}
+                    <button
+                      onClick={() => setSelectedPlanet(null)}
+                      className="mb-6 flex items-center gap-2 text-slate-400 hover:text-teal-300 transition-colors"
+                    >
+                      <ArrowLeft size={20} />
+                      Back to Library
+                    </button>
+
+                    {/* Planet Header */}
+                    <div className="text-center mb-12">
+                      <div className="relative inline-block mb-6">
+                        {/* Spinning Planet */}
+                        <div
+                          className="w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center text-6xl md:text-7xl"
+                          style={{
+                            background: `radial-gradient(circle at 30% 30%, ${planet.colour}88, ${planet.colour}44, ${planet.colour}22)`,
+                            boxShadow: `0 0 60px ${planet.colour}66, inset -10px -10px 40px rgba(0,0,0,0.3)`,
+                            animation: 'spin 20s linear infinite'
+                          }}
+                        >
+                          {planet.icon}
+                        </div>
+
+                        {/* Orbit ring */}
+                        <div
+                          className="absolute inset-0 rounded-full border-2 opacity-30"
+                          style={{
+                            borderColor: planet.colour,
+                            width: '140%',
+                            height: '140%',
+                            top: '-20%',
+                            left: '-20%'
+                          }}
+                        />
+                      </div>
+
+                      <h2 className="text-4xl font-bold mb-4" style={{ color: planet.colour }}>
+                        {planet.title}
+                      </h2>
+                      <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+                        {planet.description}
+                      </p>
+                    </div>
+
+                    {/* Did You Know Section */}
+                    {planet.mindgram?.did_you_know && planet.mindgram.did_you_know.length > 0 && (
+                      <div className="mb-8 bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20" style={{ borderColor: planet.colour }}>
+                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: planet.colour }}>
+                          <Sparkles size={20} />
+                          Did You Know?
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {planet.mindgram.did_you_know.slice(0, 6).map((fact: string, idx: number) => (
+                            <div key={idx} className="bg-slate-700 bg-opacity-40 p-4 rounded-lg text-sm text-slate-300 leading-relaxed">
+                              {fact}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Orbit Tags - Symptoms/Struggles that orbit this planet */}
+                    {planet.orbit_tags && planet.orbit_tags.length > 0 && (
+                      <div className="mb-8">
+                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: planet.colour }}>
+                          <Activity size={20} />
+                          Your Superpowers in Disguise
+                        </h3>
+                        <p className="text-sm text-slate-400 mb-4">
+                          Click any experience to find strategies & strengths 💪
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {planet.orbit_tags.map((tag: string, idx: number) => (
+                            <button
+                              key={idx}
+                              onClick={() => {
+                                setLibrarySearch(tag);
+                                setSelectedPlanet(null); // Go back to main library page to see search results
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }}
+                              className="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-700 bg-opacity-50 text-slate-300 border border-opacity-30 hover:border-opacity-80 hover:bg-opacity-70 transition-all cursor-pointer hover:scale-105"
+                              style={{ borderColor: planet.colour }}
+                            >
+                              {tag}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Overlaps Section */}
+                    {planet.mindgram?.overlaps && planet.mindgram.overlaps.length > 0 && (
+                      <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20" style={{ borderColor: planet.colour }}>
+                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: planet.colour }}>
+                          <Users size={20} />
+                          Often Overlaps With
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {planet.mindgram.overlaps.map((overlap: string, idx: number) => (
+                            <div key={idx} className="bg-slate-700 bg-opacity-40 p-3 rounded-lg text-sm text-slate-300">
+                              {overlap}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Back Button at Bottom */}
+                    <div className="mt-12 text-center">
+                      <button
+                        onClick={() => setSelectedPlanet(null)}
+                        className="bg-gradient-to-r from-teal-500 to-fuchsia-500 hover:from-teal-600 hover:to-fuchsia-600 px-8 py-3 rounded-xl font-medium transition-colors"
+                      >
+                        Explore More Planets
+                      </button>
+                    </div>
+                  </div>
+                );
+              })()
+            )}
           </div>
         )}
 
@@ -3935,7 +4424,7 @@ const CojiUniverse = () => {
                   Family Mapping
                 </h3>
                 <p className="text-sm text-slate-400">
-                  Visualize family relationships and connections
+                  Visualise family relationships and connections
                 </p>
               </div>
 
@@ -4875,8 +5364,25 @@ const CojiUniverse = () => {
       <footer className="relative z-10 mt-8">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-sm text-slate-400">
-              © {new Date().getFullYear()} Coji Universe. All rights reserved.
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="text-sm text-slate-400">
+                © {new Date().getFullYear()} Coji Universe. All rights reserved.
+              </div>
+              <div className="flex items-center gap-3 text-xs">
+                <a
+                  href="/privacy"
+                  className="text-slate-400 hover:text-teal-400 transition-colors"
+                >
+                  Privacy Policy
+                </a>
+                <span className="text-slate-600">•</span>
+                <a
+                  href="/terms"
+                  className="text-slate-400 hover:text-teal-400 transition-colors"
+                >
+                  Terms & Conditions
+                </a>
+              </div>
             </div>
 
             <a
