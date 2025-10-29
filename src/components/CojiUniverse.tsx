@@ -4019,7 +4019,7 @@ const CojiUniverse = () => {
                       ND & Work
                     </h3>
                     <p className="text-sm text-slate-400">
-                      Benefits, workplace rights, interviews
+                      Workplace accommodations, interviews, managing work
                     </p>
                   </div>
 
@@ -4071,7 +4071,7 @@ const CojiUniverse = () => {
                       Chronic Illness Resources
                     </h3>
                     <p className="text-sm text-slate-400">
-                      Benefits, workplace rights, exercise, physiotherapy
+                      Pacing, exercise, physiotherapy, daily management
                     </p>
                   </div>
 
