@@ -1,0 +1,262 @@
+[
+  {
+    "id": "adhd_001",
+    "title": "The Two-Minute Micro-Start",
+    "summary": "Trick your brain into starting by committing to just two minutes of a dreaded task.",
+    "category": "Focus & Motivation",
+    "tags": ["ADHD", "task-initiation", "procrastination", "micro-start", "executive-dysfunction"],
+    "energy": "low",
+    "what_happens": "Your ADHD brain struggles with task initiation because it can't see the 'reward' at the end. Starting feels like pushing a boulder uphill, so you freeze or distract yourself endlessly.",
+    "try_this": [
+      "Set a timer for exactly 2 minutes",
+      "Tell yourself you only have to work for those 2 minutes, then you can stop guilt-free",
+      "Focus solely on the absolute smallest first step (open the document, put on your shoes, send one email)",
+      "When the timer goes off, notice if you want to continue—often the hardest part is starting",
+      "If you stop, that's fine. You still did 2 minutes, which is infinitely more than zero"
+    ],
+    "why_it_helps": "Reduces the emotional overwhelm of 'the whole task' and tricks your brain past the initiation barrier.",
+    "variations": [
+      "Use a 5-minute timer if 2 feels too short",
+      "Pair it with body doubling (someone else working nearby)",
+      "Do it right after something enjoyable to 'ride' the dopamine"
+    ],
+    "pitfalls": "Don't turn this into pressure. If you stop at 2 minutes, celebrate that—you broke the freeze.",
+    "context": ["work", "study", "home"],
+    "resources": [],
+    "copy_to_clipboard": "Just 2 minutes. That's all I'm asking of myself right now."
+  },
+  {
+    "id": "adhd_002",
+    "title": "Visual Timer for Time Blindness",
+    "summary": "Use a visual timer that shows time shrinking so your brain can 'see' time passing.",
+    "category": "Planning & Time",
+    "tags": ["ADHD", "time-blindness", "visual-timer", "time-blocking", "executive-dysfunction"],
+    "energy": "low",
+    "what_happens": "Time is invisible to your ADHD brain. You genuinely can't sense whether 5 minutes or 50 have passed, which causes chronic lateness and missed deadlines despite your best intentions.",
+    "try_this": [
+      "Download a visual timer app (Time Timer, Visual Timer, or Pomodoro apps with visual displays)",
+      "Use red or colour-coded timers that visually shrink as time passes",
+      "Place the timer where you'll see it (phone screen, computer, physical timer on desk)",
+      "Start the timer when beginning tasks and glance at it regularly",
+      "Use different timer lengths for different activities to build time awareness"
+    ],
+    "why_it_helps": "Makes time visible and concrete, giving your brain the external feedback it can't generate internally.",
+    "variations": [
+      "Use a sand timer or hourglass for a physical, mesmerising visual",
+      "Try the Pomodoro technique (25 minutes work, 5 minute break) with a visual timer",
+      "Set timers for transitions: '10 minutes until we leave'"
+    ],
+    "pitfalls": "Don't rely solely on phone alarms—they're easy to dismiss. Visual timers you can see passively work better.",
+    "context": ["work", "study", "home", "parenting"],
+    "resources": [],
+    "copy_to_clipboard": "I need to see time, not just hear it. Visual timers make time real for my brain."
+  },
+  {
+    "id": "adhd_003",
+    "title": "Dopamine Menu for Understimulation",
+    "summary": "Create a 'menu' of quick dopamine hits for when you're bored and spiralling.",
+    "category": "Focus & Motivation",
+    "tags": ["ADHD", "understimulation", "dopamine-menu", "sensory-seeking", "boredom"],
+    "energy": "low",
+    "what_happens": "When your ADHD brain is understimulated, it feels unbearable—like physical pain. You'll scroll endlessly, pick fights, or make impulsive choices just to feel something.",
+    "try_this": [
+      "Create a note on your phone titled 'Dopamine Menu'",
+      "List quick activities that give you positive stimulation: funny videos, favourite songs, stretching, cold water on face, texting a friend, doodling",
+      "Organise by time: 2-minute options, 10-minute options, 30-minute options",
+      "When bored/restless, open your menu instead of doomscrolling",
+      "Update it regularly as your interests change"
+    ],
+    "why_it_helps": "Gives you healthy dopamine options instead of relying on harmful or time-wasting defaults.",
+    "variations": [
+      "Have a 'sensory' section: fidget toys, favourite smells, textured objects",
+      "Include movement options: dance to one song, do 10 jumping jacks",
+      "Add 'micro-achievements': tick off one tiny to-do for instant satisfaction"
+    ],
+    "pitfalls": "Don't judge yourself for needing this. Your brain genuinely needs more dopamine input than neurotypical brains.",
+    "context": ["work", "study", "home"],
+    "resources": [],
+    "copy_to_clipboard": "My brain needs dopamine. I'll choose from my menu instead of spiralling into chaos."
+  },
+  {
+    "id": "adhd_004",
+    "title": "Body Doubling for Accountability",
+    "summary": "Work alongside someone else (even virtually) to help your brain stay on task.",
+    "category": "Focus & Motivation",
+    "tags": ["ADHD", "body-doubling", "accountability", "focus", "task-initiation"],
+    "energy": "medium",
+    "what_happens": "Your ADHD brain works better with external accountability. Being alone makes it easier to give in to distraction, but someone else's presence creates gentle pressure to stay focused.",
+    "try_this": [
+      "Find a body doubling partner: friend, partner, coworker, or online community",
+      "Sit together in person or on a video call (cameras optional)",
+      "Share what you're working on, then work in companionable silence",
+      "You don't need to interact—their presence is enough",
+      "Try focusmate.com or ADHD Discord servers for virtual body doubling"
+    ],
+    "why_it_helps": "Creates external structure and accountability when your internal motivation is unreliable.",
+    "variations": [
+      "Go to a café or library where others are working",
+      "Use YouTube 'study with me' videos",
+      "Work while on a call with a friend who's also working"
+    ],
+    "pitfalls": "Don't pick someone who'll chat constantly. You need parallel presence, not socialising.",
+    "context": ["work", "study", "home"],
+    "resources": [],
+    "copy_to_clipboard": "I work better with witnesses. Body doubling gives my brain the accountability it craves."
+  },
+  {
+    "id": "adhd_005",
+    "title": "Object Permanence Hack: Strategic Visibility",
+    "summary": "Place important items where you'll literally see them—out of sight means out of mind.",
+    "category": "Home & Environment",
+    "tags": ["ADHD", "object-permanence", "organisation", "working-memory", "visual-cues"],
+    "energy": "low",
+    "what_happens": "ADHD affects working memory, meaning 'out of sight, out of mind' is painfully literal. You forget medicines in cupboards, bills in drawers, and entire friendships if you don't see reminders.",
+    "try_this": [
+      "Keep daily essentials visible: keys on a hook by the door, medicine on the counter, bills on the fridge",
+      "Use clear storage containers instead of opaque ones",
+      "Hang a whiteboard or corkboard at eye level for urgent reminders",
+      "Put items you need in your path (e.g., gym bag by the front door)",
+      "Use your phone's lock screen or home screen for critical reminders"
+    ],
+    "why_it_helps": "Bypasses faulty working memory by making important things physically impossible to miss.",
+    "variations": [
+      "Use brightly coloured sticky notes for items you must remember",
+      "Photograph things you need to remember and set them as phone wallpaper",
+      "Keep duplicates of essentials in multiple visible locations"
+    ],
+    "pitfalls": "Don't hide things 'for tidiness'—your executive function can't override ADHD's object permanence struggles.",
+    "context": ["home", "work"],
+    "resources": [],
+    "copy_to_clipboard": "Out of sight is out of mind. I'll keep what matters where I can see it."
+  },
+  {
+    "id": "adhd_006",
+    "title": "Task Chunking with Dopamine Rewards",
+    "summary": "Break overwhelming tasks into tiny chunks, each with its own small reward.",
+    "category": "Planning & Time",
+    "tags": ["ADHD", "task-chunking", "dopamine-menu", "procrastination", "motivation"],
+    "energy": "medium",
+    "what_happens": "Big tasks trigger ADHD paralysis because your brain can't see the dopamine payoff soon enough. The 'finish line' feels impossibly far away, so you don't start.",
+    "try_this": [
+      "Break the task into the smallest possible sub-tasks (e.g., 'write essay' becomes '1. Open document 2. Write title 3. Write first sentence')",
+      "Assign a tiny reward to each chunk: one biscuit, one TikTok, one song, 5 minutes outside",
+      "Only let yourself have the reward after completing that specific chunk",
+      "Celebrate every tiny win with genuine enthusiasm",
+      "Don't move to the next chunk until you've enjoyed your reward"
+    ],
+    "why_it_helps": "Creates frequent dopamine hits that keep your ADHD brain motivated instead of waiting for one distant reward.",
+    "variations": [
+      "Use a checklist app that makes satisfying sounds when you tick things off",
+      "Pair chunks with sensory rewards: scented candles, soft blankets, favourite tea",
+      "Work with a body double and reward yourselves together"
+    ],
+    "pitfalls": "Don't skip the rewards—they're not optional, they're neurologically necessary for your brain.",
+    "context": ["work", "study", "home"],
+    "resources": [],
+    "copy_to_clipboard": "I need frequent rewards, not one distant goal. Small chunks, small treats, big progress."
+  },
+  {
+    "id": "adhd_007",
+    "title": "Transition Ritual for Task Switching",
+    "summary": "Create a physical ritual to help your brain shift between tasks instead of freezing.",
+    "category": "Planning & Time",
+    "tags": ["ADHD", "transition-lag", "task-switching", "executive-dysfunction", "ritual"],
+    "energy": "low",
+    "what_happens": "ADHD brains struggle with transitions because shifting attention requires executive function you don't have enough of. You get 'stuck' on one activity or freeze between two.",
+    "try_this": [
+      "Create a simple physical ritual for transitions: stand up, stretch, take 3 deep breaths",
+      "Say out loud: 'I'm finishing X. Now I'm starting Y.'",
+      "Use a specific sound, smell, or movement as a 'reset' (splash face, light a candle, play a transition song)",
+      "Give yourself 2-5 minutes of 'transition time'—don't rush",
+      "If stuck in hyperfocus, set a timer that gently alerts you 10 minutes before you need to switch"
+    ],
+    "why_it_helps": "Creates an external structure for transitions when your brain can't generate one internally.",
+    "variations": [
+      "Keep a 'transition playlist' of 2-3 energising songs",
+      "Use a physical object as a 'token' you move from one task zone to another",
+      "Do a quick body scan: notice your feet, breathe, then begin"
+    ],
+    "pitfalls": "Don't expect instant switching—ADHD brains need transition time, and that's okay.",
+    "context": ["work", "study", "home", "parenting"],
+    "resources": [],
+    "copy_to_clipboard": "Transitions aren't lazy—they're necessary. I'll give my brain time to shift gears."
+  },
+  {
+    "id": "adhd_008",
+    "title": "The 'ADHD Tax' Emergency Fund",
+    "summary": "Budget for ADHD-related costs (late fees, lost items) to reduce shame and stress.",
+    "category": "Home & Environment",
+    "tags": ["ADHD", "ADHD-tax", "organisation", "self-compassion", "executive-dysfunction"],
+    "energy": "medium",
+    "what_happens": "ADHD causes forgotten bills, lost items, late fees, and impulsive purchases. The shame and financial stress compound, making everything worse.",
+    "try_this": [
+      "Calculate your average monthly 'ADHD tax': late fees, replacement items, impulse buys",
+      "Create a separate budget category or savings pot for these costs",
+      "When you incur an ADHD tax, use this fund without guilt",
+      "Set up automatic payments for everything possible to reduce late fees",
+      "Keep a note of common ADHD taxes to anticipate and prevent them"
+    ],
+    "why_it_helps": "Reduces shame and financial surprise by acknowledging ADHD costs as real and valid, not personal failures.",
+    "variations": [
+      "Buy multiples of items you lose frequently (keys, water bottles, chargers)",
+      "Use key finders (Tile, AirTag) on essential items",
+      "Set up bill reminders in multiple places: phone, email, text"
+    ],
+    "pitfalls": "Don't hide this from partners or family—ADHD tax is a disability cost, not irresponsibility.",
+    "context": ["home"],
+    "resources": [],
+    "copy_to_clipboard": "ADHD tax is real. I'll budget for it instead of drowning in shame."
+  },
+  {
+    "id": "adhd_009",
+    "title": "Hyperfocus Emergency Alarms",
+    "summary": "Set alarms with labels to pull you out of hyperfocus before you forget basic needs.",
+    "category": "Body & Energy",
+    "tags": ["ADHD", "hyperfocus", "interoception", "self-care", "time-blindness"],
+    "energy": "low",
+    "what_happens": "Hyperfocus makes you lose track of time and bodily needs. You forget to eat, drink, use the loo, or sleep—sometimes for hours—causing crashes afterwards.",
+    "try_this": [
+      "Set recurring alarms every 2-3 hours with specific labels: 'Drink water', 'Stretch', 'Eat something', 'Loo break'",
+      "Use a smart watch or fitness tracker for gentle haptic reminders",
+      "When the alarm goes off, physically stop and do the thing—don't dismiss it",
+      "Keep water and snacks at your workspace so you don't have to break hyperfocus to access them",
+      "Tell someone you trust to check on you during deep work sessions"
+    ],
+    "why_it_helps": "Provides external interoception cues when your brain can't sense your body's needs during hyperfocus.",
+    "variations": [
+      "Use apps that lock your screen until you confirm you've taken a break",
+      "Set a 'no work past this time' alarm to protect sleep",
+      "Pair alarms with pleasant sounds or songs so you're less likely to ignore them"
+    ],
+    "pitfalls": "Don't disable alarms when they're inconvenient—they're protecting you from yourself.",
+    "context": ["work", "study", "home"],
+    "resources": [],
+    "copy_to_clipboard": "Hyperfocus is dysregulation, not a superpower. I need alarms to remember I have a body."
+  },
+  {
+    "id": "adhd_010",
+    "title": "RSD Emergency Cooling Kit",
+    "summary": "Prepare a go-to response for Rejection Sensitive Dysphoria moments before they happen.",
+    "category": "Communication & Social",
+    "tags": ["ADHD", "RSD", "emotional-regulation", "self-soothing", "anxiety"],
+    "energy": "low",
+    "what_happens": "Rejection Sensitive Dysphoria makes even mild criticism or perceived rejection feel emotionally devastating. Your nervous system floods with shame and panic.",
+    "try_this": [
+      "Before RSD hits, write yourself a note: 'This feeling will pass. My brain is amplifying this. I am not actually in danger.'",
+      "Create a physical 'cooling kit': ice pack, cold water, strong mint, weighted item, comforting texture",
+      "When RSD strikes, don't respond immediately—step away, use your kit, breathe",
+      "Use bilateral stimulation: tap alternating knees, cross-body movements, or EMDR apps",
+      "Reach out to someone safe who understands: 'I'm having an RSD moment and need grounding'"
+    ],
+    "why_it_helps": "Interrupts the nervous system spiral and buys time before you react from an emotionally flooded state.",
+    "variations": [
+      "Keep a playlist labelled 'RSD emergency' with grounding music",
+      "Use a mantra: 'Feeling rejected isn't the same as being rejected'",
+      "Journal or voice-note your feelings instead of acting on them immediately"
+    ],
+    "pitfalls": "Don't suppress RSD—it's neurological and valid. Let yourself feel it while staying physically safe.",
+    "context": ["work", "relationships", "social-situations"],
+    "resources": [],
+    "copy_to_clipboard": "RSD makes small rejections feel huge. I'll cool my nervous system before I react."
+  }
+]

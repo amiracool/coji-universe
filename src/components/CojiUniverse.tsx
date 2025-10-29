@@ -30,6 +30,10 @@ import {
   X,
   LogOut,
   LayoutGrid,
+  ArrowLeft,
+  Search,
+  Copy,
+  Bookmark,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import FeatureIcon from "@/components/FeatureIcon";
@@ -182,6 +186,13 @@ const CojiUniverse = () => {
   const [profileAge, setProfileAge] = useState('');
   const [profileCountry, setProfileCountry] = useState('');
   const [profileCity, setProfileCity] = useState('');
+
+  // Library state
+  const [selectedPlanet, setSelectedPlanet] = useState<string | null>(null);
+  const [libraryData, setLibraryData] = useState<any>(null);
+  const [libraryTips, setLibraryTips] = useState<any[]>([]);
+  const [librarySearch, setLibrarySearch] = useState('');
+  const [selectedTip, setSelectedTip] = useState<any>(null);
 
   // Health state
   const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
@@ -1055,6 +1066,39 @@ const CojiUniverse = () => {
       setActiveTab('dashboard');
     }
   }, [user]);
+
+  // Load library data
+  useEffect(() => {
+    const loadLibrary = async () => {
+      try {
+        const response = await fetch('/data/neuro_library.json');
+        const data = await response.json();
+        setLibraryData(data);
+      } catch (error) {
+        console.error('Error loading library:', error);
+      }
+    };
+    loadLibrary();
+  }, []);
+
+  // Load ADHD tips when ADHD planet is selected
+  useEffect(() => {
+    const loadPlanetTips = async () => {
+      if (selectedPlanet === 'adhd-support') {
+        try {
+          const response = await fetch('/data/library/adhd_tips.json');
+          const tips = await response.json();
+          setLibraryTips(tips);
+        } catch (error) {
+          console.error('Error loading tips:', error);
+          setLibraryTips([]);
+        }
+      }
+    };
+    if (selectedPlanet) {
+      loadPlanetTips();
+    }
+  }, [selectedPlanet]);
 
   // --- Journal helpers ---
   const journalQuestions = [
