@@ -1256,6 +1256,21 @@ video {
 .animate-spin-very-slow {
   animation: spin 30s linear infinite;
 }
+@keyframes bounce {
+
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
 .cursor-not-allowed {
   cursor: not-allowed;
 }
@@ -1629,6 +1644,10 @@ video {
 .bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));
+}
+.bg-purple-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(192 132 252 / var(--tw-bg-opacity, 1));
 }
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
@@ -2969,6 +2988,10 @@ input[type="range"]::-moz-range-thumb:hover {
     height: 1rem;
   }
 
+  .sm\:h-3 {
+    height: 0.75rem;
+  }
+
   .sm\:max-h-\[90vh\] {
     max-height: 90vh;
   }
@@ -2991,6 +3014,10 @@ input[type="range"]::-moz-range-thumb:hover {
 
   .sm\:w-4 {
     width: 1rem;
+  }
+
+  .sm\:w-3 {
+    width: 0.75rem;
   }
 
   .sm\:grid-cols-2 {
@@ -3108,6 +3135,16 @@ input[type="range"]::-moz-range-thumb:hover {
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .sm\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 @media (min-width: 768px) {

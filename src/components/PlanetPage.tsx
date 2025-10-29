@@ -30,29 +30,52 @@ export default function PlanetPage({
   const theme = getPlanetTheme(planetId);
 
   return (
-    <div
-      className="min-h-screen transition-all duration-1000 animate-fade-in"
-      style={{ background: theme.atmosphere.background }}
-    >
-      {/* Twinkling stars background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 rounded-full animate-pulse-slow"
-            style={{
-              background: theme.atmosphere.stars,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              opacity: Math.random() * 0.7 + 0.3
-            }}
-          />
-        ))}
+    <div className="relative min-h-screen">
+      {/* Atmospheric background */}
+      <div
+        className="fixed inset-0 -z-10 transition-all duration-1000"
+        style={{ background: theme.atmosphere.background }}
+      >
+        {/* Twinkling stars */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 rounded-full animate-pulse-slow"
+              style={{
+                background: theme.atmosphere.stars,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                opacity: Math.random() * 0.7 + 0.3
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Bottom atmospheric glow */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none opacity-30 blur-3xl"
+          style={{
+            background: `radial-gradient(ellipse at bottom, ${theme.colours.primary}40 0%, transparent 70%)`
+          }}
+        />
       </div>
 
+      {/* Planet-themed overlay - covers entire viewport but lets stars show through */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse at top, ${theme.colours.primary}35 0%, ${theme.colours.tertiary}25 30%, ${theme.colours.secondary}30 60%, transparent 100%),
+            linear-gradient(180deg, ${theme.colours.primary}20 0%, ${theme.colours.tertiary}15 50%, transparent 100%)
+          `,
+          zIndex: 1
+        }}
+      />
+
       {/* Content container */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-8 md:py-12">
+      <div className="relative max-w-6xl mx-auto px-4 py-8 md:py-12" style={{ zIndex: 10 }}>
         {/* Back button */}
         <button
           onClick={onBack}
@@ -76,7 +99,7 @@ export default function PlanetPage({
               emoji={theme.emoji}
               colour={theme.colours.primary}
               size="large"
-              showOrbitRing={true}
+              showOrbitRing={false}
             />
           </div>
 
@@ -122,9 +145,9 @@ export default function PlanetPage({
 
         {/* Superpowers in Disguise section */}
         {planetData.orbit_tags && planetData.orbit_tags.length > 0 && (
-          <div id="strategies" className="mb-16 animate-slide-up" style={{ animationDelay: '400ms' }}>
+          <div id="strategies" className="mb-6 sm:mb-8 md:mb-12 lg:mb-16 animate-slide-up" style={{ animationDelay: '400ms' }}>
             <div
-              className="p-8 md:p-10 rounded-2xl"
+              className="p-5 sm:p-6 md:p-8 lg:p-10 rounded-2xl"
               style={{
                 background: `linear-gradient(135deg, ${theme.colours.primary}10 0%, ${theme.colours.secondary}05 100%)`,
                 border: `1px solid ${theme.colours.primary}20`

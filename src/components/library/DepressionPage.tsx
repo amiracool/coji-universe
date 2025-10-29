@@ -1,53 +1,26 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
-import { Search, X, Sparkles } from "lucide-react";
+import React, { Suspense } from "react";
+import { Sparkles } from "lucide-react";
 import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
-import { depressionCategories, depressionDidYouKnow, type Category } from "@/data/conditions/depression";
+import { depressionCategories, depressionDidYouKnow } from "@/data/conditions/depression";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
-export function DepressionPage() {
-  const [searchQuery, setSearchQuery] = useState("");
+interface DepressionPageProps {
+  onBack?: () => void;
+}
+
+export function DepressionPage({ onBack }: DepressionPageProps = {}) {
   const theme = getPlanetTheme('depression-support');
 
-  // Filter categories based on search
-  const filteredCategories = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return depressionCategories;
+  const handleBackClick = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      window.history.back();
     }
-
-    const query = searchQuery.toLowerCase();
-
-    return depressionCategories
-      .map((category) => {
-        const matchingTraits = category.traits.filter((trait) => {
-          return (
-            trait.title.toLowerCase().includes(query) ||
-            trait.summary.toLowerCase().includes(query) ||
-            trait.tools?.some((tool) => tool.toLowerCase().includes(query))
-          );
-        });
-
-        if (matchingTraits.length > 0) {
-          return {
-            ...category,
-            traits: matchingTraits
-          } as Category;
-        }
-
-        return null;
-      })
-      .filter(Boolean) as Category[];
-  }, [searchQuery]);
-
-  const totalTraits = useMemo(() => {
-    return filteredCategories.reduce((sum, cat) => sum + cat.traits.length, 0);
-  }, [filteredCategories]);
-
-  const clearSearch = () => {
-    setSearchQuery("");
   };
 
   return (
@@ -83,10 +56,22 @@ export function DepressionPage() {
         />
       </div>
 
+      {/* Planet-themed overlay - covers entire viewport but lets stars show through */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse at top, ${theme.colours.primary}35 0%, ${theme.colours.tertiary}25 30%, ${theme.colours.secondary}30 60%, transparent 100%),
+            linear-gradient(180deg, ${theme.colours.primary}20 0%, ${theme.colours.tertiary}15 50%, transparent 100%)
+          `,
+          zIndex: 1
+        }}
+      />
+
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 py-6 planet-depression-support relative z-10">
+      <div className="max-w-7xl mx-auto px-4 py-6 planet-depression-support relative" style={{ zIndex: 10 }}>
       {/* Header section */}
-      <div className="text-center mb-16 animate-slide-up">
+      <div className="relative text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-slide-up" style={{ zIndex: 10 }}>
         {/* Planet orb */}
         <div className="flex justify-center mb-8">
           <RotatingPlanet emoji="💙" colour="var(--planet-primary)" size="large" />
@@ -113,55 +98,17 @@ export function DepressionPage() {
       </div>
 
       {/* Did You Know Carousel */}
-      <div className="mb-16 animate-slide-up" style={{ animationDelay: '200ms' }}>
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-slate-200">
+      <div className="relative mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-slide-up" style={{ animationDelay: '200ms', zIndex: 10 }}>
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 sm:mb-7 md:mb-8 text-center text-slate-200">
           Did You Know?
         </h2>
         <FactCarousel facts={depressionDidYouKnow} colour="var(--planet-primary)" />
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-6 relative">
-        <div className="relative">
-          <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"
-            size={18}
-            aria-hidden="true"
-          />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search symptoms, tools, or coping strategies..."
-            className="w-full pl-10 pr-10 py-3 bg-slate-800 bg-opacity-50 border border-slate-700 border-opacity-30 rounded-xl text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-            aria-label="Search depression support tools"
-          />
-          {searchQuery && (
-            <button
-              onClick={clearSearch}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors focus:outline-none"
-              aria-label="Clear search"
-            >
-              <X size={18} />
-            </button>
-          )}
-        </div>
-
-        {searchQuery && (
-          <p className="mt-2 text-xs text-slate-500">
-            {totalTraits === 0 ? (
-              "No results found"
-            ) : (
-              `Found ${totalTraits} tool${totalTraits === 1 ? "" : "s"}`
-            )}
-          </p>
-        )}
-      </div>
-
-      {/* Your Superpowers in Disguise */}
-      <div className="mb-16 animate-slide-up" style={{ animationDelay: '400ms' }}>
+      {/* Your Support Toolkit */}
+      <div className="relative mb-6 sm:mb-8 md:mb-12 lg:mb-16 animate-slide-up" style={{ animationDelay: '400ms', zIndex: 10 }}>
         <div
-          className="p-8 md:p-10 rounded-2xl"
+          className="p-5 sm:p-6 md:p-8 lg:p-10 rounded-2xl"
           style={{
             background: `linear-gradient(135deg, var(--planet-primary)10 0%, var(--planet-secondary)05 100%)`,
             border: `1px solid var(--planet-primary)20`
@@ -192,18 +139,41 @@ export function DepressionPage() {
             }
           >
             <div className="space-y-3">
-              {filteredCategories.length === 0 ? (
-                <div className="text-center py-12 text-slate-500">
-                  <p className="text-lg mb-2">No tools match your search</p>
-                  <p className="text-sm">Try different keywords or browse all categories</p>
-                </div>
-              ) : (
-                filteredCategories.map((category) => (
-                  <CategorySection key={category.id} category={category} />
-                ))
-              )}
+              {depressionCategories.map((category) => (
+                <CategorySection key={category.id} category={category} />
+              ))}
             </div>
           </Suspense>
+        </div>
+      </div>
+
+      {/* Bottom Message - Link to Main Library */}
+      <div className="relative mb-1 sm:mb-2 md:mb-4 text-center" style={{ zIndex: 10 }}>
+        <div
+          className="inline-block px-3 py-2.5 sm:px-4 sm:py-3 md:px-5 md:py-3.5 rounded-lg sm:rounded-xl max-w-xl mx-auto"
+          style={{
+            background: `linear-gradient(135deg, ${theme.colours.primary}08 0%, ${theme.colours.tertiary}05 100%)`,
+            border: `1px solid ${theme.colours.primary}20`
+          }}
+        >
+          <p className="text-slate-300 text-xs sm:text-sm mb-1.5 sm:mb-2 md:mb-2.5">
+            Couldn't find what you're looking for?
+          </p>
+          <p className="text-slate-400 text-xs mb-2.5 sm:mb-3 md:mb-3.5">
+            Try searching our main Library — it might be under a different category.
+          </p>
+          <button
+            onClick={handleBackClick}
+            className="px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+            style={{
+              background: `linear-gradient(135deg, ${theme.colours.primary}20 0%, ${theme.colours.tertiary}15 100%)`,
+              border: `1px solid ${theme.colours.primary}40`,
+              color: theme.colours.primary,
+              boxShadow: `0 2px 8px ${theme.colours.primary}15`
+            }}
+          >
+            Back to Library
+          </button>
         </div>
       </div>
 

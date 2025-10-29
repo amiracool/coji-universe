@@ -135,40 +135,6 @@ export const planetThemes: Record<string, PlanetTheme> = {
     }
   },
 
-  'work-wellbeing': {
-    id: 'work-wellbeing',
-    name: 'Work & Wellbeing',
-    emoji: '💼',
-    colours: {
-      primary: '#10b981', // emerald
-      secondary: '#14b8a6', // teal
-      tertiary: '#22c55e', // green
-      gradient: 'linear-gradient(135deg, #10b981 0%, #14b8a6 50%, #22c55e 100%)'
-    },
-    atmosphere: {
-      background: 'radial-gradient(ellipse at top, #022c22 0%, #0f172a 50%, #020617 100%)',
-      stars: '#10b981',
-      glow: 'rgba(16, 185, 129, 0.15)'
-    }
-  },
-
-  'relationships': {
-    id: 'relationships',
-    name: 'Relationships',
-    emoji: '💕',
-    colours: {
-      primary: '#ec4899', // pink
-      secondary: '#f472b6', // rose
-      tertiary: '#d946ef', // fuchsia
-      gradient: 'linear-gradient(135deg, #ec4899 0%, #f472b6 50%, #d946ef 100%)'
-    },
-    atmosphere: {
-      background: 'radial-gradient(ellipse at top, #831843 0%, #0f172a 50%, #020617 100%)',
-      stars: '#ec4899',
-      glow: 'rgba(236, 72, 153, 0.15)'
-    }
-  },
-
   'chronic-illness': {
     id: 'chronic-illness',
     name: 'Chronic Illness',
@@ -186,39 +152,6 @@ export const planetThemes: Record<string, PlanetTheme> = {
     }
   },
 
-  'time-management': {
-    id: 'time-management',
-    name: 'Time Management',
-    emoji: '⏰',
-    colours: {
-      primary: '#06b6d4', // cyan
-      secondary: '#0ea5e9', // sky
-      tertiary: '#14b8a6', // teal
-      gradient: 'linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #14b8a6 100%)'
-    },
-    atmosphere: {
-      background: 'radial-gradient(ellipse at top, #164e63 0%, #0f172a 50%, #020617 100%)',
-      stars: '#06b6d4',
-      glow: 'rgba(6, 182, 212, 0.15)'
-    }
-  },
-
-  'memory-tools': {
-    id: 'memory-tools',
-    name: 'Memory Tools',
-    emoji: '🧠',
-    colours: {
-      primary: '#f59e0b', // amber
-      secondary: '#fbbf24', // yellow
-      tertiary: '#f97316', // orange
-      gradient: 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f97316 100%)'
-    },
-    atmosphere: {
-      background: 'radial-gradient(ellipse at top, #78350f 0%, #0f172a 50%, #020617 100%)',
-      stars: '#f59e0b',
-      glow: 'rgba(245, 158, 11, 0.15)'
-    }
-  }
 };
 
 export function getPlanetTheme(planetId: string): PlanetTheme {

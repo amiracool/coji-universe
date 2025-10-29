@@ -44,6 +44,8 @@ import { AutismPage } from "@/components/library/AutismPage";
 import { AdhdPage } from "@/components/library/AdhdPage";
 import { AnxietyPage } from "@/components/library/AnxietyPage";
 import { DepressionPage } from "@/components/library/DepressionPage";
+import { ParentingPage } from "@/components/library/ParentingPage";
+import { CojiLoader } from "@/components/CojiLoader";
 
 interface TrackingData {
   id?: string;
@@ -200,6 +202,7 @@ const CojiUniverse = () => {
   const [libraryTips, setLibraryTips] = useState<any[]>([]);
   const [librarySearch, setLibrarySearch] = useState('');
   const [selectedTip, setSelectedTip] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Health state
   const [menstrualCycles, setMenstrualCycles] = useState<{ id: string; start: string; end?: string }[]>(() => {
@@ -352,6 +355,20 @@ const CojiUniverse = () => {
       loadData();
     }
   }, [user]);
+
+  // Handle loading state when changing planets
+  useEffect(() => {
+    if (selectedPlanet) {
+      setIsLoading(true);
+      // Show loading for minimum 800ms for smooth transition
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 800);
+      return () => clearTimeout(timer);
+    } else {
+      setIsLoading(false);
+    }
+  }, [selectedPlanet]);
 
   const loadData = async () => {
     try {
@@ -1402,6 +1419,8 @@ const CojiUniverse = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 text-white relative overflow-hidden">
+      {/* Loading overlay with Coji affirmations */}
+      <CojiLoader isLoading={isLoading} />
       {/* Subtle starfield background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Layer 1 - white stars scattered */}
@@ -4150,30 +4169,6 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('work-wellbeing')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
-                    style={{
-                      borderColor: getPlanetTheme('work-wellbeing').colours.primary,
-                      boxShadow: `0 0 20px ${getPlanetTheme('work-wellbeing').colours.primary}10`
-                    }}
-                  >
-                    <div className="flex justify-center mb-4">
-                      <PlanetOrb
-                        emoji={getPlanetTheme('work-wellbeing').emoji}
-                        colour={getPlanetTheme('work-wellbeing').colours.primary}
-                        size="small"
-                        showOrbitRing={false}
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('work-wellbeing').colours.primary }}>
-                      ND & Work
-                    </h3>
-                    <p className="text-sm text-slate-400 text-center">
-                      Workplace accommodations, interviews, managing work
-                    </p>
-                  </div>
-
-                  <div
                     onClick={() => setSelectedPlanet('depression-support')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
@@ -4194,30 +4189,6 @@ const CojiUniverse = () => {
                     </h3>
                     <p className="text-sm text-slate-400 text-center">
                       No zero days, minimum baseline
-                    </p>
-                  </div>
-
-                  <div
-                    onClick={() => setSelectedPlanet('relationships')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
-                    style={{
-                      borderColor: getPlanetTheme('relationships').colours.primary,
-                      boxShadow: `0 0 20px ${getPlanetTheme('relationships').colours.primary}10`
-                    }}
-                  >
-                    <div className="flex justify-center mb-4">
-                      <PlanetOrb
-                        emoji={getPlanetTheme('relationships').emoji}
-                        colour={getPlanetTheme('relationships').colours.primary}
-                        size="small"
-                        showOrbitRing={false}
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('relationships').colours.primary }}>
-                      Relationships
-                    </h3>
-                    <p className="text-sm text-slate-400 text-center">
-                      Communication, boundaries, ND relationships
                     </p>
                   </div>
 
@@ -4266,54 +4237,6 @@ const CojiUniverse = () => {
                     </h3>
                     <p className="text-sm text-slate-400 text-center">
                       Pacing, exercise, physiotherapy, daily management
-                    </p>
-                  </div>
-
-                  <div
-                    onClick={() => setSelectedPlanet('time-management')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
-                    style={{
-                      borderColor: getPlanetTheme('time-management').colours.primary,
-                      boxShadow: `0 0 20px ${getPlanetTheme('time-management').colours.primary}10`
-                    }}
-                  >
-                    <div className="flex justify-center mb-4">
-                      <PlanetOrb
-                        emoji={getPlanetTheme('time-management').emoji}
-                        colour={getPlanetTheme('time-management').colours.primary}
-                        size="small"
-                        showOrbitRing={false}
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('time-management').colours.primary }}>
-                      Time Management
-                    </h3>
-                    <p className="text-sm text-slate-400 text-center">
-                      Scheduling, prioritisation, time blocking tools
-                    </p>
-                  </div>
-
-                  <div
-                    onClick={() => setSelectedPlanet('memory-tools')}
-                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
-                    style={{
-                      borderColor: getPlanetTheme('memory-tools').colours.primary,
-                      boxShadow: `0 0 20px ${getPlanetTheme('memory-tools').colours.primary}10`
-                    }}
-                  >
-                    <div className="flex justify-center mb-4">
-                      <PlanetOrb
-                        emoji={getPlanetTheme('memory-tools').emoji}
-                        colour={getPlanetTheme('memory-tools').colours.primary}
-                        size="small"
-                        showOrbitRing={false}
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2 text-center" style={{ color: getPlanetTheme('memory-tools').colours.primary }}>
-                      Memory Tools
-                    </h3>
-                    <p className="text-sm text-slate-400 text-center">
-                      Working memory strategies, reminders, recall aids
                     </p>
                   </div>
 
@@ -4395,7 +4318,7 @@ const CojiUniverse = () => {
                   return (
                     <div>
                       <BackButton />
-                      <AnxietyPage />
+                      <AnxietyPage onBack={() => setSelectedPlanet(null)} />
                     </div>
                   );
                 }
@@ -4404,7 +4327,16 @@ const CojiUniverse = () => {
                   return (
                     <div>
                       <BackButton />
-                      <DepressionPage />
+                      <DepressionPage onBack={() => setSelectedPlanet(null)} />
+                    </div>
+                  );
+                }
+
+                if (selectedPlanet === 'parenting-hub') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <ParentingPage onBack={() => setSelectedPlanet(null)} />
                     </div>
                   );
                 }
