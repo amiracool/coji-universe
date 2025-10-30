@@ -45,6 +45,10 @@ import { AdhdPage } from "@/components/library/AdhdPage";
 import { AnxietyPage } from "@/components/library/AnxietyPage";
 import { DepressionPage } from "@/components/library/DepressionPage";
 import { ParentingPage } from "@/components/library/ParentingPage";
+import { DyscalculiaPage } from "@/components/library/DyscalculiaPage";
+import { DyslexiaDyscalculiaPage } from "@/components/library/DyslexiaDyscalculiaPage";
+import { DyspraxiaPage } from "@/components/library/DyspraxiaPage";
+import { ChronicIllnessPage } from "@/components/library/ChronicIllnessPage";
 import { CojiLoader } from "@/components/CojiLoader";
 
 interface TrackingData {
@@ -2667,7 +2671,7 @@ const CojiUniverse = () => {
               <FeatureIcon
                 icon={DollarSign}
                 label="Finances"
-                description="Track income, expenses, wants vs needs, budgets, and cash flow with neurodivergent-friendly tools"
+                description="Wellbeing-focused budgeting and planning tools (not financial advice — consult a licensed professional for investments or debt management)"
                 color="green"
               />
 
@@ -4341,6 +4345,42 @@ const CojiUniverse = () => {
                   );
                 }
 
+                if (selectedPlanet === 'dyscalculia') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <DyscalculiaPage onBack={() => setSelectedPlanet(null)} />
+                    </div>
+                  );
+                }
+
+                if (selectedPlanet === 'dyslexia-dyscalculia') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <DyslexiaDyscalculiaPage onBack={() => setSelectedPlanet(null)} />
+                    </div>
+                  );
+                }
+
+                if (selectedPlanet === 'dyspraxia') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <DyspraxiaPage onBack={() => setSelectedPlanet(null)} />
+                    </div>
+                  );
+                }
+
+                if (selectedPlanet === 'chronic-illness') {
+                  return (
+                    <div>
+                      <BackButton />
+                      <ChronicIllnessPage onBack={() => setSelectedPlanet(null)} />
+                    </div>
+                  );
+                }
+
                 // Fallback to old PlanetPage for other planets
                 const planet = libraryData?.planets?.find((p: any) => p.slug === selectedPlanet);
                 if (!planet) return null;
@@ -4571,7 +4611,14 @@ const CojiUniverse = () => {
         {activeTab === "finances" && (
           <div>
             <h2 className="text-3xl font-bold mb-6 text-teal-300">Finances</h2>
-            <p className="text-slate-400 mb-6">Track budgets, use the 50/30/20 rule, and organise wants vs needs with a simple whiteboard.</p>
+            <p className="text-slate-400 mb-4">Track budgets, use the 50/30/20 rule, and organise wants vs needs with a simple whiteboard.</p>
+
+            <div className="bg-amber-900 bg-opacity-20 border border-amber-500 border-opacity-30 rounded-lg p-4 mb-6">
+              <p className="text-amber-200 text-sm leading-relaxed">
+                <strong className="font-semibold">Important:</strong> Coji does not offer financial advice, but rather tools and strategies for wellbeing, budgeting, and planning.
+                For debt management, investments, or financial advice, please consult a licensed financial professional.
+              </p>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20">

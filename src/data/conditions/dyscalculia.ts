@@ -19,7 +19,6 @@ export type Category = {
 export const dyscalculiaDidYouKnow = [
   "Dyscalculia affects number sense, not intelligence — many have strengths in creative or verbal areas",
   "Visual-spatial strategies can make math concepts more accessible",
-  "Dyscalculia often overlaps with dyslexia, but they're distinct learning differences",
   "Multi-sensory math approaches help build number confidence",
   "Real-world contexts make abstract math more meaningful"
 ];
