@@ -1,10 +1,52 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AutismPlanetLayout } from "./AutismPlanetLayout";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { autismPlanetMobile } from "@/data/planets/autism-mobile";
+
+function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    // Start after delay
+    const startTimer = setTimeout(() => {
+      setHasStarted(true);
+    }, delay);
+
+    return () => clearTimeout(startTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    if (currentIndex < text.length) {
+      const timer = setTimeout(() => {
+        setDisplayedText(text.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, 25); // 25ms per character = smooth typewriter feel
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, text, hasStarted]);
+
+  return (
+    <span>
+      {displayedText}
+      {currentIndex < text.length && (
+        <span className="cursor-blink" style={{
+          borderRight: "2px solid #14b8a6",
+          animation: "blink 0.7s step-end infinite"
+        }}>
+          &nbsp;
+        </span>
+      )}
+    </span>
+  );
+}
 
 export function AutismUnderstanding() {
   const router = useRouter();
@@ -46,30 +88,33 @@ export function AutismUnderstanding() {
             border: "1px solid rgba(20, 184, 166, 0.15)"
           }}
         >
-          {/* Text blocks - gentle fade + slide with typewriter reveal */}
+          {/* Text blocks - typewriter effect */}
           <div className="space-y-6">
-            {autismPlanetMobile.understandingIt.blocks.map((block, idx) => (
-              <motion.p
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: idx * 0.3,
-                  ease: "easeOut"
-                }}
-                className="text-left typewriter-text"
-                style={{
-                  lineHeight: "1.8em",
-                  color: "#E6F0EB",
-                  fontSize: "1.0625rem", // 17px
-                  whiteSpace: "pre-line", // Preserve line breaks
-                  animationDelay: `${idx * 0.3}s`
-                }}
-              >
-                {block}
-              </motion.p>
-            ))}
+            {autismPlanetMobile.understandingIt.blocks.map((block, idx) => {
+              // Calculate cumulative delay: wait for all previous blocks to finish typing
+              const charsBeforeThis = autismPlanetMobile.understandingIt.blocks
+                .slice(0, idx)
+                .reduce((sum, b) => sum + b.length, 0);
+              const delay = (charsBeforeThis * 25) + (idx * 400); // 25ms per char + 400ms pause between blocks
+
+              return (
+                <motion.p
+                  key={idx}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: delay / 1000 }}
+                  className="text-left"
+                  style={{
+                    lineHeight: "1.8em",
+                    color: "#E6F0EB",
+                    fontSize: "1.0625rem", // 17px
+                    whiteSpace: "pre-line" // Preserve line breaks
+                  }}
+                >
+                  <TypewriterText text={block} delay={delay} />
+                </motion.p>
+              );
+            })}
           </div>
         </div>
 
@@ -81,29 +126,11 @@ export function AutismUnderstanding() {
         </div>
       </div>
 
-      {/* Typewriter CSS animation */}
+      {/* Cursor blink animation */}
       <style jsx>{`
-        @keyframes typewriter {
-          from {
-            width: 0;
-            opacity: 0;
-          }
-          to {
-            width: 100%;
-            opacity: 1;
-          }
-        }
-
-        .typewriter-text {
-          overflow: hidden;
-          display: inline-block;
-          animation: typewriter 0.8s steps(40) forwards;
-          animation-play-state: paused;
-          opacity: 0;
-        }
-
-        .typewriter-text {
-          animation-play-state: running;
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
         }
       `}</style>
     </AutismPlanetLayout>
