@@ -50,6 +50,7 @@ CREATE INDEX IF NOT EXISTS idx_ideas_created_at ON ideas_and_questions(created_a
 ALTER TABLE ideas_and_questions ENABLE ROW LEVEL SECURITY;
 
 -- Policy: Users can insert their own ideas
+DROP POLICY IF EXISTS "Users can insert their own ideas" ON ideas_and_questions;
 CREATE POLICY "Users can insert their own ideas"
 ON ideas_and_questions
 FOR INSERT
@@ -57,6 +58,7 @@ TO authenticated
 WITH CHECK (auth.uid() = user_id);
 
 -- Policy: Users can view their own ideas
+DROP POLICY IF EXISTS "Users can view their own ideas" ON ideas_and_questions;
 CREATE POLICY "Users can view their own ideas"
 ON ideas_and_questions
 FOR SELECT
@@ -64,6 +66,7 @@ TO authenticated
 USING (auth.uid() = user_id);
 
 -- Policy: Users can update their own ideas (only if status is 'new')
+DROP POLICY IF EXISTS "Users can update their own new ideas" ON ideas_and_questions;
 CREATE POLICY "Users can update their own new ideas"
 ON ideas_and_questions
 FOR UPDATE
@@ -72,6 +75,7 @@ USING (auth.uid() = user_id AND status = 'new')
 WITH CHECK (auth.uid() = user_id AND status = 'new');
 
 -- Policy: Users can delete their own ideas (only if status is 'new')
+DROP POLICY IF EXISTS "Users can delete their own new ideas" ON ideas_and_questions;
 CREATE POLICY "Users can delete their own new ideas"
 ON ideas_and_questions
 FOR DELETE
@@ -158,18 +162,21 @@ CREATE INDEX IF NOT EXISTS idx_eisenhower_created_at ON eisenhower_matrix_tasks(
 ALTER TABLE eisenhower_matrix_tasks ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies for eisenhower_matrix_tasks
+DROP POLICY IF EXISTS "Users can insert their own tasks" ON eisenhower_matrix_tasks;
 CREATE POLICY "Users can insert their own tasks"
 ON eisenhower_matrix_tasks
 FOR INSERT
 TO authenticated
 WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can view their own tasks" ON eisenhower_matrix_tasks;
 CREATE POLICY "Users can view their own tasks"
 ON eisenhower_matrix_tasks
 FOR SELECT
 TO authenticated
 USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can update their own tasks" ON eisenhower_matrix_tasks;
 CREATE POLICY "Users can update their own tasks"
 ON eisenhower_matrix_tasks
 FOR UPDATE
@@ -177,6 +184,7 @@ TO authenticated
 USING (auth.uid() = user_id)
 WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can delete their own tasks" ON eisenhower_matrix_tasks;
 CREATE POLICY "Users can delete their own tasks"
 ON eisenhower_matrix_tasks
 FOR DELETE

@@ -1,17 +1,89 @@
 {
   "pages": {
-    "/page": [
+    "/planets/autism/how-it-shows-up/page": [
       "static/chunks/webpack.js",
       "static/chunks/lib.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/autism/how-it-shows-up/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/lib.js",
       "static/chunks/main-app.js",
+      "static/chunks/commons.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+    ],
+    "/planets/autism/strengths/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/autism/strengths/page.js"
+    ],
+    "/planets/autism/planning/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/autism/planning/page.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/page.js"
+    ],
+    "/planets/autism/intro/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/autism/intro/page.js"
+    ],
+    "/planets/autism/facts/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/autism/facts/page.js"
+    ],
+    "/planets/autism/understanding/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/autism/understanding/page.js"
+    ],
+    "/planets/ideas-questions/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/ideas-questions/page.js"
+    ],
+    "/planets/ideas-questions/facts/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/ideas-questions/facts/page.js"
+    ],
+    "/planets/ideas-questions/understanding/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/ideas-questions/understanding/page.js"
+    ],
+    "/planets/parenting/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/parenting/page.js"
     ]
   }
 }
