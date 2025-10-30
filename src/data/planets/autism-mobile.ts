@@ -12,7 +12,7 @@ export const autismPlanetMobile = {
   // Understanding It (relational, breath-sized blocks)
   understandingIt: {
     blocks: [
-      "You don't process the world "wrong."",
+      "You don't process the world \"wrong.\"",
       "You just process it deeply.",
       "Your mind catches patterns that others miss —\nconnections between things most people walk past.",
       "You feel in full colour, which means joy hits brighter,\nbut overwhelm does too.",
