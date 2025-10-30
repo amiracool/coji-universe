@@ -9,104 +9,139 @@ export const autismPlanetMobile = {
   tagline: "Understanding how autistic minds experience the world — deeply, vividly, and differently.",
   icon: "🧩",
 
-  // Understanding It (relational, breath-sized blocks)
+  // Understanding It (visual, emotional, validating)
   understandingIt: {
-    blocks: [
-      "You don't process the world \"wrong.\"",
-      "You just process it deeply.",
-      "Your mind catches patterns that others miss —\nconnections between things most people walk past.",
-      "You feel in full colour, which means joy hits brighter,\nbut overwhelm does too.",
-      "Small talk might drain you; truth feels lighter.",
-      "Routines aren't rigidness — they're rhythm.\nThey help you move through a world built for different wiring.",
-      "You're not broken.\nYou're wired differently."
+    sections: [
+      {
+        icon: "🧠",
+        visual: "✨",
+        title: "You process deeply",
+        text: "You don't process the world \"wrong.\"\nYou just process it deeply.",
+        color: "#A78BFA"
+      },
+      {
+        icon: "🔍",
+        visual: "🌐",
+        title: "You see patterns",
+        text: "Your mind catches patterns that others miss —\nconnections between things most people walk past.",
+        color: "#60A5FA"
+      },
+      {
+        icon: "💫",
+        visual: "🎨",
+        title: "You feel in full colour",
+        text: "Joy hits brighter,\nbut overwhelm does too.",
+        color: "#F472B6"
+      },
+      {
+        icon: "💬",
+        visual: "✨",
+        title: "You value authenticity",
+        text: "Small talk might drain you;\ntruth feels lighter.",
+        color: "#34D399"
+      },
+      {
+        icon: "🎵",
+        visual: "🌊",
+        title: "Routines are rhythm",
+        text: "They're not rigidness — they're rhythm.\nThey help you move through a world built for different wiring.",
+        color: "#FBBF24"
+      },
+      {
+        icon: "✨",
+        visual: "💝",
+        title: "You're not broken",
+        text: "You're wired differently.\nAnd that's not something to fix.",
+        color: "#14B8A6"
+      }
     ]
   },
 
-  // How It Shows Up (calm, centered constellation design)
+  // How It Shows Up (clear, literal, visual breaks)
   howItShowsUp: [
     {
       id: "sensory",
-      title: "Sensory Processing",
-      icon: "◉", // Soft glowing circle
+      title: "Senses",
+      icon: "👂",
       accentColor: "#FFD88A",
       preview: [
-        "Lights, textures, smells — all turned up a notch.",
-        "Fluorescent bulbs hum; some fabrics bite.",
-        "Crowded rooms can feel like static in your chest."
+        "Sounds are louder than they should be.",
+        "Certain textures feel uncomfortable on your skin.",
+        "Bright lights can hurt your eyes."
       ],
       expanded: [
-        "You might crave or avoid specific sensory input.",
-        "Weighted blankets, compression clothing, or deep pressure help regulate.",
-        "This isn't pickiness — it's how your nervous system processes the world.",
-        "What others tune out can feel amplified, overwhelming, or even painful."
+        "You might need headphones in noisy places.",
+        "Tags in shirts or tight clothes can be painful.",
+        "Fluorescent lights give you headaches.",
+        "Strong smells bother you more than others."
       ]
     },
     {
       id: "social",
-      title: "Social & Communication",
-      icon: "◉",
+      title: "Talking & Listening",
+      icon: "💬",
       accentColor: "#FFD88A",
       preview: [
-        "You prefer honest, direct words. Small talk drains you.",
-        "Sarcasm, hints, hidden meanings — they don't always land.",
-        "Eye contact might feel uncomfortable. Masking takes energy."
+        "You prefer clear, direct communication.",
+        "Sarcasm and hints are confusing.",
+        "Eye contact feels uncomfortable."
       ],
       expanded: [
-        "You process language literally, which means implied meanings can feel like guesswork.",
-        "Acting 'normal' helps you fit in, but it's exhausting.",
-        "You care deeply — you just show it differently.",
-        "Direct communication isn't rude. It's clarity."
+        "Small talk is exhausting.",
+        "You take what people say literally.",
+        "Pretending to be 'normal' drains your energy.",
+        "You show care in your own way."
       ]
     },
     {
       id: "cognition",
-      title: "Cognition & Focus",
-      icon: "◉",
+      title: "Thinking & Focus",
+      icon: "🧠",
       accentColor: "#FFD88A",
       preview: [
-        "You think in patterns, systems, vivid images.",
-        "Special interests capture your full attention — hyperfocus is real.",
-        "Starting tasks, switching gears, deciding — executive function can be hard."
+        "You can focus deeply on topics you love.",
+        "Starting new tasks is difficult.",
+        "Making decisions takes extra time."
       ],
       expanded: [
-        "You can lose hours to something that fascinates you, forgetting time and basic needs.",
-        "Planning steps, organizing thoughts, and prioritizing can feel overwhelming.",
-        "Your attention is deep but selective.",
-        "This isn't laziness — it's how your brain allocates focus."
+        "You lose track of time when doing something interesting.",
+        "Planning steps and organizing is hard.",
+        "You notice patterns others miss.",
+        "Switching between tasks is exhausting."
       ]
     },
     {
       id: "emotion",
-      title: "Emotion & Regulation",
-      icon: "◉",
+      title: "Feelings",
+      icon: "❤️",
       accentColor: "#FFD88A",
       preview: [
-        "You feel emotions intensely, even if naming them is hard.",
-        "Injustice, inconsistency, sudden change — they hit harder.",
-        "Shutdowns and meltdowns aren't tantrums. They're nervous system responses."
+        "Emotions feel very strong.",
+        "Unfairness and sudden changes are upsetting.",
+        "Sometimes you shut down or have meltdowns."
       ],
       expanded: [
-        "Alexithymia means emotions are real but hard to identify or express.",
-        "Shutdowns feel like withdrawal, numbness, or going nonverbal.",
-        "Meltdowns are overwhelm spilling over — tears, anger, or physical distress.",
-        "Both happen when your capacity is exceeded. They're not about control."
+        "Naming how you feel is hard.",
+        "Shutdowns: you go quiet and withdraw.",
+        "Meltdowns: crying, anger, or feeling overwhelmed.",
+        "These happen when you're at your limit."
       ]
     },
     {
       id: "physical",
-      title: "Physical & Health",
-      icon: "◉",
+      title: "Body & Health",
+      icon: "💪",
       accentColor: "#FFD88A",
       preview: [
-        "Chronic pain, fatigue, digestive issues, sleep problems — common companions.",
-        "Body signals (hunger, pain, temperature) can arrive muted or delayed.",
-        "Routines, stims, rituals — they help you feel grounded and safe."
+        "You might have pain, tiredness, or stomach issues.",
+        "You don't always notice hunger or thirst.",
+        "Routines and repetitive movements help you feel calm."
       ],
       expanded: [
-        "Interoception (sensing your body's internal state) can be unreliable.",
-        "You might not notice hunger until you're shaky, or pain until it's sharp.",
-        "Repetitive movements (stimming) aren't things to fix — they're regulation tools.",
-        "Your body's needs are real, even if they don't match typical timelines."
+        "Your body sends delayed signals.",
+        "You might forget to eat or drink.",
+        "Rocking, fidgeting, or pacing helps you regulate.",
+        "Sleep problems are common."
       ]
     }
   ],

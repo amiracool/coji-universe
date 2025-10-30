@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
+import { SoundProvider } from '@/contexts/SoundContext'
 
 // Lazy load AmbientMusic component - it's not critical for first paint
 const AmbientMusic = dynamic(() => import('@/components/AmbientMusic'), {
@@ -49,8 +50,10 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
-        <AmbientMusic />
-        {children}
+        <SoundProvider>
+          <AmbientMusic />
+          {children}
+        </SoundProvider>
       </body>
     </html>
   )

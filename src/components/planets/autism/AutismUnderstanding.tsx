@@ -5,11 +5,56 @@ import { AutismPlanetLayout } from "./AutismPlanetLayout";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { autismPlanetMobile } from "@/data/planets/autism-mobile";
+import { useSound } from "@/contexts/SoundContext";
 
-function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
+function TypewriterText({ text, delay = 0, onSkip, soundEnabled }: { text: string; delay?: number; onSkip?: () => void; soundEnabled?: boolean }) {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isSkipped, setIsSkipped] = useState(false);
+  const audioContextRef = React.useRef<AudioContext | null>(null);
+  const lastTapRef = React.useRef<number>(0);
+
+  // Initialize audio context once
+  React.useEffect(() => {
+    try {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    } catch (e) {
+      // Audio not supported
+    }
+
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
+  }, []);
+
+  // Play a typewriter click sound
+  const playTypeSound = () => {
+    if (!audioContextRef.current || !soundEnabled) return;
+
+    try {
+      const oscillator = audioContextRef.current.createOscillator();
+      const gainNode = audioContextRef.current.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContextRef.current.destination);
+
+      // Very gentle, subtle typewriter click
+      oscillator.frequency.value = 800; // Higher, softer frequency
+      oscillator.type = 'sine'; // Sine wave for smooth, gentle sound
+
+      const now = audioContextRef.current.currentTime;
+      gainNode.gain.setValueAtTime(0.05, now); // Very gentle volume
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+
+      oscillator.start(now);
+      oscillator.stop(now + 0.03);
+    } catch (e) {
+      // Silently fail if audio playback fails
+    }
+  };
 
   useEffect(() => {
     // Start after delay
@@ -23,23 +68,61 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
   useEffect(() => {
     if (!hasStarted) return;
 
+    if (isSkipped) {
+      setDisplayedText(text);
+      setCurrentIndex(text.length);
+      return;
+    }
+
     if (currentIndex < text.length) {
       const timer = setTimeout(() => {
+        // Play sound first, then update text
+        playTypeSound();
         setDisplayedText(text.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
       }, 25); // 25ms per character = smooth typewriter feel
 
       return () => clearTimeout(timer);
     }
-  }, [currentIndex, text, hasStarted]);
+  }, [currentIndex, text, hasStarted, isSkipped]);
+
+  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+    if (currentIndex >= text.length) return;
+
+    const now = Date.now();
+    const timeSinceLastTap = now - lastTapRef.current;
+
+    // On desktop: single click shows all text
+    // On mobile: double tap (within 300ms) shows all text
+    const isDoubleTab = timeSinceLastTap < 300;
+    const isMobile = 'ontouchstart' in window;
+
+    if (!isMobile || isDoubleTab) {
+      setIsSkipped(true);
+      setDisplayedText(text);
+      setCurrentIndex(text.length);
+      if (onSkip) onSkip();
+    }
+
+    lastTapRef.current = now;
+  };
 
   return (
-    <span>
+    <span
+      onClick={handleClick}
+      onTouchEnd={handleClick}
+      style={{
+        cursor: currentIndex < text.length ? 'pointer' : 'default',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitTouchCallout: 'none'
+      }}
+    >
       {displayedText}
       {currentIndex < text.length && (
-        <span className="cursor-blink" style={{
+        <span style={{
           borderRight: "2px solid #14b8a6",
-          animation: "blink 0.7s step-end infinite"
+          animation: "blink 1s step-end infinite"
         }}>
           &nbsp;
         </span>
@@ -50,6 +133,8 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
 
 export function AutismUnderstanding() {
   const router = useRouter();
+  const { isMuted } = useSound();
+  const soundEnabled = !isMuted;
 
   const handleNext = () => {
     router.push('/planets/autism/how-it-shows-up');
@@ -68,58 +153,95 @@ export function AutismUnderstanding() {
       onSwipeLeft={handleNext}
       onSwipeRight={handlePrev}
     >
-      <div className="py-6 flex flex-col min-h-[70vh]">
+      <div className="py-6 flex flex-col min-h-screen">
         {/* Header */}
-        <div className="text-center mb-12">
-          <span className="text-5xl mb-4 inline-block">🌍</span>
+        <div className="text-center mb-8">
+          <motion.span
+            className="text-6xl mb-4 inline-block"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            🌍
+          </motion.span>
           <h2 className="text-3xl font-bold text-slate-100 mb-3">
-            Understanding It
+            Understanding Autism
           </h2>
         </div>
 
-        {/* Relational content container */}
-        <div
-          className="flex-1 mx-auto w-full"
-          style={{
-            maxWidth: "600px",
-            background: "rgba(10, 25, 25, 0.9)",
-            borderRadius: "1rem",
-            padding: "2rem",
-            border: "1px solid rgba(20, 184, 166, 0.15)"
-          }}
-        >
-          {/* Text blocks - typewriter effect */}
-          <div className="space-y-6">
-            {autismPlanetMobile.understandingIt.blocks.map((block, idx) => {
-              // Calculate cumulative delay: wait for all previous blocks to finish typing
-              const charsBeforeThis = autismPlanetMobile.understandingIt.blocks
-                .slice(0, idx)
-                .reduce((sum, b) => sum + b.length, 0);
-              const delay = (charsBeforeThis * 25) + (idx * 400); // 25ms per char + 400ms pause between blocks
+        {/* Visual cards with icons and colors */}
+        <div className="space-y-6 px-4 pb-12">
+          {autismPlanetMobile.understandingIt.sections.map((section, idx) => {
+            const delay = idx * 600; // Stagger each card
 
-              return (
-                <motion.p
-                  key={idx}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: delay / 1000 }}
-                  className="text-left"
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: delay / 1000,
+                  ease: "easeOut"
+                }}
+                className="mx-auto w-full"
+                style={{
+                  maxWidth: "600px",
+                  background: `linear-gradient(135deg, ${section.color}15 0%, ${section.color}08 100%)`,
+                  borderRadius: "1.25rem",
+                  padding: "2rem",
+                  border: `1px solid ${section.color}30`,
+                  boxShadow: `0 4px 20px ${section.color}10`
+                }}
+              >
+                {/* Icon row */}
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <span
+                    className="text-5xl"
+                    style={{
+                      filter: `drop-shadow(0 0 12px ${section.color}60)`
+                    }}
+                  >
+                    {section.icon}
+                  </span>
+                  <span
+                    className="text-4xl opacity-60"
+                  >
+                    {section.visual}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3
+                  className="text-center text-xl font-semibold mb-4"
                   style={{
-                    lineHeight: "1.8em",
-                    color: "#E6F0EB",
-                    fontSize: "1.0625rem", // 17px
-                    whiteSpace: "pre-line" // Preserve line breaks
+                    color: section.color,
+                    textShadow: `0 0 20px ${section.color}40`
                   }}
                 >
-                  <TypewriterText text={block} delay={delay} />
-                </motion.p>
-              );
-            })}
-          </div>
+                  {section.title}
+                </h3>
+
+                {/* Text with typewriter */}
+                <div className="text-center">
+                  <p
+                    className="text-lg"
+                    style={{
+                      lineHeight: "1.8em",
+                      color: "#E6F0EB",
+                      whiteSpace: "pre-line"
+                    }}
+                  >
+                    <TypewriterText text={section.text} delay={delay + 300} soundEnabled={soundEnabled} />
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Gentle transition hint with generous spacing */}
-        <div className="text-center pt-12 mt-auto">
+        {/* Gentle transition hint */}
+        <div className="text-center pt-8 pb-6">
           <p className="text-slate-400 text-sm" style={{ lineHeight: "1.6" }}>
             Next: See how autism shows up in daily life
           </p>

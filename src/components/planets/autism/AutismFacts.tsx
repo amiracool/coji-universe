@@ -40,7 +40,7 @@ export function AutismFacts() {
             Did You Know?
           </h2>
           <p className="text-slate-400 text-sm max-w-md mx-auto">
-            Quick insights to start your journey
+            Quick insights to note on your journey through autism
           </p>
         </div>
 

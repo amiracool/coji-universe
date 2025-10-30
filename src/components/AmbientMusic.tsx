@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
+import { useSound } from '@/contexts/SoundContext';
 
 export default function AmbientMusic() {
-  const [isMuted, setIsMuted] = useState(true);
+  const { isMuted, toggleMute } = useSound();
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -13,17 +14,15 @@ export default function AmbientMusic() {
     }
   }, []);
 
-  const toggleMute = () => {
+  useEffect(() => {
     if (audioRef.current) {
       if (isMuted) {
-        audioRef.current.play();
-        setIsMuted(false);
-      } else {
         audioRef.current.pause();
-        setIsMuted(true);
+      } else {
+        audioRef.current.play();
       }
     }
-  };
+  }, [isMuted]);
 
   return (
     <div className="fixed bottom-6 right-6 z-50">

@@ -109,7 +109,7 @@ export function AutismStrengths() {
         <div className="text-center mb-8">
           <span className="text-5xl mb-4 inline-block">🌿</span>
           <h2 className="text-3xl font-bold text-slate-100 mb-3">
-            Strengths & Sensitivities
+            Strengths & Sensitivities of Autism
           </h2>
           <p className="text-slate-400 text-base max-w-md mx-auto" style={{ lineHeight: "1.6" }}>
             Tap a card to learn more
