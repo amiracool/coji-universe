@@ -349,17 +349,17 @@ export const depressionCategories: Category[] = [
         icon: "↩️"
       },
       {
-        id: "medication-therapy",
-        title: "Medication and therapy",
+        id: "medication-wellbeing",
+        title: "Medication and wellbeing support",
         summary: "Professional support is a tool, not a failure.",
         tools: [
           "Talk to a doctor about medication options",
-          "Try therapy (CBT, DBT especially helpful)",
+          "Try professional support (CBT, DBT especially helpful)",
           "Use crisis lines when needed: 988 or text HELLO to 741741",
           "Treatment is courage, not weakness"
         ],
         links: [
-          { label: "Find a therapist", href: "https://www.psychologytoday.com/us/therapists" },
+          { label: "Find wellbeing support", href: "https://www.psychologytoday.com/us/therapists" },
           { label: "Crisis line: 988", href: "tel:988" }
         ],
         icon: "💊"

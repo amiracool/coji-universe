@@ -5,7 +5,9 @@ import { Sparkles, ArrowLeft } from "lucide-react";
 import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
+import { EducationalSection } from "./EducationalSection";
 import { adhdCategories, adhdDidYouKnow } from "@/data/conditions/adhd";
+import { adhdEducationalContent } from "@/data/educational";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
 export function AdhdPage() {
@@ -96,6 +98,14 @@ export function AdhdPage() {
           </h2>
           <FactCarousel facts={adhdDidYouKnow} colour="var(--planet-primary)" />
         </div>
+      </div>
+
+      {/* Educational Content Section */}
+      <div className="relative mb-12 animate-slide-up" style={{ animationDelay: '300ms', zIndex: 1 }}>
+        <EducationalSection
+          content={adhdEducationalContent}
+          accentColor="purple"
+        />
       </div>
 
       {/* Your Superpowers in Disguise */}

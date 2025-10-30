@@ -3,6 +3,7 @@
 import React from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { useIsDesktop } from '@/hooks/useMediaQuery';
 
 interface PlanetOrbProps {
   emoji: string;
@@ -18,6 +19,7 @@ export default function PlanetOrb({
   showOrbitRing = true
 }: PlanetOrbProps) {
   const prefersReducedMotion = useReducedMotion();
+  const isDesktop = useIsDesktop();
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
   const sizes = {
@@ -26,7 +28,8 @@ export default function PlanetOrb({
     large: 'w-40 h-40 md:w-48 md:h-48 text-7xl md:text-8xl'
   };
 
-  const shouldAnimate = !prefersReducedMotion && isVisible;
+  // Animations disabled for performance
+  const shouldAnimate = false;
 
   return (
     <div ref={ref} className="relative flex items-center justify-center">

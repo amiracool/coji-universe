@@ -5,7 +5,9 @@ import { Sparkles } from "lucide-react";
 import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
+import { EducationalSection } from "./EducationalSection";
 import { depressionCategories, depressionDidYouKnow } from "@/data/conditions/depression";
+import { depressionEducationalContent } from "@/data/educational";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
 interface DepressionPageProps {
@@ -103,6 +105,14 @@ export function DepressionPage({ onBack }: DepressionPageProps = {}) {
           Did You Know?
         </h2>
         <FactCarousel facts={depressionDidYouKnow} colour="var(--planet-primary)" />
+      </div>
+
+      {/* Educational Content Section */}
+      <div className="mb-12">
+        <EducationalSection
+          content={depressionEducationalContent}
+          accentColor="blue"
+        />
       </div>
 
       {/* Your Support Toolkit */}

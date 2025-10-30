@@ -5,7 +5,9 @@ import { Sparkles } from "lucide-react";
 import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
+import { EducationalSection } from "./EducationalSection";
 import { chronicIllnessCategories, chronicIllnessDidYouKnow } from "@/data/conditions/chronic-illness";
+import { chronicIllnessEducationalContent } from "@/data/educational";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
 interface ChronicIllnessPageProps {
@@ -79,7 +81,7 @@ export function ChronicIllnessPage({ onBack }: ChronicIllnessPageProps = {}) {
 
         {/* Welcome text */}
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-100">
-          Welcome to the Chronic Illness Resources Planet
+          Chronic Illness Resources
         </h1>
 
         <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-4">
@@ -103,6 +105,14 @@ export function ChronicIllnessPage({ onBack }: ChronicIllnessPageProps = {}) {
             Did You Know?
           </h2>
           <FactCarousel facts={chronicIllnessDidYouKnow} colour="var(--planet-primary)" />
+        </div>
+
+        {/* Educational Content Section */}
+        <div className="mb-12 animate-slide-up" style={{ animationDelay: '300ms', zIndex: 1 }}>
+          <EducationalSection
+            content={chronicIllnessEducationalContent}
+            accentColor="cyan"
+          />
         </div>
 
         {/* Your Superpowers in Disguise */}

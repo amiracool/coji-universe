@@ -1,16 +1,25 @@
 "use client";
 
 import React, { useState, useMemo, Suspense } from "react";
-import { Search, X, Sparkles } from "lucide-react";
+import { Search, X, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
+import { EducationalSection } from "./EducationalSection";
 import { autismCategories, autismDidYouKnow, type Category } from "@/data/conditions/autism";
+import { autismEducationalContent } from "@/data/educational";
+import { autismPlanetMobile } from "@/data/planets/autism-mobile";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
 export function AutismPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const theme = getPlanetTheme('autism-support');
+
+  // Mobile-first progressive disclosure states
+  const [understandingExpanded, setUnderstandingExpanded] = useState(false);
+  const [howItShowsOpen, setHowItShowsOpen] = useState<string | null>(null);
+  const [strengthExpanded, setStrengthExpanded] = useState<string | null>(null);
+  const [planningExpanded, setPlanningExpanded] = useState<string | null>(null);
 
   // Filter categories based on search
   const filteredCategories = useMemo(() => {
@@ -52,87 +61,280 @@ export function AutismPage() {
 
   return (
     <div className="relative min-h-screen">
-      {/* Atmospheric background */}
+      {/* Simplified atmospheric background - mobile-first performance */}
       <div
-        className="fixed inset-0 -z-10 transition-all duration-1000"
-        style={{ background: theme.atmosphere.background }}
+        className="fixed inset-0 -z-10"
+        style={{
+          background: "linear-gradient(180deg, #0f2027 0%, #203a43 30%, #2c5364 100%)"
+        }}
       >
-        {/* Twinkling stars */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 rounded-full animate-pulse-slow"
-              style={{
-                background: theme.atmosphere.stars,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                opacity: Math.random() * 0.7 + 0.3
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Bottom atmospheric glow */}
+        {/* Subtle bottom glow */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none opacity-30 blur-3xl"
+          className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none opacity-20 blur-3xl"
           style={{
             background: `radial-gradient(ellipse at bottom, ${theme.colours.primary}40 0%, transparent 70%)`
           }}
         />
       </div>
 
-      {/* Planet-themed overlay - covers entire viewport but lets stars show through */}
+      {/* Simplified overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          background: `
-            radial-gradient(ellipse at top, ${theme.colours.primary}35 0%, ${theme.colours.tertiary}25 30%, ${theme.colours.secondary}30 60%, transparent 100%),
-            linear-gradient(180deg, ${theme.colours.primary}20 0%, ${theme.colours.tertiary}15 50%, transparent 100%)
-          `,
+          background: `linear-gradient(180deg, ${theme.colours.primary}15 0%, transparent 100%)`,
           zIndex: 1
         }}
       />
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 py-6 planet-autism-support relative" style={{ zIndex: 10 }}>
-        {/* Header section */}
-        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-slide-up" style={{ zIndex: 1 }}>
-        {/* Planet orb */}
-        <div className="flex justify-center mb-8">
-          <RotatingPlanet emoji="🌈" colour="var(--planet-primary)" size="large" />
-        </div>
+      {/* Content - max-width for mobile-first readability */}
+      <div className="max-w-4xl mx-auto px-4 py-6 planet-autism-support relative" style={{ zIndex: 10 }}>
+        {/* Header section - mobile-first */}
+        <header className="text-center mb-8">
+          {/* Planet icon with subtle float */}
+          <div className="flex justify-center mb-4">
+            <div
+              className="text-6xl"
+              style={{
+                animation: "float 6s ease-in-out infinite",
+                filter: "drop-shadow(0 4px 12px rgba(20, 184, 166, 0.3))"
+              }}
+            >
+              🧩
+            </div>
+          </div>
 
-        {/* Welcome text */}
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-100">
-          Welcome to the Autism Support Planet 🌈
-        </h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-slate-100" style={{ lineHeight: "1.4" }}>
+            Autism Planet
+          </h1>
 
-        <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-4">
-          Understanding and celebrating neurodivergent experiences on the autism spectrum
-        </p>
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-2" style={{ lineHeight: "1.6" }}>
+            {autismPlanetMobile.tagline}
+          </p>
 
-        <p className="text-base text-slate-400 max-w-xl mx-auto italic">
-          Gentle guidance and sensory-kind strategies live here
-        </p>
+          <div
+            className="h-1 w-24 mx-auto mt-5 rounded-full opacity-40"
+            style={{ background: "linear-gradient(90deg, #14b8a6, #0d9488)" }}
+          />
+        </header>
 
-        {/* Atmospheric glow line */}
-        <div
-          className="h-1 w-32 mx-auto mt-8 rounded-full opacity-50 animate-pulse-slow"
-          style={{ background: "linear-gradient(90deg, var(--planet-primary), var(--planet-secondary))" }}
-        />
-        </div>
+        {/* 💫 Understanding It - Mobile-first collapsible section */}
+        <section className="mb-6">
+          <div
+            className="p-5 rounded-xl"
+            style={{
+              background: "linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%)",
+              border: "1px solid rgba(20, 184, 166, 0.2)"
+            }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-2xl">💫</span>
+              <h2 className="text-xl font-semibold text-slate-100">Understanding It</h2>
+            </div>
+
+            <div className="space-y-4 text-slate-300 leading-relaxed">
+              {autismPlanetMobile.understandingIt.preview.map((para, idx) => (
+                <p key={idx} className="text-base" style={{ lineHeight: "1.6" }}>
+                  {para}
+                </p>
+              ))}
+
+              {understandingExpanded && (
+                <div className="space-y-4 pt-2">
+                  {autismPlanetMobile.understandingIt.fullContent.map((para, idx) => (
+                    <p key={idx} className="text-base" style={{ lineHeight: "1.6" }}>
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              )}
+
+              <button
+                onClick={() => setUnderstandingExpanded(!understandingExpanded)}
+                className="flex items-center gap-2 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors duration-200 mt-3"
+                style={{ minHeight: "44px", minWidth: "44px" }}
+              >
+                {understandingExpanded ? (
+                  <>
+                    Show less <ChevronUp size={16} />
+                  </>
+                ) : (
+                  <>
+                    Read more <ChevronDown size={16} />
+                  </>
+                )}
+              </button>
+            </div>
+
+            <div
+              className="h-px w-full mt-5 opacity-20"
+              style={{ background: "linear-gradient(90deg, transparent, #14b8a6, transparent)" }}
+            />
+          </div>
+        </section>
+
+        {/* 🧠 How It Shows Up - Accordion with 5 sections */}
+        <section className="mb-6">
+          <div className="mb-4">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🧠</span>
+              <h2 className="text-xl font-semibold text-slate-100">How It Shows Up</h2>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {autismPlanetMobile.howItShowsUp.map((section) => (
+              <div
+                key={section.id}
+                className="rounded-xl overflow-hidden transition-all duration-300"
+                style={{
+                  background: "linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%)",
+                  border: "1px solid rgba(20, 184, 166, 0.2)"
+                }}
+              >
+                <button
+                  onClick={() => setHowItShowsOpen(howItShowsOpen === section.id ? null : section.id)}
+                  className="w-full px-5 py-4 flex items-center justify-between text-left transition-all duration-200 hover:bg-teal-950/20"
+                  style={{ minHeight: "44px" }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl">{section.icon}</span>
+                    <h3 className="text-lg font-medium text-slate-200">{section.title}</h3>
+                  </div>
+                  {howItShowsOpen === section.id ? (
+                    <ChevronUp size={20} className="text-slate-400 flex-shrink-0" />
+                  ) : (
+                    <ChevronDown size={20} className="text-slate-400 flex-shrink-0" />
+                  )}
+                </button>
+
+                {howItShowsOpen === section.id && (
+                  <div className="px-5 pb-5 space-y-3">
+                    {section.content.map((text, idx) => (
+                      <p key={idx} className="text-base text-slate-300 leading-relaxed" style={{ lineHeight: "1.6" }}>
+                        {text}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 🌿 Strengths & Sensitivities - Interactive tiles */}
+        <section className="mb-6">
+          <div className="mb-4">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🌿</span>
+              <h2 className="text-xl font-semibold text-slate-100">Strengths & Sensitivities</h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {autismPlanetMobile.strengthsAndSensitivities.map((strength) => (
+              <button
+                key={strength.id}
+                onClick={() => setStrengthExpanded(strengthExpanded === strength.id ? null : strength.id)}
+                className="p-4 rounded-xl text-left transition-all duration-300 hover:scale-105"
+                style={{
+                  background: strengthExpanded === strength.id
+                    ? "linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(13, 148, 136, 0.1) 100%)"
+                    : "linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%)",
+                  border: "1px solid rgba(20, 184, 166, 0.2)",
+                  boxShadow: strengthExpanded === strength.id ? "0 4px 12px rgba(20, 184, 166, 0.2)" : "0 2px 6px rgba(0, 0, 0, 0.1)",
+                  minHeight: "44px"
+                }}
+              >
+                <h3 className="text-sm font-semibold text-teal-300 mb-2">{strength.title}</h3>
+                <p className="text-xs text-slate-300 leading-relaxed" style={{ lineHeight: "1.5" }}>
+                  {strengthExpanded === strength.id ? strength.fullDesc : strength.shortDesc}
+                </p>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* 🧭 Planning Ahead - Vertical stacked with expandable content */}
+        <section className="mb-6">
+          <div className="mb-4">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🧭</span>
+              <h2 className="text-xl font-semibold text-slate-100">Planning Ahead</h2>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {autismPlanetMobile.planningAhead.map((section) => (
+              <div
+                key={section.id}
+                className="rounded-xl p-5"
+                style={{
+                  background: "linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%)",
+                  border: "1px solid rgba(20, 184, 166, 0.2)"
+                }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xl">{section.icon}</span>
+                  <h3 className="text-lg font-medium text-slate-200">{section.title}</h3>
+                </div>
+
+                <p className="text-base text-slate-300 leading-relaxed mb-3" style={{ lineHeight: "1.6" }}>
+                  {section.preview}
+                </p>
+
+                {planningExpanded === section.id && (
+                  <div className="space-y-3">
+                    {section.fullContent.map((text, idx) => (
+                      <p key={idx} className="text-sm text-slate-300 leading-relaxed" style={{ lineHeight: "1.6" }}>
+                        {text}
+                      </p>
+                    ))}
+
+                    {section.examples.length > 0 && (
+                      <div className="mt-3 pl-4 border-l-2 border-teal-500/30">
+                        {section.examples.map((example, idx) => (
+                          <p key={idx} className="text-sm text-slate-400 italic leading-relaxed mb-2" style={{ lineHeight: "1.5" }}>
+                            {example}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <button
+                  onClick={() => setPlanningExpanded(planningExpanded === section.id ? null : section.id)}
+                  className="flex items-center gap-2 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors duration-200 mt-3"
+                  style={{ minHeight: "44px", minWidth: "44px" }}
+                >
+                  {planningExpanded === section.id ? (
+                    <>
+                      Show less <ChevronUp size={16} />
+                    </>
+                  ) : (
+                    <>
+                      Read more <ChevronDown size={16} />
+                    </>
+                  )}
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Did You Know Carousel */}
-        <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 animate-slide-up" style={{ animationDelay: '200ms', zIndex: 1 }}>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 sm:mb-7 md:mb-8 text-center text-slate-200">
-            Did You Know?
-          </h2>
-          <FactCarousel facts={autismDidYouKnow} colour="var(--planet-primary)" />
-        </div>
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold text-slate-100 text-center mb-4">Did You Know?</h2>
+          <FactCarousel facts={autismPlanetMobile.didYouKnowFacts} colour="#14b8a6" />
+        </section>
 
-        {/* Your Superpowers in Disguise */}
+        {/* Superpowers Carousel */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold text-slate-100 text-center mb-4">Your Superpowers</h2>
+          <FactCarousel facts={autismPlanetMobile.superpowersFacts} colour="#14b8a6" />
+        </section>
+
+        {/* Your Superpowers in Disguise - Keep existing category system */}
         <div className="mb-6 sm:mb-8 md:mb-12 lg:mb-16 animate-slide-up" style={{ animationDelay: '400ms', zIndex: 1 }}>
           <div
             className="p-5 sm:p-6 md:p-8 lg:p-10 rounded-2xl"
@@ -229,6 +431,14 @@ export function AutismPage() {
           />
         )}
       </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
     </div>
   );
 }

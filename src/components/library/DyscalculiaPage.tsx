@@ -5,7 +5,9 @@ import { Sparkles } from "lucide-react";
 import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
+import { EducationalSection } from "./EducationalSection";
 import { dyscalculiaCategories, dyscalculiaDidYouKnow } from "@/data/conditions/dyscalculia";
+import { dyscalculiaEducationalContent } from "@/data/educational";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
 interface DyscalculiaPageProps {
@@ -103,6 +105,14 @@ export function DyscalculiaPage({ onBack }: DyscalculiaPageProps = {}) {
             Did You Know?
           </h2>
           <FactCarousel facts={dyscalculiaDidYouKnow} colour="var(--planet-primary)" />
+        </div>
+
+        {/* Educational Content Section */}
+        <div className="mb-12 animate-slide-up" style={{ animationDelay: '300ms', zIndex: 1 }}>
+          <EducationalSection
+            content={dyscalculiaEducationalContent}
+            accentColor="orange"
+          />
         </div>
 
         {/* Your Superpowers in Disguise */}

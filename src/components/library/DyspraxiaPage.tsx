@@ -5,7 +5,9 @@ import { Sparkles } from "lucide-react";
 import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
+import { EducationalSection } from "./EducationalSection";
 import { dyspraxiaCategories, dyspraxiaDidYouKnow } from "@/data/conditions/dyspraxia";
+import { dyspraxiaEducationalContent } from "@/data/educational";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
 interface DyspraxiaPageProps {
@@ -103,6 +105,14 @@ export function DyspraxiaPage({ onBack }: DyspraxiaPageProps = {}) {
             Did You Know?
           </h2>
           <FactCarousel facts={dyspraxiaDidYouKnow} colour="var(--planet-primary)" />
+        </div>
+
+        {/* Educational Content Section */}
+        <div className="mb-12">
+          <EducationalSection
+            content={dyspraxiaEducationalContent}
+            accentColor="indigo"
+          />
         </div>
 
         {/* Your Superpowers in Disguise */}

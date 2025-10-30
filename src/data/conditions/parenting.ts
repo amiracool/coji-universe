@@ -350,7 +350,7 @@ export const parentingCategories: Category[] = [
           "Ask for help without guilt",
           "Schedule regular breaks, even small ones",
           "Connect with other parents who understand",
-          "Consider therapy or support groups"
+          "Consider wellbeing support or peer support groups"
         ],
         icon: "🔥"
       },

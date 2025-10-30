@@ -6,6 +6,8 @@ import { CategorySection } from "./CategorySection";
 import { RotatingPlanet } from "./RotatingPlanet";
 import FactCarousel from "@/components/FactCarousel";
 import { anxietyCategories, anxietyDidYouKnow } from "@/data/conditions/anxiety";
+import { EducationalSection } from "./EducationalSection";
+import { anxietyEducationalContent } from "@/data/educational";
 import { getPlanetTheme } from "@/lib/planetThemes";
 
 interface AnxietyPageProps {
@@ -103,6 +105,18 @@ export function AnxietyPage({ onBack }: AnxietyPageProps = {}) {
           Did You Know?
         </h2>
         <FactCarousel facts={anxietyDidYouKnow} colour="var(--planet-primary)" />
+        </div>
+
+        {/* Educational Content Section */}
+        <div className="mb-12">
+          <EducationalSection
+            content={anxietyEducationalContent}
+            accentColor="amber"
+          />
+        </div>
+
+        {/* Educational Section Above */}
+        <div style={{display:"none"}}>
       </div>
 
       {/* Your Coping Toolkit */}

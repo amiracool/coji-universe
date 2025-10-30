@@ -47,20 +47,20 @@ export function CojiLoader({ isLoading }: CojiLoaderProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center"
       style={{
         background: 'radial-gradient(ellipse at center, #0f172a 0%, #020617 100%)'
       }}
     >
       <div className="text-center px-6">
         {/* Coji character */}
-        <div className="mb-6 animate-bounce">
+        <div className="mb-6">
           <span className="text-6xl sm:text-7xl md:text-8xl">🌟</span>
         </div>
 
         {/* Affirmation text */}
         <p
-          className="text-lg sm:text-xl md:text-2xl text-slate-200 font-light animate-fade-in"
+          className="text-lg sm:text-xl md:text-2xl text-slate-200 font-light"
           key={currentAffirmation}
         >
           {currentAffirmation}
@@ -69,16 +69,13 @@ export function CojiLoader({ isLoading }: CojiLoaderProps) {
         {/* Loading dots */}
         <div className="flex justify-center gap-2 mt-6">
           <div
-            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-teal-400 animate-pulse"
-            style={{ animationDelay: '0ms' }}
+            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-teal-400"
           />
           <div
-            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-fuchsia-400 animate-pulse"
-            style={{ animationDelay: '200ms' }}
+            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-fuchsia-400"
           />
           <div
-            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-400 animate-pulse"
-            style={{ animationDelay: '400ms' }}
+            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-400"
           />
         </div>
       </div>

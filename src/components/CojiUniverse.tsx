@@ -153,7 +153,7 @@ const CojiUniverse = () => {
   const [bookingTime, setBookingTime] = useState("");
   const [bookingReason, setBookingReason] = useState("");
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
-  const [selectedTherapy, setSelectedTherapy] = useState<string | null>(null);
+  const [selectedWellbeingService, setSelectedWellbeingService] = useState<string | null>(null);
   // Finances state
   const [monthlyIncome, setMonthlyIncome] = useState<number | string>("");
   const [notes, setNotes] = useState<StickyNote[]>([]);
@@ -2636,7 +2636,7 @@ const CojiUniverse = () => {
               <FeatureIcon
                 icon={Heart}
                 label="Mental Health"
-                description="Access therapy tools, mindfulness exercises, digital worksheets, and daily check-ins for wellbeing"
+                description="Access wellbeing tools, mindfulness exercises, digital worksheets, and daily check-ins for mental health support"
                 color="amber"
               />
 
@@ -4101,7 +4101,7 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('autism-support')}
+                    onClick={() => window.location.href = '/planets/autism/intro'}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('autism-support').colours.primary,
@@ -4265,6 +4265,27 @@ const CojiUniverse = () => {
                     </h3>
                     <p className="text-sm text-slate-400 text-center">
                       Motor skills, coordination, movement support
+                    </p>
+                  </div>
+
+                  <div
+                    onClick={() => window.location.href = '/library/ideas-questions'}
+                    className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg border-indigo-500"
+                    style={{
+                      borderColor: '#818cf8',
+                      boxShadow: `0 0 20px #818cf810`
+                    }}
+                  >
+                    <div className="flex justify-center mb-4">
+                      <div className="w-20 h-20 text-4xl rounded-full flex items-center justify-center bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-400/30">
+                        💡
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-bold mb-2 text-center text-indigo-400">
+                      Ideas & Questions
+                    </h3>
+                    <p className="text-sm text-slate-400 text-center">
+                      Share your ideas and ask questions
                     </p>
                   </div>
                 </div>
@@ -4441,8 +4462,8 @@ const CojiUniverse = () => {
 
                 <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-fuchsia-500 border-opacity-20">
                   <div className="text-3xl mb-3">{"\u{1F468}\u{200D}\u{2696}\u{FE0F}"}</div>
-                  <h3 className="text-lg font-bold text-fuchsia-300 mb-2">Therapist Booking</h3>
-                  <p className="text-sm text-slate-400">Schedule sessions and manage therapy appointments</p>
+                  <h3 className="text-lg font-bold text-fuchsia-300 mb-2">Wellbeing Appointment Booking</h3>
+                  <p className="text-sm text-slate-400">Schedule sessions and manage wellbeing appointments</p>
                 </div>
               </div>
 
@@ -4469,7 +4490,7 @@ const CojiUniverse = () => {
               Mental Health Resources
             </h2>
             <p className="text-slate-400 mb-8">
-              Videos, therapy info, and support {"\u{1F496}"}
+              Videos, wellbeing resources, and support {"\u{1F496}"}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -4484,11 +4505,11 @@ const CojiUniverse = () => {
                 </p>
               </div>
 
-              {/* Types of Therapy Card */}
+              {/* Types of Wellbeing Approaches Card */}
               <div className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-teal-500 border-opacity-20 hover:border-opacity-40 transition-colors cursor-pointer">
                 <div className="text-4xl mb-3">{"\u{1F9E0}"}</div>
                 <h3 className="text-lg font-bold mb-2 text-teal-300">
-                  Types of Therapy
+                  Wellbeing Approaches
                 </h3>
                 <p className="text-sm text-slate-400">
                   CBT, DBT, EMDR, NVR, Systemic, Somatic
@@ -4568,7 +4589,7 @@ const CojiUniverse = () => {
                   Be in Nature
                 </h3>
                 <p className="text-sm text-slate-400">
-                  Nature walks, outdoor activities, eco-therapy
+                  Nature walks, outdoor activities, ecowellbeing
                 </p>
               </div>
 
