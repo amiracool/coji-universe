@@ -1,4 +1,4 @@
-// File: C:\Users\amira\Downloads\coji-universe\src\app\planets\autism\intro\page.tsx
+// File: c:\Users\amira\Downloads\coji-universe\src\app\planets\autism\intro\page.tsx
 import * as entry from '../../../../../../src/app/planets/autism/intro/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

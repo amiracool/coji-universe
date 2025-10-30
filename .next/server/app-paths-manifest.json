@@ -1,7 +1,5 @@
 {
-  "/planets/autism/strengths/page": "app/planets/autism/strengths/page.js",
   "/page": "app/page.js",
-  "/planets/ideas-questions/facts/page": "app/planets/ideas-questions/facts/page.js",
-  "/planets/ideas-questions/page": "app/planets/ideas-questions/page.js",
-  "/planets/ideas-questions/understanding/page": "app/planets/ideas-questions/understanding/page.js"
+  "/planets/autism/intro/page": "app/planets/autism/intro/page.js",
+  "/library/ideas-questions/page": "app/library/ideas-questions/page.js"
 }

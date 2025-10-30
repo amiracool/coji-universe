@@ -3,146 +3,204 @@
 import React, { useState } from "react";
 import { PlanetLayout } from "../PlanetLayout";
 import { useRouter } from "next/navigation";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { dyscalculiaPlanetMobile } from "@/data/planets/dyscalculia-mobile";
 
 export function DyscalculiaPlanning() {
   const router = useRouter();
-  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
-
-  const categories = dyscalculiaPlanetMobile.planningAhead;
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [focusedCategoryIndex, setFocusedCategoryIndex] = useState(0);
 
   const handlePrev = () => {
     router.push('/planets/dyscalculia/strengths');
   };
 
   const toggleCard = (cardId: string) => {
-    setExpandedCards((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(cardId)) {
-        newSet.delete(cardId);
-      } else {
-        newSet.add(cardId);
-      }
-      return newSet;
-    });
+    setExpandedCard(expandedCard === cardId ? null : cardId);
   };
+
+  const nextCategory = () => {
+    if (focusedCategoryIndex < dyscalculiaPlanetMobile.planningAhead.length - 1) {
+      setFocusedCategoryIndex(focusedCategoryIndex + 1);
+    }
+  };
+
+  const prevCategory = () => {
+    if (focusedCategoryIndex > 0) {
+      setFocusedCategoryIndex(focusedCategoryIndex - 1);
+    }
+  };
+
+  const currentCategory = dyscalculiaPlanetMobile.planningAhead[focusedCategoryIndex];
 
   return (
     <PlanetLayout
       currentStep={6}
       totalSteps={6}
-      prevRoute="/planets/dyscalculia/strengths"
-      onSwipeRight={handlePrev}
       primaryColor="#FFD966"
       accentColor="#F5C542"
+      prevRoute="/planets/dyscalculia/strengths"
+      onSwipeRight={handlePrev}
     >
-      <div className="space-y-10 py-8">
+      <div className="space-y-8 py-6">
         {/* Header */}
-        <div className="text-center space-y-3">
+        <div className="text-center mb-8">
+          <span className="text-5xl mb-4 inline-block">🧭</span>
           <h2 className="text-3xl font-bold text-slate-100 mb-3">
             Planning Ahead
           </h2>
-          <p className="text-slate-400 text-sm max-w-md mx-auto" style={{ lineHeight: "1.6" }}>
-            Practical strategies for navigating life with Dyscalculia
+          <p className="text-slate-400 text-base max-w-md mx-auto" style={{ lineHeight: "1.8" }}>
+            Practical strategies for daily life, one idea at a time
           </p>
-          <p className="text-yellow-300 text-sm max-w-md mx-auto mt-4" style={{ lineHeight: "1.6", opacity: 0.9 }}>
+          <p className="text-teal-300 text-sm max-w-md mx-auto mt-4" style={{ lineHeight: "1.6", opacity: 0.9 }}>
             Search the Library for more tips and hacks, or speak to Coji Buddy
           </p>
         </div>
 
-        {/* Categories */}
-        <div className="space-y-8 max-w-xl mx-auto">
-          {categories.map((category) => (
-            <div key={category.id} className="space-y-4">
-              {/* Category header */}
+        {/* Focus Mode Navigation */}
+        <div className="flex justify-center items-center gap-4 mb-4">
+          <button
+            onClick={prevCategory}
+            disabled={focusedCategoryIndex === 0}
+            className="px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-30"
+            style={{
+              background: "linear-gradient(135deg, rgba(100, 116, 139, 0.15) 0%, rgba(71, 85, 105, 0.1) 100%)",
+              border: "1px solid rgba(100, 116, 139, 0.3)",
+              color: "#94a3b8"
+            }}
+          >
+            ← Previous
+          </button>
+          <span className="text-slate-400 text-sm">
+            {focusedCategoryIndex + 1} / {dyscalculiaPlanetMobile.planningAhead.length}
+          </span>
+          <button
+            onClick={nextCategory}
+            disabled={focusedCategoryIndex === dyscalculiaPlanetMobile.planningAhead.length - 1}
+            className="px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-30"
+            style={{
+              background: "linear-gradient(135deg, rgba(100, 116, 139, 0.15) 0%, rgba(71, 85, 105, 0.1) 100%)",
+              border: "1px solid rgba(100, 116, 139, 0.3)",
+              color: "#94a3b8"
+            }}
+          >
+            Next →
+          </button>
+        </div>
+
+        {/* Categories & Cards */}
+        <div
+          className="flex flex-col mx-auto"
+          style={{
+            gap: "1.5rem",
+            maxWidth: "600px"
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentCategory.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-4"
+            >
+              {/* Category Header */}
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">{category.icon}</span>
-                <h3 className="text-xl font-semibold text-slate-100">
-                  {category.title}
+                <span className="text-3xl">{currentCategory.icon}</span>
+                <h3 className="text-xl font-semibold text-slate-200">
+                  {currentCategory.title}
                 </h3>
               </div>
 
-              {/* Cards in this category */}
-              <div className="space-y-3">
-                {category.cards.map((card) => {
-                  const isExpanded = expandedCards.has(card.id);
-
-                  return (
-                    <div
-                      key={card.id}
-                      className="rounded-xl overflow-hidden transition-all duration-200"
-                      style={{
-                        background: "linear-gradient(135deg, rgba(255, 217, 102, 0.12) 0%, rgba(245, 197, 66, 0.08) 100%)",
-                        border: "1px solid rgba(255, 217, 102, 0.25)",
-                        boxShadow: isExpanded ? "0 6px 20px rgba(0, 0, 0, 0.2)" : "0 3px 10px rgba(0, 0, 0, 0.15)"
-                      }}
-                    >
-                      {/* Card header - always visible */}
-                      <button
-                        onClick={() => toggleCard(card.id)}
-                        className="w-full p-4 flex items-start justify-between text-left transition-colors duration-200"
-                        style={{ minHeight: "44px" }}
-                      >
-                        <div className="flex items-start gap-3 flex-1">
-                          <span className="text-2xl mt-1">{card.icon}</span>
-                          <div className="flex-1">
-                            <h4 className="text-base font-semibold text-slate-100 mb-1">
-                              {card.title}
-                            </h4>
-                            <p className="text-sm text-slate-300" style={{ lineHeight: "1.6" }}>
-                              {card.summary}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-yellow-400 ml-2 mt-1">
-                          {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                        </div>
-                      </button>
-
-                      {/* Expanded detail */}
-                      {isExpanded && (
-                        <div
-                          className="px-4 pb-4"
-                          style={{
-                            borderTop: "1px solid rgba(255, 217, 102, 0.15)",
-                            animation: "fadeIn 0.2s ease-in"
-                          }}
+              {/* Micro-cards */}
+              <div className="flex flex-col" style={{ gap: "1rem" }}>
+                {currentCategory.cards.map((card, cardIdx) => (
+                  <motion.div
+                    key={card.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: cardIdx * 0.15
+                    }}
+                    className="rounded-xl p-5 transition-all duration-200 cursor-pointer hover:scale-[1.02]"
+                    style={{
+                      background: expandedCard === card.id
+                        ? "linear-gradient(135deg, rgba(255, 217, 102, 0.12) 0%, rgba(255, 217, 102, 0.08) 100%)"
+                        : "linear-gradient(135deg, rgba(255, 217, 102, 0.08) 0%, rgba(255, 217, 102, 0.05) 100%)",
+                      border: "1px solid rgba(255, 217, 102, 0.2)"
+                    }}
+                    onClick={() => toggleCard(card.id)}
+                  >
+                    {/* Card Header */}
+                    <div className="flex items-start gap-3 mb-3">
+                      <span className="text-2xl">{card.icon}</span>
+                      <div className="flex-1">
+                        <h4 className="text-base font-medium text-slate-200 mb-2" style={{ lineHeight: "1.5" }}>
+                          {card.title}
+                        </h4>
+                        <p
+                          className="text-base text-slate-300"
+                          style={{ lineHeight: "1.8" }}
                         >
-                          <p className="text-sm text-slate-400 leading-relaxed pt-3" style={{ lineHeight: "1.6" }}>
+                          {card.summary}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Expanded Detail - lazy loaded */}
+                    <AnimatePresence>
+                      {expandedCard === card.id && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="pt-3 mt-3 border-t border-teal-500/20"
+                        >
+                          <p
+                            className="text-sm text-slate-400"
+                            style={{ lineHeight: "1.8" }}
+                          >
                             {card.detail}
                           </p>
-                        </div>
+                        </motion.div>
                       )}
+                    </AnimatePresence>
+
+                    {/* Show More/Less indicator */}
+                    <div className="text-right mt-2">
+                      <span className="text-xs text-teal-400 font-medium">
+                        {expandedCard === card.id ? "Tap to collapse" : "Tap for more"}
+                      </span>
                     </div>
-                  );
-                })}
+                  </motion.div>
+                ))}
               </div>
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
-        {/* Final encouragement */}
-        <div
-          className="text-center p-6 rounded-xl max-w-lg mx-auto"
-          style={{
-            background: "linear-gradient(135deg, rgba(245, 197, 66, 0.15) 0%, rgba(255, 217, 102, 0.1) 100%)",
-            border: "1px solid rgba(245, 197, 66, 0.3)"
-          }}
-        >
-          <p className="text-slate-200 leading-relaxed" style={{ lineHeight: "1.7" }}>
-            Your Dyscalculia brings unique perspectives and creative approaches to problem-solving. With the right strategies and support, you can thrive.
+        {/* Completion message */}
+        <div className="text-center pt-8 space-y-4">
+          <p className="text-slate-300 text-lg" style={{ lineHeight: "1.6" }}>
+            You've explored the Dyscalculia Planet
           </p>
+          <button
+            onClick={() => router.push('/')}
+            className="px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
+            style={{
+              background: "linear-gradient(135deg, rgba(255, 217, 102, 0.25) 0%, rgba(255, 217, 102, 0.2) 100%)",
+              border: "1px solid rgba(255, 217, 102, 0.4)",
+              color: "#FFD966",
+              minHeight: "44px"
+            }}
+          >
+            Back to Library
+          </button>
         </div>
       </div>
-
-      {/* CSS Animation */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </PlanetLayout>
   );
 }

@@ -1,67 +1,353 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PlanetLayout } from "../PlanetLayout";
 import { useRouter } from "next/navigation";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { depressionPlanetMobile } from "@/data/planets/depression-mobile";
+import { useSound } from "@/contexts/SoundContext";
+
+function TypewriterText({ text, delay = 0, onSkip, soundEnabled }: { text: string; delay?: number; onSkip?: () => void; soundEnabled?: boolean }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isSkipped, setIsSkipped] = useState(false);
+  const audioContextRef = React.useRef<AudioContext | null>(null);
+  const lastTapRef = React.useRef<number>(0);
+
+  // Initialize audio context once
+  React.useEffect(() => {
+    try {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    } catch (e) {
+      // Audio not supported
+    }
+
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
+  }, []);
+
+  // Play a typewriter click sound
+  const playTypeSound = () => {
+    if (!audioContextRef.current || !soundEnabled) return;
+
+    try {
+      const oscillator = audioContextRef.current.createOscillator();
+      const gainNode = audioContextRef.current.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContextRef.current.destination);
+
+      // Very gentle, subtle typewriter click
+      oscillator.frequency.value = 800; // Higher, softer frequency
+      oscillator.type = 'sine'; // Sine wave for smooth, gentle sound
+
+      const now = audioContextRef.current.currentTime;
+      gainNode.gain.setValueAtTime(0.05, now); // Very gentle volume
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+
+      oscillator.start(now);
+      oscillator.stop(now + 0.03);
+    } catch (e) {
+      // Silently fail if audio playback fails
+    }
+  };
+
+  useEffect(() => {
+    // Start after delay
+    const startTimer = setTimeout(() => {
+      setHasStarted(true);
+    }, delay);
+
+    return () => clearTimeout(startTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    if (isSkipped) {
+      setDisplayedText(text);
+      setCurrentIndex(text.length);
+      return;
+    }
+
+    if (currentIndex < text.length) {
+      const timer = setTimeout(() => {
+        // Play sound first, then update text
+        playTypeSound();
+        setDisplayedText(text.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, 60); // 60ms per character = slower, therapeutic pace
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, text, hasStarted, isSkipped]);
+
+  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+    if (currentIndex >= text.length) return;
+
+    const now = Date.now();
+    const timeSinceLastTap = now - lastTapRef.current;
+
+    // On desktop: single click shows all text
+    // On mobile: double tap (within 300ms) shows all text
+    const isDoubleTab = timeSinceLastTap < 300;
+    const isMobile = 'ontouchstart' in window;
+
+    if (!isMobile || isDoubleTab) {
+      setIsSkipped(true);
+      setDisplayedText(text);
+      setCurrentIndex(text.length);
+      if (onSkip) onSkip();
+    }
+
+    lastTapRef.current = now;
+  };
+
+  return (
+    <span
+      onClick={handleClick}
+      onTouchEnd={handleClick}
+      style={{
+        cursor: currentIndex < text.length ? 'pointer' : 'default',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitTouchCallout: 'none'
+      }}
+    >
+      {displayedText}
+      {currentIndex < text.length && (
+        <span style={{
+          borderRight: "2px solid #7D6B9D",
+          animation: "blink 1s step-end infinite"
+        }}>
+          &nbsp;
+        </span>
+      )}
+    </span>
+  );
+}
 
 export function DepressionHowItShowsUp() {
   const router = useRouter();
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const sections = depressionPlanetMobile.howItShowsUp;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const { isMuted } = useSound();
+  const soundEnabled = !isMuted;
 
-  const handleNext = () => router.push('/planets/depression/strengths');
-  const handlePrev = () => router.push('/planets/depression/understanding');
-  const toggleExpand = (id: string) => setExpandedId(expandedId === id ? null : id);
+  const handleNext = () => {
+    router.push('/planets/depression/strengths');
+  };
+
+  const handlePrev = () => {
+    router.push('/planets/depression/understanding');
+  };
+
+  const goToNext = () => {
+    if (currentIndex < depressionPlanetMobile.howItShowsUp.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const goToPrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const currentSection = depressionPlanetMobile.howItShowsUp[currentIndex];
 
   return (
-    <PlanetLayout currentStep={4} totalSteps={6} nextRoute="/planets/depression/strengths" prevRoute="/planets/depression/understanding" onSwipeLeft={handleNext} onSwipeRight={handlePrev} primaryColor="#6B7A8F" accentColor="#4C5B6E">
-      <div className="space-y-6 py-8">
-        <div className="text-center space-y-3 mb-8">
-          <h2 className="text-3xl font-bold text-slate-100">How Depression Shows Up</h2>
-          <p className="text-slate-400 text-base" style={{ lineHeight: "1.6", opacity: 0.7 }}>How Depression might affect your life</p>
+    <PlanetLayout
+      currentStep={4}
+      totalSteps={6}
+      primaryColor="#7D6B9D"
+      accentColor="#9B8BAD"
+      nextRoute="/planets/depression/strengths"
+      prevRoute="/planets/depression/understanding"
+      onSwipeLeft={handleNext}
+      onSwipeRight={handlePrev}
+    >
+      {/* Carousel container */}
+      <div className="flex flex-col items-center justify-center min-h-screen py-12 px-6" style={{ maxWidth: "600px", margin: "0 auto" }}>
+        {/* Header */}
+        <div className="text-center mb-12">
+          <motion.span
+            className="text-5xl mb-6 inline-block"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            🌌
+          </motion.span>
+          <h2 className="text-3xl font-light text-slate-100 mb-4" style={{ letterSpacing: "0.02em" }}>
+            How Depression Shows Up
+          </h2>
+          <p className="text-slate-400 text-base" style={{ lineHeight: "1.6", opacity: 0.7 }}>
+            How depression might affect your life
+          </p>
         </div>
-        <div className="space-y-4 max-w-xl mx-auto">
-          {sections.map((section) => {
-            const isExpanded = expandedId === section.id;
-            return (
-              <div key={section.id} className="rounded-xl overflow-hidden transition-all duration-200" style={{ background: `linear-gradient(135deg, ${section.accentColor}15 0%, ${section.accentColor}08 100%)`, border: `1px solid ${section.accentColor}30`, boxShadow: isExpanded ? "0 8px 24px rgba(0, 0, 0, 0.2)" : "0 4px 12px rgba(0, 0, 0, 0.15)" }}>
-                <button onClick={() => toggleExpand(section.id)} className="w-full p-5 flex items-center justify-between text-left transition-colors duration-200" style={{ minHeight: "44px" }}>
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{section.icon}</span>
-                    <h3 className="text-lg font-semibold text-slate-100">{section.title}</h3>
-                  </div>
-                  <div style={{ color: section.accentColor }}>{isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}</div>
-                </button>
-                <div className="px-5 pb-3">
-                  <ul className="space-y-2">
-                    {section.preview.map((item, index) => (
-                      <li key={index} className="text-slate-300 text-sm flex items-start gap-2">
-                        <span style={{ color: section.accentColor, marginTop: "2px" }}>•</span>
-                        <span style={{ lineHeight: "1.6" }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {isExpanded && (
-                  <div className="px-5 pb-5 pt-2" style={{ borderTop: `1px solid ${section.accentColor}20`, animation: "fadeIn 0.2s ease-in" }}>
-                    <ul className="space-y-2">
-                      {section.expanded.map((item, index) => (
-                        <li key={index} className="text-slate-300 text-sm flex items-start gap-2">
-                          <span style={{ color: section.accentColor, marginTop: "2px" }}>•</span>
-                          <span style={{ lineHeight: "1.6" }}>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+
+        {/* Progress indicator */}
+        <div className="flex gap-2 mb-8">
+          {depressionPlanetMobile.howItShowsUp.map((section, idx) => (
+            <button
+              key={section.id}
+              onClick={() => setCurrentIndex(idx)}
+              className="transition-all duration-200"
+              style={{
+                width: currentIndex === idx ? "24px" : "8px",
+                height: "8px",
+                borderRadius: "4px",
+                backgroundColor: currentIndex === idx
+                  ? section.accentColor
+                  : `${section.accentColor}30`,
+                opacity: currentIndex === idx ? 1 : 0.4,
+                border: "none",
+                cursor: "pointer"
+              }}
+              aria-label={`Go to ${section.title}`}
+            />
+          ))}
+        </div>
+
+        {/* Carousel content */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+            className="w-full"
+          >
+            {/* Section header */}
+            <div className="text-center mb-8">
+              <div
+                className="text-5xl mb-4 inline-block"
+                style={{
+                  color: currentSection.accentColor,
+                  filter: `drop-shadow(0 0 8px ${currentSection.accentColor}60)`,
+                  textShadow: `0 0 16px ${currentSection.accentColor}40`
+                }}
+              >
+                {currentSection.icon}
               </div>
-            );
-          })}
+              <h3
+                className="text-2xl font-light tracking-wide"
+                style={{
+                  color: "#E6F0EB",
+                  lineHeight: "1.4"
+                }}
+              >
+                {currentSection.title}
+              </h3>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-6">
+              {/* Preview lines with therapeutic typewriter */}
+              {currentSection.preview.map((line, lineIdx) => {
+                // Calculate cumulative delay for therapeutic pacing
+                // Each line waits for previous lines to finish typing
+                let totalDelay = 0;
+                for (let i = 0; i < lineIdx; i++) {
+                  totalDelay += currentSection.preview[i].length * 60 + 800; // typing time + pause
+                }
+
+                return (
+                  <p
+                    key={lineIdx}
+                    className="text-center"
+                    style={{
+                      color: "#CBD5E1",
+                      fontSize: "1.0625rem",
+                      lineHeight: "1.8em",
+                      fontWeight: 300
+                    }}
+                  >
+                    <TypewriterText text={line} delay={totalDelay} soundEnabled={soundEnabled} />
+                  </p>
+                );
+              })}
+
+              {/* Expanded content with typewriter */}
+              {currentSection.expanded.map((line, lineIdx) => {
+                // Calculate delay after all preview lines
+                let totalDelay = 0;
+                currentSection.preview.forEach(prevLine => {
+                  totalDelay += prevLine.length * 60 + 800;
+                });
+                for (let i = 0; i < lineIdx; i++) {
+                  totalDelay += currentSection.expanded[i].length * 60 + 800;
+                }
+
+                return (
+                  <p
+                    key={lineIdx}
+                    className="text-center"
+                    style={{
+                      color: "#94A3B8",
+                      fontSize: "1rem",
+                      lineHeight: "1.8em",
+                      fontWeight: 300
+                    }}
+                  >
+                    <TypewriterText text={line} delay={totalDelay} soundEnabled={soundEnabled} />
+                  </p>
+                );
+              })}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation arrows */}
+        <div className="flex items-center justify-between w-full mt-12" style={{ maxWidth: "400px" }}>
+          <button
+            onClick={goToPrev}
+            disabled={currentIndex === 0}
+            className="transition-all duration-200"
+            style={{
+              opacity: currentIndex === 0 ? 0.3 : 0.6,
+              cursor: currentIndex === 0 ? "not-allowed" : "pointer",
+              background: "none",
+              border: "none",
+              fontSize: "2rem",
+              color: currentSection.accentColor,
+              filter: currentIndex === 0 ? "none" : `drop-shadow(0 0 4px ${currentSection.accentColor}40)`
+            }}
+            aria-label="Previous section"
+          >
+            ←
+          </button>
+
+          <div className="text-center">
+            <p className="text-slate-400 text-sm" style={{ opacity: 0.7 }}>
+              {currentIndex + 1} of {depressionPlanetMobile.howItShowsUp.length}
+            </p>
+          </div>
+
+          <button
+            onClick={goToNext}
+            disabled={currentIndex === depressionPlanetMobile.howItShowsUp.length - 1}
+            className="transition-all duration-200"
+            style={{
+              opacity: currentIndex === depressionPlanetMobile.howItShowsUp.length - 1 ? 0.3 : 0.6,
+              cursor: currentIndex === depressionPlanetMobile.howItShowsUp.length - 1 ? "not-allowed" : "pointer",
+              background: "none",
+              border: "none",
+              fontSize: "2rem",
+              color: currentSection.accentColor,
+              filter: currentIndex === depressionPlanetMobile.howItShowsUp.length - 1 ? "none" : `drop-shadow(0 0 4px ${currentSection.accentColor}40)`
+            }}
+            aria-label="Next section"
+          >
+            →
+          </button>
         </div>
       </div>
-      <style jsx>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); }}`}</style>
     </PlanetLayout>
   );
 }

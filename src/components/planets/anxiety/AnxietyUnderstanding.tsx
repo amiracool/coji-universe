@@ -1,15 +1,140 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { PlanetLayout } from "../PlanetLayout";
-import { TypewriterText } from "../TypewriterText";
 import { useRouter } from "next/navigation";
-import { SoundContext } from "@/contexts/SoundContext";
+import { motion } from "framer-motion";
 import { anxietyPlanetMobile } from "@/data/planets/anxiety-mobile";
+import { useSound } from "@/contexts/SoundContext";
+
+function TypewriterText({ text, delay = 0, onSkip, soundEnabled }: { text: string; delay?: number; onSkip?: () => void; soundEnabled?: boolean }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isSkipped, setIsSkipped] = useState(false);
+  const audioContextRef = React.useRef<AudioContext | null>(null);
+  const lastTapRef = React.useRef<number>(0);
+
+  // Initialize audio context once
+  React.useEffect(() => {
+    try {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    } catch (e) {
+      // Audio not supported
+    }
+
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
+  }, []);
+
+  // Play a typewriter click sound
+  const playTypeSound = () => {
+    if (!audioContextRef.current || !soundEnabled) return;
+
+    try {
+      const oscillator = audioContextRef.current.createOscillator();
+      const gainNode = audioContextRef.current.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContextRef.current.destination);
+
+      // Very gentle, subtle typewriter click
+      oscillator.frequency.value = 800; // Higher, softer frequency
+      oscillator.type = 'sine'; // Sine wave for smooth, gentle sound
+
+      const now = audioContextRef.current.currentTime;
+      gainNode.gain.setValueAtTime(0.05, now); // Very gentle volume
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+
+      oscillator.start(now);
+      oscillator.stop(now + 0.03);
+    } catch (e) {
+      // Silently fail if audio playback fails
+    }
+  };
+
+  useEffect(() => {
+    // Start after delay
+    const startTimer = setTimeout(() => {
+      setHasStarted(true);
+    }, delay);
+
+    return () => clearTimeout(startTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    if (isSkipped) {
+      setDisplayedText(text);
+      setCurrentIndex(text.length);
+      return;
+    }
+
+    if (currentIndex < text.length) {
+      const timer = setTimeout(() => {
+        // Play sound first, then update text
+        playTypeSound();
+        setDisplayedText(text.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, 25); // 25ms per character = smooth typewriter feel
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, text, hasStarted, isSkipped]);
+
+  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+    if (currentIndex >= text.length) return;
+
+    const now = Date.now();
+    const timeSinceLastTap = now - lastTapRef.current;
+
+    // On desktop: single click shows all text
+    // On mobile: double tap (within 300ms) shows all text
+    const isDoubleTab = timeSinceLastTap < 300;
+    const isMobile = 'ontouchstart' in window;
+
+    if (!isMobile || isDoubleTab) {
+      setIsSkipped(true);
+      setDisplayedText(text);
+      setCurrentIndex(text.length);
+      if (onSkip) onSkip();
+    }
+
+    lastTapRef.current = now;
+  };
+
+  return (
+    <span
+      onClick={handleClick}
+      onTouchEnd={handleClick}
+      style={{
+        cursor: currentIndex < text.length ? 'pointer' : 'default',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitTouchCallout: 'none'
+      }}
+    >
+      {displayedText}
+      {currentIndex < text.length && (
+        <span style={{
+          borderRight: "2px solid #9B86E8",
+          animation: "blink 1s step-end infinite"
+        }}>
+          &nbsp;
+        </span>
+      )}
+    </span>
+  );
+}
 
 export function AnxietyUnderstanding() {
   const router = useRouter();
-  const { soundEnabled } = useContext(SoundContext);
+  const { isMuted } = useSound();
+  const soundEnabled = !isMuted;
 
   const handleNext = () => {
     router.push('/planets/anxiety/how-it-shows-up');
@@ -19,78 +144,119 @@ export function AnxietyUnderstanding() {
     router.push('/planets/anxiety/facts');
   };
 
-  const sections = anxietyPlanetMobile.understandingIt.sections;
-
   return (
     <PlanetLayout
       currentStep={3}
       totalSteps={6}
+      primaryColor="#9B86E8"
+      accentColor="#B5A3E8"
       nextRoute="/planets/anxiety/how-it-shows-up"
       prevRoute="/planets/anxiety/facts"
       onSwipeLeft={handleNext}
       onSwipeRight={handlePrev}
-      primaryColor="#5C9EFF"
-      accentColor="#4178D0"
     >
-      <div className="space-y-8 py-8">
+      <div className="py-6 flex flex-col min-h-screen">
         {/* Header */}
-        <div className="text-center space-y-3 mb-10">
-          <h2 className="text-3xl font-bold text-slate-100">
+        <div className="text-center mb-8">
+          <motion.span
+            className="text-6xl mb-4 inline-block"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            🌍
+          </motion.span>
+          <h2 className="text-3xl font-bold text-slate-100 mb-3">
             Understanding Anxiety
           </h2>
-          <p className="text-slate-400 text-sm max-w-md mx-auto">
-            What Anxiety really means — in your own words
+        </div>
+
+        {/* Visual cards with icons and colors */}
+        <div className="space-y-6 px-4 pb-12">
+          {anxietyPlanetMobile.understandingIt.sections.map((section, idx) => {
+            const delay = idx * 600; // Stagger each card
+
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: delay / 1000,
+                  ease: "easeOut"
+                }}
+                className="mx-auto w-full"
+                style={{
+                  maxWidth: "600px",
+                  background: `linear-gradient(135deg, ${section.color}15 0%, ${section.color}08 100%)`,
+                  borderRadius: "1.25rem",
+                  padding: "2rem",
+                  border: `1px solid ${section.color}30`,
+                  boxShadow: `0 4px 20px ${section.color}10`
+                }}
+              >
+                {/* Icon row */}
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <span
+                    className="text-5xl"
+                    style={{
+                      filter: `drop-shadow(0 0 12px ${section.color}60)`
+                    }}
+                  >
+                    {section.icon}
+                  </span>
+                  <span
+                    className="text-4xl opacity-60"
+                  >
+                    {section.visual}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3
+                  className="text-center text-xl font-semibold mb-4"
+                  style={{
+                    color: section.color,
+                    textShadow: `0 0 20px ${section.color}40`
+                  }}
+                >
+                  {section.title}
+                </h3>
+
+                {/* Text with typewriter */}
+                <div className="text-center">
+                  <p
+                    className="text-lg"
+                    style={{
+                      lineHeight: "1.8em",
+                      color: "#E6F0EB",
+                      whiteSpace: "pre-line"
+                    }}
+                  >
+                    <TypewriterText text={section.text} delay={delay + 300} soundEnabled={soundEnabled} />
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Gentle transition hint */}
+        <div className="text-center pt-8 pb-6">
+          <p className="text-slate-400 text-sm" style={{ lineHeight: "1.6" }}>
+            Next: See how anxiety shows up in daily life
           </p>
         </div>
-
-        {/* Typewriter sections */}
-        <div className="space-y-8 max-w-xl mx-auto">
-          {sections.map((section, index) => (
-            <div
-              key={index}
-              className="rounded-xl p-6"
-              style={{
-                background: `linear-gradient(135deg, ${section.color}15 0%, ${section.color}08 100%)`,
-                border: `1px solid ${section.color}30`,
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
-              }}
-            >
-              {/* Icon and visual */}
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl" style={{ filter: `drop-shadow(0 2px 8px ${section.color}40)` }}>
-                  {section.icon}
-                </span>
-                <span className="text-3xl opacity-60">
-                  {section.visual}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-semibold text-slate-100 mb-3">
-                <TypewriterText
-                  text={section.title}
-                  delay={index * 200}
-                  soundEnabled={soundEnabled}
-                />
-              </h3>
-
-              {/* Text with typewriter effect */}
-              <p className="text-slate-300 leading-relaxed" style={{ lineHeight: "1.7" }}>
-                <TypewriterText
-                  text={section.text}
-                  delay={index * 200 + 800}
-                  soundEnabled={soundEnabled}
-                />
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Subtle hint about skipping */}
-        <p className="text-center text-slate-500 text-xs mt-8">
-          Tap to skip typewriter effect
-        </p>
       </div>
+
+      {/* Cursor blink animation */}
+      <style jsx>{`
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+      `}</style>
     </PlanetLayout>
   );
 }

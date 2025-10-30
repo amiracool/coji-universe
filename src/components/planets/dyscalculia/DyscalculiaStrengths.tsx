@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PlanetLayout } from "../PlanetLayout";
 import { useRouter } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import { dyscalculiaPlanetMobile } from "@/data/planets/dyscalculia-mobile";
 
 export function DyscalculiaStrengths() {
   const router = useRouter();
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const strengths = dyscalculiaPlanetMobile.strengthsAndSensitivities;
-  const superpowers = dyscalculiaPlanetMobile.superpowersFacts;
-  const [currentSuperpowerIndex, setCurrentSuperpowerIndex] = useState(0);
+  const [modalOpen, setModalOpen] = useState<string | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleNext = () => {
     router.push('/planets/dyscalculia/planning');
@@ -22,188 +21,218 @@ export function DyscalculiaStrengths() {
     router.push('/planets/dyscalculia/how-it-shows-up');
   };
 
-  const nextStrength = () => {
-    setCurrentIndex((prev) => (prev + 1) % strengths.length);
+  const openModal = (id: string) => {
+    setModalOpen(id);
   };
 
-  const prevStrength = () => {
-    setCurrentIndex((prev) => (prev - 1 + strengths.length) % strengths.length);
+  const closeModal = () => {
+    setModalOpen(null);
   };
 
-  const nextSuperpower = () => {
-    setCurrentSuperpowerIndex((prev) => (prev + 1) % superpowers.length);
-  };
+  const activeStrength = dyscalculiaPlanetMobile.strengthsAndSensitivities.find(
+    s => s.id === modalOpen
+  );
 
-  const prevSuperpower = () => {
-    setCurrentSuperpowerIndex((prev) => (prev - 1 + superpowers.length) % superpowers.length);
-  };
+  // Scroll lock when modal is open
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+      // Focus close button when modal opens
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 100);
+    } else {
+      document.body.style.overflow = '';
+    }
 
-  const currentStrength = strengths[currentIndex];
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [modalOpen]);
+
+  // Esc key handler
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && modalOpen) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [modalOpen]);
+
+  // Focus trap
+  useEffect(() => {
+    if (!modalOpen || !modalRef.current) return;
+
+    const modal = modalRef.current;
+    const focusableElements = modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0] as HTMLElement;
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    };
+
+    modal.addEventListener('keydown', handleTab as any);
+    return () => modal.removeEventListener('keydown', handleTab as any);
+  }, [modalOpen]);
 
   return (
     <PlanetLayout
       currentStep={5}
       totalSteps={6}
+      primaryColor="#FFD966"
+      accentColor="#F5C542"
       nextRoute="/planets/dyscalculia/planning"
       prevRoute="/planets/dyscalculia/how-it-shows-up"
       onSwipeLeft={handleNext}
       onSwipeRight={handlePrev}
-      primaryColor="#FFD966"
-      accentColor="#F5C542"
     >
-      <div className="space-y-10 py-8">
+      <div className="space-y-6 py-6">
         {/* Header */}
-        <div className="text-center space-y-3">
+        <div className="text-center mb-8">
+          <span className="text-5xl mb-4 inline-block">🌿</span>
           <h2 className="text-3xl font-bold text-slate-100 mb-3">
             Strengths & Sensitivities of Dyscalculia
           </h2>
-          <p className="text-slate-400 text-sm max-w-md mx-auto">
-            Your unique wiring brings both gifts and challenges
+          <p className="text-slate-400 text-base max-w-md mx-auto" style={{ lineHeight: "1.6" }}>
+            Tap a card to learn more
           </p>
         </div>
 
-        {/* Strengths carousel */}
-        <div className="relative max-w-lg mx-auto">
-          <div
-            className="rounded-2xl p-8 min-h-[280px]"
-            style={{
-              background: "linear-gradient(135deg, rgba(255, 217, 102, 0.15) 0%, rgba(245, 197, 66, 0.1) 100%)",
-              border: "1px solid rgba(255, 217, 102, 0.2)",
-              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)"
-            }}
-          >
-            <h3 className="text-2xl font-bold text-slate-100 mb-4">
-              {currentStrength.title}
-            </h3>
-            <p className="text-lg text-slate-300 mb-4 leading-relaxed" style={{ lineHeight: "1.7" }}>
-              {currentStrength.shortDesc}
-            </p>
-            <p className="text-base text-slate-400 leading-relaxed" style={{ lineHeight: "1.6" }}>
-              {currentStrength.fullDesc}
-            </p>
-          </div>
-
-          {/* Navigation arrows */}
-          <button
-            onClick={prevStrength}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-3 rounded-full transition-all duration-200 hover:scale-110"
-            style={{
-              background: "rgba(255, 217, 102, 0.2)",
-              border: "1px solid rgba(255, 217, 102, 0.3)",
-              color: "#FFD966",
-              minHeight: "44px",
-              minWidth: "44px"
-            }}
-            aria-label="Previous strength"
-          >
-            <ChevronLeft size={24} />
-          </button>
-
-          <button
-            onClick={nextStrength}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-3 rounded-full transition-all duration-200 hover:scale-110"
-            style={{
-              background: "rgba(255, 217, 102, 0.2)",
-              border: "1px solid rgba(255, 217, 102, 0.3)",
-              color: "#FFD966",
-              minHeight: "44px",
-              minWidth: "44px"
-            }}
-            aria-label="Next strength"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
-
-        {/* Dot indicators */}
-        <div className="flex justify-center gap-2">
-          {strengths.map((_, index) => (
+        {/* Staggered tiles - 2 lines only, tap to expand */}
+        <div className="grid grid-cols-2 gap-4">
+          {dyscalculiaPlanetMobile.strengthsAndSensitivities.map((strength) => (
             <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className="w-2 h-2 rounded-full transition-all duration-200"
+              key={strength.id}
+              onClick={() => openModal(strength.id)}
+              className="p-4 rounded-xl text-left transition-all duration-200 hover:scale-105"
               style={{
-                background: index === currentIndex ? "#FFD966" : "rgba(255, 217, 102, 0.3)",
-                transform: index === currentIndex ? "scale(1.2)" : "scale(1)",
-                minHeight: "44px",
-                minWidth: "44px"
+                background: "linear-gradient(135deg, rgba(255, 217, 102, 0.08) 0%, rgba(255, 217, 102, 0.05) 100%)",
+                border: "1px solid rgba(255, 217, 102, 0.2)",
+                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+                minHeight: "44px"
               }}
-              aria-label={`Go to strength ${index + 1}`}
-            />
+            >
+              <h3 className="text-sm font-semibold text-yellow-300 mb-2">
+                {strength.title}
+              </h3>
+              <p className="text-xs text-slate-300 leading-relaxed line-clamp-2" style={{ lineHeight: "1.5" }}>
+                {strength.shortDesc}
+              </p>
+            </button>
           ))}
         </div>
 
-        {/* Superpowers section */}
-        <div className="pt-8">
-          <h3 className="text-2xl font-bold text-slate-100 text-center mb-6">
-            Your Dyscalculia Superpowers
-          </h3>
-
-          <div className="relative max-w-lg mx-auto">
-            <div
-              className="rounded-xl p-6 min-h-[120px] flex items-center justify-center"
-              style={{
-                background: "linear-gradient(135deg, rgba(245, 197, 66, 0.2) 0%, rgba(255, 217, 102, 0.15) 100%)",
-                border: "1px solid rgba(245, 197, 66, 0.3)",
-                boxShadow: "0 4px 16px rgba(0, 0, 0, 0.15)"
-              }}
-            >
-              <p className="text-lg text-slate-200 text-center leading-relaxed" style={{ lineHeight: "1.7" }}>
-                {superpowers[currentSuperpowerIndex]}
-              </p>
-            </div>
-
-            {/* Navigation arrows */}
-            <button
-              onClick={prevSuperpower}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-2 rounded-full transition-all duration-200 hover:scale-110"
-              style={{
-                background: "rgba(245, 197, 66, 0.2)",
-                border: "1px solid rgba(245, 197, 66, 0.3)",
-                color: "#F5C542",
-                minHeight: "44px",
-                minWidth: "44px"
-              }}
-              aria-label="Previous superpower"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            <button
-              onClick={nextSuperpower}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-2 rounded-full transition-all duration-200 hover:scale-110"
-              style={{
-                background: "rgba(245, 197, 66, 0.2)",
-                border: "1px solid rgba(245, 197, 66, 0.3)",
-                color: "#F5C542",
-                minHeight: "44px",
-                minWidth: "44px"
-              }}
-              aria-label="Next superpower"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2 pt-4">
-            {superpowers.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSuperpowerIndex(index)}
-                className="w-2 h-2 rounded-full transition-all duration-200"
-                style={{
-                  background: index === currentSuperpowerIndex ? "#F5C542" : "rgba(245, 197, 66, 0.3)",
-                  transform: index === currentSuperpowerIndex ? "scale(1.2)" : "scale(1)",
-                  minHeight: "44px",
-                  minWidth: "44px"
-                }}
-                aria-label={`Go to superpower ${index + 1}`}
-              />
-            ))}
-          </div>
+        {/* Transition hint */}
+        <div className="text-center pt-6">
+          <p className="text-slate-400 text-sm">
+            Next: Plan around it
+          </p>
         </div>
       </div>
+
+      {/* Modal with backdrop blur */}
+      <AnimatePresence>
+        {modalOpen && activeStrength && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 flex items-center justify-center p-4 z-50"
+            style={{
+              backdropFilter: "blur(8px) brightness(0.6)",
+              WebkitBackdropFilter: "blur(8px) brightness(0.6)"
+            }}
+            onClick={closeModal}
+          >
+            {/* Translucent overlay */}
+            <div
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
+            />
+
+            {/* Modal container */}
+            <motion.div
+              ref={modalRef}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full"
+              style={{
+                background: "rgba(10, 25, 25, 0.95)",
+                borderRadius: "1rem",
+                padding: "1.5rem",
+                maxWidth: "600px",
+                border: "1px solid rgba(255, 217, 102, 0.3)",
+                boxShadow: "inset 0 0 0 1px rgba(255, 217, 102, 0.15)"
+              }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
+            >
+              {/* Close button */}
+              <button
+                ref={closeButtonRef}
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-200 transition-colors rounded-lg"
+                style={{ minHeight: "44px", minWidth: "44px" }}
+                aria-label="Close modal"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Content */}
+              <div className="space-y-4 pr-8">
+                <h3
+                  id="modal-title"
+                  className="text-2xl font-bold text-yellow-300"
+                  style={{ lineHeight: "1.4" }}
+                >
+                  {activeStrength.title}
+                </h3>
+                <p
+                  className="text-lg text-slate-200"
+                  style={{ lineHeight: "1.6" }}
+                >
+                  {activeStrength.fullDesc}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* CSS for line-clamp */}
+      <style jsx>{`
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </PlanetLayout>
   );
 }
