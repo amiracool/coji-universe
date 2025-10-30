@@ -4,14 +4,12 @@ import React, { useState } from "react";
 import { AutismPlanetLayout } from "./AutismPlanetLayout";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
 import { autismPlanetMobile } from "@/data/planets/autism-mobile";
 
 export function AutismHowItShowsUp() {
   const router = useRouter();
-  // Default open: Sensory Processing
   const [activeId, setActiveId] = useState("sensory");
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
 
   const handleNext = () => {
     router.push('/planets/autism/strengths');
@@ -21,26 +19,17 @@ export function AutismHowItShowsUp() {
     router.push('/planets/autism/understanding');
   };
 
-  const toggleSection = (id: string) => {
-    setActiveId(activeId === id ? "" : id);
-    // Reset expanded state when switching sections
-    setExpandedSections(new Set());
-  };
-
-  const toggleShowMore = (sectionId: string) => {
-    setExpandedSections(prev => {
+  const toggleCard = (id: string) => {
+    setExpandedCards(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(sectionId)) {
-        newSet.delete(sectionId);
+      if (newSet.has(id)) {
+        newSet.delete(id);
       } else {
-        newSet.add(sectionId);
+        newSet.add(id);
       }
       return newSet;
     });
   };
-
-  // Find the active section data
-  const activeSection = autismPlanetMobile.howItShowsUp.find(s => s.id === activeId);
 
   return (
     <AutismPlanetLayout
@@ -51,180 +40,139 @@ export function AutismHowItShowsUp() {
       onSwipeLeft={handleNext}
       onSwipeRight={handlePrev}
     >
-      <div className="space-y-6 py-6">
+      {/* Centered container */}
+      <div className="flex flex-col items-center py-8 px-4" style={{ gap: "2rem" }}>
         {/* Header */}
-        <div className="text-center mb-8">
-          <span className="text-5xl mb-4 inline-block">🧠</span>
+        <div className="text-center mb-4">
+          <span className="text-5xl mb-4 inline-block">🌌</span>
           <h2 className="text-3xl font-bold text-slate-100 mb-3">
             How It Shows Up
           </h2>
           <p className="text-slate-400 text-base max-w-md mx-auto" style={{ lineHeight: "1.6" }}>
-            Tap a category to explore
+            Five constellations of experience
           </p>
         </div>
 
-        {/* Categories - only render active one's content */}
-        <div className="space-y-3">
-          {autismPlanetMobile.howItShowsUp.map((section) => {
-            const isExpanded = expandedSections.has(section.id);
-            const isActive = activeId === section.id;
-            const previewFragments = section.fragments.slice(0, section.previewCount);
-            const remainingFragments = section.fragments.slice(section.previewCount);
-            const hasMore = remainingFragments.length > 0;
+        {/* Category cards - centered constellation */}
+        <div className="flex flex-col items-center w-full" style={{ gap: "1rem" }}>
+          {autismPlanetMobile.howItShowsUp.map((section, idx) => {
+            const isExpanded = expandedCards.has(section.id);
 
             return (
-              <div
+              <motion.div
                 key={section.id}
-                className="rounded-xl overflow-hidden transition-all duration-200"
-                style={{
-                  background: isActive
-                    ? "linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(13, 148, 136, 0.08) 100%)"
-                    : "linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%)",
-                  border: "1px solid rgba(20, 184, 166, 0.2)",
-                  maxWidth: "600px",
-                  margin: "0 auto"
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: idx * 0.08 }}
+                className="w-full"
+                style={{ maxWidth: "600px" }}
               >
-                {/* Header button */}
-                <button
-                  onClick={() => toggleSection(section.id)}
-                  className="w-full px-5 py-4 flex items-center justify-between text-left transition-all duration-150 hover:bg-teal-950/20"
-                  style={{ minHeight: "44px" }}
+                <div
+                  className="rounded-2xl overflow-hidden transition-all duration-200 hover:shadow-lg"
+                  style={{
+                    background: "linear-gradient(180deg, #0D2621 0%, #13342D 100%)",
+                    border: `1px solid ${section.accentColor}40`,
+                    boxShadow: isExpanded
+                      ? `0 0 16px ${section.accentColor}30`
+                      : `0 0 8px ${section.accentColor}15`
+                  }}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{section.icon}</span>
-                    <h3 className="text-lg font-medium text-slate-200">{section.title}</h3>
-                  </div>
-                  {isActive ? (
-                    <ChevronUp size={20} className="text-slate-400 flex-shrink-0" />
-                  ) : (
-                    <ChevronDown size={20} className="text-slate-400 flex-shrink-0" />
-                  )}
-                </button>
-
-                {/* Content - only render if active (unmount when closed) */}
-                <AnimatePresence>
-                  {isActive && activeSection && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="px-5 pb-5"
+                  {/* Card header */}
+                  <div className="px-6 py-5 flex items-center gap-4">
+                    {/* Soft glowing icon */}
+                    <div
+                      className="text-3xl flex-shrink-0"
+                      style={{
+                        color: section.accentColor,
+                        filter: `drop-shadow(0 0 6px ${section.accentColor}50)`,
+                        textShadow: `0 0 12px ${section.accentColor}40`
+                      }}
                     >
-                      {/* Preview fragments */}
-                      <div className="space-y-4">
-                        {previewFragments.map((fragment, idx) => {
-                          const prevFragment = idx > 0 ? previewFragments[idx - 1] : null;
-                          const showDivider = prevFragment && prevFragment.cluster !== fragment.cluster;
+                      {section.icon}
+                    </div>
 
-                          return (
-                            <React.Fragment key={idx}>
-                              {/* Cluster divider */}
-                              {showDivider && (
-                                <motion.div
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{ duration: 0.2, delay: idx * 0.15 }}
-                                  className="text-center"
-                                  style={{ marginBlock: "1rem" }}
-                                >
-                                  <span className="text-slate-600 text-sm">✴</span>
-                                </motion.div>
-                              )}
+                    {/* Title */}
+                    <h3
+                      className="text-lg font-medium flex-1"
+                      style={{
+                        color: "#E6F0EB",
+                        lineHeight: "1.4"
+                      }}
+                    >
+                      {section.title}
+                    </h3>
+                  </div>
 
-                              {/* Fragment */}
-                              <motion.p
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.2, delay: idx * 0.15 }}
-                                className="text-base"
-                                style={{
-                                  lineHeight: "1.8",
-                                  color: "#cbd5e1", // softer slate-300
-                                  marginBlock: "1rem"
-                                }}
-                              >
-                                {fragment.text}
-                              </motion.p>
-                            </React.Fragment>
-                          );
-                        })}
-                      </div>
+                  {/* Preview content - always visible */}
+                  <div className="px-6 pb-5 space-y-3">
+                    {section.preview.map((line, lineIdx) => (
+                      <p
+                        key={lineIdx}
+                        className="text-left"
+                        style={{
+                          color: "#CBD5E1",
+                          fontSize: "1.0625rem", // +10%
+                          lineHeight: "1.8em"
+                        }}
+                      >
+                        {line}
+                      </p>
+                    ))}
 
-                      {/* Remaining fragments (Show More) */}
-                      <AnimatePresence>
-                        {isExpanded && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="space-y-4 mt-4"
-                          >
-                            {remainingFragments.map((fragment, idx) => {
-                              const prevFragment = idx > 0 ? remainingFragments[idx - 1] : previewFragments[previewFragments.length - 1];
-                              const showDivider = prevFragment && prevFragment.cluster !== fragment.cluster;
-
-                              return (
-                                <React.Fragment key={`more-${idx}`}>
-                                  {/* Cluster divider */}
-                                  {showDivider && (
-                                    <motion.div
-                                      initial={{ opacity: 0 }}
-                                      animate={{ opacity: 1 }}
-                                      transition={{ duration: 0.2, delay: idx * 0.15 }}
-                                      className="text-center"
-                                      style={{ marginBlock: "1rem" }}
-                                    >
-                                      <span className="text-slate-600 text-sm">✴</span>
-                                    </motion.div>
-                                  )}
-
-                                  {/* Fragment */}
-                                  <motion.p
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.2, delay: idx * 0.15 }}
-                                    className="text-base"
-                                    style={{
-                                      lineHeight: "1.8",
-                                      color: "#cbd5e1", // softer slate-300
-                                      marginBlock: "1rem"
-                                    }}
-                                  >
-                                    {fragment.text}
-                                  </motion.p>
-                                </React.Fragment>
-                              );
-                            })}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      {/* Show More / Show Less button */}
-                      {hasMore && (
-                        <div className="text-center mt-6">
-                          <button
-                            onClick={() => toggleShowMore(section.id)}
-                            className="text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors px-4 py-2"
-                            style={{ minHeight: "44px" }}
-                          >
-                            {isExpanded ? "Show less" : "Show more"}
-                          </button>
-                        </div>
+                    {/* Expanded content */}
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-3 pt-4 mt-4"
+                          style={{
+                            borderTop: `1px solid ${section.accentColor}20`
+                          }}
+                        >
+                          {section.expanded.map((line, lineIdx) => (
+                            <p
+                              key={lineIdx}
+                              className="text-left"
+                              style={{
+                                color: "#94A3B8",
+                                fontSize: "1rem",
+                                lineHeight: "1.8em"
+                              }}
+                            >
+                              {line}
+                            </p>
+                          ))}
+                        </motion.div>
                       )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                    </AnimatePresence>
+
+                    {/* Show more toggle */}
+                    <button
+                      onClick={() => toggleCard(section.id)}
+                      className="mt-4 text-sm font-medium transition-colors duration-200"
+                      style={{
+                        color: section.accentColor,
+                        minHeight: "44px",
+                        opacity: 0.8
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.opacity = "1"}
+                      onMouseLeave={(e) => e.currentTarget.style.opacity = "0.8"}
+                    >
+                      {isExpanded ? "Show less" : "Show more"}
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
             );
           })}
         </div>
 
-        {/* Transition hint */}
-        <div className="text-center pt-6">
-          <p className="text-slate-400 text-sm">
+        {/* Gentle transition hint */}
+        <div className="text-center pt-8">
+          <p className="text-slate-400 text-sm" style={{ lineHeight: "1.6" }}>
             Next: Discover your strengths
           </p>
         </div>

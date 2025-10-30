@@ -22,80 +22,92 @@ export const autismPlanetMobile = {
     ]
   },
 
-  // How It Shows Up (5 accordion sections with fragmented content)
+  // How It Shows Up (calm, centered constellation design)
   howItShowsUp: [
     {
       id: "sensory",
       title: "Sensory Processing",
-      icon: "👂",
-      fragments: [
-        { text: "Sounds, lights, textures, and smells can feel magnified.", cluster: "intensity" },
-        { text: "Fluorescent lights might hum too loudly.", cluster: "intensity" },
-        { text: "Certain fabrics feel unbearable.", cluster: "intensity" },
-        { text: "Crowded spaces overwhelm fast.", cluster: "intensity" },
-        { text: "You might crave or avoid specific sensory input.", cluster: "regulation" },
-        { text: "Weighted blankets, avoiding tags, seeking pressure or movement.", cluster: "regulation" },
-        { text: "This isn't pickiness.", cluster: "validation" },
-        { text: "It's how your nervous system regulates.", cluster: "validation" }
+      icon: "◉", // Soft glowing circle
+      accentColor: "#FFD88A",
+      preview: [
+        "Lights, textures, smells — all turned up a notch.",
+        "Fluorescent bulbs hum; some fabrics bite.",
+        "Crowded rooms can feel like static in your chest."
       ],
-      previewCount: 5 // Show first 5 fragments (~8 lines)
+      expanded: [
+        "You might crave or avoid specific sensory input.",
+        "Weighted blankets, compression clothing, or deep pressure help regulate.",
+        "This isn't pickiness — it's how your nervous system processes the world.",
+        "What others tune out can feel amplified, overwhelming, or even painful."
+      ]
     },
     {
       id: "social",
       title: "Social & Communication",
-      icon: "💬",
-      fragments: [
-        { text: "You prefer honest, direct conversation.", cluster: "communication" },
-        { text: "Small talk feels exhausting or pointless.", cluster: "communication" },
-        { text: "You might miss sarcasm, idioms, or implied meanings.", cluster: "literal" },
-        { text: "You process words literally.", cluster: "literal" },
-        { text: "Eye contact can feel uncomfortable or distracting.", cluster: "interaction" },
-        { text: "Masking (acting 'normal') helps you fit in but drains energy.", cluster: "masking" },
-        { text: "You care deeply but show it differently.", cluster: "validation" }
+      icon: "◉",
+      accentColor: "#FFD88A",
+      preview: [
+        "You prefer honest, direct words. Small talk drains you.",
+        "Sarcasm, hints, hidden meanings — they don't always land.",
+        "Eye contact might feel uncomfortable. Masking takes energy."
       ],
-      previewCount: 5
+      expanded: [
+        "You process language literally, which means implied meanings can feel like guesswork.",
+        "Acting 'normal' helps you fit in, but it's exhausting.",
+        "You care deeply — you just show it differently.",
+        "Direct communication isn't rude. It's clarity."
+      ]
     },
     {
       id: "cognition",
       title: "Cognition & Focus",
-      icon: "🧠",
-      fragments: [
-        { text: "You think in patterns, systems, or vivid images.", cluster: "thinking" },
-        { text: "Special interests capture your full attention.", cluster: "focus" },
-        { text: "You can hyperfocus for hours, losing track of time.", cluster: "focus" },
-        { text: "Executive function struggles are common.", cluster: "executive" },
-        { text: "Starting tasks, switching focus, making decisions, planning steps.", cluster: "executive" },
-        { text: "Your attention is deep but selective.", cluster: "validation" }
+      icon: "◉",
+      accentColor: "#FFD88A",
+      preview: [
+        "You think in patterns, systems, vivid images.",
+        "Special interests capture your full attention — hyperfocus is real.",
+        "Starting tasks, switching gears, deciding — executive function can be hard."
       ],
-      previewCount: 4
+      expanded: [
+        "You can lose hours to something that fascinates you, forgetting time and basic needs.",
+        "Planning steps, organizing thoughts, and prioritizing can feel overwhelming.",
+        "Your attention is deep but selective.",
+        "This isn't laziness — it's how your brain allocates focus."
+      ]
     },
     {
       id: "emotion",
       title: "Emotion & Regulation",
-      icon: "❤️",
-      fragments: [
-        { text: "You feel emotions intensely.", cluster: "intensity" },
-        { text: "You might struggle to name or express them (alexithymia).", cluster: "intensity" },
-        { text: "Injustice, inconsistency, or change can feel unbearable.", cluster: "triggers" },
-        { text: "Shutdowns (withdrawal, numbness) happen when capacity is exceeded.", cluster: "responses" },
-        { text: "Meltdowns (overwhelm, tears, anger) are nervous system responses.", cluster: "responses" },
-        { text: "These aren't tantrums.", cluster: "validation" }
+      icon: "◉",
+      accentColor: "#FFD88A",
+      preview: [
+        "You feel emotions intensely, even if naming them is hard.",
+        "Injustice, inconsistency, sudden change — they hit harder.",
+        "Shutdowns and meltdowns aren't tantrums. They're nervous system responses."
       ],
-      previewCount: 4
+      expanded: [
+        "Alexithymia means emotions are real but hard to identify or express.",
+        "Shutdowns feel like withdrawal, numbness, or going nonverbal.",
+        "Meltdowns are overwhelm spilling over — tears, anger, or physical distress.",
+        "Both happen when your capacity is exceeded. They're not about control."
+      ]
     },
     {
       id: "physical",
       title: "Physical & Health",
-      icon: "🩺",
-      fragments: [
-        { text: "Many autistic people experience chronic pain, fatigue, or digestive issues.", cluster: "physical" },
-        { text: "Sleep problems are common.", cluster: "physical" },
-        { text: "Interoception (sensing body signals like hunger, pain, temperature) can be muted.", cluster: "interoception" },
-        { text: "Body signals may arrive delayed.", cluster: "interoception" },
-        { text: "Routines, stims, or rituals help you feel grounded.", cluster: "regulation" },
-        { text: "These movements help you feel safe in your body.", cluster: "regulation" }
+      icon: "◉",
+      accentColor: "#FFD88A",
+      preview: [
+        "Chronic pain, fatigue, digestive issues, sleep problems — common companions.",
+        "Body signals (hunger, pain, temperature) can arrive muted or delayed.",
+        "Routines, stims, rituals — they help you feel grounded and safe."
       ],
-      previewCount: 4
+      expanded: [
+        "Interoception (sensing your body's internal state) can be unreliable.",
+        "You might not notice hunger until you're shaky, or pain until it's sharp.",
+        "Repetitive movements (stimming) aren't things to fix — they're regulation tools.",
+        "Your body's needs are real, even if they don't match typical timelines."
+      ]
     }
   ],
 
