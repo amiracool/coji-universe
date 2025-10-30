@@ -4,11 +4,15 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface SoundContextType {
   isMuted: boolean;
+  soundEnabled: boolean;
   setIsMuted: (muted: boolean) => void;
   toggleMute: () => void;
 }
 
 const SoundContext = createContext<SoundContextType | undefined>(undefined);
+
+// Export the context so it can be used with useContext
+export { SoundContext };
 
 export function SoundProvider({ children }: { children: ReactNode }) {
   const [isMuted, setIsMuted] = useState(true);
@@ -18,7 +22,7 @@ export function SoundProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <SoundContext.Provider value={{ isMuted, setIsMuted, toggleMute }}>
+    <SoundContext.Provider value={{ isMuted, soundEnabled: !isMuted, setIsMuted, toggleMute }}>
       {children}
     </SoundContext.Provider>
   );
