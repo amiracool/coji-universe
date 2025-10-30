@@ -12,6 +12,7 @@ interface AutismPlanetLayoutProps {
   prevRoute?: string;
   onSwipeLeft?: () => void;
   onSwipeRight?: () => void;
+  hideBottomNav?: boolean;
 }
 
 export function AutismPlanetLayout({
@@ -21,7 +22,8 @@ export function AutismPlanetLayout({
   nextRoute,
   prevRoute,
   onSwipeLeft,
-  onSwipeRight
+  onSwipeRight,
+  hideBottomNav = false
 }: AutismPlanetLayoutProps) {
   const router = useRouter();
 
@@ -113,50 +115,52 @@ export function AutismPlanetLayout({
         </div>
 
         {/* Page content */}
-        <main className="mb-20">
+        <main className={hideBottomNav ? "mb-6" : "mb-20"}>
           {children}
         </main>
 
-        {/* Bottom navigation - fixed */}
-        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-transparent py-6 px-4">
-          <div className="max-w-2xl mx-auto flex items-center justify-between gap-4">
-            {/* Previous button */}
-            {prevRoute ? (
-              <button
-                onClick={handlePrev}
-                className="flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105"
-                style={{
-                  background: "linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(13, 148, 136, 0.1) 100%)",
-                  border: "1px solid rgba(20, 184, 166, 0.3)",
-                  color: "#14b8a6",
-                  minHeight: "44px"
-                }}
-              >
-                <ArrowLeft size={20} />
-                Back
-              </button>
-            ) : (
-              <div /> // Spacer
-            )}
+        {/* Bottom navigation - fixed (hidden on intro page) */}
+        {!hideBottomNav && (
+          <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-transparent py-6 px-4">
+            <div className="max-w-2xl mx-auto flex items-center justify-between gap-4">
+              {/* Previous button */}
+              {prevRoute ? (
+                <button
+                  onClick={handlePrev}
+                  className="flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(13, 148, 136, 0.1) 100%)",
+                    border: "1px solid rgba(20, 184, 166, 0.3)",
+                    color: "#14b8a6",
+                    minHeight: "44px"
+                  }}
+                >
+                  <ArrowLeft size={20} />
+                  Back
+                </button>
+              ) : (
+                <div /> // Spacer
+              )}
 
-            {/* Next button */}
-            {nextRoute && (
-              <button
-                onClick={handleNext}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
-                style={{
-                  background: "linear-gradient(135deg, rgba(20, 184, 166, 0.25) 0%, rgba(13, 148, 136, 0.2) 100%)",
-                  border: "1px solid rgba(20, 184, 166, 0.4)",
-                  color: "#14b8a6",
-                  minHeight: "44px"
-                }}
-              >
-                Next
-                <ArrowRight size={20} />
-              </button>
-            )}
+              {/* Next button */}
+              {nextRoute && (
+                <button
+                  onClick={handleNext}
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(20, 184, 166, 0.25) 0%, rgba(13, 148, 136, 0.2) 100%)",
+                    border: "1px solid rgba(20, 184, 166, 0.4)",
+                    color: "#14b8a6",
+                    minHeight: "44px"
+                  }}
+                >
+                  Next
+                  <ArrowRight size={20} />
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

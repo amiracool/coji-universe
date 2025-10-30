@@ -17,6 +17,7 @@ export function AutismIntro() {
       totalSteps={6}
       nextRoute="/planets/autism/facts"
       onSwipeLeft={handleNext}
+      hideBottomNav={true}
     >
       {/* Hero content - feather-light */}
       <div className="text-center space-y-6 py-12">

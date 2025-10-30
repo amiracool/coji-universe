@@ -46,20 +46,25 @@ export function AutismUnderstanding() {
             border: "1px solid rgba(20, 184, 166, 0.15)"
           }}
         >
-          {/* Text blocks - staggered fade-in */}
+          {/* Text blocks - gentle fade + slide with typewriter reveal */}
           <div className="space-y-6">
             {autismPlanetMobile.understandingIt.blocks.map((block, idx) => (
               <motion.p
                 key={idx}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.18 }}
-                className="text-left"
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.3,
+                  ease: "easeOut"
+                }}
+                className="text-left typewriter-text"
                 style={{
                   lineHeight: "1.8em",
                   color: "#E6F0EB",
                   fontSize: "1.0625rem", // 17px
-                  whiteSpace: "pre-line" // Preserve line breaks
+                  whiteSpace: "pre-line", // Preserve line breaks
+                  animationDelay: `${idx * 0.3}s`
                 }}
               >
                 {block}
@@ -75,6 +80,32 @@ export function AutismUnderstanding() {
           </p>
         </div>
       </div>
+
+      {/* Typewriter CSS animation */}
+      <style jsx>{`
+        @keyframes typewriter {
+          from {
+            width: 0;
+            opacity: 0;
+          }
+          to {
+            width: 100%;
+            opacity: 1;
+          }
+        }
+
+        .typewriter-text {
+          overflow: hidden;
+          display: inline-block;
+          animation: typewriter 0.8s steps(40) forwards;
+          animation-play-state: paused;
+          opacity: 0;
+        }
+
+        .typewriter-text {
+          animation-play-state: running;
+        }
+      `}</style>
     </AutismPlanetLayout>
   );
 }
