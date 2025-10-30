@@ -34,7 +34,7 @@ export function ParentingIntro() {
           </div>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold text-slate-100 mb-4">
-          Parenting Planet
+          Parenting Hub
         </h1>
         <p className="text-lg sm:text-xl text-slate-300 max-w-xl mx-auto leading-relaxed" style={{ lineHeight: "1.6" }}>
           Supporting neurodiverse children while managing your own needs and challenges.

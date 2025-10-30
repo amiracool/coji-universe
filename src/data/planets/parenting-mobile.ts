@@ -1,12 +1,12 @@
 /**
- * Parenting Planet - Mobile-First Content
+ * Parenting Hub - Mobile-First Content
  * Colour: #FFB6A3 (soft rose) / #FF847C (accent)
  * Designed for calm, validating experience with low cognitive load
  */
 
 export const parentingPlanetMobile = {
   // Header
-  name: "Parenting Planet",
+  name: "Parenting Hub",
   tagline: "Understanding parenting when your brain works differently — you're doing better than you think.",
   icon: "🌸",
   primaryColor: "#FFB6A3",

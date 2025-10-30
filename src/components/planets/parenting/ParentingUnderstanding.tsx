@@ -20,7 +20,7 @@ export function ParentingUnderstanding() {
       <div className="space-y-8 py-8">
         <div className="text-center space-y-3 mb-10">
           <h2 className="text-3xl font-bold text-slate-100">Understanding Parenting</h2>
-          <p className="text-slate-400 text-sm max-w-md mx-auto">What Parenting really means — in your own words</p>
+          <p className="text-slate-400 text-sm max-w-md mx-auto">What parenting with a neurodivergent brain really means — in your own words</p>
         </div>
         <div className="space-y-8 max-w-xl mx-auto">
           {sections.map((section, index) => (

@@ -25,7 +25,7 @@ export function ParentingStrengths() {
     <PlanetLayout currentStep={5} totalSteps={6} nextRoute="/planets/parenting/planning" prevRoute="/planets/parenting/how-it-shows-up" onSwipeLeft={handleNext} onSwipeRight={handlePrev} primaryColor="#FFB6A3" accentColor="#FF847C">
       <div className="space-y-10 py-8">
         <div className="text-center space-y-3">
-          <h2 className="text-3xl font-bold text-slate-100 mb-3">Strengths & Sensitivities of Parenting</h2>
+          <h2 className="text-3xl font-bold text-slate-100 mb-3">Strengths & Sensitivities of Neurodivergent Parenting</h2>
           <p className="text-slate-400 text-sm max-w-md mx-auto">Your unique wiring brings both gifts and challenges</p>
         </div>
         <div className="relative max-w-lg mx-auto">

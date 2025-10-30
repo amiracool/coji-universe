@@ -26,7 +26,7 @@ export function ParentingPlanning() {
       <div className="space-y-10 py-8">
         <div className="text-center space-y-3">
           <h2 className="text-3xl font-bold text-slate-100 mb-3">Planning Ahead</h2>
-          <p className="text-slate-400 text-sm max-w-md mx-auto" style={{ lineHeight: "1.6" }}>Practical strategies for navigating life with Parenting</p>
+          <p className="text-slate-400 text-sm max-w-md mx-auto" style={{ lineHeight: "1.6" }}>Practical strategies for neurodivergent parenting</p>
           <p className="text-rose-300 text-sm max-w-md mx-auto mt-4" style={{ lineHeight: "1.6", opacity: 0.9 }}>Search the Library for more tips and hacks, or speak to Coji Buddy</p>
         </div>
         <div className="space-y-8 max-w-xl mx-auto">

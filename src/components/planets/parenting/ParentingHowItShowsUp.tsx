@@ -20,7 +20,7 @@ export function ParentingHowItShowsUp() {
       <div className="space-y-6 py-8">
         <div className="text-center space-y-3 mb-8">
           <h2 className="text-3xl font-bold text-slate-100">How Parenting Shows Up</h2>
-          <p className="text-slate-400 text-base" style={{ lineHeight: "1.6", opacity: 0.7 }}>How Parenting might affect your life</p>
+          <p className="text-slate-400 text-base" style={{ lineHeight: "1.6", opacity: 0.7 }}>How neurodivergent parenting might show up in your life</p>
         </div>
         <div className="space-y-4 max-w-xl mx-auto">
           {sections.map((section) => {
