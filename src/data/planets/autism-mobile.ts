@@ -9,65 +9,93 @@ export const autismPlanetMobile = {
   tagline: "Understanding how autistic minds experience the world — deeply, vividly, and differently.",
   icon: "🧩",
 
-  // Understanding It
+  // Understanding It (relational, breath-sized blocks)
   understandingIt: {
-    preview: [
-      "Autism isn't a flaw in how you connect or think. It's a different operating system — one that notices patterns others miss, feels emotions in full colour, and processes the world with both clarity and overwhelm.",
-      "Your brain prefers directness over hints, depth over small talk, and routines that help you navigate a world built for different wiring."
-    ],
-    fullContent: [
-      "Autistic minds process sensory input, social cues, and information differently. What others tune out (background noise, fabric textures, tone shifts) can feel amplified. What others find intuitive (sarcasm, implied meanings, social scripts) can feel like guesswork.",
-      "This isn't deficiency — it's perceptiveness paired with different filters. You might hyperfocus on special interests, forming encyclopedic knowledge and genuine passion. You might struggle with transitions and surprises, needing predictability to function at your best.",
-      "Many autistic people describe feeling like they're translating a foreign language in social settings, masking their natural responses to fit in. This takes energy, and after socialising (even enjoyable socialising), you may need deep recharge time."
+    blocks: [
+      "You don't process the world "wrong."",
+      "You just process it deeply.",
+      "Your mind catches patterns that others miss —\nconnections between things most people walk past.",
+      "You feel in full colour, which means joy hits brighter,\nbut overwhelm does too.",
+      "Small talk might drain you; truth feels lighter.",
+      "Routines aren't rigidness — they're rhythm.\nThey help you move through a world built for different wiring.",
+      "You're not broken.\nYou're wired differently."
     ]
   },
 
-  // How It Shows Up (5 accordion sections)
+  // How It Shows Up (5 accordion sections with fragmented content)
   howItShowsUp: [
     {
       id: "sensory",
       title: "Sensory Processing",
       icon: "👂",
-      content: [
-        "Sounds, lights, textures, and smells can feel magnified. Fluorescent lights might hum too loudly. Certain fabrics feel unbearable. Crowded spaces overwhelm fast.",
-        "You might crave or avoid specific sensory input — needing weighted blankets, avoiding tags, seeking pressure or movement. This isn't pickiness; it's how your nervous system regulates."
-      ]
+      fragments: [
+        { text: "Sounds, lights, textures, and smells can feel magnified.", cluster: "intensity" },
+        { text: "Fluorescent lights might hum too loudly.", cluster: "intensity" },
+        { text: "Certain fabrics feel unbearable.", cluster: "intensity" },
+        { text: "Crowded spaces overwhelm fast.", cluster: "intensity" },
+        { text: "You might crave or avoid specific sensory input.", cluster: "regulation" },
+        { text: "Weighted blankets, avoiding tags, seeking pressure or movement.", cluster: "regulation" },
+        { text: "This isn't pickiness.", cluster: "validation" },
+        { text: "It's how your nervous system regulates.", cluster: "validation" }
+      ],
+      previewCount: 5 // Show first 5 fragments (~8 lines)
     },
     {
       id: "social",
       title: "Social & Communication",
       icon: "💬",
-      content: [
-        "You prefer honest, direct conversation. Small talk feels exhausting or pointless. You might miss sarcasm, idioms, or implied meanings because you process words literally.",
-        "Eye contact can feel uncomfortable or distracting. Masking (acting 'normal') helps you fit in but drains energy. You care deeply but show it differently."
-      ]
+      fragments: [
+        { text: "You prefer honest, direct conversation.", cluster: "communication" },
+        { text: "Small talk feels exhausting or pointless.", cluster: "communication" },
+        { text: "You might miss sarcasm, idioms, or implied meanings.", cluster: "literal" },
+        { text: "You process words literally.", cluster: "literal" },
+        { text: "Eye contact can feel uncomfortable or distracting.", cluster: "interaction" },
+        { text: "Masking (acting 'normal') helps you fit in but drains energy.", cluster: "masking" },
+        { text: "You care deeply but show it differently.", cluster: "validation" }
+      ],
+      previewCount: 5
     },
     {
       id: "cognition",
       title: "Cognition & Focus",
       icon: "🧠",
-      content: [
-        "You think in patterns, systems, or vivid images. Special interests capture your full attention — you can hyperfocus for hours, losing track of time and basic needs.",
-        "Executive function struggles are common: starting tasks, switching focus, making decisions, planning steps. Your attention is deep but selective."
-      ]
+      fragments: [
+        { text: "You think in patterns, systems, or vivid images.", cluster: "thinking" },
+        { text: "Special interests capture your full attention.", cluster: "focus" },
+        { text: "You can hyperfocus for hours, losing track of time.", cluster: "focus" },
+        { text: "Executive function struggles are common.", cluster: "executive" },
+        { text: "Starting tasks, switching focus, making decisions, planning steps.", cluster: "executive" },
+        { text: "Your attention is deep but selective.", cluster: "validation" }
+      ],
+      previewCount: 4
     },
     {
       id: "emotion",
       title: "Emotion & Regulation",
       icon: "❤️",
-      content: [
-        "You feel emotions intensely but might struggle to name or express them (alexithymia). Injustice, inconsistency, or change can feel unbearable.",
-        "Shutdowns (withdrawal, numbness) and meltdowns (overwhelm, tears, anger) happen when your capacity is exceeded. These aren't tantrums — they're nervous system responses."
-      ]
+      fragments: [
+        { text: "You feel emotions intensely.", cluster: "intensity" },
+        { text: "You might struggle to name or express them (alexithymia).", cluster: "intensity" },
+        { text: "Injustice, inconsistency, or change can feel unbearable.", cluster: "triggers" },
+        { text: "Shutdowns (withdrawal, numbness) happen when capacity is exceeded.", cluster: "responses" },
+        { text: "Meltdowns (overwhelm, tears, anger) are nervous system responses.", cluster: "responses" },
+        { text: "These aren't tantrums.", cluster: "validation" }
+      ],
+      previewCount: 4
     },
     {
       id: "physical",
       title: "Physical & Health",
       icon: "🩺",
-      content: [
-        "Many autistic people experience chronic pain, fatigue, digestive issues, or sleep problems. Interoception (sensing body signals like hunger, pain, temperature) can be muted or delayed.",
-        "You might need routines, stims (repetitive movements), or specific rituals to feel grounded and safe in your body."
-      ]
+      fragments: [
+        { text: "Many autistic people experience chronic pain, fatigue, or digestive issues.", cluster: "physical" },
+        { text: "Sleep problems are common.", cluster: "physical" },
+        { text: "Interoception (sensing body signals like hunger, pain, temperature) can be muted.", cluster: "interoception" },
+        { text: "Body signals may arrive delayed.", cluster: "interoception" },
+        { text: "Routines, stims, or rituals help you feel grounded.", cluster: "regulation" },
+        { text: "These movements help you feel safe in your body.", cluster: "regulation" }
+      ],
+      previewCount: 4
     }
   ],
 
@@ -111,66 +139,118 @@ export const autismPlanetMobile = {
     }
   ],
 
-  // Planning Ahead (4 expandable sections)
+  // Planning Ahead (micro-cards for ND cognitive ease)
   planningAhead: [
     {
       id: "jobs",
       title: "Jobs & Hobbies",
       icon: "💼",
-      preview: "Look for roles with clear expectations, predictable routines, and alignment with your interests. Remote work can reduce sensory overload.",
-      fullContent: [
-        "Consider fields that value your strengths: tech, research, creative work, systems design, data analysis, or independent trades.",
-        "Negotiate for accommodations: noise-cancelling headphones, quiet spaces, flexible hours, written instructions instead of verbal check-ins.",
-        "Freelancing or self-employment gives you control over your environment and schedule, reducing masking demands."
-      ],
-      examples: [
-        "Ask for written project briefs instead of ambiguous verbal instructions.",
-        "Request first or last appointments to avoid crowded waiting rooms."
+      cards: [
+        {
+          id: "jobs-1",
+          icon: "🎯",
+          title: "Choose clarity over chaos",
+          summary: "Look for roles with clear expectations and predictable routines.",
+          detail: "Consider fields that value your strengths: tech, research, creative work, systems design, data analysis, or independent trades. Remote work can reduce sensory overload."
+        },
+        {
+          id: "jobs-2",
+          icon: "🛠️",
+          title: "Ask for accommodations",
+          summary: "Negotiate for noise-cancelling headphones, quiet spaces, or flexible hours.",
+          detail: "Request written instructions instead of verbal check-ins. Ask for written project briefs instead of ambiguous verbal directions. Accommodations help you perform at your best."
+        },
+        {
+          id: "jobs-3",
+          icon: "🏡",
+          title: "Consider self-employment",
+          summary: "Freelancing gives you control over environment and schedule.",
+          detail: "Self-employment or contract work reduces masking demands and lets you structure your day around your needs, not neurotypical expectations."
+        }
       ]
     },
     {
       id: "environment",
       title: "Environment & Accessibility",
       icon: "🏠",
-      preview: "Create sensory-safe spaces at home and work. Control lighting, noise, and temperature where possible.",
-      fullContent: [
-        "Use dim lights, blackout curtains, or tinted glasses to manage light sensitivity. Noise-cancelling headphones or earplugs buffer overwhelming sound.",
-        "Remove sensory irritants: scratchy fabrics, strong scents, clutter. Keep routines visible (whiteboards, apps, calendars).",
-        "Build in buffer time after social events or overstimulating activities to recharge."
-      ],
-      examples: [
-        "Weighted blankets, compression clothing, or fidget tools for sensory regulation.",
-        "Sunglasses indoors if fluorescent lights drain your energy."
+      cards: [
+        {
+          id: "env-1",
+          icon: "💡",
+          title: "Control sensory input",
+          summary: "Dim lights, blackout curtains, or tinted glasses manage light sensitivity.",
+          detail: "Noise-cancelling headphones or earpluels buffer overwhelming sound. Remove sensory irritants: scratchy fabrics, strong scents, clutter."
+        },
+        {
+          id: "env-2",
+          icon: "📅",
+          title: "Make routines visible",
+          summary: "Use whiteboards, apps, or calendars to externalize schedules.",
+          detail: "Visual reminders reduce executive function load. Keep daily routines predictable where possible to conserve energy for unexpected changes."
+        },
+        {
+          id: "env-3",
+          icon: "🛌",
+          title: "Build in buffer time",
+          summary: "Schedule recharge time after social or overstimulating events.",
+          detail: "Weighted blankets, compression clothing, or fidget tools support sensory regulation. Sunglasses indoors if fluorescent lights drain your energy."
+        }
       ]
     },
     {
       id: "healthcare",
       title: "Healthcare & Support",
       icon: "🩺",
-      preview: "Bring notes to appointments. Ask for written summaries. Find providers who understand autistic presentation.",
-      fullContent: [
-        "Use phrases like 'I process information better in writing' or 'I need predictability to function well.'",
-        "Request sensory accommodations: dim lights, quieter waiting areas, first/last appointments to avoid crowds.",
-        "Track patterns (shutdowns, meltdowns, sensory triggers) to identify what helps or harms your wellbeing."
-      ],
-      examples: [
-        "Connect with autistic-led organisations for peer support and advocacy resources.",
-        "Remember: stimming, avoiding eye contact, and needing routine aren't things to fix — they're regulation tools."
+      cards: [
+        {
+          id: "health-1",
+          icon: "📝",
+          title: "Bring notes to appointments",
+          summary: "Write down symptoms, questions, and what you need beforehand.",
+          detail: "Ask for written summaries of appointments. Use phrases like 'I process information better in writing' or 'I need predictability to function well.'"
+        },
+        {
+          id: "health-2",
+          icon: "🔇",
+          title: "Request sensory accommodations",
+          summary: "Ask for dim lights, quieter waiting areas, or first/last appointments.",
+          detail: "Find providers who understand autistic presentation. Avoid crowded waiting rooms by requesting specific appointment times."
+        },
+        {
+          id: "health-3",
+          icon: "📊",
+          title: "Track patterns",
+          summary: "Note shutdowns, meltdowns, and sensory triggers.",
+          detail: "Connect with autistic-led organisations for peer support. Remember: stimming, avoiding eye contact, and needing routine aren't things to fix — they're regulation tools."
+        }
       ]
     },
     {
       id: "relationships",
       title: "Relationships & Community",
       icon: "👥",
-      preview: "Find spaces where directness and depth are valued. It's okay to set boundaries around masking and social energy.",
-      fullContent: [
-        "Tell people you prefer direct communication. Ask for clarity instead of guessing implied meanings.",
-        "Use text or email when phone calls feel overwhelming. Let friends know you care even if you don't check in often.",
-        "Seek neurodivergent-friendly communities (online or in-person) where honesty and special interests are celebrated, not judged."
-      ],
-      examples: [
-        "It's okay to say 'I need time alone' or 'I'm at capacity' without further explanation.",
-        "Script or rehearse tricky conversations beforehand if it helps you feel prepared."
+      cards: [
+        {
+          id: "rel-1",
+          icon: "💬",
+          title: "Ask for directness",
+          summary: "Tell people you prefer clear communication over hints.",
+          detail: "Ask for clarity instead of guessing implied meanings. Script or rehearse tricky conversations beforehand if it helps you feel prepared."
+        },
+        {
+          id: "rel-2",
+          icon: "✉️",
+          title: "Use text over calls",
+          summary: "Text or email when phone calls feel overwhelming.",
+          detail: "Let friends know you care even if you don't check in often. Your care shows up differently, and that's valid."
+        },
+        {
+          id: "rel-3",
+          icon: "🌐",
+          title: "Find your community",
+          summary: "Seek neurodivergent-friendly spaces where depth is valued.",
+          detail: "Online or in-person communities where honesty and special interests are celebrated, not judged. It's okay to say 'I need time alone' or 'I'm at capacity.'"
+        }
       ]
     }
   ],

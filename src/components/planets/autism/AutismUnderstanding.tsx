@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { AutismPlanetLayout } from "./AutismPlanetLayout";
 import { useRouter } from "next/navigation";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { motion } from "framer-motion";
 import { autismPlanetMobile } from "@/data/planets/autism-mobile";
 
 export function AutismUnderstanding() {
   const router = useRouter();
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleNext = () => {
     router.push('/planets/autism/how-it-shows-up');
@@ -27,64 +26,51 @@ export function AutismUnderstanding() {
       onSwipeLeft={handleNext}
       onSwipeRight={handlePrev}
     >
-      <div className="space-y-6 py-6">
+      <div className="py-6 flex flex-col min-h-[70vh]">
         {/* Header */}
-        <div className="text-center mb-8">
-          <span className="text-5xl mb-4 inline-block">💫</span>
+        <div className="text-center mb-12">
+          <span className="text-5xl mb-4 inline-block">🌍</span>
           <h2 className="text-3xl font-bold text-slate-100 mb-3">
             Understanding It
           </h2>
         </div>
 
-        {/* Content card */}
+        {/* Relational content container */}
         <div
-          className="p-6 rounded-xl"
+          className="flex-1 mx-auto w-full"
           style={{
-            background: "linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%)",
-            border: "1px solid rgba(20, 184, 166, 0.2)"
+            maxWidth: "600px",
+            background: "rgba(10, 25, 25, 0.9)",
+            borderRadius: "1rem",
+            padding: "2rem",
+            border: "1px solid rgba(20, 184, 166, 0.15)"
           }}
         >
-          {/* Initial 2 paragraphs */}
-          <div className="space-y-4 text-slate-300 leading-relaxed">
-            {autismPlanetMobile.understandingIt.preview.map((para, idx) => (
-              <p key={idx} className="text-base" style={{ lineHeight: "1.6" }}>
-                {para}
-              </p>
+          {/* Text blocks - staggered fade-in */}
+          <div className="space-y-6">
+            {autismPlanetMobile.understandingIt.blocks.map((block, idx) => (
+              <motion.p
+                key={idx}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.18 }}
+                className="text-left"
+                style={{
+                  lineHeight: "1.8em",
+                  color: "#E6F0EB",
+                  fontSize: "1.0625rem", // 17px
+                  whiteSpace: "pre-line" // Preserve line breaks
+                }}
+              >
+                {block}
+              </motion.p>
             ))}
-
-            {/* Expanded content - only loaded when user taps */}
-            {isExpanded && (
-              <div className="space-y-4 pt-4 border-t border-teal-500/20">
-                {autismPlanetMobile.understandingIt.fullContent.map((para, idx) => (
-                  <p key={idx} className="text-base" style={{ lineHeight: "1.6" }}>
-                    {para}
-                  </p>
-                ))}
-              </div>
-            )}
-
-            {/* Read more button */}
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center gap-2 mx-auto mt-6 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors duration-200"
-              style={{ minHeight: "44px", minWidth: "44px" }}
-            >
-              {isExpanded ? (
-                <>
-                  Show less <ChevronUp size={16} />
-                </>
-              ) : (
-                <>
-                  Read more <ChevronDown size={16} />
-                </>
-              )}
-            </button>
           </div>
         </div>
 
-        {/* Gentle transition hint */}
-        <div className="text-center pt-6">
-          <p className="text-slate-400 text-sm">
+        {/* Gentle transition hint with generous spacing */}
+        <div className="text-center pt-12 mt-auto">
+          <p className="text-slate-400 text-sm" style={{ lineHeight: "1.6" }}>
             Next: See how autism shows up in daily life
           </p>
         </div>

@@ -1,14 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AutismPlanetLayout } from "./AutismPlanetLayout";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { autismPlanetMobile } from "@/data/planets/autism-mobile";
 
 export function AutismStrengths() {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState<string | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleNext = () => {
     router.push('/planets/autism/planning');
@@ -30,6 +33,68 @@ export function AutismStrengths() {
     s => s.id === modalOpen
   );
 
+  // Scroll lock when modal is open
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+      // Focus close button when modal opens
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 100);
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [modalOpen]);
+
+  // Esc key handler
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && modalOpen) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [modalOpen]);
+
+  // Focus trap
+  useEffect(() => {
+    if (!modalOpen || !modalRef.current) return;
+
+    const modal = modalRef.current;
+    const focusableElements = modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0] as HTMLElement;
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    };
+
+    modal.addEventListener('keydown', handleTab as any);
+    return () => modal.removeEventListener('keydown', handleTab as any);
+  }, [modalOpen]);
+
   return (
     <AutismPlanetLayout
       currentStep={5}
@@ -46,7 +111,7 @@ export function AutismStrengths() {
           <h2 className="text-3xl font-bold text-slate-100 mb-3">
             Strengths & Sensitivities
           </h2>
-          <p className="text-slate-400 text-sm max-w-md mx-auto">
+          <p className="text-slate-400 text-base max-w-md mx-auto" style={{ lineHeight: "1.6" }}>
             Tap a card to learn more
           </p>
         </div>
@@ -83,41 +148,79 @@ export function AutismStrengths() {
         </div>
       </div>
 
-      {/* Modal for full description */}
-      {modalOpen && activeStrength && (
-        <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50"
-          onClick={closeModal}
-        >
-          <div
-            className="max-w-lg w-full p-6 rounded-2xl relative"
+      {/* Modal with backdrop blur */}
+      <AnimatePresence>
+        {modalOpen && activeStrength && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 flex items-center justify-center p-4 z-50"
             style={{
-              background: "linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(13, 148, 136, 0.1) 100%)",
-              border: "2px solid rgba(20, 184, 166, 0.3)"
+              backdropFilter: "blur(8px) brightness(0.6)",
+              WebkitBackdropFilter: "blur(8px) brightness(0.6)"
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={closeModal}
           >
-            {/* Close button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-200 transition-colors"
-              style={{ minHeight: "44px", minWidth: "44px" }}
-            >
-              <X size={24} />
-            </button>
+            {/* Translucent overlay */}
+            <div
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}
+            />
 
-            {/* Content */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-teal-300">
-                {activeStrength.title}
-              </h3>
-              <p className="text-base text-slate-300 leading-relaxed" style={{ lineHeight: "1.6" }}>
-                {activeStrength.fullDesc}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+            {/* Modal container */}
+            <motion.div
+              ref={modalRef}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full"
+              style={{
+                background: "rgba(10, 25, 25, 0.95)",
+                borderRadius: "1rem",
+                padding: "1.5rem",
+                maxWidth: "600px",
+                border: "1px solid rgba(20, 184, 166, 0.3)",
+                boxShadow: "inset 0 0 0 1px rgba(20, 184, 166, 0.15)"
+              }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
+            >
+              {/* Close button */}
+              <button
+                ref={closeButtonRef}
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-200 transition-colors rounded-lg"
+                style={{ minHeight: "44px", minWidth: "44px" }}
+                aria-label="Close modal"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Content */}
+              <div className="space-y-4 pr-8">
+                <h3
+                  id="modal-title"
+                  className="text-2xl font-bold text-teal-300"
+                  style={{ lineHeight: "1.4" }}
+                >
+                  {activeStrength.title}
+                </h3>
+                <p
+                  className="text-lg text-slate-200"
+                  style={{ lineHeight: "1.6" }}
+                >
+                  {activeStrength.fullDesc}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* CSS for line-clamp */}
       <style jsx>{`
