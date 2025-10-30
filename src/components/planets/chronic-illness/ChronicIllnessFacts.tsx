@@ -1,43 +1,55 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { PlanetLayout } from "../PlanetLayout";
 import { useRouter } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import FactCarousel from "@/components/FactCarousel";
 import { chronicillnessPlanetMobile } from "@/data/planets/chronic-illness-mobile";
 
 export function ChronicIllnessFacts() {
   const router = useRouter();
-  const [currentFactIndex, setCurrentFactIndex] = useState(0);
-  const facts = chronicillnessPlanetMobile.didYouKnowFacts;
 
-  const handleNext = () => router.push('/planets/chronic-illness/understanding');
-  const handlePrev = () => router.push('/planets/chronic-illness');
-  const nextFact = () => setCurrentFactIndex((prev) => (prev + 1) % facts.length);
-  const prevFact = () => setCurrentFactIndex((prev) => (prev - 1 + facts.length) % facts.length);
+  const handleNext = () => {
+    router.push('/planets/chronic-illness/understanding');
+  };
+
+  const handlePrev = () => {
+    router.push('/planets/chronic-illness');
+  };
 
   return (
-    <PlanetLayout currentStep={2} totalSteps={6} nextRoute="/planets/chronic-illness/understanding" prevRoute="/planets/chronic-illness" onSwipeLeft={handleNext} onSwipeRight={handlePrev} primaryColor="#4DBB90" accentColor="#2E8B6F">
-      <div className="text-center space-y-8 py-8">
-        <div className="space-y-3">
-          <h2 className="text-3xl font-bold text-slate-100">Did You Know?</h2>
-          <p className="text-slate-400 text-sm max-w-md mx-auto">Quick insights to note on your journey through ChronicIllness</p>
+    <PlanetLayout
+      currentStep={2}
+      totalSteps={6}
+      nextRoute="/planets/chronic-illness/understanding"
+      prevRoute="/planets/chronic-illness"
+      onSwipeLeft={handleNext}
+      onSwipeRight={handlePrev}
+      primaryColor="#4DBB90"
+      accentColor="#2E8B6F"
+    >
+      <div className="space-y-8 py-6">
+        {/* Header */}
+        <div className="text-center">
+          <span className="text-5xl mb-4 inline-block">✨</span>
+          <h2 className="text-3xl font-bold text-slate-100 mb-3">
+            Did You Know?
+          </h2>
+          <p className="text-slate-400 text-sm max-w-md mx-auto">
+            Quick insights to note on your journey through Chronic Illness
+          </p>
         </div>
-        <div className="relative max-w-lg mx-auto">
-          <div className="rounded-2xl p-8 min-h-[240px] flex items-center justify-center" style={{ background: "linear-gradient(135deg, #4DBB9026 0%, #2E8B6F1A 100%)", border: "1px solid #4DBB9033", boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)" }}>
-            <p className="text-lg text-slate-200 leading-relaxed" style={{ lineHeight: "1.7" }}>{facts[currentFactIndex]}</p>
-          </div>
-          <button onClick={prevFact} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-3 rounded-full transition-all duration-200 hover:scale-110" style={{ background: "#4DBB9033", border: "1px solid #4DBB904D", color: "#4DBB90", minHeight: "44px", minWidth: "44px" }} aria-label="Previous fact">
-            <ChevronLeft size={24} />
-          </button>
-          <button onClick={nextFact} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-3 rounded-full transition-all duration-200 hover:scale-110" style={{ background: "#4DBB9033", border: "1px solid #4DBB904D", color: "#4DBB90", minHeight: "44px", minWidth: "44px" }} aria-label="Next fact">
-            <ChevronRight size={24} />
-          </button>
+
+        {/* Carousel - cute and low-pressure */}
+        <div className="py-4">
+          <FactCarousel facts={chronicillnessPlanetMobile.didYouKnowFacts} colour="#4DBB90" />
         </div>
-        <div className="flex justify-center gap-2 pt-4">
-          {facts.map((_, index) => (
-            <button key={index} onClick={() => setCurrentFactIndex(index)} className="w-2 h-2 rounded-full transition-all duration-200" style={{ background: index === currentFactIndex ? "#4DBB90" : "#4DBB904D", transform: index === currentFactIndex ? "scale(1.2)" : "scale(1)", minHeight: "44px", minWidth: "44px" }} aria-label={`Go to fact ${index + 1}`} />
-          ))}
+
+        {/* Light encouragement */}
+        <div className="text-center pt-4">
+          <p className="text-slate-300 text-base italic">
+            Ready to go deeper?
+          </p>
         </div>
       </div>
     </PlanetLayout>
