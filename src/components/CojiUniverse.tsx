@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   Home,
   Sparkles,
@@ -127,6 +128,8 @@ interface UserProfile {
 }
 
 const CojiUniverse = () => {
+  const router = useRouter();
+
   // Hydration control - prevent flash on initial load
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -4077,7 +4080,7 @@ const CojiUniverse = () => {
                 {/* Planet Grid - Hidden when searching */}
                 <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${librarySearch ? 'opacity-50' : ''}`}>
                   <div
-                    onClick={() => setSelectedPlanet('adhd-support')}
+                    onClick={() => router.push('/planets/adhd')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('adhd-support').colours.primary,
@@ -4125,7 +4128,7 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('anxiety-tools')}
+                    onClick={() => router.push('/planets/anxiety')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('anxiety-tools').colours.primary,
@@ -4149,7 +4152,7 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('parenting-hub')}
+                    onClick={() => router.push('/planets/parenting')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('parenting-hub').colours.primary,
@@ -4173,7 +4176,7 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('depression-support')}
+                    onClick={() => router.push('/planets/depression')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('depression-support').colours.primary,
@@ -4197,7 +4200,7 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('dyslexia-dyscalculia')}
+                    onClick={() => router.push('/planets/dyslexia')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('dyslexia-dyscalculia').colours.primary,
@@ -4221,7 +4224,7 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('chronic-illness')}
+                    onClick={() => router.push('/planets/chronic-illness')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('chronic-illness').colours.primary,
@@ -4245,7 +4248,7 @@ const CojiUniverse = () => {
                   </div>
 
                   <div
-                    onClick={() => setSelectedPlanet('dyspraxia')}
+                    onClick={() => router.push('/planets/dyspraxia')}
                     className="bg-slate-800 bg-opacity-50 p-6 rounded-xl border border-opacity-20 hover:border-opacity-40 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
                     style={{
                       borderColor: getPlanetTheme('dyspraxia').colours.primary,
