@@ -72,7 +72,7 @@ export const chronicIllnessEducationalContent: EducationalContent = {
           "People don't understand why you're sick if you 'look fine'",
           "You feel guilty for not being able to do what others can",
           "You grieve the life you had before illness",
-          "Medical gaslighting—doctors dismiss or minimize your symptoms"
+          "Medical gaslighting—doctors dismiss or minimise your symptoms"
         ]
       }
     ],
@@ -109,7 +109,7 @@ export const chronicIllnessEducationalContent: EducationalContent = {
           "Use meal delivery, grocery delivery, or pre-cut vegetables",
           "Keep a 'crash kit' nearby (water, snacks, meds, heating pad, entertainment)",
           "Use voice assistants to control lights, thermostats, and reminders",
-          "Prioritize energy for what matters—outsource or skip the rest"
+          "Prioritise energy for what matters—outsource or skip the rest"
         ]
       },
       {
@@ -133,7 +133,7 @@ export const chronicIllnessEducationalContent: EducationalContent = {
           "Pace yourself—do less than you think you can to avoid crashes",
           "Plan rest days after high-energy activities",
           "Use timers to prevent overexertion (rest every 20 minutes)",
-          "Build routines that minimize energy use (meal prep, simplified chores)",
+          "Build routines that minimise energy use (meal prep, simplified chores)",
           "Accept help—asking for help is strength, not weakness",
           "Grieve the life you had, but build a new one within your limits",
           "Join support groups—connect with others who understand"

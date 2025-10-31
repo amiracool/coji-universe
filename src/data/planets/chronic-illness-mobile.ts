@@ -75,7 +75,7 @@ export const chronicIllnessPlanetMobile = {
       expanded: [
         "Headaches, joint pain, muscle aches, or nerve pain.",
         "Pain is exhausting — it drains energy fast.",
-        "You minimize your pain to avoid judgment.",
+        "You minimise your pain to avoid judgment.",
         "People don't believe you when you look 'fine.'"
       ]
     },
@@ -236,7 +236,7 @@ export const chronicIllnessPlanetMobile = {
           icon: "📅",
           title: "Pace yourself ruthlessly",
           summary: "Rest before you crash, not after.",
-          detail: "Build in buffer time. Schedule rest days after high-energy activities. Prevent crashes by honoring your limits proactively."
+          detail: "Build in buffer time. Schedule rest days after high-energy activities. Prevent crashes by honouring your limits proactively."
         },
         {
           id: "env-3",
@@ -292,7 +292,7 @@ export const chronicIllnessPlanetMobile = {
           icon: "🚪",
           title: "Let go of unsupportive people",
           summary: "You don't owe anyone who drains you.",
-          detail: "People who dismiss, minimize, or judge your illness aren't worth your precious energy. Surround yourself with believers."
+          detail: "People who dismiss, minimise, or judge your illness aren't worth your precious energy. Surround yourself with believers."
         },
         {
           id: "rel-3",
@@ -317,6 +317,6 @@ export const chronicIllnessPlanetMobile = {
     "Your resilience in navigating daily challenges is extraordinary strength.",
     "Your empathy helps you support others through their own health struggles.",
     "Your self-advocacy skills protect you and inspire others to speak up.",
-    "Your ability to prioritize what truly matters creates a meaningful life."
+    "Your ability to prioritise what truly matters creates a meaningful life."
   ]
 };

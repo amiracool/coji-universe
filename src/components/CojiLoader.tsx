@@ -20,7 +20,7 @@ const affirmations = [
   "Your tools are on their way... 🎯",
   "Building your toolkit... 🔧",
   "Preparing your planet... 🪐",
-  "Getting things organized for you... 📋",
+  "Getting things organised for you... 📋",
   "Almost ready! Hang in there... 🌺"
 ];
 

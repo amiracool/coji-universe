@@ -199,11 +199,11 @@ export const dyslexiaPlanetMobile = {
           detail: "Some fonts are designed to reduce letter confusion and improve readability for dyslexic brains. Experiment to see what works for you."
         },
         {
-          id: "colored-overlays",
+          id: "coloured-overlays",
           icon: "🌈",
-          title: "Use Colored Overlays or Tinted Glasses",
-          summary: "Color can reduce visual stress and improve focus.",
-          detail: "Some people with dyslexia find that colored overlays (like blue, green, or yellow) reduce glare and make text easier to read. Try different colors to see what helps."
+          title: "Use Coloured Overlays or Tinted Glasses",
+          summary: "Colour can reduce visual stress and improve focus.",
+          detail: "Some people with dyslexia find that coloured overlays (like blue, green, or yellow) reduce glare and make text easier to read. Try different colours to see what helps."
         }
       ]
     },
@@ -230,8 +230,8 @@ export const dyslexiaPlanetMobile = {
           id: "mind-mapping",
           icon: "🗺️",
           title: "Try Mind Mapping or Visual Planning",
-          summary: "Organize thoughts visually before writing.",
-          detail: "Tools like MindMeister or even paper and colored pens can help you map out ideas visually before translating them into linear text."
+          summary: "Organise thoughts visually before writing.",
+          detail: "Tools like MindMeister or even paper and coloured pens can help you map out ideas visually before translating them into linear text."
         }
       ]
     },
@@ -248,11 +248,11 @@ export const dyslexiaPlanetMobile = {
           detail: "Don't rely on memory alone. Use phone alarms, visual sticky notes, or calendar reminders for appointments, deadlines, and tasks."
         },
         {
-          id: "color-coding",
+          id: "colour-coding",
           icon: "🎨",
-          title: "Color-Code Everything",
-          summary: "Use color to organize and remember.",
-          detail: "Color-coding files, folders, calendars, and notes helps your visual brain process and recall information more easily."
+          title: "Colour-Code Everything",
+          summary: "Use colour to organise and remember.",
+          detail: "Colour-coding files, folders, calendars, and notes helps your visual brain process and recall information more easily."
         },
         {
           id: "routines",

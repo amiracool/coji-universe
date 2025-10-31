@@ -65,13 +65,13 @@ export const anxietyEducationalContent: EducationalContent = {
         ]
       },
       {
-        area: "Avoidance & Safety Behaviors",
+        area: "Avoidance & Safety Behaviours",
         description: "Anxiety leads to avoiding situations that feel unsafe.",
         examples: [
           "Avoiding places, people, or activities that trigger anxiety",
           "Over-preparing or seeking constant reassurance",
           "Procrastinating on tasks that feel overwhelming",
-          "Using substances, food, or behaviors to cope",
+          "Using substances, food, or behaviours to cope",
           "Staying in your comfort zone even when it limits your life"
         ]
       }
@@ -135,7 +135,7 @@ export const anxietyEducationalContent: EducationalContent = {
           "Schedule worry time—set aside 15 minutes to worry, then move on",
           "Build a support network—people who understand and validate your anxiety",
           "Use apps for guided meditation, breathing, or CBT exercises",
-          "Prioritize sleep, exercise, and nutrition—they directly affect anxiety",
+          "Prioritise sleep, exercise, and nutrition—they directly affect anxiety",
           "Limit news/social media if it fuels anxious thoughts"
         ]
       }

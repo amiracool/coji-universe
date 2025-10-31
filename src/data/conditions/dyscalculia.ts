@@ -190,7 +190,7 @@ export const dyscalculiaCategories: Category[] = [
     didYouKnow: [
       "Analog clocks require multiple skills at once (sequencing, spatial, memory)",
       "Digital tools are valid supports for time management",
-      "Money math is one of the most practical skills to prioritize"
+      "Money math is one of the most practical skills to prioritise"
     ],
     traits: [
       {
@@ -311,7 +311,7 @@ export const dyscalculiaCategories: Category[] = [
           "Break into tiny steps",
           "Allow calculator use",
           "Reduce number of steps in problems",
-          "Use visual organizers (grids, tables)"
+          "Use visual organisers (grids, tables)"
         ],
         icon: "🤯"
       },

@@ -167,7 +167,7 @@ export const anxietyPlanetMobile = {
       id: "preparation",
       title: "Thorough Preparation",
       shortDesc: "You plan ahead and think through scenarios.",
-      fullDesc: "Your anxiety drives you to prepare meticulously. This makes you reliable, organized, and excellent in roles requiring foresight."
+      fullDesc: "Your anxiety drives you to prepare meticulously. This makes you reliable, organised, and excellent in roles requiring foresight."
     },
     {
       id: "conscientiousness",
@@ -228,7 +228,7 @@ export const anxietyPlanetMobile = {
           id: "env-1",
           icon: "🕯️",
           title: "Create calm spaces",
-          summary: "Soft lighting, minimal clutter, and soothing colors reduce overwhelm.",
+          summary: "Soft lighting, minimal clutter, and soothing colours reduce overwhelm.",
           detail: "Designate a 'safe space' at home where you can retreat. Use weighted blankets, calming scents, or white noise to self-soothe."
         },
         {
@@ -299,7 +299,7 @@ export const anxietyPlanetMobile = {
           icon: "🌐",
           title: "Find your community",
           summary: "Connect with others who understand anxiety.",
-          detail: "Online or in-person support groups where anxiety is normalized, not judged. You're not alone, and you're not 'too much.'"
+          detail: "Online or in-person support groups where anxiety is normalised, not judged. You're not alone, and you're not 'too much.'"
         }
       ]
     }
@@ -308,7 +308,7 @@ export const anxietyPlanetMobile = {
   // Did You Know carousel facts
   didYouKnowFacts: [
     "Anxiety disorders are the most common mental health condition, affecting 1 in 5 people.",
-    "Your amygdala (fear center) is hyperactive — it's neurological, not a character flaw.",
+    "Your amygdala (fear centre) is hyperactive — it's neurological, not a character flaw.",
     "Anxiety often co-occurs with ADHD, autism, or depression — overlapping conditions are common."
   ],
 

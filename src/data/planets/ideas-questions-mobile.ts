@@ -217,7 +217,7 @@ export const ideasQuestionsPlanetMobile = {
           icon: "🎤",
           title: "Use Voice Notes",
           summary: "Record ideas as they come.",
-          detail: "Keep a voice memo app handy to capture thoughts, ideas, or questions as they pop up. You can organize them later."
+          detail: "Keep a voice memo app handy to capture thoughts, ideas, or questions as they pop up. You can organise them later."
         },
         {
           id: "notebook",

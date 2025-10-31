@@ -152,7 +152,7 @@ export const autismPlanetMobile = {
       id: "pattern",
       title: "Pattern Recognition",
       shortDesc: "You spot connections and systems others overlook.",
-      fullDesc: "Your brain naturally identifies patterns in data, music, language, or behavior. This makes you excellent at analysis, coding, research, and creative problem-solving."
+      fullDesc: "Your brain naturally identifies patterns in data, music, language, or behaviour. This makes you excellent at analysis, coding, research, and creative problem-solving."
     },
     {
       id: "authenticity",
@@ -232,7 +232,7 @@ export const autismPlanetMobile = {
           id: "env-2",
           icon: "📅",
           title: "Make routines visible",
-          summary: "Use whiteboards, apps, or calendars to externalize schedules.",
+          summary: "Use whiteboards, apps, or calendars to externalise schedules.",
           detail: "Visual reminders reduce executive function load. Keep daily routines predictable where possible to conserve energy for unexpected changes."
         },
         {

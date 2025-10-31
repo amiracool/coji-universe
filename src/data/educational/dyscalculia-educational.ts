@@ -106,10 +106,10 @@ export const dyscalculiaEducationalContent: EducationalContent = {
         strategies: [
           "Use digital clocks instead of analog",
           "Set phone alarms with labels for appointments",
-          "Use budgeting apps that visualize spending (not just numbers)",
+          "Use budgeting apps that visualise spending (not just numbers)",
           "Keep a calculator on your phone home screen",
           "Use GPS with voice directions (not turn-by-turn numbers)",
-          "Color-code calendars and schedules",
+          "Colour-code calendars and schedules",
           "Use visual timers (Time Timer) instead of counting minutes",
           "Automate bill payments to avoid late fees"
         ]
@@ -119,7 +119,7 @@ export const dyscalculiaEducationalContent: EducationalContent = {
         icon: React.createElement(Stethoscope, { className: "w-5 h-5" }),
         strategies: [
           "Tell clinicians you struggle with numbers—ask for written medication instructions",
-          "Request visual aids for dosing (pill organizers with days labeled)",
+          "Request visual aids for dosing (pill organisers with days labelled)",
           "Use medication reminder apps (Medisafe, MyTherapy)",
           "Bring a calculator or support person to appointments involving numbers",
           "Ask for clarification on measurements (weight, blood pressure numbers)",
@@ -130,7 +130,7 @@ export const dyscalculiaEducationalContent: EducationalContent = {
         title: "Planning & Organisation",
         icon: React.createElement(Calendar, { className: "w-5 h-5" }),
         strategies: [
-          "Use visual calendars with color-coding (not just numbered dates)",
+          "Use visual calendars with colour-coding (not just numbered dates)",
           "Set recurring reminders for regular tasks",
           "Use contactless payment to avoid counting cash",
           "Use tip calculators or pre-set percentages (15%, 20%)",

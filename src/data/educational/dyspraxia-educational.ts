@@ -101,7 +101,7 @@ export const dyspraxiaEducationalContent: EducationalContent = {
           "Use elastic laces, Velcro, or slip-on shoes",
           "Choose clothing with easy fastenings (zippers over buttons)",
           "Use voice-to-text for writing instead of handwriting",
-          "Set up your space to minimize obstacles (clear pathways, organized surfaces)",
+          "Set up your space to minimise obstacles (clear pathways, organised surfaces)",
           "Use grip aids for jars, pens, and utensils",
           "Keep essentials in consistent, easy-to-reach places"
         ]

@@ -40,7 +40,7 @@ export const dyspraxiaPlanetMobile = {
         icon: "⏰",
         visual: "🌀",
         title: "Processing takes time",
-        text: "Your brain needs extra moments\nto organize movement and sequence.",
+        text: "Your brain needs extra moments\nto organise movement and sequence.",
         color: "#B794F6"
       },
       {
@@ -182,10 +182,10 @@ export const dyspraxiaPlanetMobile = {
       fullDesc: "Because you've had to think through every movement, you're skilled at anticipating obstacles and planning ahead."
     },
     {
-      id: "humor",
-      title: "Humor & Adaptability",
+      id: "humour",
+      title: "Humour & Adaptability",
       shortDesc: "You laugh at mishaps and adapt quickly.",
-      fullDesc: "You've learned to roll with the bumps (literally). Your humor and flexibility help you navigate a world not built for your wiring."
+      fullDesc: "You've learned to roll with the bumps (literally). Your humour and flexibility help you navigate a world not built for your wiring."
     }
   ],
 
@@ -215,7 +215,7 @@ export const dyspraxiaPlanetMobile = {
           icon: "📚",
           title: "Break tasks into steps",
           summary: "Visual guides, checklists, and routines reduce cognitive load.",
-          detail: "Use step-by-step instructions for complex tasks. Color-code, label, and organize your workspace to reduce spatial confusion."
+          detail: "Use step-by-step instructions for complex tasks. Colour-code, label, and organise your workspace to reduce spatial confusion."
         }
       ]
     },
@@ -228,7 +228,7 @@ export const dyspraxiaPlanetMobile = {
           id: "env-1",
           icon: "🧹",
           title: "Reduce clutter and obstacles",
-          summary: "Clear pathways, organized spaces, and good lighting help coordination.",
+          summary: "Clear pathways, organised spaces, and good lighting help coordination.",
           detail: "Remove tripping hazards. Use storage with labels and clear bins. Keep frequently-used items at consistent, easy-to-reach spots."
         },
         {
@@ -243,7 +243,7 @@ export const dyspraxiaPlanetMobile = {
           icon: "⏰",
           title: "Build in buffer time",
           summary: "Allow extra time for tasks requiring coordination or planning.",
-          detail: "Don't rush. Give yourself space to organize, sequence, and move without pressure. Fatigue worsens coordination — rest matters."
+          detail: "Don't rush. Give yourself space to organise, sequence, and move without pressure. Fatigue worsens coordination — rest matters."
         }
       ]
     },
@@ -291,7 +291,7 @@ export const dyspraxiaPlanetMobile = {
           id: "rel-2",
           icon: "🎮",
           title: "Choose activities that work for you",
-          summary: "Suggest hangouts that don't center on physical coordination.",
+          summary: "Suggest hangouts that don't centre on physical coordination.",
           detail: "Board games, movies, creative projects, or meals out. You don't have to force yourself into activities that drain or frustrate you."
         },
         {

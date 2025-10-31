@@ -128,7 +128,7 @@ export const depressionEducationalContent: EducationalContent = {
         title: "Planning & Organisation",
         icon: React.createElement(Calendar, { className: "w-5 h-5" }),
         strategies: [
-          "Use 'behavioral activation'—do small things even when you don't feel like it",
+          "Use 'behavioural activation'—do small things even when you don't feel like it",
           "Start with micro-habits: brush teeth, drink water, open curtains",
           "Action before motivation—motivation follows action, not the other way around",
           "Use alarms/reminders for meals, meds, and self-care",

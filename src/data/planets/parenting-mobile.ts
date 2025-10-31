@@ -110,7 +110,7 @@ export const parentingPlanetMobile = {
         "You feel like a bad parent when you lose control.",
         "Patience runs out fast, especially with sleep deprivation.",
         "You apologize a lot to your kids.",
-        "You're modeling repair, even if it doesn't feel like enough."
+        "You're modelling repair, even if it doesn't feel like enough."
       ]
     },
     {
@@ -214,7 +214,7 @@ export const parentingPlanetMobile = {
           id: "daily-3",
           icon: "🛠️",
           title: "Use visual systems",
-          summary: "Charts, timers, and color-coding help everyone.",
+          summary: "Charts, timers, and colour-coding help everyone.",
           detail: "Visual schedules for kids and you. Timers for transitions. Checklists for routines. Externalize executive function."
         }
       ]
@@ -263,7 +263,7 @@ export const parentingPlanetMobile = {
           id: "kids-2",
           icon: "🛡️",
           title: "Teach them about differences",
-          summary: "Normalize neurodivergence and disability.",
+          summary: "Normalise neurodivergence and disability.",
           detail: "Your kids learn that brains and bodies work differently — and that's okay. This builds compassion."
         },
         {
@@ -298,7 +298,7 @@ export const parentingPlanetMobile = {
           id: "school-3",
           icon: "🎯",
           title: "Pick your battles",
-          summary: "You can't fight every fight — prioritize what matters most.",
+          summary: "You can't fight every fight — prioritise what matters most.",
           detail: "Focus on big issues (safety, accommodations, bullying). Let small stuff go to conserve energy for what matters."
         }
       ]

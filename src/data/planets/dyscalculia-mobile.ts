@@ -215,7 +215,7 @@ export const dyscalculiaPlanetMobile = {
           icon: "📝",
           title: "Request accommodations",
           summary: "Ask for extra time, written instructions, or visual aids.",
-          detail: "Request tasks in non-numerical formats where possible. Use templates, checklists, or color-coding to reduce numerical cognitive load."
+          detail: "Request tasks in non-numerical formats where possible. Use templates, checklists, or colour-coding to reduce numerical cognitive load."
         }
       ]
     },
@@ -229,14 +229,14 @@ export const dyscalculiaPlanetMobile = {
           icon: "📱",
           title: "Automate everything",
           summary: "Use apps for budgeting, scheduling, and reminders.",
-          detail: "Set up automatic bill payments. Use budgeting apps that visualize spending. Let technology handle the numbers so you can focus on what matters."
+          detail: "Set up automatic bill payments. Use budgeting apps that visualise spending. Let technology handle the numbers so you can focus on what matters."
         },
         {
           id: "env-2",
           icon: "🎨",
-          title: "Visualize information",
-          summary: "Use graphs, colors, and images instead of raw numbers.",
-          detail: "Convert data into visual formats. Use analog clocks with clear markers. Color-code calendars, budgets, or schedules."
+          title: "Visualise information",
+          summary: "Use graphs, colours, and images instead of raw numbers.",
+          detail: "Convert data into visual formats. Use analog clocks with clear markers. Colour-code calendars, budgets, or schedules."
         },
         {
           id: "env-3",

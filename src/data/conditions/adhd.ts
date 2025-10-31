@@ -31,7 +31,7 @@ export const adhdCategories: Category[] = [
     subtitle: "Managing concentration and distractibility",
     didYouKnow: [
       "ADHD isn't a deficit of attention — it's difficulty regulating where attention goes",
-      "Background noise can sometimes help ADHD brains focus by occupying the 'distraction center'",
+      "Background noise can sometimes help ADHD brains focus by occupying the 'distraction centre'",
       "The two-minute rule: if it takes less than 2 minutes, do it now before you forget"
     ],
     traits: [

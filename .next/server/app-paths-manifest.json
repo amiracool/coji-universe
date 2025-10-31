@@ -1,7 +1,8 @@
 {
-  "/page": "app/page.js",
-  "/planets/parenting/page": "app/planets/parenting/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/planets/depression/facts/page": "app/planets/depression/facts/page.js",
+  "/planets/parenting/page": "app/planets/parenting/page.js",
+  "/page": "app/page.js",
   "/planets/depression/understanding/page": "app/planets/depression/understanding/page.js",
   "/planets/depression/how-it-shows-up/page": "app/planets/depression/how-it-shows-up/page.js"
 }

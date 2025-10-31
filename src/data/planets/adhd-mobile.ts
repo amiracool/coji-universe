@@ -19,7 +19,7 @@ export const adhdPlanetMobile = {
         icon: "🧠",
         visual: "⚡",
         title: "Your brain moves differently",
-        text: "You're not lazy or careless.\nYour brain prioritizes interest, urgency, and novelty — not importance.",
+        text: "You're not lazy or careless.\nYour brain prioritises interest, urgency, and novelty — not importance.",
         color: "#F96E46"
       },
       {
@@ -167,7 +167,7 @@ export const adhdPlanetMobile = {
       id: "adaptability",
       title: "Adaptability",
       shortDesc: "You thrive in dynamic, fast-paced environments.",
-      fullDesc: "Change doesn't scare you — it energizes you. You're quick to pivot, think on your feet, and handle chaos better than most."
+      fullDesc: "Change doesn't scare you — it energises you. You're quick to pivot, think on your feet, and handle chaos better than most."
     },
     {
       id: "enthusiasm",
@@ -229,7 +229,7 @@ export const adhdPlanetMobile = {
           icon: "🧹",
           title: "Reduce decision fatigue",
           summary: "Simplify choices: capsule wardrobe, meal prep, default routines.",
-          detail: "Keep essentials visible (keys, wallet, phone go in one spot). Use clear bins, labeled storage, and visual reminders to reduce memory load."
+          detail: "Keep essentials visible (keys, wallet, phone go in one spot). Use clear bins, labelled storage, and visual reminders to reduce memory load."
         },
         {
           id: "env-2",
