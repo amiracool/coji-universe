@@ -2673,7 +2673,7 @@ const CojiUniverse = () => {
 
               <FeatureIcon
                 icon={DollarSign}
-                label="Finances"
+                label="Budgeting"
                 description="Wellbeing-focused budgeting and planning tools (not financial advice — consult a licensed professional for investments or debt management)"
                 color="green"
               />
@@ -4634,7 +4634,7 @@ const CojiUniverse = () => {
 
         {activeTab === "finances" && (
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-teal-300">Finances</h2>
+            <h2 className="text-3xl font-bold mb-6 text-teal-300">Budgeting</h2>
             <p className="text-slate-400 mb-4">Track budgets, use the 50/30/20 rule, and organise wants vs needs with a simple whiteboard.</p>
 
             <div className="bg-amber-900 bg-opacity-20 border border-amber-500 border-opacity-30 rounded-lg p-4 mb-6">

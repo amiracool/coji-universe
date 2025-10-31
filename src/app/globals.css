@@ -344,3 +344,13 @@ input[type="range"]::-moz-range-thumb:hover {
     }
   }
 }
+
+/* Starfield animation (only on desktop with animations enabled) */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
