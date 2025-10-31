@@ -4,26 +4,177 @@
       "static/chunks/webpack.js",
       "static/chunks/lib.js",
       "static/chunks/main-app.js",
+      "static/chunks/commons.js",
       "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/lib.js",
       "static/chunks/main-app.js",
+      "static/chunks/commons.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/planets/autism/intro/page": [
+    "/planets/anxiety/page": [
       "static/chunks/webpack.js",
       "static/chunks/lib.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/planets/autism/intro/page.js"
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/anxiety/page.js"
+    ],
+    "/planets/anxiety/facts/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/anxiety/facts/page.js"
+    ],
+    "/planets/anxiety/understanding/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/anxiety/understanding/page.js"
+    ],
+    "/planets/anxiety/how-it-shows-up/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/anxiety/how-it-shows-up/page.js"
+    ],
+    "/planets/anxiety/strengths/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/anxiety/strengths/page.js"
+    ],
+    "/planets/anxiety/planning/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/anxiety/planning/page.js"
+    ],
+    "/planets/parenting/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/parenting/page.js"
+    ],
+    "/planets/parenting/facts/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/parenting/facts/page.js"
+    ],
+    "/planets/parenting/understanding/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/parenting/understanding/page.js"
+    ],
+    "/planets/parenting/how-it-shows-up/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/parenting/how-it-shows-up/page.js"
+    ],
+    "/planets/parenting/strengths/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/parenting/strengths/page.js"
+    ],
+    "/planets/parenting/planning/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/parenting/planning/page.js"
+    ],
+    "/planets/dyslexia/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/dyslexia/page.js"
+    ],
+    "/planets/dyslexia/facts/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/dyslexia/facts/page.js"
+    ],
+    "/planets/dyslexia/understanding/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/dyslexia/understanding/page.js"
+    ],
+    "/planets/dyslexia/how-it-shows-up/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/dyslexia/how-it-shows-up/page.js"
+    ],
+    "/planets/dyslexia/strengths/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/dyslexia/strengths/page.js"
+    ],
+    "/planets/dyslexia/planning/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/dyslexia/planning/page.js"
     ],
     "/library/ideas-questions/page": [
       "static/chunks/webpack.js",
       "static/chunks/lib.js",
       "static/chunks/main-app.js",
+      "static/chunks/commons.js",
       "static/chunks/app/library/ideas-questions/page.js"
+    ],
+    "/planets/depression/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/depression/page.js"
+    ],
+    "/planets/depression/facts/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/depression/facts/page.js"
+    ],
+    "/planets/depression/understanding/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/depression/understanding/page.js"
+    ],
+    "/planets/depression/how-it-shows-up/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/lib.js",
+      "static/chunks/main-app.js",
+      "static/chunks/commons.js",
+      "static/chunks/app/planets/depression/how-it-shows-up/page.js"
     ]
   }
 }

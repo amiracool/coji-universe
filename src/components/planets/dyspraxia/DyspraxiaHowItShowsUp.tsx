@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { dyspraxiaPlanetMobile } from "@/data/planets/dyspraxia-mobile";
 import { useSound } from "@/contexts/SoundContext";
 
-function TypewriterText({ text, delay = 0, onSkip, soundEnabled }: { text: string; delay?: number; onSkip?: () => void; soundEnabled?: boolean }) {
+function TypewriterText({ text, delay = 0, onSkip, soundEnabled, skipAll }: { text: string; delay?: number; onSkip?: () => void; soundEnabled?: boolean; skipAll?: boolean }) {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -65,6 +65,15 @@ function TypewriterText({ text, delay = 0, onSkip, soundEnabled }: { text: strin
     return () => clearTimeout(startTimer);
   }, [delay]);
 
+  // Watch for skipAll prop
+  useEffect(() => {
+    if (skipAll) {
+      setIsSkipped(true);
+      setDisplayedText(text);
+      setCurrentIndex(text.length);
+    }
+  }, [skipAll, text]);
+
   useEffect(() => {
     if (!hasStarted) return;
 
@@ -86,33 +95,9 @@ function TypewriterText({ text, delay = 0, onSkip, soundEnabled }: { text: strin
     }
   }, [currentIndex, text, hasStarted, isSkipped]);
 
-  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
-    if (currentIndex >= text.length) return;
-
-    const now = Date.now();
-    const timeSinceLastTap = now - lastTapRef.current;
-
-    // On desktop: single click shows all text
-    // On mobile: double tap (within 300ms) shows all text
-    const isDoubleTab = timeSinceLastTap < 300;
-    const isMobile = 'ontouchstart' in window;
-
-    if (!isMobile || isDoubleTab) {
-      setIsSkipped(true);
-      setDisplayedText(text);
-      setCurrentIndex(text.length);
-      if (onSkip) onSkip();
-    }
-
-    lastTapRef.current = now;
-  };
-
   return (
     <span
-      onClick={handleClick}
-      onTouchEnd={handleClick}
       style={{
-        cursor: currentIndex < text.length ? 'pointer' : 'default',
         userSelect: 'none',
         WebkitUserSelect: 'none',
         WebkitTouchCallout: 'none'
@@ -136,6 +121,7 @@ export function DyspraxiaHowItShowsUp() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { isMuted } = useSound();
   const soundEnabled = !isMuted;
+  const [skipAll, setSkipAll] = useState(false);
 
   const handleNext = () => {
     router.push('/planets/dyspraxia/strengths');
@@ -157,6 +143,10 @@ export function DyspraxiaHowItShowsUp() {
     }
   };
 
+  const handlePageClick = () => {
+    setSkipAll(true);
+  };
+
   const currentSection = dyspraxiaPlanetMobile.howItShowsUp[currentIndex];
 
   return (
@@ -171,7 +161,7 @@ export function DyspraxiaHowItShowsUp() {
       onSwipeRight={handlePrev}
     >
       {/* Carousel container */}
-      <div className="flex flex-col items-center justify-center min-h-screen py-12 px-6" style={{ maxWidth: "600px", margin: "0 auto" }}>
+      <div className="flex flex-col items-center justify-center min-h-screen py-12 px-6" style={{ maxWidth: "600px", margin: "0 auto" }} onClick={handlePageClick}>
         {/* Header */}
         <div className="text-center mb-12">
           <motion.span
@@ -268,7 +258,7 @@ export function DyspraxiaHowItShowsUp() {
                       fontWeight: 300
                     }}
                   >
-                    <TypewriterText text={line} delay={totalDelay} soundEnabled={soundEnabled} />
+                    <TypewriterText text={line} delay={totalDelay} soundEnabled={soundEnabled} skipAll={skipAll} />
                   </p>
                 );
               })}
@@ -295,7 +285,7 @@ export function DyspraxiaHowItShowsUp() {
                       fontWeight: 300
                     }}
                   >
-                    <TypewriterText text={line} delay={totalDelay} soundEnabled={soundEnabled} />
+                    <TypewriterText text={line} delay={totalDelay} soundEnabled={soundEnabled} skipAll={skipAll} />
                   </p>
                 );
               })}

@@ -1,5 +1,7 @@
 {
   "/page": "app/page.js",
-  "/planets/autism/intro/page": "app/planets/autism/intro/page.js",
-  "/library/ideas-questions/page": "app/library/ideas-questions/page.js"
+  "/planets/parenting/page": "app/planets/parenting/page.js",
+  "/planets/depression/facts/page": "app/planets/depression/facts/page.js",
+  "/planets/depression/understanding/page": "app/planets/depression/understanding/page.js",
+  "/planets/depression/how-it-shows-up/page": "app/planets/depression/how-it-shows-up/page.js"
 }
