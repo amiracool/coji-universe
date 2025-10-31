@@ -32,23 +32,6 @@ export function DepressionPage({ onBack }: DepressionPageProps = {}) {
         className="fixed inset-0 -z-10 transition-all duration-1000"
         style={{ background: theme.atmosphere.background }}
       >
-        {/* Twinkling stars */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 rounded-full animate-pulse-slow"
-              style={{
-                background: theme.atmosphere.stars,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                opacity: Math.random() * 0.7 + 0.3
-              }}
-            />
-          ))}
-        </div>
-
         {/* Bottom atmospheric glow */}
         <div
           className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none opacity-30 blur-3xl"

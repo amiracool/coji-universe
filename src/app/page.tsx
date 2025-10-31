@@ -1,7 +1,7 @@
 "use client";
 
-import CojiUniverse from '@/components/CojiUniverse'
+import { LibraryLanding } from '@/components/library/LibraryLanding'
 
 export default function Home() {
-  return <CojiUniverse />
+  return <LibraryLanding />
 }
